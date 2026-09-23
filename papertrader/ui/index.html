@@ -378,7 +378,8 @@ function viewOverview(){
     const val = hasLive ? b.live_equity : (p.equity ?? cash0);
     const r = val / cash0 - 1;
     if (spyEq == null) spyEq = b.live_spy_equity ?? p.spy_equity;
-    const foot = hasLive && b.live_as_of ? `Live prices · ${when(b.live_as_of)} · ${(b.positions || []).length} positions` : `Max drawdown ${dd(p.max_dd)} · ${(b.positions || []).length} positions`;
+    const np = (b.positions || []).length, npTxt = `${np} position${np === 1 ? '' : 's'}`;
+    const foot = hasLive && b.live_as_of ? `Live prices · ${when(b.live_as_of)} · ${npTxt}` : `Max drawdown ${dd(p.max_dd)} · ${npTxt}`;
     cards.push(kpiCard(b.name, COLORS[b.id], money(val), r, `${money(val - cash0, true)} (${pct(r)}) since start`, foot));
   });
   cards.push(kpiCard('SPY buy & hold', COLORS.spy, money(spyEq ?? cash0), spyEq ? spyEq / cash0 - 1 : null, spyEq ? `${money(spyEq - cash0, true)} (${pct(spyEq / cash0 - 1)}) since start` : 'Starts at the first open', 'Benchmark: $100 in SPY at the first open'));
