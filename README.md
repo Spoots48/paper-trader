@@ -34,31 +34,36 @@ Command line (from this folder):
 
 `dashboard/index.html` is a static read-only snapshot, refreshed after every cycle. It opens in any browser.
 
-## When it runs (local only, by design)
+## Where it runs: GitHub's cloud (works with the Mac off)
 
-The **live copy runs from the Mac's internal disk**: `~/Library/Application Support/PaperTradingSim/runtime`.
-It uses about 25 MB of real disk space; the Python environment is an APFS clone of uv's existing cache.
-The external X10 Pro drive is **not needed**: unplug it any time. The folder on the drive is the development
-and research copy (the backtest and its 82 MB of price history live there). That copy refuses to run as a
-second live instance.
+Trading runs on **GitHub Actions** in the private repo
+[Spoots48/paper-trader](https://github.com/Spoots48/paper-trader) (`.github/workflows/cycle.yml`). It runs
+about 7 times per trading day: after the close (decides the next open, plus two backups), before the open,
+just after the open (fills), and midday and late-day checks. Each run:
 
-A per-user `launchd` job (`~/Library/LaunchAgents/com.papertradingsim.cycle.plist`) runs a cycle every
-15 minutes **while the Mac is on, awake, logged in and online**. Otherwise it skips quietly and catches up
-on the next run.
+1. restores the ledgers from `state/*.sql` (text, versioned in git)
+2. verifies the audit chain, frozen strategy hashes and cash
+3. runs one cycle
+4. commits `state/` and any new `reports/` back
 
-What depends on the Mac being awake:
+- **Cost:** $0. The repo is private (2,000 free minutes a month; this uses about 300). With no payment
+  method on file, GitHub blocks usage at the quota instead of charging.
+- **Alerts:** GitHub emails you when a run fails. Each weekly report is also posted as a GitHub issue,
+  which emails you.
+- **Timing caveats:** scheduled runs can be delayed or occasionally dropped by GitHub. Backups are
+  scheduled in each key window. A decision window that's entirely missed is logged, never back-filled.
+  Standing stop-losses are always applied from the price history on the next run.
 
-| | Mac awake | Mac asleep/off |
-|---|---|---|
-| New decisions (buys, rotations, time exits, regime exits) | ✅ made once per session, any time from 30 min after the previous close until 15:30 ET | ❌ the decision window is logged as **missed**, never back-filled |
-| Orders already placed (e.g. market-on-open) | ✅ | ✅ filled at the official open, as a broker would; processed when the Mac is back |
-| Stop-losses | ✅ checked on 5-min bars | ✅ treated as standing broker orders and evaluated from the price history once back online |
-| Reports | ✅ on schedule | generated at the next run, marked late |
+**Your Mac is a viewer.** The Paper Trader app pulls the latest state from GitHub every 3 minutes while
+it's open. The background job (`com.papertradingsim.cycle`) also syncs every 15 minutes while the Mac is
+awake and online, and shows a macOS notification when a new report arrives.
+- **Run now** starts a cloud run.
+- **Pause / Resume** disables or re-enables the cloud workflow.
+- **••• → Sync from GitHub now / Open on GitHub.**
 
-A MacBook sleeps when the lid closes. For the most complete experiment, keep it plugged in and awake at
-least once a day, ideally in the evening after 4:30 pm ET, when the next day's orders get decided.
-Optionally, turn on System Settings → Battery → Options → "Prevent automatic sleeping on power adapter
-when the display is off". That's your call; nothing here changes system settings.
+The local copy lives on the internal disk (`~/Library/Application Support/PaperTradingSim/runtime`,
+about 25 MB), so the external drive is never needed. `config/deployment.json` sets the mode
+(`cloud`/`local`). Only one place trades at a time.
 
 ## The two books (both frozen 2026-09-22 before any live trade)
 
@@ -150,7 +155,7 @@ cache · `reports/` weekly reports · `research/` backtest and pre-registration 
 (run `bash app/build_app.sh` from the live copy to rebuild it) · `scripts/` scheduler install/uninstall · `logs/` cycle logs
 (launchd logs are in `~/Library/Logs/PaperTradingSim/`).
 
-**To stop everything:** ••• → Stop scheduler in the app, or run `bash scripts/uninstall_scheduler.sh`.
-After Day 30 the job does nothing, so remove it then.
+**To stop everything:** Pause in the app (disables the cloud workflow). Run `bash scripts/uninstall_scheduler.sh`
+to remove the Mac's sync job. After Day 30 the cloud job does nothing, so disable it then.
 
 Not investment advice.
