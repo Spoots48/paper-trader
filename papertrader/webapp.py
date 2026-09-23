@@ -151,7 +151,7 @@ def serve(port: int = PORT) -> None:
                     sync()
                 except Exception as e:  # keep serving the last good state
                     print(f"sync failed: {e}", flush=True)
-                time.sleep(180)
+                time.sleep(90)
         threading.Thread(target=_sync_loop, daemon=True).start()
     print(f"Paper Trader control panel on http://127.0.0.1:{port}", flush=True)
     t = threading.Thread(target=httpd.serve_forever, daemon=True)

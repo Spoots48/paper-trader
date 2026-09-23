@@ -18,11 +18,8 @@ Open **Paper Trader** (in `~/Applications`, or search Spotlight). The app shows:
 - every decision with its reasoning, the data it used, and the news headlines behind it (with publish and retrieval times)
 - the weekly reports, the backtest, run logs and integrity checks
 
-Controls (top right):
-
-- **Run now**: run a cycle immediately.
-- **Pause / Resume**: scheduled runs skip while paused.
-- **••• → Stop scheduler / Start scheduler**: uninstall or reinstall the background job.
+There are no buttons to press: runs happen automatically on schedule and the app updates itself.
+The ••• menu only has shortcuts (open on GitHub, open the folder, light/dark).
 
 Command line (from this folder):
 
@@ -54,12 +51,9 @@ just after the open (fills), and midday and late-day checks. Each run:
   scheduled in each key window. A decision window that's entirely missed is logged, never back-filled.
   Standing stop-losses are always applied from the price history on the next run.
 
-**Your Mac is a viewer.** The Paper Trader app pulls the latest state from GitHub every 3 minutes while
+**Your Mac is a viewer.** The Paper Trader app pulls the latest state from GitHub every 90 seconds while
 it's open. The background job (`com.papertradingsim.cycle`) also syncs every 15 minutes while the Mac is
 awake and online, and shows a macOS notification when a new report arrives.
-- **Run now** starts a cloud run.
-- **Pause / Resume** disables or re-enables the cloud workflow.
-- **••• → Sync from GitHub now / Open on GitHub.**
 
 The local copy lives on the internal disk (`~/Library/Application Support/PaperTradingSim/runtime`,
 about 25 MB), so the external drive is never needed. `config/deployment.json` sets the mode
@@ -155,7 +149,7 @@ cache · `reports/` weekly reports · `research/` backtest and pre-registration 
 (run `bash app/build_app.sh` from the live copy to rebuild it) · `scripts/` scheduler install/uninstall · `logs/` cycle logs
 (launchd logs are in `~/Library/Logs/PaperTradingSim/`).
 
-**To stop everything:** Pause in the app (disables the cloud workflow). Run `bash scripts/uninstall_scheduler.sh`
+**To stop everything:** disable the `cycle` workflow on GitHub (Actions tab). Run `bash scripts/uninstall_scheduler.sh`
 to remove the Mac's sync job. After Day 30 the cloud job does nothing, so disable it then.
 
 Not investment advice.

@@ -249,11 +249,8 @@ function renderTop(){
   const s = schedStatus(), sc = st.scheduler || {};
   let h = `<span class="pill"><span class="dot ${s.dot}"></span>${esc(s.text)}</span>`;
   if (LIVE){
-    h += `<button class="btn primary" id="b-run" ${st.cycle_running || sc.paused ? 'disabled' : ''}>Run now</button>`;
-    h += sc.paused ? `<button class="btn" id="b-resume">Resume</button>` : `<button class="btn" id="b-pause">Pause</button>`;
-    h += `<div class="menu" id="m"><button class="btn" id="b-more">•••</button><div class="pop">
-      ${sc.mode === 'cloud' ? '<button data-a="sync">Sync from GitHub now</button><button data-a="github">Open on GitHub</button>'
-        : (sc.installed ? '<button data-a="uninstall">Stop scheduler (uninstall)</button>' : '<button data-a="install">Start scheduler (install)</button>')}
+    h += `<div class="menu" id="m"><button class="btn" id="b-more" aria-label="More">•••</button><div class="pop">
+      ${sc.mode === 'cloud' ? '<button data-a="github">Open on GitHub</button>' : ''}
       <button data-a="folder">Open project folder</button>
       <button data-a="export">Export static dashboard</button><hr>
       <button data-a="theme">Toggle light / dark</button></div></div>`;
@@ -261,17 +258,13 @@ function renderTop(){
   $('#controls').innerHTML = h;
   if (!LIVE) return;
   const post = async (path) => { const r = await fetch(path, {method: 'POST', headers: {'X-PT': '1'}}); return r.json(); };
-  $('#b-run') && ($('#b-run').onclick = async () => { const r = await post('/api/run'); toast(r.started ? (r.cloud ? 'Cloud run started on GitHub — results sync here within a few minutes.' : 'Cycle started — results appear in a minute or two.') : r.reason); setTimeout(load, 1500); });
-  $('#b-pause') && ($('#b-pause').onclick = async () => { await post('/api/pause'); toast((st.scheduler || {}).mode === 'cloud' ? 'Cloud runs paused (workflow disabled on GitHub). Missed decisions are logged; stops are processed when you resume.' : 'Paused. Scheduled runs will skip until you resume. Stops and orders already placed are still honoured when you resume.'); load(); });
-  $('#b-resume') && ($('#b-resume').onclick = async () => { await post('/api/resume'); toast('Resumed.'); load(); });
-  $('#b-more').onclick = e => { e.stopPropagation(); $('#m').classList.toggle('open'); };
-  document.onclick = () => $('#m') && $('#m').classList.remove('open');
+  if (S.menuOpen) $('#m').classList.add('open');
+  $('#b-more').onclick = e => { e.stopPropagation(); S.menuOpen = !S.menuOpen; $('#m').classList.toggle('open', S.menuOpen); };
+  document.onclick = () => { S.menuOpen = false; $('#m') && $('#m').classList.remove('open'); };
   document.querySelectorAll('.pop button').forEach(b => b.onclick = async () => {
     const a = b.dataset.a;
-    if (a === 'install'){ const r = await post('/api/scheduler/install'); toast(r.ok ? 'Scheduler installed: runs every 15 minutes while the Mac is on.' : 'Install failed: ' + r.output); }
-    if (a === 'uninstall'){ if (!confirm('Stop the scheduler? No trading decisions will be made until you start it again.')) return; const r = await post('/api/scheduler/uninstall'); toast(r.ok ? 'Scheduler removed.' : 'Failed: ' + r.output); }
+    S.menuOpen = false;
     if (a === 'folder') await post('/api/open-folder');
-    if (a === 'sync'){ const r = await post('/api/sync'); toast(r.pull_ok ? 'Synced. ' + (r.restored && r.restored.length ? 'Updated: ' + r.restored.join(', ') : 'Already up to date.') : 'Sync failed: ' + (r.error || 'offline?')); }
     if (a === 'github') await post('/api/open-github');
     if (a === 'export'){ const r = await post('/api/export'); toast('Saved ' + r.path); }
     if (a === 'theme'){ const cur = document.documentElement.dataset.theme; const dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; document.documentElement.dataset.theme = dark ? 'light' : 'dark'; localSet('theme', document.documentElement.dataset.theme); }
@@ -282,7 +275,7 @@ function renderTop(){
 function renderBanners(){
   const st = S.state, out = [];
   const sc0 = st.scheduler || {};
-  if (LIVE && sc0.mode === 'cloud') out.push(`<div class="banner info">Trading runs in GitHub's cloud, so it keeps going with this Mac off or the drive unplugged. This app shows the latest synced state${sc0.last_sync ? ' (synced ' + ago(sc0.last_sync.at) + (sc0.last_sync.pull_ok === false ? ', last sync failed' : '') + ')' : ''}.</div>`);
+  if (LIVE && sc0.mode === 'cloud') out.push(`<div class="banner info">Trading runs in GitHub's cloud, so it keeps going with this Mac off or the drive unplugged. This app updates itself automatically with the latest results${sc0.last_sync ? ' (synced ' + ago(sc0.last_sync.at) + (sc0.last_sync.pull_ok === false ? ', last sync failed' : '') + ')' : ''}.</div>`);
   if (!LIVE) out.push(`<div class="banner info">Static snapshot generated ${when(st.generated_at)}. Open the Paper Trader app for live data and controls.</div>`);
   const unfrozen = (st.books || []).filter(b => !b.frozen);
   if (unfrozen.length) out.push(`<div class="banner warn">Not frozen yet: ${unfrozen.map(b => esc(b.name)).join(', ')}. Run <code>python run.py freeze</code> before the start date.</div>`);
