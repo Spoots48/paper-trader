@@ -30,6 +30,13 @@ INSERT INTO "events" VALUES(6,'2026-09-23T01:45:11Z','20260923T014323Z-research'
 INSERT INTO "events" VALUES(7,'2026-09-23T01:45:11Z','20260923T014323Z-research','order','{"key": "2026-09-23:momentum:FTNT:BUY:MOMENTUM", "notional": 20.0, "qty": null, "reason": "momentum rank #2 (6-1 month return +108.3%, vol-adjusted score 37.61), uptrend: close > 50d > 200d SMA; news: 16 relevant headlines in last 72h, no hard negatives", "session": "2026-09-23", "side": "BUY", "ticker": "FTNT", "type": "MOO"}','38e60fc7f6d17c101f43e818137f6c2147556b102ff7e5e81d81e1fe7f15fbe6','47992090e8afd18f17144ad222ffde8071d4c6d4e185dc23fa25e03282e829aa');
 INSERT INTO "events" VALUES(8,'2026-09-23T01:45:11Z','20260923T014323Z-research','order','{"key": "2026-09-23:residual:SPY:BUY:RESIDUAL", "notional": null, "qty": null, "reason": "park idle cash in SPY (regime risk-on)", "session": "2026-09-23", "side": "BUY", "ticker": "SPY", "type": "MOO"}','47992090e8afd18f17144ad222ffde8071d4c6d4e185dc23fa25e03282e829aa','81749ee98d4eaf9734f4788b0605ac4816c9e821023b3446e7041565015c234b');
 INSERT INTO "events" VALUES(9,'2026-09-23T01:45:11Z','20260923T014323Z-research','decision','{"action": "INFO", "code": "DECIDED", "key": "decide:2026-09-23", "reason": "3 orders (MOO) for 2026-09-23; regime ON; SPY 773.44 vs 200d 717.19; VIX 14.210000038146973; 1 earnings reactions on 2026-09-22; rebalance=True", "ticker": "*"}','81749ee98d4eaf9734f4788b0605ac4816c9e821023b3446e7041565015c234b','4836566ca14ed44d64eab1066549f3a6cdd8b2fa4206b9ee8af683bff32047e9');
+INSERT INTO "events" VALUES(10,'2026-09-23T17:50:09Z','20260923T175009Z-research','benchmark_init','{"entry_price": 773.3309310119628, "qty": 0.12931074652496097}','4836566ca14ed44d64eab1066549f3a6cdd8b2fa4206b9ee8af683bff32047e9','e101434ddae0fb721c122040a5c548497bc703efb94af754281892d2242d8127');
+INSERT INTO "events" VALUES(11,'2026-09-23T17:50:09Z','20260923T175009Z-research','fill','{"fill_price": 559.559, "key": "2026-09-23:momentum:DELL:BUY:MOMENTUM", "price_time": "2026-09-23T09:30:00-04:00 (official open)", "qty": 0.035742, "ref_price": 559.0, "side": "BUY", "source": "yahoo_daily_open", "ticker": "DELL"}','e101434ddae0fb721c122040a5c548497bc703efb94af754281892d2242d8127','b6c0c7d5ee5d8c332c8e5cf6abd28efc2879724e6795e4608954b44103cdc017');
+INSERT INTO "events" VALUES(12,'2026-09-23T17:50:09Z','20260923T175009Z-research','order_status','{"key": "2026-09-23:momentum:DELL:BUY:MOMENTUM", "reason": "BUY 0.035742 DELL @ 559.5590", "status": "FILLED"}','b6c0c7d5ee5d8c332c8e5cf6abd28efc2879724e6795e4608954b44103cdc017','5833abb041cc2d6814ae939eea8f9e1bcef92e126b22e8a8a36841a95aa32a15');
+INSERT INTO "events" VALUES(13,'2026-09-23T17:50:09Z','20260923T175009Z-research','fill','{"fill_price": 176.6145311126709, "key": "2026-09-23:momentum:FTNT:BUY:MOMENTUM", "price_time": "2026-09-23T09:30:00-04:00 (official open)", "qty": 0.11324, "ref_price": 176.35000610351562, "side": "BUY", "source": "yahoo_daily_open", "ticker": "FTNT"}','5833abb041cc2d6814ae939eea8f9e1bcef92e126b22e8a8a36841a95aa32a15','f9d2a350e332589d67d49d7f4f68a0e67a82c6020665ed07f99e373cb84f569e');
+INSERT INTO "events" VALUES(14,'2026-09-23T17:50:09Z','20260923T175009Z-research','order_status','{"key": "2026-09-23:momentum:FTNT:BUY:MOMENTUM", "reason": "BUY 0.113240 FTNT @ 176.6145", "status": "FILLED"}','f9d2a350e332589d67d49d7f4f68a0e67a82c6020665ed07f99e373cb84f569e','e806d280a09d1ad4fe71de86fb09f0c5a78664d7db0294872cbb5abaf18e460f');
+INSERT INTO "events" VALUES(15,'2026-09-23T17:50:09Z','20260923T175009Z-research','fill','{"fill_price": 773.3309310119628, "key": "2026-09-23:residual:SPY:BUY:RESIDUAL", "price_time": "2026-09-23T09:30:00-04:00 (official open)", "qty": 0.075002, "ref_price": 772.7899780273438, "side": "BUY", "source": "yahoo_daily_open", "ticker": "SPY"}','e806d280a09d1ad4fe71de86fb09f0c5a78664d7db0294872cbb5abaf18e460f','e9184fff5e994f6a58f5177f65f1c9d127bbf6de01af0a88edad6abf0c0ca9e6');
+INSERT INTO "events" VALUES(16,'2026-09-23T17:50:09Z','20260923T175009Z-research','order_status','{"key": "2026-09-23:residual:SPY:BUY:RESIDUAL", "reason": "BUY 0.075002 SPY @ 773.3309", "status": "FILLED"}','e9184fff5e994f6a58f5177f65f1c9d127bbf6de01af0a88edad6abf0c0ca9e6','2c910e32642ce13410b9d07a0c03b521870cd5aae8a522e38ed367f5241be362');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -44,6 +51,9 @@ CREATE TABLE fills (
   cost_usd REAL NOT NULL, price_time TEXT NOT NULL, price_source TEXT NOT NULL, sleeve TEXT,
   reason_code TEXT, reason TEXT, realized_pnl REAL
 );
+INSERT INTO "fills" VALUES(1,'2026-09-23:momentum:DELL:BUY:MOMENTUM','20260923T175009Z-research','2026-09-23T17:50:09Z','2026-09-23','DELL','BUY',0.035742,559.0,559.559,10.0,1.99797779999988968e-02,'2026-09-23T09:30:00-04:00 (official open)','yahoo_daily_open','momentum','MOMENTUM','momentum rank #1 (6-1 month return +230.2%, vol-adjusted score 44.51), uptrend: close > 50d > 200d SMA; news: 47 relevant headlines in last 72h, no hard negatives',NULL);
+INSERT INTO "fills" VALUES(2,'2026-09-23:momentum:FTNT:BUY:MOMENTUM','20260923T175009Z-research','2026-09-23T17:50:09Z','2026-09-23','FTNT','BUY',0.11324,1.76350006103515625e+02,1.76614531112670903e+02,15.0,2.99548120367437026e-02,'2026-09-23T09:30:00-04:00 (official open)','yahoo_daily_open','momentum','MOMENTUM','momentum rank #2 (6-1 month return +108.3%, vol-adjusted score 37.61), uptrend: close > 50d > 200d SMA; news: 16 relevant headlines in last 72h, no hard negatives',NULL);
+INSERT INTO "fills" VALUES(3,'2026-09-23:residual:SPY:BUY:RESIDUAL','20260923T175009Z-research','2026-09-23T17:50:09Z','2026-09-23','SPY','BUY',0.075002,7.7278997802734375e+02,7.73330931011962775e+02,7.0,4.05725557523961347e-02,'2026-09-23T09:30:00-04:00 (official open)','yahoo_daily_open','residual','RESIDUAL','park idle cash in SPY (regime risk-on)',NULL);
 CREATE TABLE news (
   news_id INTEGER PRIMARY KEY AUTOINCREMENT, uid TEXT NOT NULL UNIQUE, ticker TEXT NOT NULL,
   source TEXT NOT NULL, provider TEXT, title TEXT NOT NULL, url TEXT, published_at TEXT,
@@ -132,14 +142,17 @@ CREATE TABLE orders (
   entry_params TEXT, meta TEXT,
   status TEXT NOT NULL DEFAULT 'OPEN', status_reason TEXT, updated_at TEXT
 );
-INSERT INTO "orders" VALUES('2026-09-23:momentum:DELL:BUY:MOMENTUM','2026-09-23T01:43:23Z','20260923T014323Z-research','DELL','BUY','MOO','2026-09-23','momentum',20.0,NULL,40,'MOMENTUM','momentum rank #1 (6-1 month return +230.2%, vol-adjusted score 44.51), uptrend: close > 50d > 200d SMA; news: 47 relevant headlines in last 72h, no hard negatives','{"stop_max_loss": 0.12, "trailing_stop": 0.12}','{"metrics": {"rank": 1, "mom_score": 44.505680645063286, "mom_ret": 2.3022056130910937, "close": 549.02001953125, "sma50": 467.9810009765625, "sma200": 276.7587498474121, "adv20": 5536852124.894934}}','OPEN',NULL,'2026-09-23T01:45:11Z');
-INSERT INTO "orders" VALUES('2026-09-23:momentum:FTNT:BUY:MOMENTUM','2026-09-23T01:43:23Z','20260923T014323Z-research','FTNT','BUY','MOO','2026-09-23','momentum',20.0,NULL,41,'MOMENTUM','momentum rank #2 (6-1 month return +108.3%, vol-adjusted score 37.61), uptrend: close > 50d > 200d SMA; news: 16 relevant headlines in last 72h, no hard negatives','{"stop_max_loss": 0.12, "trailing_stop": 0.12}','{"metrics": {"rank": 2, "mom_score": 37.61047280611332, "mom_ret": 1.0825178459352616, "close": 174.24000549316406, "sma50": 160.78939971923828, "sma200": 114.80134979248047, "adv20": 778590139.6565552}}','OPEN',NULL,'2026-09-23T01:45:11Z');
-INSERT INTO "orders" VALUES('2026-09-23:residual:SPY:BUY:RESIDUAL','2026-09-23T01:43:23Z','20260923T014323Z-research','SPY','BUY','MOO','2026-09-23','residual',NULL,NULL,90,'RESIDUAL','park idle cash in SPY (regime risk-on)','{}','{}','OPEN',NULL,'2026-09-23T01:45:11Z');
+INSERT INTO "orders" VALUES('2026-09-23:momentum:DELL:BUY:MOMENTUM','2026-09-23T01:43:23Z','20260923T014323Z-research','DELL','BUY','MOO','2026-09-23','momentum',20.0,NULL,40,'MOMENTUM','momentum rank #1 (6-1 month return +230.2%, vol-adjusted score 44.51), uptrend: close > 50d > 200d SMA; news: 47 relevant headlines in last 72h, no hard negatives','{"stop_max_loss": 0.12, "trailing_stop": 0.12}','{"metrics": {"rank": 1, "mom_score": 44.505680645063286, "mom_ret": 2.3022056130910937, "close": 549.02001953125, "sma50": 467.9810009765625, "sma200": 276.7587498474121, "adv20": 5536852124.894934}}','FILLED','BUY 0.035742 DELL @ 559.5590','2026-09-23T17:50:09Z');
+INSERT INTO "orders" VALUES('2026-09-23:momentum:FTNT:BUY:MOMENTUM','2026-09-23T01:43:23Z','20260923T014323Z-research','FTNT','BUY','MOO','2026-09-23','momentum',20.0,NULL,41,'MOMENTUM','momentum rank #2 (6-1 month return +108.3%, vol-adjusted score 37.61), uptrend: close > 50d > 200d SMA; news: 16 relevant headlines in last 72h, no hard negatives','{"stop_max_loss": 0.12, "trailing_stop": 0.12}','{"metrics": {"rank": 2, "mom_score": 37.61047280611332, "mom_ret": 1.0825178459352616, "close": 174.24000549316406, "sma50": 160.78939971923828, "sma200": 114.80134979248047, "adv20": 778590139.6565552}}','FILLED','BUY 0.113240 FTNT @ 176.6145','2026-09-23T17:50:09Z');
+INSERT INTO "orders" VALUES('2026-09-23:residual:SPY:BUY:RESIDUAL','2026-09-23T01:43:23Z','20260923T014323Z-research','SPY','BUY','MOO','2026-09-23','residual',NULL,NULL,90,'RESIDUAL','park idle cash in SPY (regime risk-on)','{}','{}','FILLED','BUY 0.075002 SPY @ 773.3309','2026-09-23T17:50:09Z');
 CREATE TABLE positions (
   ticker TEXT PRIMARY KEY, qty REAL NOT NULL, avg_cost REAL NOT NULL, sleeve TEXT NOT NULL,
   entry_session TEXT NOT NULL, entry_price REAL NOT NULL, initial_stop REAL, trail_pct REAL,
   high_water REAL NOT NULL, max_hold_until TEXT, stop_checked_through TEXT, meta TEXT
 );
+INSERT INTO "positions" VALUES('DELL',0.035742,559.559,'momentum','2026-09-23',559.559,4.92411919999999952e+02,0.12,559.559,NULL,'2026-09-23T13:45:00-04:00','{"metrics": {"rank": 1, "mom_score": 44.505680645063286, "mom_ret": 2.3022056130910937, "close": 549.02001953125, "sma50": 467.9810009765625, "sma200": 276.7587498474121, "adv20": 5536852124.894934}}');
+INSERT INTO "positions" VALUES('FTNT',0.11324,1.76614531112670903e+02,'momentum','2026-09-23',1.76614531112670903e+02,1.55420787379150397e+02,0.12,1.76614531112670903e+02,NULL,'2026-09-23T13:45:00-04:00','{"metrics": {"rank": 2, "mom_score": 37.61047280611332, "mom_ret": 1.0825178459352616, "close": 174.24000549316406, "sma50": 160.78939971923828, "sma200": 114.80134979248047, "adv20": 778590139.6565552}}');
+INSERT INTO "positions" VALUES('SPY',0.075002,7.73330931011962775e+02,'residual','2026-09-23',7.73330931011962775e+02,NULL,NULL,7.73330931011962775e+02,NULL,'2026-09-23T13:45:00-04:00','{}');
 CREATE TABLE reports (
   report_key TEXT PRIMARY KEY, day_number INTEGER NOT NULL, report_date TEXT NOT NULL,
   as_of_session TEXT NOT NULL, generated_at TEXT NOT NULL, path_md TEXT NOT NULL, path_html TEXT NOT NULL,
@@ -153,15 +166,19 @@ INSERT INTO "runs" VALUES('20260923T014323Z-research','2026-09-23T01:43:24Z','20
 INSERT INTO "runs" VALUES('20260923T014524Z-research','2026-09-23T01:45:24Z','2026-09-23T01:45:24Z','OK','launchd','no action needed',NULL);
 INSERT INTO "runs" VALUES('20260923T015119Z-research','2026-09-23T01:51:20Z','2026-09-23T01:51:20Z','OK','launchd','no action needed',NULL);
 INSERT INTO "runs" VALUES('20260923T020657Z-research','2026-09-23T02:06:57Z','2026-09-23T02:06:57Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20260923T175009Z-research','2026-09-23T17:50:09Z','2026-09-23T17:50:09Z','OK','github-actions','FILL BUY DELL 0.0357 @ 559.56 (MOMENTUM); FILL BUY FTNT 0.1132 @ 176.61 (MOMENTUM); FILL BUY SPY 0.0750 @ 773.33 (RESIDUAL)',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
   peak REAL NOT NULL, drawdown REAL NOT NULL, regime TEXT, risk_state TEXT, marks TEXT, holdings TEXT
 );
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
-INSERT INTO "state" VALUES('cash','100.0','2026-09-23T01:43:16Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-23T02:06:57Z');
+INSERT INTO "state" VALUES('cash','1.999046231041909','2026-09-23T17:50:09Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-23T17:50:09Z');
 INSERT INTO "state" VALUES('last_regime','"ON"','2026-09-23T01:43:24Z');
+INSERT INTO "state" VALUES('benchmark','{"ticker": "SPY", "qty": 0.12931074652496097, "entry_price": 773.3309310119628, "entry_session": "2026-09-23", "div_cash": 0.0, "note": "SPY bought at the first session''s official open with the same cost model"}','2026-09-23T17:50:09Z');
+INSERT INTO "state" VALUES('open_done:2026-09-23','true','2026-09-23T17:50:09Z');
+INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-09-23T17:50:09Z", "marks": {"SPY": [768.4099731445312, "2026-09-23T13:45:00-04:00"], "DELL": [549.25, "2026-09-23T13:45:00-04:00"], "FTNT": [177.34500122070312, "2026-09-23T13:45:00-04:00"]}}','2026-09-23T17:50:09Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
@@ -185,7 +202,8 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',9);
+INSERT INTO "sqlite_sequence" VALUES('events',16);
 INSERT INTO "sqlite_sequence" VALUES('news',76);
 INSERT INTO "sqlite_sequence" VALUES('decisions',5);
+INSERT INTO "sqlite_sequence" VALUES('fills',3);
 COMMIT;
