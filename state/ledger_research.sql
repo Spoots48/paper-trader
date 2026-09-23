@@ -152,6 +152,7 @@ CREATE TABLE runs (
 INSERT INTO "runs" VALUES('20260923T014323Z-research','2026-09-23T01:43:24Z','2026-09-23T01:45:11Z','OK','manual-first-run','decided for 2026-09-23: 3 orders (MOO), regime ON',NULL);
 INSERT INTO "runs" VALUES('20260923T014524Z-research','2026-09-23T01:45:24Z','2026-09-23T01:45:24Z','OK','launchd','no action needed',NULL);
 INSERT INTO "runs" VALUES('20260923T015119Z-research','2026-09-23T01:51:20Z','2026-09-23T01:51:20Z','OK','launchd','no action needed',NULL);
+INSERT INTO "runs" VALUES('20260923T020657Z-research','2026-09-23T02:06:57Z','2026-09-23T02:06:57Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -159,7 +160,7 @@ CREATE TABLE snapshots (
 );
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','100.0','2026-09-23T01:43:16Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-23T01:51:20Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-23T02:06:57Z');
 INSERT INTO "state" VALUES('last_regime','"ON"','2026-09-23T01:43:24Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
