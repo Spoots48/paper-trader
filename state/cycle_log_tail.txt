@@ -1,2 +1,2 @@
-2026-09-23 19:42:51,492 INFO [primary] no action needed
-2026-09-23 19:42:51,846 INFO [research] no action needed
+2026-09-23 21:54:14,581 INFO [primary] closed 2026-09-23; decided for 2026-09-24: 0 orders (MOO), regime ON
+2026-09-23 21:56:14,154 INFO [research] closed 2026-09-23; decided for 2026-09-24: 0 orders (MOO), regime ON

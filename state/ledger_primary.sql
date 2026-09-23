@@ -10,6 +10,7 @@ CREATE TABLE decisions (
 );
 INSERT INTO "decisions" VALUES(1,'2026-09-23:000:residual:SPY:RESIDUAL','20260923T014323Z-primary','2026-09-23T01:43:23Z','2026-09-22','2026-09-23','SPY','residual','BUY','RESIDUAL','invest idle cash (~$98.00) in SPY','{}','[]');
 INSERT INTO "decisions" VALUES(2,'decide:2026-09-23','20260923T014323Z-primary','2026-09-23T01:43:23Z','2026-09-22','2026-09-23','*','system','INFO','DECIDED','1 orders (MOO) for 2026-09-23; regime ON; SPY 773.44 vs 200d 717.19; VIX 14.210000038146973; 0 earnings reactions on 2026-09-22; rebalance=True','{"regime": "ON", "spy_close": 773.4400024414062, "spy_sma200": 717.1891497802734, "vix": 14.210000038146973, "order_type": "MOO", "data_through": "2026-09-22", "stock_bars_missing": 0, "risk": {"drawdown": 0.0, "halted": false, "paused": false}, "earnings_events_loaded": 0, "earnings_dates_failed": []}','[]');
+INSERT INTO "decisions" VALUES(3,'decide:2026-09-24','20260923T215408Z-primary','2026-09-23T21:54:08Z','2026-09-23','2026-09-24','*','system','INFO','DECIDED','0 orders (MOO) for 2026-09-24; regime ON; SPY 767.81 vs 200d 717.61; VIX 15.180000305175781; 0 earnings reactions on 2026-09-23; rebalance=False','{"regime": "ON", "spy_close": 767.8099975585938, "spy_sma200": 717.6059497070313, "vix": 15.180000305175781, "order_type": "MOO", "data_through": "2026-09-23", "stock_bars_missing": 0, "risk": {"drawdown": 0.006996347709447459, "halted": false, "paused": false}, "earnings_events_loaded": 0, "earnings_dates_failed": []}','[]');
 CREATE TABLE dividends (
   ticker TEXT NOT NULL, ex_date TEXT NOT NULL, per_share REAL NOT NULL, qty REAL NOT NULL,
   amount REAL NOT NULL, recorded_at TEXT NOT NULL, PRIMARY KEY (ticker, ex_date)
@@ -25,6 +26,8 @@ INSERT INTO "events" VALUES(4,'2026-09-23T01:43:24Z','20260923T014323Z-primary',
 INSERT INTO "events" VALUES(5,'2026-09-23T17:50:09Z','20260923T175009Z-primary','benchmark_init','{"entry_price": 773.3309310119628, "qty": 0.12931074652496097}','ead499d159a19ae771d8cf431a4b6ef2f395f255c002136ff461303a3738ca18','a4660b2490d4997d278e0c4aa3e3082318e183c772fc722573d4b2dc4c455f34');
 INSERT INTO "events" VALUES(6,'2026-09-23T17:50:09Z','20260923T175009Z-primary','fill','{"fill_price": 773.3309310119628, "key": "2026-09-23:residual:SPY:BUY:RESIDUAL", "price_time": "2026-09-23T09:30:00-04:00 (official open)", "qty": 0.126724, "ref_price": 772.7899780273438, "side": "BUY", "source": "yahoo_daily_open", "ticker": "SPY"}','a4660b2490d4997d278e0c4aa3e3082318e183c772fc722573d4b2dc4c455f34','aac8616dca3bc6eae4001e8660da519b64902ee6a7d28ef238c815beae441d85');
 INSERT INTO "events" VALUES(7,'2026-09-23T17:50:09Z','20260923T175009Z-primary','order_status','{"key": "2026-09-23:residual:SPY:BUY:RESIDUAL", "reason": "BUY 0.126724 SPY @ 773.3309", "status": "FILLED"}','aac8616dca3bc6eae4001e8660da519b64902ee6a7d28ef238c815beae441d85','e50c480ba8d125a4545ddf42bd1cc0502b62a881514857ff0bdedc2e08b2a291');
+INSERT INTO "events" VALUES(8,'2026-09-23T21:54:11Z','20260923T215408Z-primary','snapshot','{"cash": 2.0004110984400256, "drawdown": 0.006996347709447459, "equity": 99.30036522905526, "session": "2026-09-23", "spy_bh_equity": 99.28608397363021}','e50c480ba8d125a4545ddf42bd1cc0502b62a881514857ff0bdedc2e08b2a291','08afcbab57e5b7ad0c3287ad38325abf9d5e957107fddb91cc9499548e388a17');
+INSERT INTO "events" VALUES(9,'2026-09-23T21:54:14Z','20260923T215408Z-primary','decision','{"action": "INFO", "code": "DECIDED", "key": "decide:2026-09-24", "reason": "0 orders (MOO) for 2026-09-24; regime ON; SPY 767.81 vs 200d 717.61; VIX 15.180000305175781; 0 earnings reactions on 2026-09-23; rebalance=False", "ticker": "*"}','08afcbab57e5b7ad0c3287ad38325abf9d5e957107fddb91cc9499548e388a17','fb5195fb5b8edb7edc3de3792c38d80dcea9828c81acf2f0f27f4e359b83cdda');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -58,7 +61,7 @@ CREATE TABLE positions (
   entry_session TEXT NOT NULL, entry_price REAL NOT NULL, initial_stop REAL, trail_pct REAL,
   high_water REAL NOT NULL, max_hold_until TEXT, stop_checked_through TEXT, meta TEXT
 );
-INSERT INTO "positions" VALUES('SPY',0.126724,7.73330931011962775e+02,'residual','2026-09-23',7.73330931011962775e+02,NULL,NULL,7.73330931011962775e+02,NULL,'2026-09-23T15:35:00-04:00','{}');
+INSERT INTO "positions" VALUES('SPY',0.126724,7.73330931011962775e+02,'residual','2026-09-23',7.73330931011962775e+02,NULL,NULL,7.73330931011962775e+02,NULL,'2026-09-23T16:00:00-04:00','{}');
 CREATE TABLE reports (
   report_key TEXT PRIMARY KEY, day_number INTEGER NOT NULL, report_date TEXT NOT NULL,
   as_of_session TEXT NOT NULL, generated_at TEXT NOT NULL, path_md TEXT NOT NULL, path_html TEXT NOT NULL,
@@ -75,18 +78,22 @@ INSERT INTO "runs" VALUES('20260923T020657Z-primary','2026-09-23T02:06:57Z','202
 INSERT INTO "runs" VALUES('20260923T175009Z-primary','2026-09-23T17:50:09Z','2026-09-23T17:50:09Z','OK','github-actions','FILL BUY SPY 0.1267 @ 773.33 (RESIDUAL)',NULL);
 INSERT INTO "runs" VALUES('20260923T175810Z-primary','2026-09-23T17:58:10Z','2026-09-23T17:58:11Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20260923T194251Z-primary','2026-09-23T19:42:51Z','2026-09-23T19:42:51Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20260923T215408Z-primary','2026-09-23T21:54:08Z','2026-09-23T21:54:14Z','OK','github-actions','closed 2026-09-23; decided for 2026-09-24: 0 orders (MOO), regime ON',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
   peak REAL NOT NULL, drawdown REAL NOT NULL, regime TEXT, risk_state TEXT, marks TEXT, holdings TEXT
 );
+INSERT INTO "snapshots" VALUES('2026-09-23','2026-09-23T21:54:08Z','20260923T215408Z-primary',9.93003652290552594e+01,2.00041109844002562e+00,9.72999541306152338e+01,9.92860839736302125e+01,100.0,100.0,6.99634770944745909e-03,'ON','{"peak": 100.0, "pause_until": null, "halt_until": null, "drawdown": 0.006996347709447459}','{"marks": {"SPY": 767.8099975585938}, "flags": {}}','{"SPY": {"qty": 0.126724, "avg_cost": 773.3309310119628, "sleeve": "residual", "stop": null, "entry_session": "2026-09-23", "max_hold_until": null}}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
-INSERT INTO "state" VALUES('cash','2.0004110984400256','2026-09-23T19:42:51Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-23T19:42:51Z');
-INSERT INTO "state" VALUES('last_regime','"ON"','2026-09-23T01:43:24Z');
+INSERT INTO "state" VALUES('cash','2.0004110984400256','2026-09-23T21:54:11Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-23T21:54:08Z');
+INSERT INTO "state" VALUES('last_regime','"ON"','2026-09-23T21:54:14Z');
 INSERT INTO "state" VALUES('benchmark','{"ticker": "SPY", "qty": 0.12931074652496097, "entry_price": 773.3309310119628, "entry_session": "2026-09-23", "div_cash": 0.0, "note": "SPY bought at the first session''s official open with the same cost model"}','2026-09-23T17:50:09Z');
 INSERT INTO "state" VALUES('open_done:2026-09-23','true','2026-09-23T17:50:09Z');
 INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-09-23T19:42:51Z", "marks": {"SPY": [768.010009765625, "2026-09-23T15:35:00-04:00"]}}','2026-09-23T19:42:51Z');
+INSERT INTO "state" VALUES('risk','{"peak": 100.0, "pause_until": null, "halt_until": null, "drawdown": 0.006996347709447459}','2026-09-23T21:54:11Z');
+INSERT INTO "state" VALUES('last_closed_session','"2026-09-23"','2026-09-23T21:54:11Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
@@ -110,7 +117,7 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',7);
-INSERT INTO "sqlite_sequence" VALUES('decisions',2);
+INSERT INTO "sqlite_sequence" VALUES('events',9);
+INSERT INTO "sqlite_sequence" VALUES('decisions',3);
 INSERT INTO "sqlite_sequence" VALUES('fills',1);
 COMMIT;
