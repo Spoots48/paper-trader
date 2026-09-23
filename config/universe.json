@@ -1,0 +1,3027 @@
+{
+ "description": "S&P 500 constituents as listed on Wikipedia at retrieval time, plus SPY (benchmark / residual cash sleeve).",
+ "source_url": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies",
+ "retrieved_at": "2026-09-23T01:06:54Z",
+ "benchmark": "SPY",
+ "volatility_index": "^VIX",
+ "members": [
+  {
+   "ticker": "A",
+   "name": "Agilent Technologies",
+   "sector": "Health Care",
+   "date_added": "2000-06-05"
+  },
+  {
+   "ticker": "AAPL",
+   "name": "Apple Inc.",
+   "sector": "Information Technology",
+   "date_added": "1982-11-30"
+  },
+  {
+   "ticker": "ABBV",
+   "name": "AbbVie",
+   "sector": "Health Care",
+   "date_added": "2012-12-31"
+  },
+  {
+   "ticker": "ABNB",
+   "name": "Airbnb",
+   "sector": "Consumer Discretionary",
+   "date_added": "2023-09-18"
+  },
+  {
+   "ticker": "ABT",
+   "name": "Abbott Laboratories",
+   "sector": "Health Care",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "ACGL",
+   "name": "Arch Capital Group",
+   "sector": "Financials",
+   "date_added": "2022-11-01"
+  },
+  {
+   "ticker": "ACN",
+   "name": "Accenture",
+   "sector": "Information Technology",
+   "date_added": "2011-07-06"
+  },
+  {
+   "ticker": "ADBE",
+   "name": "Adobe Inc.",
+   "sector": "Information Technology",
+   "date_added": "1997-05-05"
+  },
+  {
+   "ticker": "ADI",
+   "name": "Analog Devices",
+   "sector": "Information Technology",
+   "date_added": "1999-10-12"
+  },
+  {
+   "ticker": "ADM",
+   "name": "Archer Daniels Midland",
+   "sector": "Consumer Staples",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "ADP",
+   "name": "Automatic Data Processing",
+   "sector": "Industrials",
+   "date_added": "1981-03-31"
+  },
+  {
+   "ticker": "ADSK",
+   "name": "Autodesk",
+   "sector": "Information Technology",
+   "date_added": "1989-12-01"
+  },
+  {
+   "ticker": "AEE",
+   "name": "Ameren",
+   "sector": "Utilities",
+   "date_added": "1991-09-19"
+  },
+  {
+   "ticker": "AEP",
+   "name": "American Electric Power",
+   "sector": "Utilities",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "AES",
+   "name": "AES Corporation",
+   "sector": "Utilities",
+   "date_added": "1998-10-02"
+  },
+  {
+   "ticker": "AFL",
+   "name": "Aflac",
+   "sector": "Financials",
+   "date_added": "1999-05-28"
+  },
+  {
+   "ticker": "AIG",
+   "name": "American International Group",
+   "sector": "Financials",
+   "date_added": "1980-03-31"
+  },
+  {
+   "ticker": "AIZ",
+   "name": "Assurant",
+   "sector": "Financials",
+   "date_added": "2007-04-10"
+  },
+  {
+   "ticker": "AJG",
+   "name": "Arthur J. Gallagher & Co.",
+   "sector": "Financials",
+   "date_added": "2016-05-31"
+  },
+  {
+   "ticker": "AKAM",
+   "name": "Akamai Technologies",
+   "sector": "Information Technology",
+   "date_added": "2007-07-12"
+  },
+  {
+   "ticker": "ALB",
+   "name": "Albemarle Corporation",
+   "sector": "Materials",
+   "date_added": "2016-07-01"
+  },
+  {
+   "ticker": "ALGN",
+   "name": "Align Technology",
+   "sector": "Health Care",
+   "date_added": "2017-06-19"
+  },
+  {
+   "ticker": "ALL",
+   "name": "Allstate",
+   "sector": "Financials",
+   "date_added": "1995-07-13"
+  },
+  {
+   "ticker": "ALLE",
+   "name": "Allegion",
+   "sector": "Industrials",
+   "date_added": "2013-12-02"
+  },
+  {
+   "ticker": "AMAT",
+   "name": "Applied Materials",
+   "sector": "Information Technology",
+   "date_added": "1995-03-16"
+  },
+  {
+   "ticker": "AMCR",
+   "name": "Amcor",
+   "sector": "Materials",
+   "date_added": "2019-06-07"
+  },
+  {
+   "ticker": "AMD",
+   "name": "Advanced Micro Devices",
+   "sector": "Information Technology",
+   "date_added": "2017-03-20"
+  },
+  {
+   "ticker": "AME",
+   "name": "Ametek",
+   "sector": "Industrials",
+   "date_added": "2013-09-23"
+  },
+  {
+   "ticker": "AMGN",
+   "name": "Amgen",
+   "sector": "Health Care",
+   "date_added": "1992-01-02"
+  },
+  {
+   "ticker": "AMP",
+   "name": "Ameriprise Financial",
+   "sector": "Financials",
+   "date_added": "2005-10-03"
+  },
+  {
+   "ticker": "AMT",
+   "name": "American Tower",
+   "sector": "Real Estate",
+   "date_added": "2007-11-19"
+  },
+  {
+   "ticker": "AMZN",
+   "name": "Amazon",
+   "sector": "Consumer Discretionary",
+   "date_added": "2005-11-18"
+  },
+  {
+   "ticker": "ANET",
+   "name": "Arista Networks",
+   "sector": "Information Technology",
+   "date_added": "2018-08-28"
+  },
+  {
+   "ticker": "AON",
+   "name": "Aon plc",
+   "sector": "Financials",
+   "date_added": "1996-04-23"
+  },
+  {
+   "ticker": "AOS",
+   "name": "A. O. Smith",
+   "sector": "Industrials",
+   "date_added": "2017-07-26"
+  },
+  {
+   "ticker": "APA",
+   "name": "APA Corporation",
+   "sector": "Energy",
+   "date_added": "1997-07-28"
+  },
+  {
+   "ticker": "APD",
+   "name": "Air Products",
+   "sector": "Materials",
+   "date_added": "1985-04-30"
+  },
+  {
+   "ticker": "APH",
+   "name": "Amphenol",
+   "sector": "Information Technology",
+   "date_added": "2008-09-30"
+  },
+  {
+   "ticker": "APO",
+   "name": "Apollo Global Management",
+   "sector": "Financials",
+   "date_added": "2024-12-23"
+  },
+  {
+   "ticker": "APP",
+   "name": "AppLovin",
+   "sector": "Communication Services",
+   "date_added": "2025-09-22"
+  },
+  {
+   "ticker": "APTV",
+   "name": "Aptiv",
+   "sector": "Consumer Discretionary",
+   "date_added": "2012-12-24"
+  },
+  {
+   "ticker": "ARE",
+   "name": "Alexandria Real Estate Equities",
+   "sector": "Real Estate",
+   "date_added": "2017-03-20"
+  },
+  {
+   "ticker": "ARES",
+   "name": "Ares Management",
+   "sector": "Financials",
+   "date_added": "2025-12-11"
+  },
+  {
+   "ticker": "ATO",
+   "name": "Atmos Energy",
+   "sector": "Utilities",
+   "date_added": "2019-02-15"
+  },
+  {
+   "ticker": "AVGO",
+   "name": "Broadcom",
+   "sector": "Information Technology",
+   "date_added": "2014-05-08"
+  },
+  {
+   "ticker": "AVY",
+   "name": "Avery Dennison",
+   "sector": "Materials",
+   "date_added": "1987-12-31"
+  },
+  {
+   "ticker": "AWK",
+   "name": "American Water Works",
+   "sector": "Utilities",
+   "date_added": "2016-03-04"
+  },
+  {
+   "ticker": "AXON",
+   "name": "Axon Enterprise",
+   "sector": "Industrials",
+   "date_added": "2023-05-04"
+  },
+  {
+   "ticker": "AXP",
+   "name": "American Express",
+   "sector": "Financials",
+   "date_added": "1976-06-30"
+  },
+  {
+   "ticker": "AZO",
+   "name": "AutoZone",
+   "sector": "Consumer Discretionary",
+   "date_added": "1997-01-02"
+  },
+  {
+   "ticker": "BA",
+   "name": "Boeing",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "BAC",
+   "name": "Bank of America",
+   "sector": "Financials",
+   "date_added": "1976-06-30"
+  },
+  {
+   "ticker": "BALL",
+   "name": "Ball Corporation",
+   "sector": "Materials",
+   "date_added": "1984-10-31"
+  },
+  {
+   "ticker": "BAX",
+   "name": "Baxter International",
+   "sector": "Health Care",
+   "date_added": "1972-09-30"
+  },
+  {
+   "ticker": "BBY",
+   "name": "Best Buy",
+   "sector": "Consumer Discretionary",
+   "date_added": "1999-06-29"
+  },
+  {
+   "ticker": "BDX",
+   "name": "Becton Dickinson",
+   "sector": "Health Care",
+   "date_added": "1972-09-30"
+  },
+  {
+   "ticker": "BE",
+   "name": "Bloom Energy",
+   "sector": "Industrials",
+   "date_added": "2026-09-21"
+  },
+  {
+   "ticker": "BEN",
+   "name": "Franklin Resources",
+   "sector": "Financials",
+   "date_added": "1998-04-30"
+  },
+  {
+   "ticker": "BF-B",
+   "name": "Brown\u2013Forman",
+   "sector": "Consumer Staples",
+   "date_added": "1982-10-31"
+  },
+  {
+   "ticker": "BG",
+   "name": "Bunge Global",
+   "sector": "Consumer Staples",
+   "date_added": "2023-03-15"
+  },
+  {
+   "ticker": "BIIB",
+   "name": "Biogen",
+   "sector": "Health Care",
+   "date_added": "2003-11-13"
+  },
+  {
+   "ticker": "BKNG",
+   "name": "Booking Holdings",
+   "sector": "Consumer Discretionary",
+   "date_added": "2009-11-06"
+  },
+  {
+   "ticker": "BKR",
+   "name": "Baker Hughes",
+   "sector": "Energy",
+   "date_added": "2017-07-07"
+  },
+  {
+   "ticker": "BLK",
+   "name": "BlackRock",
+   "sector": "Financials",
+   "date_added": "2011-04-04"
+  },
+  {
+   "ticker": "BMY",
+   "name": "Bristol Myers Squibb",
+   "sector": "Health Care",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "BNY",
+   "name": "BNY Mellon",
+   "sector": "Financials",
+   "date_added": "1995-03-31"
+  },
+  {
+   "ticker": "BR",
+   "name": "Broadridge Financial Solutions",
+   "sector": "Industrials",
+   "date_added": "2018-06-18"
+  },
+  {
+   "ticker": "BRK-B",
+   "name": "Berkshire Hathaway",
+   "sector": "Financials",
+   "date_added": "2010-02-16"
+  },
+  {
+   "ticker": "BRO",
+   "name": "Brown & Brown",
+   "sector": "Financials",
+   "date_added": "2021-09-20"
+  },
+  {
+   "ticker": "BSX",
+   "name": "Boston Scientific",
+   "sector": "Health Care",
+   "date_added": "1995-02-24"
+  },
+  {
+   "ticker": "BX",
+   "name": "Blackstone Inc.",
+   "sector": "Financials",
+   "date_added": "2023-09-18"
+  },
+  {
+   "ticker": "BXP",
+   "name": "BXP, Inc.",
+   "sector": "Real Estate",
+   "date_added": "2006-04-03"
+  },
+  {
+   "ticker": "C",
+   "name": "Citigroup",
+   "sector": "Financials",
+   "date_added": "1988-05-31"
+  },
+  {
+   "ticker": "CAH",
+   "name": "Cardinal Health",
+   "sector": "Health Care",
+   "date_added": "1997-05-27"
+  },
+  {
+   "ticker": "CARR",
+   "name": "Carrier Global",
+   "sector": "Industrials",
+   "date_added": "2020-04-03"
+  },
+  {
+   "ticker": "CASY",
+   "name": "Casey's",
+   "sector": "Consumer Staples",
+   "date_added": "2026-04-09"
+  },
+  {
+   "ticker": "CAT",
+   "name": "Caterpillar Inc.",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "CB",
+   "name": "Chubb Limited",
+   "sector": "Financials",
+   "date_added": "2010-07-15"
+  },
+  {
+   "ticker": "CBOE",
+   "name": "Cboe Global Markets",
+   "sector": "Financials",
+   "date_added": "2017-03-01"
+  },
+  {
+   "ticker": "CBRE",
+   "name": "CBRE Group",
+   "sector": "Real Estate",
+   "date_added": "2006-11-10"
+  },
+  {
+   "ticker": "CCI",
+   "name": "Crown Castle",
+   "sector": "Real Estate",
+   "date_added": "2012-03-14"
+  },
+  {
+   "ticker": "CCL",
+   "name": "Carnival Corporation",
+   "sector": "Consumer Discretionary",
+   "date_added": "1998-12-22"
+  },
+  {
+   "ticker": "CDNS",
+   "name": "Cadence Design Systems",
+   "sector": "Information Technology",
+   "date_added": "2017-09-18"
+  },
+  {
+   "ticker": "CDW",
+   "name": "CDW Corporation",
+   "sector": "Information Technology",
+   "date_added": "2019-09-23"
+  },
+  {
+   "ticker": "CEG",
+   "name": "Constellation Energy",
+   "sector": "Utilities",
+   "date_added": "2022-02-02"
+  },
+  {
+   "ticker": "CF",
+   "name": "CF Industries",
+   "sector": "Materials",
+   "date_added": "2008-08-27"
+  },
+  {
+   "ticker": "CFG",
+   "name": "Citizens Financial Group",
+   "sector": "Financials",
+   "date_added": "2016-01-29"
+  },
+  {
+   "ticker": "CHD",
+   "name": "Church & Dwight",
+   "sector": "Consumer Staples",
+   "date_added": "2015-12-29"
+  },
+  {
+   "ticker": "CHRW",
+   "name": "C.H. Robinson",
+   "sector": "Industrials",
+   "date_added": "2007-03-02"
+  },
+  {
+   "ticker": "CHTR",
+   "name": "Charter Communications",
+   "sector": "Communication Services",
+   "date_added": "2016-09-08"
+  },
+  {
+   "ticker": "CI",
+   "name": "Cigna",
+   "sector": "Health Care",
+   "date_added": "1976-06-30"
+  },
+  {
+   "ticker": "CIEN",
+   "name": "Ciena",
+   "sector": "Information Technology",
+   "date_added": "2026-02-09"
+  },
+  {
+   "ticker": "CINF",
+   "name": "Cincinnati Financial",
+   "sector": "Financials",
+   "date_added": "1997-12-18"
+  },
+  {
+   "ticker": "CL",
+   "name": "Colgate-Palmolive",
+   "sector": "Consumer Staples",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "CLX",
+   "name": "Clorox",
+   "sector": "Consumer Staples",
+   "date_added": "1969-03-31"
+  },
+  {
+   "ticker": "CMCSA",
+   "name": "Comcast",
+   "sector": "Communication Services",
+   "date_added": "2002-11-19"
+  },
+  {
+   "ticker": "CME",
+   "name": "CME Group",
+   "sector": "Financials",
+   "date_added": "2006-08-11"
+  },
+  {
+   "ticker": "CMG",
+   "name": "Chipotle Mexican Grill",
+   "sector": "Consumer Discretionary",
+   "date_added": "2011-04-28"
+  },
+  {
+   "ticker": "CMI",
+   "name": "Cummins",
+   "sector": "Industrials",
+   "date_added": "1965-03-31"
+  },
+  {
+   "ticker": "CMS",
+   "name": "CMS Energy",
+   "sector": "Utilities",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "CNC",
+   "name": "Centene Corporation",
+   "sector": "Health Care",
+   "date_added": "2016-03-30"
+  },
+  {
+   "ticker": "CNP",
+   "name": "CenterPoint Energy",
+   "sector": "Utilities",
+   "date_added": "1985-07-31"
+  },
+  {
+   "ticker": "COF",
+   "name": "Capital One",
+   "sector": "Financials",
+   "date_added": "1998-07-01"
+  },
+  {
+   "ticker": "COHR",
+   "name": "Coherent Corp.",
+   "sector": "Information Technology",
+   "date_added": "2026-03-23"
+  },
+  {
+   "ticker": "COIN",
+   "name": "Coinbase",
+   "sector": "Financials",
+   "date_added": "2025-05-19"
+  },
+  {
+   "ticker": "COO",
+   "name": "Cooper Companies (The)",
+   "sector": "Health Care",
+   "date_added": "2016-09-23"
+  },
+  {
+   "ticker": "COP",
+   "name": "ConocoPhillips",
+   "sector": "Energy",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "COR",
+   "name": "Cencora",
+   "sector": "Health Care",
+   "date_added": "2001-08-30"
+  },
+  {
+   "ticker": "COST",
+   "name": "Costco",
+   "sector": "Consumer Staples",
+   "date_added": "1993-10-01"
+  },
+  {
+   "ticker": "CPAY",
+   "name": "Corpay",
+   "sector": "Financials",
+   "date_added": "2018-06-20"
+  },
+  {
+   "ticker": "CPRT",
+   "name": "Copart",
+   "sector": "Industrials",
+   "date_added": "2018-07-02"
+  },
+  {
+   "ticker": "CPT",
+   "name": "Camden Property Trust",
+   "sector": "Real Estate",
+   "date_added": "2022-04-04"
+  },
+  {
+   "ticker": "CRH",
+   "name": "CRH plc",
+   "sector": "Materials",
+   "date_added": "2025-12-22"
+  },
+  {
+   "ticker": "CRL",
+   "name": "Charles River Laboratories",
+   "sector": "Health Care",
+   "date_added": "2021-05-14"
+  },
+  {
+   "ticker": "CRM",
+   "name": "Salesforce",
+   "sector": "Information Technology",
+   "date_added": "2008-09-15"
+  },
+  {
+   "ticker": "CRWD",
+   "name": "CrowdStrike",
+   "sector": "Information Technology",
+   "date_added": "2024-06-24"
+  },
+  {
+   "ticker": "CSCO",
+   "name": "Cisco",
+   "sector": "Information Technology",
+   "date_added": "1993-12-01"
+  },
+  {
+   "ticker": "CSGP",
+   "name": "CoStar Group",
+   "sector": "Real Estate",
+   "date_added": "2022-09-19"
+  },
+  {
+   "ticker": "CSX",
+   "name": "CSX Corporation",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "CTAS",
+   "name": "Cintas",
+   "sector": "Industrials",
+   "date_added": "2001-03-01"
+  },
+  {
+   "ticker": "CTSH",
+   "name": "Cognizant",
+   "sector": "Information Technology",
+   "date_added": "2006-11-17"
+  },
+  {
+   "ticker": "CTVA",
+   "name": "Corteva",
+   "sector": "Materials",
+   "date_added": "2019-06-03"
+  },
+  {
+   "ticker": "CVNA",
+   "name": "Carvana",
+   "sector": "Consumer Discretionary",
+   "date_added": "2025-12-22"
+  },
+  {
+   "ticker": "CVS",
+   "name": "CVS Health",
+   "sector": "Health Care",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "CVX",
+   "name": "Chevron Corporation",
+   "sector": "Energy",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "D",
+   "name": "Dominion Energy",
+   "sector": "Utilities",
+   "date_added": "2016-11-30"
+  },
+  {
+   "ticker": "DAL",
+   "name": "Delta Air Lines",
+   "sector": "Industrials",
+   "date_added": "2013-09-11"
+  },
+  {
+   "ticker": "DASH",
+   "name": "DoorDash",
+   "sector": "Consumer Discretionary",
+   "date_added": "2025-03-24"
+  },
+  {
+   "ticker": "DD",
+   "name": "DuPont",
+   "sector": "Industrials",
+   "date_added": "2019-06-03"
+  },
+  {
+   "ticker": "DDOG",
+   "name": "Datadog",
+   "sector": "Information Technology",
+   "date_added": "2025-07-09"
+  },
+  {
+   "ticker": "DE",
+   "name": "Deere & Company",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "DECK",
+   "name": "Deckers Brands",
+   "sector": "Consumer Discretionary",
+   "date_added": "2024-03-18"
+  },
+  {
+   "ticker": "DELL",
+   "name": "Dell Technologies",
+   "sector": "Information Technology",
+   "date_added": "2024-09-23"
+  },
+  {
+   "ticker": "DG",
+   "name": "Dollar General",
+   "sector": "Consumer Staples",
+   "date_added": "2012-12-03"
+  },
+  {
+   "ticker": "DGX",
+   "name": "Quest Diagnostics",
+   "sector": "Health Care",
+   "date_added": "2002-12-12"
+  },
+  {
+   "ticker": "DHI",
+   "name": "D. R. Horton",
+   "sector": "Consumer Discretionary",
+   "date_added": "2005-06-22"
+  },
+  {
+   "ticker": "DHR",
+   "name": "Danaher Corporation",
+   "sector": "Health Care",
+   "date_added": "1998-11-18"
+  },
+  {
+   "ticker": "DIS",
+   "name": "Walt Disney Company (The)",
+   "sector": "Communication Services",
+   "date_added": "1976-06-30"
+  },
+  {
+   "ticker": "DLR",
+   "name": "Digital Realty",
+   "sector": "Real Estate",
+   "date_added": "2016-05-18"
+  },
+  {
+   "ticker": "DLTR",
+   "name": "Dollar Tree",
+   "sector": "Consumer Staples",
+   "date_added": "2011-12-19"
+  },
+  {
+   "ticker": "DOC",
+   "name": "Healthpeak Properties",
+   "sector": "Real Estate",
+   "date_added": "2008-03-31"
+  },
+  {
+   "ticker": "DOV",
+   "name": "Dover Corporation",
+   "sector": "Industrials",
+   "date_added": "1985-10-31"
+  },
+  {
+   "ticker": "DOW",
+   "name": "Dow Inc.",
+   "sector": "Materials",
+   "date_added": "2019-04-01"
+  },
+  {
+   "ticker": "DPZ",
+   "name": "Domino's",
+   "sector": "Consumer Discretionary",
+   "date_added": "2020-05-12"
+  },
+  {
+   "ticker": "DRI",
+   "name": "Darden Restaurants",
+   "sector": "Consumer Discretionary",
+   "date_added": "1995-05-31"
+  },
+  {
+   "ticker": "DTE",
+   "name": "DTE Energy",
+   "sector": "Utilities",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "DUK",
+   "name": "Duke Energy",
+   "sector": "Utilities",
+   "date_added": "1976-06-30"
+  },
+  {
+   "ticker": "DVA",
+   "name": "DaVita",
+   "sector": "Health Care",
+   "date_added": "2008-07-31"
+  },
+  {
+   "ticker": "DVN",
+   "name": "Devon Energy",
+   "sector": "Energy",
+   "date_added": "2000-08-30"
+  },
+  {
+   "ticker": "DXCM",
+   "name": "Dexcom",
+   "sector": "Health Care",
+   "date_added": "2020-05-12"
+  },
+  {
+   "ticker": "EBAY",
+   "name": "eBay Inc.",
+   "sector": "Consumer Discretionary",
+   "date_added": "2002-07-22"
+  },
+  {
+   "ticker": "ECHO",
+   "name": "EchoStar",
+   "sector": "Communication Services",
+   "date_added": "2026-03-23"
+  },
+  {
+   "ticker": "ECL",
+   "name": "Ecolab",
+   "sector": "Materials",
+   "date_added": "1989-01-31"
+  },
+  {
+   "ticker": "ED",
+   "name": "Consolidated Edison",
+   "sector": "Utilities",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "EFX",
+   "name": "Equifax",
+   "sector": "Industrials",
+   "date_added": "1997-06-19"
+  },
+  {
+   "ticker": "EG",
+   "name": "Everest Group",
+   "sector": "Financials",
+   "date_added": "2017-06-19"
+  },
+  {
+   "ticker": "EIX",
+   "name": "Edison International",
+   "sector": "Utilities",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "EL",
+   "name": "Est\u00e9e Lauder Companies (The)",
+   "sector": "Consumer Staples",
+   "date_added": "2006-01-05"
+  },
+  {
+   "ticker": "ELV",
+   "name": "Elevance Health",
+   "sector": "Health Care",
+   "date_added": "2002-07-25"
+  },
+  {
+   "ticker": "EME",
+   "name": "Emcor",
+   "sector": "Industrials",
+   "date_added": "2025-09-22"
+  },
+  {
+   "ticker": "EMR",
+   "name": "Emerson Electric",
+   "sector": "Industrials",
+   "date_added": "1965-03-31"
+  },
+  {
+   "ticker": "EOG",
+   "name": "EOG Resources",
+   "sector": "Energy",
+   "date_added": "2000-11-02"
+  },
+  {
+   "ticker": "EQIX",
+   "name": "Equinix",
+   "sector": "Real Estate",
+   "date_added": "2015-03-20"
+  },
+  {
+   "ticker": "EQT",
+   "name": "EQT Corporation",
+   "sector": "Energy",
+   "date_added": "2022-10-03"
+  },
+  {
+   "ticker": "ERIE",
+   "name": "Erie Indemnity",
+   "sector": "Financials",
+   "date_added": "2024-09-23"
+  },
+  {
+   "ticker": "ES",
+   "name": "Eversource Energy",
+   "sector": "Utilities",
+   "date_added": "2009-07-24"
+  },
+  {
+   "ticker": "ESS",
+   "name": "Essex Property Trust",
+   "sector": "Real Estate",
+   "date_added": "2014-04-02"
+  },
+  {
+   "ticker": "ETN",
+   "name": "Eaton Corporation",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "ETR",
+   "name": "Entergy",
+   "sector": "Utilities",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "EVRG",
+   "name": "Evergy",
+   "sector": "Utilities",
+   "date_added": "2018-06-05"
+  },
+  {
+   "ticker": "EW",
+   "name": "Edwards Lifesciences",
+   "sector": "Health Care",
+   "date_added": "2011-04-01"
+  },
+  {
+   "ticker": "EXC",
+   "name": "Exelon",
+   "sector": "Utilities",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "EXE",
+   "name": "Expand Energy",
+   "sector": "Energy",
+   "date_added": "2025-03-24"
+  },
+  {
+   "ticker": "EXPD",
+   "name": "Expeditors International",
+   "sector": "Industrials",
+   "date_added": "2007-10-10"
+  },
+  {
+   "ticker": "EXPE",
+   "name": "Expedia Group",
+   "sector": "Consumer Discretionary",
+   "date_added": "2007-10-02"
+  },
+  {
+   "ticker": "EXR",
+   "name": "Extra Space Storage",
+   "sector": "Real Estate",
+   "date_added": "2016-01-19"
+  },
+  {
+   "ticker": "F",
+   "name": "Ford Motor Company",
+   "sector": "Consumer Discretionary",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "FANG",
+   "name": "Diamondback Energy",
+   "sector": "Energy",
+   "date_added": "2018-12-03"
+  },
+  {
+   "ticker": "FAST",
+   "name": "Fastenal",
+   "sector": "Industrials",
+   "date_added": "2008-09-15"
+  },
+  {
+   "ticker": "FCX",
+   "name": "Freeport-McMoRan",
+   "sector": "Materials",
+   "date_added": "2011-07-01"
+  },
+  {
+   "ticker": "FDS",
+   "name": "FactSet",
+   "sector": "Financials",
+   "date_added": "2021-12-20"
+  },
+  {
+   "ticker": "FDX",
+   "name": "FedEx",
+   "sector": "Industrials",
+   "date_added": "1980-12-31"
+  },
+  {
+   "ticker": "FDXF",
+   "name": "FedEx Freight",
+   "sector": "Industrials",
+   "date_added": "2026-06-01"
+  },
+  {
+   "ticker": "FE",
+   "name": "FirstEnergy",
+   "sector": "Utilities",
+   "date_added": "1997-11-28"
+  },
+  {
+   "ticker": "FERG",
+   "name": "Ferguson Enterprises",
+   "sector": "Industrials",
+   "date_added": "2026-08-05"
+  },
+  {
+   "ticker": "FFIV",
+   "name": "F5, Inc.",
+   "sector": "Information Technology",
+   "date_added": "2010-12-20"
+  },
+  {
+   "ticker": "FICO",
+   "name": "Fair Isaac",
+   "sector": "Information Technology",
+   "date_added": "2023-03-20"
+  },
+  {
+   "ticker": "FIS",
+   "name": "Fidelity National Information Services",
+   "sector": "Financials",
+   "date_added": "2006-11-10"
+  },
+  {
+   "ticker": "FISV",
+   "name": "Fiserv",
+   "sector": "Financials",
+   "date_added": "2001-04-02"
+  },
+  {
+   "ticker": "FITB",
+   "name": "Fifth Third Bancorp",
+   "sector": "Financials",
+   "date_added": "1996-03-29"
+  },
+  {
+   "ticker": "FIX",
+   "name": "Comfort Systems USA",
+   "sector": "Industrials",
+   "date_added": "2025-12-22"
+  },
+  {
+   "ticker": "FLEX",
+   "name": "Flex Ltd.",
+   "sector": "Information Technology",
+   "date_added": "2026-06-22"
+  },
+  {
+   "ticker": "FOX",
+   "name": "Fox Corporation (Class B)",
+   "sector": "Communication Services",
+   "date_added": "2019-03-19"
+  },
+  {
+   "ticker": "FOXA",
+   "name": "Fox Corporation (Class A)",
+   "sector": "Communication Services",
+   "date_added": "2019-03-19"
+  },
+  {
+   "ticker": "FRT",
+   "name": "Federal Realty Investment Trust",
+   "sector": "Real Estate",
+   "date_added": "2016-02-01"
+  },
+  {
+   "ticker": "FSLR",
+   "name": "First Solar",
+   "sector": "Information Technology",
+   "date_added": "2022-12-19"
+  },
+  {
+   "ticker": "FTNT",
+   "name": "Fortinet",
+   "sector": "Information Technology",
+   "date_added": "2018-10-11"
+  },
+  {
+   "ticker": "FTV",
+   "name": "Fortive",
+   "sector": "Industrials",
+   "date_added": "2016-07-01"
+  },
+  {
+   "ticker": "GD",
+   "name": "General Dynamics",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "GDDY",
+   "name": "GoDaddy",
+   "sector": "Information Technology",
+   "date_added": "2024-06-24"
+  },
+  {
+   "ticker": "GE",
+   "name": "GE Aerospace",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "GEHC",
+   "name": "GE HealthCare",
+   "sector": "Health Care",
+   "date_added": "2023-01-04"
+  },
+  {
+   "ticker": "GEN",
+   "name": "Gen Digital",
+   "sector": "Information Technology",
+   "date_added": "2003-03-25"
+  },
+  {
+   "ticker": "GEV",
+   "name": "GE Vernova",
+   "sector": "Industrials",
+   "date_added": "2024-04-02"
+  },
+  {
+   "ticker": "GILD",
+   "name": "Gilead Sciences",
+   "sector": "Health Care",
+   "date_added": "2004-07-01"
+  },
+  {
+   "ticker": "GIS",
+   "name": "General Mills",
+   "sector": "Consumer Staples",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "GL",
+   "name": "Globe Life",
+   "sector": "Financials",
+   "date_added": "1989-04-30"
+  },
+  {
+   "ticker": "GLW",
+   "name": "Corning Inc.",
+   "sector": "Information Technology",
+   "date_added": "1995-02-27"
+  },
+  {
+   "ticker": "GM",
+   "name": "General Motors",
+   "sector": "Consumer Discretionary",
+   "date_added": "2013-06-06"
+  },
+  {
+   "ticker": "GNRC",
+   "name": "Generac",
+   "sector": "Industrials",
+   "date_added": "2021-03-22"
+  },
+  {
+   "ticker": "GOOG",
+   "name": "Alphabet Inc. (Class C)",
+   "sector": "Communication Services",
+   "date_added": "2014-04-03"
+  },
+  {
+   "ticker": "GOOGL",
+   "name": "Alphabet Inc. (Class A)",
+   "sector": "Communication Services",
+   "date_added": "2006-04-03"
+  },
+  {
+   "ticker": "GPC",
+   "name": "Genuine Parts Company",
+   "sector": "Consumer Discretionary",
+   "date_added": "1973-12-31"
+  },
+  {
+   "ticker": "GPN",
+   "name": "Global Payments",
+   "sector": "Financials",
+   "date_added": "2016-04-25"
+  },
+  {
+   "ticker": "GRMN",
+   "name": "Garmin",
+   "sector": "Consumer Discretionary",
+   "date_added": "2012-12-12"
+  },
+  {
+   "ticker": "GS",
+   "name": "Goldman Sachs",
+   "sector": "Financials",
+   "date_added": "2002-07-22"
+  },
+  {
+   "ticker": "GWW",
+   "name": "W. W. Grainger",
+   "sector": "Industrials",
+   "date_added": "1981-06-30"
+  },
+  {
+   "ticker": "HAL",
+   "name": "Halliburton",
+   "sector": "Energy",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "HAS",
+   "name": "Hasbro",
+   "sector": "Consumer Discretionary",
+   "date_added": "1984-09-30"
+  },
+  {
+   "ticker": "HBAN",
+   "name": "Huntington Bancshares",
+   "sector": "Financials",
+   "date_added": "1997-08-28"
+  },
+  {
+   "ticker": "HCA",
+   "name": "HCA Healthcare",
+   "sector": "Health Care",
+   "date_added": "2015-01-27"
+  },
+  {
+   "ticker": "HD",
+   "name": "Home Depot (The)",
+   "sector": "Consumer Discretionary",
+   "date_added": "1988-03-31"
+  },
+  {
+   "ticker": "HIG",
+   "name": "Hartford (The)",
+   "sector": "Financials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "HII",
+   "name": "Huntington Ingalls Industries",
+   "sector": "Industrials",
+   "date_added": "2018-01-03"
+  },
+  {
+   "ticker": "HLT",
+   "name": "Hilton Worldwide",
+   "sector": "Consumer Discretionary",
+   "date_added": "2017-06-19"
+  },
+  {
+   "ticker": "HON",
+   "name": "Honeywell Technologies",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "HONA",
+   "name": "Honeywell Aerospace",
+   "sector": "Industrials",
+   "date_added": "2026-06-29"
+  },
+  {
+   "ticker": "HOOD",
+   "name": "Robinhood Markets",
+   "sector": "Financials",
+   "date_added": "2025-09-22"
+  },
+  {
+   "ticker": "HPE",
+   "name": "Hewlett Packard Enterprise",
+   "sector": "Information Technology",
+   "date_added": "2015-11-02"
+  },
+  {
+   "ticker": "HPQ",
+   "name": "HP Inc.",
+   "sector": "Information Technology",
+   "date_added": "1974-12-31"
+  },
+  {
+   "ticker": "HRL",
+   "name": "Hormel Foods",
+   "sector": "Consumer Staples",
+   "date_added": "2009-03-04"
+  },
+  {
+   "ticker": "HSIC",
+   "name": "Henry Schein",
+   "sector": "Health Care",
+   "date_added": "2015-03-17"
+  },
+  {
+   "ticker": "HST",
+   "name": "Host Hotels & Resorts",
+   "sector": "Real Estate",
+   "date_added": "2007-03-20"
+  },
+  {
+   "ticker": "HSY",
+   "name": "Hershey Company (The)",
+   "sector": "Consumer Staples",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "HUBB",
+   "name": "Hubbell Incorporated",
+   "sector": "Industrials",
+   "date_added": "2023-10-18"
+  },
+  {
+   "ticker": "HUM",
+   "name": "Humana",
+   "sector": "Health Care",
+   "date_added": "2012-12-10"
+  },
+  {
+   "ticker": "HWM",
+   "name": "Howmet Aerospace",
+   "sector": "Industrials",
+   "date_added": "2016-10-21"
+  },
+  {
+   "ticker": "IBKR",
+   "name": "Interactive Brokers",
+   "sector": "Financials",
+   "date_added": "2025-08-28"
+  },
+  {
+   "ticker": "IBM",
+   "name": "IBM",
+   "sector": "Information Technology",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "ICE",
+   "name": "Intercontinental Exchange",
+   "sector": "Financials",
+   "date_added": "2007-09-26"
+  },
+  {
+   "ticker": "IDXX",
+   "name": "Idexx Laboratories",
+   "sector": "Health Care",
+   "date_added": "2017-01-05"
+  },
+  {
+   "ticker": "IEX",
+   "name": "IDEX Corporation",
+   "sector": "Industrials",
+   "date_added": "2019-08-09"
+  },
+  {
+   "ticker": "IFF",
+   "name": "International Flavors & Fragrances",
+   "sector": "Materials",
+   "date_added": "1976-03-31"
+  },
+  {
+   "ticker": "ILMN",
+   "name": "Illumina, Inc.",
+   "sector": "Health Care",
+   "date_added": "2026-09-21"
+  },
+  {
+   "ticker": "INCY",
+   "name": "Incyte",
+   "sector": "Health Care",
+   "date_added": "2017-02-28"
+  },
+  {
+   "ticker": "INTC",
+   "name": "Intel",
+   "sector": "Information Technology",
+   "date_added": "1976-12-31"
+  },
+  {
+   "ticker": "INTU",
+   "name": "Intuit",
+   "sector": "Information Technology",
+   "date_added": "2000-12-05"
+  },
+  {
+   "ticker": "INVH",
+   "name": "Invitation Homes",
+   "sector": "Real Estate",
+   "date_added": "2022-09-19"
+  },
+  {
+   "ticker": "IP",
+   "name": "International Paper",
+   "sector": "Materials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "IQV",
+   "name": "IQVIA",
+   "sector": "Health Care",
+   "date_added": "2017-08-29"
+  },
+  {
+   "ticker": "IR",
+   "name": "Ingersoll Rand",
+   "sector": "Industrials",
+   "date_added": "2020-03-03"
+  },
+  {
+   "ticker": "IRM",
+   "name": "Iron Mountain",
+   "sector": "Real Estate",
+   "date_added": "2009-01-06"
+  },
+  {
+   "ticker": "ISRG",
+   "name": "Intuitive Surgical",
+   "sector": "Health Care",
+   "date_added": "2008-06-02"
+  },
+  {
+   "ticker": "IT",
+   "name": "Gartner",
+   "sector": "Information Technology",
+   "date_added": "2017-04-05"
+  },
+  {
+   "ticker": "ITW",
+   "name": "Illinois Tool Works",
+   "sector": "Industrials",
+   "date_added": "1986-02-28"
+  },
+  {
+   "ticker": "IVZ",
+   "name": "Invesco",
+   "sector": "Financials",
+   "date_added": "2008-08-21"
+  },
+  {
+   "ticker": "J",
+   "name": "Jacobs Solutions",
+   "sector": "Industrials",
+   "date_added": "2007-10-26"
+  },
+  {
+   "ticker": "JBHT",
+   "name": "J.B. Hunt",
+   "sector": "Industrials",
+   "date_added": "2015-07-01"
+  },
+  {
+   "ticker": "JBL",
+   "name": "Jabil",
+   "sector": "Information Technology",
+   "date_added": "2023-12-18"
+  },
+  {
+   "ticker": "JCI",
+   "name": "Johnson Controls",
+   "sector": "Industrials",
+   "date_added": "2010-08-27"
+  },
+  {
+   "ticker": "JKHY",
+   "name": "Jack Henry & Associates",
+   "sector": "Financials",
+   "date_added": "2018-11-13"
+  },
+  {
+   "ticker": "JNJ",
+   "name": "Johnson & Johnson",
+   "sector": "Health Care",
+   "date_added": "1973-06-30"
+  },
+  {
+   "ticker": "JPM",
+   "name": "JPMorgan Chase",
+   "sector": "Financials",
+   "date_added": "1975-06-30"
+  },
+  {
+   "ticker": "KDP",
+   "name": "Keurig Dr Pepper",
+   "sector": "Consumer Staples",
+   "date_added": "2022-06-21"
+  },
+  {
+   "ticker": "KEY",
+   "name": "KeyCorp",
+   "sector": "Financials",
+   "date_added": "1994-03-01"
+  },
+  {
+   "ticker": "KEYS",
+   "name": "Keysight Technologies",
+   "sector": "Information Technology",
+   "date_added": "2018-11-06"
+  },
+  {
+   "ticker": "KHC",
+   "name": "Kraft Heinz",
+   "sector": "Consumer Staples",
+   "date_added": "2015-07-06"
+  },
+  {
+   "ticker": "KIM",
+   "name": "Kimco Realty",
+   "sector": "Real Estate",
+   "date_added": "2006-04-04"
+  },
+  {
+   "ticker": "KKR",
+   "name": "KKR & Co.",
+   "sector": "Financials",
+   "date_added": "2024-06-24"
+  },
+  {
+   "ticker": "KLAC",
+   "name": "KLA Corporation",
+   "sector": "Information Technology",
+   "date_added": "1997-09-30"
+  },
+  {
+   "ticker": "KMB",
+   "name": "Kimberly-Clark",
+   "sector": "Consumer Staples",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "KMI",
+   "name": "Kinder Morgan",
+   "sector": "Energy",
+   "date_added": "2012-05-25"
+  },
+  {
+   "ticker": "KO",
+   "name": "Coca-Cola Company (The)",
+   "sector": "Consumer Staples",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "KR",
+   "name": "Kroger",
+   "sector": "Consumer Staples",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "KVUE",
+   "name": "Kenvue",
+   "sector": "Consumer Staples",
+   "date_added": "2023-08-25"
+  },
+  {
+   "ticker": "L",
+   "name": "Loews Corporation",
+   "sector": "Financials",
+   "date_added": "1995-05-31"
+  },
+  {
+   "ticker": "LDOS",
+   "name": "Leidos",
+   "sector": "Industrials",
+   "date_added": "2019-08-09"
+  },
+  {
+   "ticker": "LEN",
+   "name": "Lennar",
+   "sector": "Consumer Discretionary",
+   "date_added": "2005-10-04"
+  },
+  {
+   "ticker": "LH",
+   "name": "Labcorp",
+   "sector": "Health Care",
+   "date_added": "2004-11-01"
+  },
+  {
+   "ticker": "LHX",
+   "name": "L3Harris",
+   "sector": "Industrials",
+   "date_added": "2008-09-22"
+  },
+  {
+   "ticker": "LII",
+   "name": "Lennox International",
+   "sector": "Industrials",
+   "date_added": "2024-12-23"
+  },
+  {
+   "ticker": "LIN",
+   "name": "Linde plc",
+   "sector": "Materials",
+   "date_added": "1992-07-01"
+  },
+  {
+   "ticker": "LITE",
+   "name": "Lumentum",
+   "sector": "Information Technology",
+   "date_added": "2026-03-23"
+  },
+  {
+   "ticker": "LLY",
+   "name": "Lilly (Eli)",
+   "sector": "Health Care",
+   "date_added": "1970-12-31"
+  },
+  {
+   "ticker": "LMT",
+   "name": "Lockheed Martin",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "LNT",
+   "name": "Alliant Energy",
+   "sector": "Utilities",
+   "date_added": "2016-07-01"
+  },
+  {
+   "ticker": "LOW",
+   "name": "Lowe's",
+   "sector": "Consumer Discretionary",
+   "date_added": "1984-02-29"
+  },
+  {
+   "ticker": "LRCX",
+   "name": "Lam Research",
+   "sector": "Information Technology",
+   "date_added": "2012-06-29"
+  },
+  {
+   "ticker": "LULU",
+   "name": "Lululemon Athletica",
+   "sector": "Consumer Discretionary",
+   "date_added": "2023-10-18"
+  },
+  {
+   "ticker": "LUV",
+   "name": "Southwest Airlines",
+   "sector": "Industrials",
+   "date_added": "1994-07-01"
+  },
+  {
+   "ticker": "LVS",
+   "name": "Las Vegas Sands",
+   "sector": "Consumer Discretionary",
+   "date_added": "2019-10-03"
+  },
+  {
+   "ticker": "LYB",
+   "name": "LyondellBasell",
+   "sector": "Materials",
+   "date_added": "2012-09-05"
+  },
+  {
+   "ticker": "LYV",
+   "name": "Live Nation Entertainment",
+   "sector": "Communication Services",
+   "date_added": "2019-12-23"
+  },
+  {
+   "ticker": "MA",
+   "name": "Mastercard",
+   "sector": "Financials",
+   "date_added": "2008-07-18"
+  },
+  {
+   "ticker": "MAA",
+   "name": "Mid-America Apartment Communities",
+   "sector": "Real Estate",
+   "date_added": "2016-12-02"
+  },
+  {
+   "ticker": "MAR",
+   "name": "Marriott International",
+   "sector": "Consumer Discretionary",
+   "date_added": "1998-05-29"
+  },
+  {
+   "ticker": "MAS",
+   "name": "Masco",
+   "sector": "Industrials",
+   "date_added": "1981-06-30"
+  },
+  {
+   "ticker": "MCD",
+   "name": "McDonald's",
+   "sector": "Consumer Discretionary",
+   "date_added": "1970-06-30"
+  },
+  {
+   "ticker": "MCHP",
+   "name": "Microchip Technology",
+   "sector": "Information Technology",
+   "date_added": "2007-09-07"
+  },
+  {
+   "ticker": "MCK",
+   "name": "McKesson Corporation",
+   "sector": "Health Care",
+   "date_added": "1999-01-13"
+  },
+  {
+   "ticker": "MCO",
+   "name": "Moody's Corporation",
+   "sector": "Financials",
+   "date_added": "1998-07-01"
+  },
+  {
+   "ticker": "MDLZ",
+   "name": "Mondelez International",
+   "sector": "Consumer Staples",
+   "date_added": "2012-10-02"
+  },
+  {
+   "ticker": "MDT",
+   "name": "Medtronic",
+   "sector": "Health Care",
+   "date_added": "1986-10-31"
+  },
+  {
+   "ticker": "MET",
+   "name": "MetLife",
+   "sector": "Financials",
+   "date_added": "2000-12-11"
+  },
+  {
+   "ticker": "META",
+   "name": "Meta Platforms",
+   "sector": "Communication Services",
+   "date_added": "2013-12-23"
+  },
+  {
+   "ticker": "MGM",
+   "name": "MGM Resorts",
+   "sector": "Consumer Discretionary",
+   "date_added": "2017-07-26"
+  },
+  {
+   "ticker": "MKC",
+   "name": "McCormick & Company",
+   "sector": "Consumer Staples",
+   "date_added": "2003-03-20"
+  },
+  {
+   "ticker": "MLM",
+   "name": "Martin Marietta Materials",
+   "sector": "Materials",
+   "date_added": "2014-07-02"
+  },
+  {
+   "ticker": "MMM",
+   "name": "3M",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "MNST",
+   "name": "Monster Beverage",
+   "sector": "Consumer Staples",
+   "date_added": "2012-06-28"
+  },
+  {
+   "ticker": "MO",
+   "name": "Altria",
+   "sector": "Consumer Staples",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "MOS",
+   "name": "Mosaic Company (The)",
+   "sector": "Materials",
+   "date_added": "2011-09-26"
+  },
+  {
+   "ticker": "MPC",
+   "name": "Marathon Petroleum",
+   "sector": "Energy",
+   "date_added": "2011-07-01"
+  },
+  {
+   "ticker": "MPWR",
+   "name": "Monolithic Power Systems",
+   "sector": "Information Technology",
+   "date_added": "2021-02-12"
+  },
+  {
+   "ticker": "MRK",
+   "name": "Merck & Co.",
+   "sector": "Health Care",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "MRNA",
+   "name": "Moderna",
+   "sector": "Health Care",
+   "date_added": "2021-07-21"
+  },
+  {
+   "ticker": "MRSH",
+   "name": "Marsh McLennan",
+   "sector": "Financials",
+   "date_added": "1987-08-31"
+  },
+  {
+   "ticker": "MRVL",
+   "name": "Marvell Technology",
+   "sector": "Information Technology",
+   "date_added": "2026-06-22"
+  },
+  {
+   "ticker": "MS",
+   "name": "Morgan Stanley",
+   "sector": "Financials",
+   "date_added": "1993-07-29"
+  },
+  {
+   "ticker": "MSCI",
+   "name": "MSCI",
+   "sector": "Financials",
+   "date_added": "2018-04-04"
+  },
+  {
+   "ticker": "MSFT",
+   "name": "Microsoft",
+   "sector": "Information Technology",
+   "date_added": "1994-06-01"
+  },
+  {
+   "ticker": "MSI",
+   "name": "Motorola Solutions",
+   "sector": "Information Technology",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "MTB",
+   "name": "M&T Bank",
+   "sector": "Financials",
+   "date_added": "2004-02-23"
+  },
+  {
+   "ticker": "MTD",
+   "name": "Mettler Toledo",
+   "sector": "Health Care",
+   "date_added": "2016-09-06"
+  },
+  {
+   "ticker": "MU",
+   "name": "Micron Technology",
+   "sector": "Information Technology",
+   "date_added": "1994-09-27"
+  },
+  {
+   "ticker": "NCLH",
+   "name": "Norwegian Cruise Line Holdings",
+   "sector": "Consumer Discretionary",
+   "date_added": "2017-10-13"
+  },
+  {
+   "ticker": "NDAQ",
+   "name": "Nasdaq, Inc.",
+   "sector": "Financials",
+   "date_added": "2008-10-22"
+  },
+  {
+   "ticker": "NDSN",
+   "name": "Nordson Corporation",
+   "sector": "Industrials",
+   "date_added": "2022-02-15"
+  },
+  {
+   "ticker": "NEE",
+   "name": "NextEra Energy",
+   "sector": "Utilities",
+   "date_added": "1976-06-30"
+  },
+  {
+   "ticker": "NEM",
+   "name": "Newmont",
+   "sector": "Materials",
+   "date_added": "1969-06-30"
+  },
+  {
+   "ticker": "NFLX",
+   "name": "Netflix",
+   "sector": "Communication Services",
+   "date_added": "2010-12-20"
+  },
+  {
+   "ticker": "NI",
+   "name": "NiSource",
+   "sector": "Utilities",
+   "date_added": "2000-11-02"
+  },
+  {
+   "ticker": "NKE",
+   "name": "Nike, Inc.",
+   "sector": "Consumer Discretionary",
+   "date_added": "1988-11-30"
+  },
+  {
+   "ticker": "NOC",
+   "name": "Northrop Grumman",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "NOW",
+   "name": "ServiceNow",
+   "sector": "Information Technology",
+   "date_added": "2019-11-21"
+  },
+  {
+   "ticker": "NRG",
+   "name": "NRG Energy",
+   "sector": "Utilities",
+   "date_added": "2010-01-29"
+  },
+  {
+   "ticker": "NSC",
+   "name": "Norfolk Southern",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "NTAP",
+   "name": "NetApp",
+   "sector": "Information Technology",
+   "date_added": "1999-06-25"
+  },
+  {
+   "ticker": "NTRS",
+   "name": "Northern Trust",
+   "sector": "Financials",
+   "date_added": "1998-01-30"
+  },
+  {
+   "ticker": "NUE",
+   "name": "Nucor",
+   "sector": "Materials",
+   "date_added": "1985-04-30"
+  },
+  {
+   "ticker": "NVDA",
+   "name": "Nvidia",
+   "sector": "Information Technology",
+   "date_added": "2001-11-30"
+  },
+  {
+   "ticker": "NVR",
+   "name": "NVR, Inc.",
+   "sector": "Consumer Discretionary",
+   "date_added": "2019-09-26"
+  },
+  {
+   "ticker": "NWS",
+   "name": "News Corp (Class B)",
+   "sector": "Communication Services",
+   "date_added": "2015-09-18"
+  },
+  {
+   "ticker": "NWSA",
+   "name": "News Corp (Class A)",
+   "sector": "Communication Services",
+   "date_added": "2013-08-01"
+  },
+  {
+   "ticker": "NXPI",
+   "name": "NXP Semiconductors",
+   "sector": "Information Technology",
+   "date_added": "2021-03-22"
+  },
+  {
+   "ticker": "O",
+   "name": "Realty Income",
+   "sector": "Real Estate",
+   "date_added": "2015-04-07"
+  },
+  {
+   "ticker": "ODFL",
+   "name": "Old Dominion",
+   "sector": "Industrials",
+   "date_added": "2019-12-09"
+  },
+  {
+   "ticker": "OKE",
+   "name": "Oneok",
+   "sector": "Energy",
+   "date_added": "2010-03-15"
+  },
+  {
+   "ticker": "OMC",
+   "name": "Omnicom Group",
+   "sector": "Communication Services",
+   "date_added": "1997-12-31"
+  },
+  {
+   "ticker": "ON",
+   "name": "ON Semiconductor",
+   "sector": "Information Technology",
+   "date_added": "2022-06-21"
+  },
+  {
+   "ticker": "ORCL",
+   "name": "Oracle Corporation",
+   "sector": "Information Technology",
+   "date_added": "1989-08-31"
+  },
+  {
+   "ticker": "ORLY",
+   "name": "O'Reilly Automotive",
+   "sector": "Consumer Discretionary",
+   "date_added": "2009-03-27"
+  },
+  {
+   "ticker": "OTIS",
+   "name": "Otis Worldwide",
+   "sector": "Industrials",
+   "date_added": "2020-04-03"
+  },
+  {
+   "ticker": "OXY",
+   "name": "Occidental Petroleum",
+   "sector": "Energy",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "P",
+   "name": "Everpure",
+   "sector": "Information Technology",
+   "date_added": "2026-09-21"
+  },
+  {
+   "ticker": "PANW",
+   "name": "Palo Alto Networks",
+   "sector": "Information Technology",
+   "date_added": "2023-06-20"
+  },
+  {
+   "ticker": "PAYX",
+   "name": "Paychex",
+   "sector": "Industrials",
+   "date_added": "1998-10-01"
+  },
+  {
+   "ticker": "PCAR",
+   "name": "Paccar",
+   "sector": "Industrials",
+   "date_added": "1980-12-31"
+  },
+  {
+   "ticker": "PCG",
+   "name": "PG&E Corporation",
+   "sector": "Utilities",
+   "date_added": "2022-10-03"
+  },
+  {
+   "ticker": "PEG",
+   "name": "Public Service Enterprise Group",
+   "sector": "Utilities",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "PEP",
+   "name": "PepsiCo",
+   "sector": "Consumer Staples",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "PFE",
+   "name": "Pfizer",
+   "sector": "Health Care",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "PFG",
+   "name": "Principal Financial Group",
+   "sector": "Financials",
+   "date_added": "2002-07-22"
+  },
+  {
+   "ticker": "PG",
+   "name": "Procter & Gamble",
+   "sector": "Consumer Staples",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "PGR",
+   "name": "Progressive Corporation",
+   "sector": "Financials",
+   "date_added": "1997-08-04"
+  },
+  {
+   "ticker": "PH",
+   "name": "Parker Hannifin",
+   "sector": "Industrials",
+   "date_added": "1985-11-30"
+  },
+  {
+   "ticker": "PHM",
+   "name": "PulteGroup",
+   "sector": "Consumer Discretionary",
+   "date_added": "1984-04-30"
+  },
+  {
+   "ticker": "PKG",
+   "name": "Packaging Corporation of America",
+   "sector": "Materials",
+   "date_added": "2017-07-26"
+  },
+  {
+   "ticker": "PLD",
+   "name": "Prologis",
+   "sector": "Real Estate",
+   "date_added": "2003-07-17"
+  },
+  {
+   "ticker": "PLTR",
+   "name": "Palantir Technologies",
+   "sector": "Information Technology",
+   "date_added": "2024-09-23"
+  },
+  {
+   "ticker": "PM",
+   "name": "Philip Morris International",
+   "sector": "Consumer Staples",
+   "date_added": "2008-03-31"
+  },
+  {
+   "ticker": "PNC",
+   "name": "PNC Financial Services",
+   "sector": "Financials",
+   "date_added": "1988-04-30"
+  },
+  {
+   "ticker": "PNR",
+   "name": "Pentair",
+   "sector": "Industrials",
+   "date_added": "2012-10-01"
+  },
+  {
+   "ticker": "PNW",
+   "name": "Pinnacle West Capital",
+   "sector": "Utilities",
+   "date_added": "1999-10-04"
+  },
+  {
+   "ticker": "PODD",
+   "name": "Insulet Corporation",
+   "sector": "Health Care",
+   "date_added": "2023-03-15"
+  },
+  {
+   "ticker": "PPG",
+   "name": "PPG Industries",
+   "sector": "Materials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "PPL",
+   "name": "PPL Corporation",
+   "sector": "Utilities",
+   "date_added": "2001-10-01"
+  },
+  {
+   "ticker": "PRU",
+   "name": "Prudential Financial",
+   "sector": "Financials",
+   "date_added": "2002-07-22"
+  },
+  {
+   "ticker": "PSA",
+   "name": "Public Storage",
+   "sector": "Real Estate",
+   "date_added": "2005-08-19"
+  },
+  {
+   "ticker": "PSKY",
+   "name": "Paramount Skydance Corporation",
+   "sector": "Communication Services",
+   "date_added": "1994-09-30"
+  },
+  {
+   "ticker": "PSX",
+   "name": "Phillips 66",
+   "sector": "Energy",
+   "date_added": "2012-05-01"
+  },
+  {
+   "ticker": "PTC",
+   "name": "PTC Inc.",
+   "sector": "Information Technology",
+   "date_added": "2021-04-20"
+  },
+  {
+   "ticker": "PWR",
+   "name": "Quanta Services",
+   "sector": "Industrials",
+   "date_added": "2009-07-01"
+  },
+  {
+   "ticker": "PYPL",
+   "name": "PayPal",
+   "sector": "Financials",
+   "date_added": "2015-07-20"
+  },
+  {
+   "ticker": "Q",
+   "name": "Qnity Electronics",
+   "sector": "Information Technology",
+   "date_added": "2025-11-03"
+  },
+  {
+   "ticker": "QCOM",
+   "name": "Qualcomm",
+   "sector": "Information Technology",
+   "date_added": "1999-07-22"
+  },
+  {
+   "ticker": "RCL",
+   "name": "Royal Caribbean Group",
+   "sector": "Consumer Discretionary",
+   "date_added": "2014-12-05"
+  },
+  {
+   "ticker": "RDDT",
+   "name": "Reddit",
+   "sector": "Communication Services",
+   "date_added": "2026-08-18"
+  },
+  {
+   "ticker": "REG",
+   "name": "Regency Centers",
+   "sector": "Real Estate",
+   "date_added": "2017-03-02"
+  },
+  {
+   "ticker": "REGN",
+   "name": "Regeneron Pharmaceuticals",
+   "sector": "Health Care",
+   "date_added": "2013-05-01"
+  },
+  {
+   "ticker": "RF",
+   "name": "Regions Financial Corporation",
+   "sector": "Financials",
+   "date_added": "1998-08-28"
+  },
+  {
+   "ticker": "RJF",
+   "name": "Raymond James Financial",
+   "sector": "Financials",
+   "date_added": "2017-03-20"
+  },
+  {
+   "ticker": "RL",
+   "name": "Ralph Lauren Corporation",
+   "sector": "Consumer Discretionary",
+   "date_added": "2007-02-02"
+  },
+  {
+   "ticker": "RMD",
+   "name": "ResMed|",
+   "sector": "Health Care",
+   "date_added": "2017-07-26"
+  },
+  {
+   "ticker": "ROK",
+   "name": "Rockwell Automation",
+   "sector": "Industrials",
+   "date_added": "2000-03-12"
+  },
+  {
+   "ticker": "ROL",
+   "name": "Rollins, Inc.",
+   "sector": "Industrials",
+   "date_added": "2018-10-01"
+  },
+  {
+   "ticker": "ROP",
+   "name": "Roper Technologies",
+   "sector": "Information Technology",
+   "date_added": "2009-12-23"
+  },
+  {
+   "ticker": "ROST",
+   "name": "Ross Stores",
+   "sector": "Consumer Discretionary",
+   "date_added": "2009-12-21"
+  },
+  {
+   "ticker": "RSG",
+   "name": "Republic Services",
+   "sector": "Industrials",
+   "date_added": "2008-12-05"
+  },
+  {
+   "ticker": "RTX",
+   "name": "RTX Corporation",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "RVTY",
+   "name": "Revvity",
+   "sector": "Health Care",
+   "date_added": "1985-05-31"
+  },
+  {
+   "ticker": "SBAC",
+   "name": "SBA Communications",
+   "sector": "Real Estate",
+   "date_added": "2017-09-01"
+  },
+  {
+   "ticker": "SBUX",
+   "name": "Starbucks",
+   "sector": "Consumer Discretionary",
+   "date_added": "2000-06-07"
+  },
+  {
+   "ticker": "SCHW",
+   "name": "Charles Schwab Corporation",
+   "sector": "Financials",
+   "date_added": "1997-06-02"
+  },
+  {
+   "ticker": "SHW",
+   "name": "Sherwin-Williams",
+   "sector": "Materials",
+   "date_added": "1964-06-30"
+  },
+  {
+   "ticker": "SJM",
+   "name": "J.M. Smucker Company (The)",
+   "sector": "Consumer Staples",
+   "date_added": "2008-11-06"
+  },
+  {
+   "ticker": "SLB",
+   "name": "Schlumberger",
+   "sector": "Energy",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "SMCI",
+   "name": "Supermicro",
+   "sector": "Information Technology",
+   "date_added": "2024-03-18"
+  },
+  {
+   "ticker": "SNA",
+   "name": "Snap-on",
+   "sector": "Industrials",
+   "date_added": "1982-09-30"
+  },
+  {
+   "ticker": "SNDK",
+   "name": "Sandisk",
+   "sector": "Information Technology",
+   "date_added": "2025-11-28"
+  },
+  {
+   "ticker": "SNPS",
+   "name": "Synopsys",
+   "sector": "Information Technology",
+   "date_added": "2017-03-16"
+  },
+  {
+   "ticker": "SO",
+   "name": "Southern Company",
+   "sector": "Utilities",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "SOLV",
+   "name": "Solventum",
+   "sector": "Health Care",
+   "date_added": "2024-04-01"
+  },
+  {
+   "ticker": "SPG",
+   "name": "Simon Property Group",
+   "sector": "Real Estate",
+   "date_added": "2002-06-26"
+  },
+  {
+   "ticker": "SPGI",
+   "name": "S&P Global",
+   "sector": "Financials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "SRE",
+   "name": "Sempra",
+   "sector": "Utilities",
+   "date_added": "2017-03-17"
+  },
+  {
+   "ticker": "STE",
+   "name": "Steris",
+   "sector": "Health Care",
+   "date_added": "2019-12-23"
+  },
+  {
+   "ticker": "STLD",
+   "name": "Steel Dynamics",
+   "sector": "Materials",
+   "date_added": "2022-12-22"
+  },
+  {
+   "ticker": "STT",
+   "name": "State Street Corporation",
+   "sector": "Financials",
+   "date_added": "2003-03-14"
+  },
+  {
+   "ticker": "STX",
+   "name": "Seagate Technology",
+   "sector": "Information Technology",
+   "date_added": "2012-07-02"
+  },
+  {
+   "ticker": "STZ",
+   "name": "Constellation Brands",
+   "sector": "Consumer Staples",
+   "date_added": "2005-07-01"
+  },
+  {
+   "ticker": "SW",
+   "name": "Smurfit Westrock",
+   "sector": "Materials",
+   "date_added": "2024-07-08"
+  },
+  {
+   "ticker": "SWK",
+   "name": "Stanley Black & Decker",
+   "sector": "Industrials",
+   "date_added": "1982-09-30"
+  },
+  {
+   "ticker": "SWKS",
+   "name": "Skyworks Solutions",
+   "sector": "Information Technology",
+   "date_added": "2015-03-12"
+  },
+  {
+   "ticker": "SYF",
+   "name": "Synchrony Financial",
+   "sector": "Financials",
+   "date_added": "2015-11-18"
+  },
+  {
+   "ticker": "SYK",
+   "name": "Stryker Corporation",
+   "sector": "Health Care",
+   "date_added": "2000-12-12"
+  },
+  {
+   "ticker": "SYY",
+   "name": "Sysco",
+   "sector": "Consumer Staples",
+   "date_added": "1986-12-31"
+  },
+  {
+   "ticker": "T",
+   "name": "AT&T",
+   "sector": "Communication Services",
+   "date_added": "1983-11-30"
+  },
+  {
+   "ticker": "TDG",
+   "name": "TransDigm Group",
+   "sector": "Industrials",
+   "date_added": "2016-06-03"
+  },
+  {
+   "ticker": "TDY",
+   "name": "Teledyne Technologies",
+   "sector": "Information Technology",
+   "date_added": "2020-06-22"
+  },
+  {
+   "ticker": "TECH",
+   "name": "Bio-Techne",
+   "sector": "Health Care",
+   "date_added": "2021-08-30"
+  },
+  {
+   "ticker": "TEL",
+   "name": "TE Connectivity",
+   "sector": "Information Technology",
+   "date_added": "2011-10-17"
+  },
+  {
+   "ticker": "TER",
+   "name": "Teradyne",
+   "sector": "Information Technology",
+   "date_added": "2020-09-21"
+  },
+  {
+   "ticker": "TFC",
+   "name": "Truist Financial",
+   "sector": "Financials",
+   "date_added": "1997-12-04"
+  },
+  {
+   "ticker": "TGT",
+   "name": "Target Corporation",
+   "sector": "Consumer Staples",
+   "date_added": "1976-12-31"
+  },
+  {
+   "ticker": "TJX",
+   "name": "TJX Companies",
+   "sector": "Consumer Discretionary",
+   "date_added": "1985-09-30"
+  },
+  {
+   "ticker": "TKO",
+   "name": "TKO Group Holdings",
+   "sector": "Communication Services",
+   "date_added": "2025-03-24"
+  },
+  {
+   "ticker": "TMO",
+   "name": "Thermo Fisher Scientific",
+   "sector": "Health Care",
+   "date_added": "2004-08-03"
+  },
+  {
+   "ticker": "TMUS",
+   "name": "T-Mobile US",
+   "sector": "Communication Services",
+   "date_added": "2019-07-15"
+  },
+  {
+   "ticker": "TPL",
+   "name": "Texas Pacific Land Corporation",
+   "sector": "Energy",
+   "date_added": "2024-11-26"
+  },
+  {
+   "ticker": "TPR",
+   "name": "Tapestry, Inc.",
+   "sector": "Consumer Discretionary",
+   "date_added": "2004-09-01"
+  },
+  {
+   "ticker": "TRGP",
+   "name": "Targa Resources",
+   "sector": "Energy",
+   "date_added": "2022-10-12"
+  },
+  {
+   "ticker": "TRMB",
+   "name": "Trimble Inc.",
+   "sector": "Information Technology",
+   "date_added": "2021-01-21"
+  },
+  {
+   "ticker": "TROW",
+   "name": "T. Rowe Price",
+   "sector": "Financials",
+   "date_added": "2019-07-29"
+  },
+  {
+   "ticker": "TRV",
+   "name": "Travelers Companies (The)",
+   "sector": "Financials",
+   "date_added": "2002-08-21"
+  },
+  {
+   "ticker": "TSCO",
+   "name": "Tractor Supply",
+   "sector": "Consumer Discretionary",
+   "date_added": "2014-01-24"
+  },
+  {
+   "ticker": "TSLA",
+   "name": "Tesla, Inc.",
+   "sector": "Consumer Discretionary",
+   "date_added": "2020-12-21"
+  },
+  {
+   "ticker": "TSN",
+   "name": "Tyson Foods",
+   "sector": "Consumer Staples",
+   "date_added": "2005-08-10"
+  },
+  {
+   "ticker": "TT",
+   "name": "Trane Technologies",
+   "sector": "Industrials",
+   "date_added": "2010-11-17"
+  },
+  {
+   "ticker": "TTWO",
+   "name": "Take-Two Interactive",
+   "sector": "Communication Services",
+   "date_added": "2018-03-19"
+  },
+  {
+   "ticker": "TXN",
+   "name": "Texas Instruments",
+   "sector": "Information Technology",
+   "date_added": "2001-03-12"
+  },
+  {
+   "ticker": "TXT",
+   "name": "Textron",
+   "sector": "Industrials",
+   "date_added": "1978-12-31"
+  },
+  {
+   "ticker": "TYL",
+   "name": "Tyler Technologies",
+   "sector": "Information Technology",
+   "date_added": "2020-06-22"
+  },
+  {
+   "ticker": "UAL",
+   "name": "United Airlines Holdings",
+   "sector": "Industrials",
+   "date_added": "2015-09-03"
+  },
+  {
+   "ticker": "UBER",
+   "name": "Uber",
+   "sector": "Industrials",
+   "date_added": "2023-12-18"
+  },
+  {
+   "ticker": "UDR",
+   "name": "UDR, Inc.",
+   "sector": "Real Estate",
+   "date_added": "2016-03-07"
+  },
+  {
+   "ticker": "UHS",
+   "name": "Universal Health Services",
+   "sector": "Health Care",
+   "date_added": "2014-09-20"
+  },
+  {
+   "ticker": "ULTA",
+   "name": "Ulta Beauty",
+   "sector": "Consumer Discretionary",
+   "date_added": "2016-04-18"
+  },
+  {
+   "ticker": "UNH",
+   "name": "UnitedHealth Group",
+   "sector": "Health Care",
+   "date_added": "1994-07-01"
+  },
+  {
+   "ticker": "UNP",
+   "name": "Union Pacific Corporation",
+   "sector": "Industrials",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "UPS",
+   "name": "United Parcel Service",
+   "sector": "Industrials",
+   "date_added": "2002-07-22"
+  },
+  {
+   "ticker": "URI",
+   "name": "United Rentals",
+   "sector": "Industrials",
+   "date_added": "2014-09-20"
+  },
+  {
+   "ticker": "USB",
+   "name": "U.S. Bancorp",
+   "sector": "Financials",
+   "date_added": "1999-11-01"
+  },
+  {
+   "ticker": "V",
+   "name": "Visa Inc.",
+   "sector": "Financials",
+   "date_added": "2009-12-21"
+  },
+  {
+   "ticker": "VEEV",
+   "name": "Veeva Systems",
+   "sector": "Health Care",
+   "date_added": "2026-05-07"
+  },
+  {
+   "ticker": "VICI",
+   "name": "Vici Properties",
+   "sector": "Real Estate",
+   "date_added": "2022-06-08"
+  },
+  {
+   "ticker": "VLO",
+   "name": "Valero Energy",
+   "sector": "Energy",
+   "date_added": "2002-12-20"
+  },
+  {
+   "ticker": "VLTO",
+   "name": "Veralto",
+   "sector": "Industrials",
+   "date_added": "2023-10-02"
+  },
+  {
+   "ticker": "VMC",
+   "name": "Vulcan Materials Company",
+   "sector": "Materials",
+   "date_added": "1999-06-30"
+  },
+  {
+   "ticker": "VMRK",
+   "name": "Vivmark Residential",
+   "sector": "Real Estate",
+   "date_added": "2001-12-03"
+  },
+  {
+   "ticker": "VRSK",
+   "name": "Verisk Analytics",
+   "sector": "Industrials",
+   "date_added": "2015-10-08"
+  },
+  {
+   "ticker": "VRSN",
+   "name": "Verisign",
+   "sector": "Information Technology",
+   "date_added": "2006-02-01"
+  },
+  {
+   "ticker": "VRT",
+   "name": "Vertiv",
+   "sector": "Industrials",
+   "date_added": "2026-03-23"
+  },
+  {
+   "ticker": "VRTX",
+   "name": "Vertex Pharmaceuticals",
+   "sector": "Health Care",
+   "date_added": "2013-09-23"
+  },
+  {
+   "ticker": "VST",
+   "name": "Vistra Corp.",
+   "sector": "Utilities",
+   "date_added": "2024-05-08"
+  },
+  {
+   "ticker": "VTR",
+   "name": "Ventas",
+   "sector": "Real Estate",
+   "date_added": "2009-03-04"
+  },
+  {
+   "ticker": "VTRS",
+   "name": "Viatris",
+   "sector": "Health Care",
+   "date_added": "2004-04-23"
+  },
+  {
+   "ticker": "VZ",
+   "name": "Verizon",
+   "sector": "Communication Services",
+   "date_added": "1983-11-30"
+  },
+  {
+   "ticker": "WAB",
+   "name": "Wabtec",
+   "sector": "Industrials",
+   "date_added": "2019-02-27"
+  },
+  {
+   "ticker": "WAT",
+   "name": "Waters Corporation",
+   "sector": "Health Care",
+   "date_added": "2002-01-02"
+  },
+  {
+   "ticker": "WBD",
+   "name": "Warner Bros. Discovery",
+   "sector": "Communication Services",
+   "date_added": "2022-04-11"
+  },
+  {
+   "ticker": "WDAY",
+   "name": "Workday, Inc.",
+   "sector": "Information Technology",
+   "date_added": "2024-12-23"
+  },
+  {
+   "ticker": "WDC",
+   "name": "Western Digital",
+   "sector": "Information Technology",
+   "date_added": "2009-07-01"
+  },
+  {
+   "ticker": "WEC",
+   "name": "WEC Energy Group",
+   "sector": "Utilities",
+   "date_added": "2008-10-31"
+  },
+  {
+   "ticker": "WELL",
+   "name": "Welltower",
+   "sector": "Real Estate",
+   "date_added": "2009-01-30"
+  },
+  {
+   "ticker": "WFC",
+   "name": "Wells Fargo",
+   "sector": "Financials",
+   "date_added": "1976-06-30"
+  },
+  {
+   "ticker": "WM",
+   "name": "Waste Management",
+   "sector": "Industrials",
+   "date_added": "1998-08-31"
+  },
+  {
+   "ticker": "WMB",
+   "name": "Williams Companies",
+   "sector": "Energy",
+   "date_added": "1975-03-31"
+  },
+  {
+   "ticker": "WMT",
+   "name": "Walmart",
+   "sector": "Consumer Staples",
+   "date_added": "1982-08-31"
+  },
+  {
+   "ticker": "WRB",
+   "name": "W. R. Berkley Corporation",
+   "sector": "Financials",
+   "date_added": "2019-12-05"
+  },
+  {
+   "ticker": "WSM",
+   "name": "Williams-Sonoma, Inc.",
+   "sector": "Consumer Discretionary",
+   "date_added": "2025-03-24"
+  },
+  {
+   "ticker": "WST",
+   "name": "West Pharmaceutical Services",
+   "sector": "Health Care",
+   "date_added": "2020-05-22"
+  },
+  {
+   "ticker": "WTW",
+   "name": "Willis Towers Watson",
+   "sector": "Financials",
+   "date_added": "2016-01-05"
+  },
+  {
+   "ticker": "WY",
+   "name": "Weyerhaeuser",
+   "sector": "Real Estate",
+   "date_added": "1979-10-01"
+  },
+  {
+   "ticker": "WYNN",
+   "name": "Wynn Resorts",
+   "sector": "Consumer Discretionary",
+   "date_added": "2008-11-14"
+  },
+  {
+   "ticker": "XEL",
+   "name": "Xcel Energy",
+   "sector": "Utilities",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "XOM",
+   "name": "ExxonMobil",
+   "sector": "Energy",
+   "date_added": "1957-03-04"
+  },
+  {
+   "ticker": "XYL",
+   "name": "Xylem Inc.",
+   "sector": "Industrials",
+   "date_added": "2011-11-01"
+  },
+  {
+   "ticker": "XYZ",
+   "name": "Block, Inc.",
+   "sector": "Financials",
+   "date_added": "2025-07-23"
+  },
+  {
+   "ticker": "YUM",
+   "name": "Yum! Brands",
+   "sector": "Consumer Discretionary",
+   "date_added": "1997-10-06"
+  },
+  {
+   "ticker": "ZBH",
+   "name": "Zimmer Biomet",
+   "sector": "Health Care",
+   "date_added": "2001-08-07"
+  },
+  {
+   "ticker": "ZBRA",
+   "name": "Zebra Technologies",
+   "sector": "Information Technology",
+   "date_added": "2019-12-23"
+  },
+  {
+   "ticker": "ZTS",
+   "name": "Zoetis",
+   "sector": "Health Care",
+   "date_added": "2013-06-21"
+  }
+ ]
+}

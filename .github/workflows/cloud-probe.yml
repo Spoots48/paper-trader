@@ -1,0 +1,20 @@
+name: cloud-probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Unit + end-to-end tests (offline)
+        run: python -m pytest tests -q
+      - name: Data-source access from GitHub's servers
+        run: python tools/cloud_probe.py

@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper Trader</title>
+<style>
+:root{
+  --bg:#f5f5f3; --panel:#ffffff; --sidebar:#ecece9; --ink:#1c1c1e; --muted:#6c6c70; --faint:#9a9a9e;
+  --line:#e2e2de; --line-strong:#d1d1cc; --hover:#f0f0ec;
+  --accent:#2d6a4f; --accent-soft:#e3efe8; --warn:#9a6700; --warn-soft:#fbf1dc; --bad:#b42318; --bad-soft:#fbe7e5;
+  --info:#2458a6; --info-soft:#e4ecf8;
+  --s-primary:#2d6a4f; --s-research:#6d4fc2; --s-spy:#5b7083; --s-cash:#a3a3a3;
+  --radius:12px; --shadow:0 1px 2px rgba(0,0,0,.04),0 1px 1px rgba(0,0,0,.03);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141415; --panel:#1d1d1f; --sidebar:#19191a; --ink:#f2f2f3; --muted:#a0a0a6; --faint:#6f6f75;
+    --line:#2c2c2f; --line-strong:#3a3a3e; --hover:#242427;
+    --accent:#6fc59a; --accent-soft:#1f3329; --warn:#e3b341; --warn-soft:#352b14; --bad:#ff7b72; --bad-soft:#3b1d1b;
+    --info:#79a7f0; --info-soft:#1c2a40;
+    --s-primary:#6fc59a; --s-research:#a78bfa; --s-spy:#94a8ba; --s-cash:#6f6f75;
+    --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+    --bg:#141415; --panel:#1d1d1f; --sidebar:#19191a; --ink:#f2f2f3; --muted:#a0a0a6; --faint:#6f6f75;
+    --line:#2c2c2f; --line-strong:#3a3a3e; --hover:#242427;
+    --accent:#6fc59a; --accent-soft:#1f3329; --warn:#e3b341; --warn-soft:#352b14; --bad:#ff7b72; --bad-soft:#3b1d1b;
+    --info:#79a7f0; --info-soft:#1c2a40;
+    --s-primary:#6fc59a; --s-research:#a78bfa; --s-spy:#94a8ba; --s-cash:#6f6f75; --shadow:none;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.app{display:grid;grid-template-columns:212px 1fr;min-height:100vh}
+aside{background:var(--sidebar);border-right:1px solid var(--line);padding:18px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 8px 16px}
+.brand .logo{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center}
+.brand b{font-size:15px;letter-spacing:-.01em}
+.brand small{display:block;color:var(--muted);font-size:11px;margin-top:-2px}
+.nav button{all:unset;display:flex;align-items:center;gap:10px;width:100%;padding:7px 10px;border-radius:8px;color:var(--ink);cursor:pointer;font-size:13.5px;box-sizing:border-box}
+.nav button:hover{background:var(--hover)}
+.nav button.on{background:var(--panel);box-shadow:var(--shadow);font-weight:600}
+.nav svg{width:16px;height:16px;stroke:var(--muted);fill:none;stroke-width:1.7;flex:none}
+.nav button.on svg{stroke:var(--accent)}
+.side-foot{margin-top:auto;padding:10px;color:var(--muted);font-size:11.5px;line-height:1.45}
+main{min-width:0;padding:22px 28px 60px}
+.top{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.top h1{font-size:22px;letter-spacing:-.02em;margin:0}
+.top .sub{color:var(--muted);font-size:13px;margin-top:2px}
+.top .spacer{flex:1}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:999px;font-size:12.5px;font-weight:600;background:var(--panel);border:1px solid var(--line)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--faint)}
+.dot.ok{background:#34c759}.dot.warn{background:#ff9f0a}.dot.bad{background:#ff3b30}
+.dot.pulse{animation:pulse 1.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,199,89,.55)}70%{box-shadow:0 0 0 7px rgba(52,199,89,0)}100%{box-shadow:0 0 0 0 rgba(52,199,89,0)}}
+.btn{all:unset;cursor:pointer;padding:6px 13px;border-radius:8px;font-size:13px;font-weight:600;background:var(--panel);border:1px solid var(--line-strong);color:var(--ink);white-space:nowrap}
+.btn:hover{background:var(--hover)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn.primary{color:#0f1f17}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.primary{color:#0f1f17}}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.menu{position:relative}
+.menu .pop{display:none;position:absolute;right:0;top:36px;background:var(--panel);border:1px solid var(--line-strong);border-radius:10px;padding:6px;min-width:230px;z-index:20;box-shadow:0 8px 30px rgba(0,0,0,.12)}
+.menu.open .pop{display:block}
+.pop button{all:unset;display:block;width:100%;box-sizing:border-box;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:13px}
+.pop button:hover{background:var(--hover)}
+.pop hr{border:0;border-top:1px solid var(--line);margin:5px 0}
+.banner{padding:10px 14px;border-radius:10px;margin-bottom:16px;font-size:13px;border:1px solid var(--line)}
+.banner.warn{background:var(--warn-soft);border-color:transparent;color:var(--warn)}
+.banner.info{background:var(--info-soft);border-color:transparent;color:var(--info)}
+.banner.bad{background:var(--bad-soft);border-color:transparent;color:var(--bad)}
+.grid{display:grid;gap:14px}
+.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);min-width:0}
+.card h2{font-size:13px;font-weight:600;color:var(--muted);margin:0 0 10px;letter-spacing:.01em}
+.card h3{font-size:14px;margin:0 0 8px}
+.kpi .label{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:12.5px;font-weight:600}
+.kpi .sw{width:10px;height:10px;border-radius:3px}
+.kpi .val{font-size:26px;font-weight:650;letter-spacing:-.02em;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.kpi .chg{font-size:13px;font-variant-numeric:tabular-nums}
+.pos{color:var(--accent)}.neg{color:var(--bad)}.mut{color:var(--muted)}
+.kpi .foot{color:var(--muted);font-size:12px;margin-top:6px}
+.two{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}
+.seg{display:inline-flex;background:var(--sidebar);border:1px solid var(--line);border-radius:9px;padding:2px}
+.seg button{all:unset;cursor:pointer;padding:4px 12px;border-radius:7px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.seg button.on{background:var(--panel);color:var(--ink);box-shadow:var(--shadow)}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:14px;height:3px;border-radius:2px;display:inline-block}
+.chart{width:100%;position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line-strong);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:0 6px 24px rgba(0,0,0,.12);white-space:nowrap;display:none;z-index:5;font-variant-numeric:tabular-nums}
+.progress{position:relative;height:8px;background:var(--line);border-radius:99px;margin:26px 4px 30px}
+.progress .fill{position:absolute;left:0;top:0;bottom:0;background:var(--accent);border-radius:99px}
+.progress .mk{position:absolute;top:-22px;transform:translateX(-50%);font-size:11px;color:var(--muted);text-align:center;white-space:nowrap}
+.progress .mk::after{content:"";display:block;width:2px;height:14px;background:var(--line-strong);margin:3px auto 0}
+.progress .mk.done{color:var(--accent);font-weight:600}
+.progress .mk.done::after{background:var(--accent)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12px;background:var(--panel);position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+td.wrap{white-space:normal;min-width:260px;max-width:520px}
+td.num,th.num{text-align:right}
+.badge{display:inline-block;padding:1px 8px;border-radius:6px;font-size:11.5px;font-weight:700;letter-spacing:.02em}
+.b-buy{background:var(--accent-soft);color:var(--accent)}.b-sell{background:var(--bad-soft);color:var(--bad)}
+.b-skip{background:var(--hover);color:var(--muted)}.b-info{background:var(--info-soft);color:var(--info)}
+.b-warn{background:var(--warn-soft);color:var(--warn)}
+.list{display:flex;flex-direction:column}
+.dec{padding:12px 4px;border-bottom:1px solid var(--line)}
+.dec:last-child{border-bottom:0}
+.dec .h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.dec .t{font-weight:650}
+.dec .r{color:var(--ink);margin-top:3px}
+.dec .m{color:var(--muted);font-size:12px;margin-top:3px}
+details summary{cursor:pointer;color:var(--info);font-size:12.5px;margin-top:6px;list-style:none}
+details summary::-webkit-details-marker{display:none}
+.kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:4px 16px;margin-top:8px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.kv b{color:var(--ink);font-weight:600}
+.news{margin:8px 0 0;padding:0;list-style:none}
+.news li{padding:6px 0;border-top:1px dashed var(--line);font-size:12.5px}
+.news a{color:var(--info);text-decoration:none}
+.news .ts{color:var(--muted);font-size:11.5px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.filters input,.filters select{font:inherit;font-size:13px;padding:5px 9px;border-radius:8px;border:1px solid var(--line-strong);background:var(--panel);color:var(--ink)}
+.empty{color:var(--muted);padding:18px 4px;text-align:center}
+pre.log{background:var(--sidebar);border:1px solid var(--line);border-radius:10px;padding:12px;font:11.5px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto;white-space:pre-wrap;margin:0}
+.prose{max-width:820px}
+.prose p,.prose li{color:var(--ink)}
+.prose h3{margin-top:22px}
+.stat-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
+.stat-row:last-child{border-bottom:0}
+.stat-row span:first-child{color:var(--muted)}
+.toast{position:fixed;bottom:18px;right:18px;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:10px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;max-width:420px;z-index:50}
+.toast.show{opacity:1}
+@media (max-width: 1100px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}}
+@media (max-width: 760px){.app{grid-template-columns:1fr}aside{position:static;height:auto;flex-direction:row;overflow-x:auto;padding:8px}.brand,.side-foot{display:none}.nav{display:flex;gap:2px}.nav button{width:auto;white-space:nowrap}main{padding:16px}.kpis{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand">
+      <div class="logo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg></div>
+      <div><b>Paper Trader</b><small>30-day experiment</small></div>
+    </div>
+    <div class="nav" id="nav"></div>
+    <div class="side-foot">Paper trading only.<br>No real money, no brokerage.<br><span id="gen"></span></div>
+  </aside>
+  <main>
+    <div class="top">
+      <div>
+        <h1 id="title">Overview</h1>
+        <div class="sub" id="subtitle"></div>
+      </div>
+      <div class="spacer"></div>
+      <div class="controls" id="controls"></div>
+    </div>
+    <div id="banners"></div>
+    <div id="view"></div>
+  </main>
+</div>
+<div class="tip" id="tip"></div>
+<div class="toast" id="toast"></div>
+<script>
+/*__STATE__*/
+const LIVE = !window.__STATE__;
+const OPEN = new Set();
+const S = {state: window.__STATE__ || null, book: 'primary', view: localGet('view') || 'overview', decFilter: {q: '', action: 'major'}, log: []};
+const $ = s => document.querySelector(s);
+function localGet(k){ try { return localStorage.getItem('pt.'+k); } catch(e){ return null; } }
+function localSet(k,v){ try { localStorage.setItem('pt.'+k, v); } catch(e){} }
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = (x, sign) => x == null || isNaN(x) ? '—' : (sign ? (x >= 0 ? '+' : '−') : (x < 0 ? '−' : '')) + '$' + Math.abs(x).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const pct = (x, digits=2) => x == null || isNaN(x) ? '—' : (x >= 0 ? '+' : '−') + (Math.abs(x) * 100).toFixed(digits) + '%';
+const dd = x => !x ? '0.00%' : '−' + (Math.abs(x) * 100).toFixed(2) + '%';
+const cls = x => x == null ? 'mut' : (x > 0 ? 'pos' : (x < 0 ? 'neg' : 'mut'));
+const num = (x, d=4) => x == null ? '—' : Number(x).toLocaleString(undefined, {maximumFractionDigits: d});
+function when(iso){
+  if (!iso) return '—';
+  const d = new Date(iso.replace(' ', 'T'));
+  if (isNaN(d)) return esc(iso);
+  const et = d.toLocaleString('en-US', {timeZone: 'America/New_York', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'});
+  return et + ' ET';
+}
+function ago(iso){
+  if (!iso) return 'never';
+  const s = (Date.now() - new Date(iso).getTime()) / 1000;
+  if (s < 90) return 'just now';
+  if (s < 3600) return Math.round(s / 60) + ' min ago';
+  if (s < 86400) return Math.round(s / 3600) + ' h ago';
+  return Math.round(s / 86400) + ' d ago';
+}
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 3500); }
+
+const ICONS = {
+  overview: '<rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/>',
+  holdings: '<path d="M4 7h16v12H4z"/><path d="M8 7V5h8v2"/>',
+  activity: '<polyline points="3 12 7 12 10 5 14 19 17 12 21 12"/>',
+  decisions: '<path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/>',
+  reports: '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>',
+  backtest: '<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/>',
+  system: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
+  method: '<circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/>'
+};
+const VIEWS = [['overview','Overview'],['holdings','Holdings'],['activity','Trades & orders'],['decisions','Decisions'],['reports','Reports'],['backtest','Backtest'],['system','System'],['method','Method']];
+
+function book(id){ return (S.state.books || []).find(b => b.id === (id || S.book)) || {}; }
+
+function renderNav(){
+  $('#nav').innerHTML = VIEWS.map(([id, label]) =>
+    `<button class="${S.view === id ? 'on' : ''}" data-v="${id}"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">${ICONS[id]}</svg>${label}</button>`).join('');
+  document.querySelectorAll('#nav button').forEach(b => b.onclick = () => { S.view = b.dataset.v; localSet('view', S.view); render(); });
+}
+
+function schedStatus(){
+  const sc = S.state.scheduler || {};
+  const hb = sc.heartbeat;
+  if (S.state.cycle_running) return {dot: 'ok pulse', text: 'Running a cycle…'};
+  if (!sc.installed) return {dot: 'bad', text: 'Scheduler not installed'};
+  if (sc.paused) return {dot: 'warn', text: 'Paused'};
+  if (!sc.loaded) return {dot: 'bad', text: 'Scheduler not loaded'};
+  if (hb && hb.status === 'offline') return {dot: 'warn', text: 'Offline · last try ' + ago(hb.at)};
+  if (hb && hb.status === 'error') return {dot: 'bad', text: 'Last run had errors · ' + ago(hb.at)};
+  return {dot: 'ok', text: 'Active · last run ' + (hb ? ago(hb.at) : 'pending')};
+}
+
+function renderTop(){
+  const st = S.state, cal = st.calendar;
+  const titles = Object.fromEntries(VIEWS);
+  $('#title').textContent = titles[S.view];
+  const nextRep = (cal.report_schedule || []).find(r => r.date >= cal.today_et);
+  const dayTxt = cal.status === 'not started' ? `Starts ${cal.start}` : (cal.status === 'finished' ? 'Experiment finished' : `Day ${cal.day} of ${cal.total_days}`);
+  $('#subtitle').innerHTML = [dayTxt, `${cal.sessions_done}/${cal.sessions_total} sessions`, cal.market_open_now ? '<span class="pos">Market open</span>' : 'Market closed',
+    nextRep ? `Next report: Day ${nextRep.day} (${nextRep.date})` : ''].filter(Boolean).join(' · ');
+  const s = schedStatus(), sc = st.scheduler || {};
+  let h = `<span class="pill"><span class="dot ${s.dot}"></span>${esc(s.text)}</span>`;
+  if (LIVE){
+    h += `<button class="btn primary" id="b-run" ${st.cycle_running || sc.paused ? 'disabled' : ''}>Run now</button>`;
+    h += sc.paused ? `<button class="btn" id="b-resume">Resume</button>` : `<button class="btn" id="b-pause">Pause</button>`;
+    h += `<div class="menu" id="m"><button class="btn" id="b-more">•••</button><div class="pop">
+      ${sc.installed ? '<button data-a="uninstall">Stop scheduler (uninstall)</button>' : '<button data-a="install">Start scheduler (install)</button>'}
+      <button data-a="folder">Open project folder</button>
+      <button data-a="export">Export static dashboard</button><hr>
+      <button data-a="theme">Toggle light / dark</button></div></div>`;
+  }
+  $('#controls').innerHTML = h;
+  if (!LIVE) return;
+  const post = async (path) => { const r = await fetch(path, {method: 'POST', headers: {'X-PT': '1'}}); return r.json(); };
+  $('#b-run') && ($('#b-run').onclick = async () => { const r = await post('/api/run'); toast(r.started ? 'Cycle started — results appear in a minute or two.' : r.reason); setTimeout(load, 1500); });
+  $('#b-pause') && ($('#b-pause').onclick = async () => { await post('/api/pause'); toast('Paused. Scheduled runs will skip until you resume. Stops and orders already placed are still honoured when you resume.'); load(); });
+  $('#b-resume') && ($('#b-resume').onclick = async () => { await post('/api/resume'); toast('Resumed.'); load(); });
+  $('#b-more').onclick = e => { e.stopPropagation(); $('#m').classList.toggle('open'); };
+  document.onclick = () => $('#m') && $('#m').classList.remove('open');
+  document.querySelectorAll('.pop button').forEach(b => b.onclick = async () => {
+    const a = b.dataset.a;
+    if (a === 'install'){ const r = await post('/api/scheduler/install'); toast(r.ok ? 'Scheduler installed: runs every 15 minutes while the Mac is on.' : 'Install failed: ' + r.output); }
+    if (a === 'uninstall'){ if (!confirm('Stop the scheduler? No trading decisions will be made until you start it again.')) return; const r = await post('/api/scheduler/uninstall'); toast(r.ok ? 'Scheduler removed.' : 'Failed: ' + r.output); }
+    if (a === 'folder') await post('/api/open-folder');
+    if (a === 'export'){ const r = await post('/api/export'); toast('Saved ' + r.path); }
+    if (a === 'theme'){ const cur = document.documentElement.dataset.theme; const dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; document.documentElement.dataset.theme = dark ? 'light' : 'dark'; localSet('theme', document.documentElement.dataset.theme); }
+    load();
+  });
+}
+
+function renderBanners(){
+  const st = S.state, out = [];
+  if (!LIVE) out.push(`<div class="banner info">Static snapshot generated ${when(st.generated_at)}. Open the Paper Trader app for live data and controls.</div>`);
+  const unfrozen = (st.books || []).filter(b => !b.frozen);
+  if (unfrozen.length) out.push(`<div class="banner warn">Not frozen yet: ${unfrozen.map(b => esc(b.name)).join(', ')}. Run <code>python run.py freeze</code> before the start date.</div>`);
+  (st.books || []).forEach(b => {
+    if (b.audit && b.audit.chain_ok === false) out.push(`<div class="banner bad">${esc(b.name)}: audit chain broken — ${esc(b.audit.detail)}</div>`);
+    if (b.audit && b.audit.strategy_file_matches_frozen === false) out.push(`<div class="banner bad">${esc(b.name)}: strategy file differs from the frozen version. New decisions are suspended.</div>`);
+    if (b.risk && b.risk.halt_until) out.push(`<div class="banner bad">${esc(b.name)}: drawdown halt active until ${esc(b.risk.halt_until)}.</div>`);
+  });
+  $('#banners').innerHTML = out.join('');
+}
+
+// ---------------------------------------------------------------- chart
+function lineChart(el, series, opts = {}){
+  const W = el.clientWidth || 700, H = opts.height || 260, P = {l: 56, r: 16, t: 12, b: 28};
+  const xs = opts.x;  // array of labels
+  const all = series.flatMap(s => s.values.filter(v => v != null));
+  if (!all.length){ el.innerHTML = `<div class="empty">${opts.empty || 'No data yet.'}</div>`; return; }
+  let lo = Math.min(...all), hi = Math.max(...all);
+  const pad = (hi - lo) * 0.12 || Math.max(1, hi * 0.01);
+  lo -= pad; hi += pad;
+  const X = i => P.l + (xs.length === 1 ? 0 : i * (W - P.l - P.r) / (xs.length - 1));
+  const Y = v => P.t + (hi - v) * (H - P.t - P.b) / (hi - lo);
+  const span = hi - lo, dec = span < 4 ? 2 : span < 40 ? 1 : 0;
+  const ticks = 4, grid = [];
+  for (let k = 0; k <= ticks; k++){
+    const v = lo + (hi - lo) * k / ticks;
+    grid.push(`<line x1="${P.l}" x2="${W - P.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${P.l - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="11" fill="var(--muted)">${opts.fmt ? opts.fmt(v, false, dec) : v.toFixed(dec)}</text>`);
+  }
+  const nx = Math.min(6, xs.length);
+  for (let k = 0; k < nx; k++){
+    const i = Math.round(k * (xs.length - 1) / Math.max(1, nx - 1));
+    grid.push(`<text x="${X(i)}" y="${H - 8}" text-anchor="middle" font-size="11" fill="var(--muted)">${esc(opts.xfmt ? opts.xfmt(xs[i]) : xs[i])}</text>`);
+  }
+  const paths = series.map(s => {
+    let d = '', pen = false;
+    s.values.forEach((v, i) => { if (v == null){ pen = false; return; } d += (pen ? 'L' : 'M') + X(i).toFixed(1) + ',' + Y(v).toFixed(1); pen = true; });
+    return `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="${s.width || 2}" stroke-linejoin="round" stroke-linecap="round" ${s.dash ? 'stroke-dasharray="4 4"' : ''}/>`;
+  }).join('');
+  const base = opts.baseline != null ? `<line x1="${P.l}" x2="${W - P.r}" y1="${Y(opts.baseline)}" y2="${Y(opts.baseline)}" stroke="var(--line-strong)" stroke-dasharray="2 3"/>` : '';
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.label || 'chart')}">${grid.join('')}${base}${paths}<line class="cur" y1="${P.t}" y2="${H - P.b}" stroke="var(--line-strong)" style="display:none"/><rect x="${P.l}" y="${P.t}" width="${W - P.l - P.r}" height="${H - P.t - P.b}" fill="transparent"/></svg>`;
+  const svg = el.querySelector('svg'), tip = $('#tip'), cur = svg.querySelector('.cur');
+  svg.onmousemove = e => {
+    const r = svg.getBoundingClientRect(), sx = (e.clientX - r.left) * W / r.width;
+    const i = Math.max(0, Math.min(xs.length - 1, Math.round((sx - P.l) / ((W - P.l - P.r) / Math.max(1, xs.length - 1)))));
+    cur.setAttribute('x1', X(i)); cur.setAttribute('x2', X(i)); cur.style.display = '';
+    const rows = series.filter(s => s.values[i] != null).map(s => `<div><span style="color:${s.color}">●</span> ${esc(s.name)}: <b>${opts.fmt ? opts.fmt(s.values[i], true) : s.values[i]}</b></div>`).join('');
+    if (!rows){ tip.style.display = 'none'; return; }
+    tip.innerHTML = `<div class="mut">${esc(opts.xfmt ? opts.xfmt(xs[i]) : xs[i])}</div>${rows}`;
+    tip.style.display = 'block';
+    tip.style.left = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 10) + 'px';
+    tip.style.top = (e.clientY + window.scrollY - tip.offsetHeight - 10) + 'px';
+  };
+  svg.onmouseleave = () => { tip.style.display = 'none'; cur.style.display = 'none'; };
+}
+const COLORS = {primary: 'var(--s-primary)', research: 'var(--s-research)', spy: 'var(--s-spy)', cash: 'var(--s-cash)'};
+
+// sessions of the experiment window (weekdays; holidays show as flat, none fall in this window)
+function windowSessions(){
+  const cal = S.state.calendar, out = [];
+  const d = new Date(cal.start + 'T12:00:00Z'), end = new Date(cal.end + 'T12:00:00Z');
+  const pre = new Date(d); do { pre.setUTCDate(pre.getUTCDate() - 1); } while ([0, 6].includes(pre.getUTCDay()));
+  out.push(pre.toISOString().slice(0, 10));
+  for (; d <= end; d.setUTCDate(d.getUTCDate() + 1)) if (![0, 6].includes(d.getUTCDay())) out.push(d.toISOString().slice(0, 10));
+  return out;
+}
+function equitySeries(){
+  const xs = windowSessions(), cash0 = S.state.experiment.starting_cash;
+  const series = [];
+  const spyVals = xs.map((_, i) => i === 0 ? cash0 : null);
+  (S.state.books || []).forEach(b => {
+    const m = Object.fromEntries((b.snapshots || []).map(s => [s.session, s]));
+    const vals = xs.map((x, i) => i === 0 ? cash0 : (m[x] ? m[x].equity : null));
+    xs.forEach((x, i) => { if (m[x] && m[x].spy_bh_equity != null && spyVals[i] == null) spyVals[i] = m[x].spy_bh_equity; });
+    series.push({name: b.name, color: COLORS[b.id] || 'var(--info)', values: vals, width: 2.4});
+  });
+  series.push({name: 'SPY buy & hold', color: COLORS.spy, values: spyVals});
+  series.push({name: 'Cash', color: COLORS.cash, values: xs.map(() => cash0), dash: true, width: 1.5});
+  return {xs, series};
+}
+const shortDate = s => { const d = new Date(s + 'T12:00:00Z'); return d.toLocaleDateString('en-US', {month: 'short', day: 'numeric', timeZone: 'UTC'}); };
+
+// ---------------------------------------------------------------- views
+function kpiCard(label, color, value, chg, chgTxt, foot){
+  return `<div class="card kpi"><div class="label"><span class="sw" style="background:${color}"></span>${esc(label)}</div>
+    <div class="val">${value}</div><div class="chg ${cls(chg)}">${chgTxt}</div><div class="foot">${foot || '&nbsp;'}</div></div>`;
+}
+
+function viewOverview(){
+  const st = S.state, cash0 = st.experiment.starting_cash;
+  const cards = [];
+  let spyEq = null, spyAsOf = null;
+  (st.books || []).forEach(b => {
+    const p = b.perf || {};
+    if (p.spy_equity != null && spyEq == null){ spyEq = p.spy_equity; spyAsOf = p.as_of; }
+    const live = b.live_equity, liveNote = b.live_as_of && st.calendar.market_open_now ? `Live est. ${money(live)} · ${ago(b.live_as_of)}` : '';
+    cards.push(kpiCard(b.name, COLORS[b.id], money(p.equity ?? cash0), p.ret, `${money(p.pnl, true)} (${pct(p.ret)}) since start`,
+      liveNote || `Max drawdown ${dd(p.max_dd)} · ${(b.positions || []).length} positions`));
+  });
+  cards.push(kpiCard('SPY buy & hold', COLORS.spy, money(spyEq ?? cash0), spyEq ? spyEq / cash0 - 1 : null, spyEq ? `${money(spyEq - cash0, true)} (${pct(spyEq / cash0 - 1)}) since start` : 'Starts at the first open', 'Benchmark: $100 in SPY at the first open'));
+  cards.push(kpiCard('Cash', COLORS.cash, money(cash0), 0, '+$0.00 (0.00%)', 'Benchmark: do nothing'));
+  const cal = st.calendar;
+  const frac = Math.max(0, Math.min(1, (cal.day - 1 + (cal.status === 'finished' ? 1 : 0)) / cal.total_days));
+  const marks = (cal.report_schedule || []).map(r => `<div class="mk ${r.date < cal.today_et || (st.reports || []).some(x => x.day === r.day) ? 'done' : ''}" style="left:${(r.day / cal.total_days) * 100}%">Day ${r.day}</div>`).join('');
+  const pb = book('primary'), rb = book('research');
+  const recent = [...(pb.decisions || []).map(d => ({...d, _b: 'Primary'})), ...(rb.decisions || []).map(d => ({...d, _b: 'Research'}))]
+    .filter(d => ['BUY', 'SELL'].includes(d.action) || d.reason_code.startsWith('NEWS_') || d.reason_code === 'MISSED_WINDOW')
+    .sort((a, b) => b.created_at.localeCompare(a.created_at)).slice(0, 8);
+  $('#view').innerHTML = `
+    <div class="grid kpis">${cards.join('')}</div>
+    <div class="card" style="margin-top:14px">
+      <div class="row" style="justify-content:space-between;margin-bottom:6px"><h2 style="margin:0">Portfolio value — ${esc(cal.start)} to ${esc(cal.end)}</h2>
+      <div class="legend">${equitySeries().series.map(s => `<span><i style="background:${s.color}"></i>${esc(s.name)}</span>`).join('')}</div></div>
+      <div class="chart" id="eq"></div>
+      <div class="progress"><div class="fill" style="width:${frac * 100}%"></div>${marks}</div>
+    </div>
+    <div class="grid two" style="margin-top:14px">
+      <div class="card"><h2>Latest decisions</h2>${recent.length ? `<div class="list">${recent.map(decRow).join('')}</div>` : '<div class="empty">No decisions yet. The first one is made for the first session of the experiment.</div>'}</div>
+      <div class="card"><h2>Health</h2>${healthBlock()}</div>
+    </div>`;
+  const {xs, series} = equitySeries();
+  lineChart($('#eq'), series, {x: xs, xfmt: shortDate, fmt: (v, full, d) => full ? money(v) : '$' + v.toFixed(d ?? 0), baseline: cash0, label: 'Portfolio value vs benchmarks', empty: 'The chart fills in after the first session closes.'});
+}
+
+function healthBlock(){
+  const st = S.state, sc = st.scheduler || {}, hb = sc.heartbeat || {};
+  const rows = [['Scheduler', sc.installed ? (sc.loaded ? (sc.paused ? 'Paused' : 'Active (every 15 min)') : 'Installed, not loaded') : 'Not installed'],
+    ['Last run', hb.at ? `${ago(hb.at)} · ${esc(hb.status)}` : 'never'],
+    ['Last exit code', esc(sc.last_exit ?? '—')]];
+  (st.books || []).forEach(b => {
+    const errs = (b.runs || []).filter(r => r.status === 'ERROR').length;
+    rows.push([`${esc(b.name)} audit`, b.audit ? (b.audit.chain_ok ? `OK · ${esc(b.audit.detail)}` : '<span class="neg">BROKEN</span>') : '—']);
+    rows.push([`${esc(b.name)} recent errors`, errs ? `<span class="neg">${errs}</span> of last ${(b.runs || []).length} runs` : `0 of last ${(b.runs || []).length} runs`]);
+  });
+  return rows.map(([a, b]) => `<div class="stat-row"><span>${a}</span><span>${b}</span></div>`).join('') +
+    `<p class="mut" style="font-size:12px;margin:10px 0 0">Runs only while this Mac is on, awake and online. Missed decision windows are logged, never back-filled.</p>`;
+}
+
+function badge(action, code){
+  const c = action === 'BUY' ? 'b-buy' : action === 'SELL' ? 'b-sell' : action === 'INFO' ? (code === 'MISSED_WINDOW' ? 'b-warn' : 'b-info') : (String(code).startsWith('NEWS_') ? 'b-warn' : 'b-skip');
+  return `<span class="badge ${c}">${esc(action)}</span>`;
+}
+function decRow(d){
+  const b = book(d._bid || null);
+  return `<div class="dec"><div class="h">${badge(d.action, d.reason_code)}<span class="t">${esc(d.ticker === '*' ? 'Portfolio' : d.ticker)}</span>
+    <span class="mut">${esc(d._b || '')} · ${esc(d.sleeve || '')} · ${esc(d.reason_code)}</span><span class="mut" style="margin-left:auto">for ${esc(d.session)}</span></div>
+    <div class="r">${esc(d.reason)}</div></div>`;
+}
+
+function bookSeg(){
+  return `<div class="seg" id="seg">${(S.state.books || []).map(b => `<button class="${S.book === b.id ? 'on' : ''}" data-b="${b.id}">${esc(b.name)}</button>`).join('')}</div>`;
+}
+function bindSeg(){ document.querySelectorAll('#seg button').forEach(x => x.onclick = () => { S.book = x.dataset.b; render(); }); }
+function table(cols, rows, empty){
+  if (!rows.length) return `<div class="empty">${empty || 'Nothing here yet.'}</div>`;
+  return `<div class="tw"><table><thead><tr>${cols.map(c => `<th class="${c.n ? 'num' : ''}">${esc(c.h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${cols.map((c, i) => `<td class="${c.n ? 'num' : ''} ${c.w ? 'wrap' : ''}">${r[i]}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+}
+
+function viewHoldings(){
+  const b = book();
+  const pos = b.positions || [];
+  const rows = pos.map(p => [`<b>${esc(p.ticker)}</b>`, esc(p.sleeve), num(p.qty, 6), money(p.avg_cost), money(p.mark), money(p.value),
+    `<span class="${cls(p.unrealized)}">${money(p.unrealized, true)}</span>`, pct(p.weight, 1).replace('+', ''), p.stop ? money(p.stop) : '—',
+    esc(p.entry_session), esc(p.max_hold_until || '—'), `<span class="mut">${esc(p.mark_time === 'last close' ? 'last close' : when(p.mark_time))}</span>`]);
+  $('#view').innerHTML = `<div class="row" style="justify-content:space-between;margin-bottom:12px">${bookSeg()}<span class="mut">${esc(b.subtitle || '')}</span></div>
+    <div class="grid kpis" style="margin-bottom:14px">
+      ${kpiCard('Estimated value', COLORS[b.id], money(b.live_equity), null, b.live_as_of ? 'marks as of ' + ago(b.live_as_of) : 'marks at last close', '')}
+      ${kpiCard('Cash', COLORS.cash, money(b.cash), null, pct((b.cash || 0) / (b.live_equity || 1), 1).replace('+', '') + ' of portfolio', '')}
+      ${kpiCard('Realized P&L', COLORS[b.id], money(b.realized_pnl, true), b.realized_pnl, 'closed trades', '')}
+      ${kpiCard('Modeled costs', COLORS.cash, money(b.costs_total), null, 'spread + slippage + fees', '')}
+    </div>
+    ${table([{h: 'Ticker'}, {h: 'Sleeve'}, {h: 'Qty', n: 1}, {h: 'Avg cost', n: 1}, {h: 'Mark', n: 1}, {h: 'Value', n: 1}, {h: 'Unrealized', n: 1}, {h: 'Weight', n: 1}, {h: 'Stop', n: 1}, {h: 'Entered'}, {h: 'Time exit'}, {h: 'Mark time'}], rows, 'No open positions — 100% cash.')}
+    <p class="mut" style="font-size:12px">Stops are standing orders: the trailing level rises with the highest high since entry and is re-evaluated on every 5-minute bar (or daily bar if the Mac was offline).</p>`;
+  bindSeg();
+}
+
+function viewActivity(){
+  const b = book();
+  const fills = (b.fills || []).map(f => [esc(f.session), f.side === 'BUY' ? '<span class="badge b-buy">BUY</span>' : '<span class="badge b-sell">SELL</span>', `<b>${esc(f.ticker)}</b>`, esc(f.sleeve || ''),
+    num(f.qty, 6), money(f.ref_price), money(f.fill_price), `${f.cost_bps.toFixed(1)} bp (${money(f.cost_usd)})`, f.side === 'SELL' ? `<span class="${cls(f.realized_pnl)}">${money(f.realized_pnl, true)}</span>` : '',
+    esc(f.reason_code), `<span class="mut">${esc(f.price_time)} · ${esc(f.price_source)}</span>`]);
+  const orders = (b.orders || []).map(o => [esc(o.session), esc(o.side), `<b>${esc(o.ticker)}</b>`, esc(o.order_type), o.notional != null ? money(o.notional) : (o.qty != null ? num(o.qty, 6) + ' sh' : (o.side === 'BUY' ? 'residual cash' : 'all')),
+    `<span class="badge ${o.status === 'FILLED' ? 'b-buy' : o.status === 'OPEN' ? 'b-info' : 'b-skip'}">${esc(o.status)}</span>`, when(o.created_at), `<span class="mut">${esc(o.status_reason || '')}</span>`]);
+  $('#view').innerHTML = `<div class="row" style="margin-bottom:12px">${bookSeg()}</div>
+    <div class="card"><h2>Executions (simulated fills)</h2>${table([{h: 'Session'}, {h: 'Side'}, {h: 'Ticker'}, {h: 'Sleeve'}, {h: 'Qty', n: 1}, {h: 'Ref price', n: 1}, {h: 'Fill', n: 1}, {h: 'Cost', n: 1}, {h: 'Realized', n: 1}, {h: 'Reason'}, {h: 'Price used'}], fills, 'No executions yet.')}</div>
+    <div class="card" style="margin-top:14px"><h2>Orders</h2>${table([{h: 'Session'}, {h: 'Side'}, {h: 'Ticker'}, {h: 'Type'}, {h: 'Size', n: 1}, {h: 'Status'}, {h: 'Decided'}, {h: 'Note'}], orders, 'No orders yet.')}</div>`;
+  bindSeg();
+}
+
+function viewDecisions(){
+  const b = book(), f = S.decFilter;
+  let decs = (b.decisions || []).filter(d => !d.decision_key.startsWith('decide:') || f.action === 'all');
+  if (f.action === 'major') decs = decs.filter(d => d.action !== 'SKIP' || d.reason_code.startsWith('NEWS_') || d.reason_code === 'NO_SLOT');
+  else if (f.action !== 'all') decs = decs.filter(d => d.action === f.action);
+  if (f.q) decs = decs.filter(d => (d.ticker + ' ' + d.reason + ' ' + d.reason_code).toLowerCase().includes(f.q.toLowerCase()));
+  const items = decs.slice(0, 300).map(d => {
+    const news = (d.news_ids || []).map(id => b.news[id]).filter(Boolean);
+    const metrics = Object.entries(d.metrics || {}).filter(([k, v]) => v != null && typeof v !== 'object').slice(0, 24)
+      .map(([k, v]) => `<div>${esc(k)}: <b>${typeof v === 'number' ? (Math.abs(v) < 5 && !Number.isInteger(v) ? v.toFixed(4) : num(v, 2)) : esc(v)}</b></div>`).join('');
+    return `<div class="dec"><div class="h">${badge(d.action, d.reason_code)}<span class="t">${esc(d.ticker === '*' ? 'Portfolio' : d.ticker)}</span>
+      <span class="mut">${esc(d.sleeve || '')} · ${esc(d.reason_code)}</span><span class="mut" style="margin-left:auto">for session ${esc(d.session)}</span></div>
+      <div class="r">${esc(d.reason)}</div>
+      <div class="m">Decided ${when(d.created_at)} using data through ${esc(d.data_through)}</div>
+      ${metrics || news.length ? `<details data-id="${S.book}:${d.decision_id}" ${OPEN.has(S.book + ':' + d.decision_id) ? 'open' : ''}><summary>Evidence${news.length ? ` · ${news.length} news items` : ''}</summary>${metrics ? `<div class="kv">${metrics}</div>` : ''}
+        ${news.length ? `<ul class="news">${news.map(n => `<li>${n.url ? `<a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a>` : esc(n.title)}<div class="ts">${esc(n.provider || n.source)} · published ${when(n.published_at)} · retrieved ${when(n.retrieved_at)}</div></li>`).join('')}</ul>` : ''}</details>` : ''}
+    </div>`;
+  }).join('');
+  $('#view').innerHTML = `<div class="row" style="justify-content:space-between;margin-bottom:12px">${bookSeg()}</div>
+    <div class="card"><div class="filters"><input id="q" placeholder="Filter by ticker or text" value="${esc(f.q)}">
+      <select id="fa">${[['major', 'Major decisions'], ['BUY', 'Buys'], ['SELL', 'Sells'], ['SKIP', 'Skipped signals'], ['INFO', 'System / market notes'], ['all', 'Everything']].map(([v, l]) => `<option value="${v}" ${f.action === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
+      ${items ? `<div class="list">${items}</div>` : '<div class="empty">No decisions match.</div>'}</div>`;
+  bindSeg();
+  $('#q').oninput = e => { S.decFilter.q = e.target.value; const p = e.target.selectionStart; viewDecisions(); $('#q').focus(); $('#q').setSelectionRange(p, p); };
+  $('#fa').onchange = e => { S.decFilter.action = e.target.value; viewDecisions(); };
+  document.querySelectorAll('details[data-id]').forEach(el => el.ontoggle = () => el.open ? OPEN.add(el.dataset.id) : OPEN.delete(el.dataset.id));
+}
+
+function viewReports(){
+  const st = S.state, have = Object.fromEntries((st.reports || []).map(r => [r.day, r]));
+  const rows = (st.calendar.report_schedule || []).map(r => {
+    const rep = have[r.day];
+    const head = rep && rep.headline ? rep.headline[0] : null;
+    return [`<b>Day ${r.day}</b>${r.day === 30 ? ' <span class="badge b-info">FINAL</span>' : ''}`, esc(r.date),
+      rep ? `<span class="badge b-buy">READY</span>` : (r.date < st.calendar.today_et ? '<span class="badge b-warn">PENDING DATA</span>' : '<span class="badge b-skip">SCHEDULED</span>'),
+      rep ? esc(rep.as_of) : '—', head ? esc(head[1]) + ' · ' + esc(head[3]) : '—', rep ? when(rep.generated_at) + (rep.late_by_hours > 1 ? ` <span class="mut">(${rep.late_by_hours} h late)</span>` : '') : '—',
+      rep ? `<a class="btn" href="${LIVE ? '/reports/' : '../reports/'}${esc(rep.file)}">Open</a> <a class="btn" href="${LIVE ? '/reports/' : '../reports/'}${esc(rep.md)}">Markdown</a>` : ''];
+  });
+  $('#view').innerHTML = `<div class="card"><h2>Weekly reports</h2>
+    ${table([{h: 'Report'}, {h: 'Date'}, {h: 'Status'}, {h: 'As of close'}, {h: 'Primary value · cumulative'}, {h: 'Generated'}, {h: ''}], rows)}
+    <p class="mut" style="font-size:12.5px;margin-top:12px">Reports are generated automatically at the first run after the report day's close (a macOS notification appears). If the Mac is off that evening, the report is generated at the next run and marked late. Files live in the project's <code>reports/</code> folder and are never overwritten.</p></div>`;
+}
+
+function viewBacktest(){
+  const bt = S.state.backtest;
+  if (!bt){ $('#view').innerHTML = '<div class="card"><div class="empty">No backtest results found.</div></div>'; return; }
+  const names = {spy_buy_hold: 'SPY buy & hold', regime_gated_spy_only: 'Regime-gated SPY  (= Primary book)', without_catalyst: 'Momentum + regime', without_momentum: 'Catalyst + regime', full_strategy: 'Full v1  (= Research book)'};
+  const per = Object.entries(bt.periods).map(([p, d]) => {
+    const rows = Object.entries(d.rows).map(([k, r]) => [esc(names[k] || k), `<span class="${cls(r.total_return)}">${pct(r.total_return, 1)}</span>`, `<span class="${cls(r.cagr)}">${pct(r.cagr, 1)}</span>`, pct(-(r.max_drawdown || 0), 1), r.sharpe_rf0 != null ? r.sharpe_rf0.toFixed(2) : '—', r.n_stock_round_trips ?? '—', r.costs_usd != null ? money(r.costs_usd) : '—']);
+    const es = d.event_study.passes_all_filters || {};
+    return `<div class="card" style="margin-top:14px"><div class="row" style="justify-content:space-between"><h2 style="margin:0">${p === 'in_sample' ? 'In-sample' : 'Out-of-sample'} · ${esc(d.start)} → ${esc(d.end)}</h2>
+      <div class="legend"><span><i style="background:var(--s-primary)"></i>Primary rules</span><span><i style="background:var(--s-research)"></i>Research rules</span><span><i style="background:var(--s-spy)"></i>SPY</span></div></div>
+      <div class="chart" id="bt-${p}" style="margin:8px 0 14px"></div>
+      ${table([{h: 'Variant ($100 start, costs incl.)'}, {h: 'Total', n: 1}, {h: 'CAGR', n: 1}, {h: 'Max DD', n: 1}, {h: 'Sharpe', n: 1}, {h: 'Stock trades', n: 1}, {h: 'Costs', n: 1}], rows)}
+      <p class="mut" style="font-size:12.5px;margin-top:10px">Earnings-gap signal event study (next-open entry, excess vs SPY): n=${es.n ?? 0}, 5-day ${pct(es.excess_5d_mean)} (t=${es.excess_5d_tstat?.toFixed(2)}), 20-day ${pct(es.excess_20d_mean)} (t=${es.excess_20d_tstat?.toFixed(2)}).
+      Rolling 30-day windows: the full strategy beat SPY in ${Math.round(d.rolling.pct_windows_beat_spy * 100)}% of ${d.rolling.n_windows} windows; excess-return spread ±${(d.rolling.excess_std * 100).toFixed(1)} pts (1 s.d.).</p></div>`;
+  }).join('');
+  $('#view').innerHTML = `<div class="banner info">Historical simulation — not live results. Parameters were fixed before this test (see research/PREREGISTRATION.md). News filtering could not be backtested (no free historical archive), and the universe is today's S&P 500 with each stock allowed only after its index-inclusion date.</div>${per}`;
+  Object.entries(bt.periods).forEach(([p, d]) => {
+    const c = d.curve;
+    lineChart($('#bt-' + p), [{name: 'Primary rules', color: 'var(--s-primary)', values: c.regime_gated_spy_only}, {name: 'Research rules', color: 'var(--s-research)', values: c.full_strategy}, {name: 'SPY', color: 'var(--s-spy)', values: c.spy}],
+      {x: c.dates, xfmt: s => s.slice(0, 7), fmt: (v, full, d) => full ? money(v) : '$' + v.toFixed(d ?? 0), height: 220, baseline: 100});
+  });
+}
+
+async function viewSystem(){
+  const b = book(), st = S.state, sc = st.scheduler || {};
+  const runs = (b.runs || []).slice(0, 60).map(r => [when(r.started_at), `<span class="badge ${r.status === 'OK' ? 'b-buy' : r.status === 'ERROR' ? 'b-sell' : 'b-info'}">${esc(r.status)}</span>`, esc(r.trigger || ''), `<span class="${r.error ? 'neg' : 'mut'}">${esc((r.error || r.summary || '').slice(0, 220))}</span>`]);
+  const iss = (b.issues || []).slice(0, 80).map(i => [when(i.occurred_at), `<span class="badge ${['ERROR', 'CRITICAL'].includes(i.severity) ? 'b-sell' : i.severity === 'WARN' ? 'b-warn' : 'b-info'}">${esc(i.severity)}</span>`, esc(i.component), esc(i.ticker || ''), `<span class="mut">${esc(i.message.slice(0, 260))}</span>`]);
+  $('#view').innerHTML = `<div class="row" style="justify-content:space-between;margin-bottom:12px">${bookSeg()}</div>
+    <div class="grid two"><div class="card"><h2>Scheduler</h2>
+      <div class="stat-row"><span>launchd job</span><span>${sc.installed ? 'installed' : 'not installed'} · ${sc.loaded ? 'loaded' : 'not loaded'}</span></div>
+      <div class="stat-row"><span>State</span><span>${esc(sc.detail || '—')}</span></div>
+      <div class="stat-row"><span>Paused</span><span>${sc.paused ? 'yes' : 'no'}</span></div>
+      <div class="stat-row"><span>Last heartbeat</span><span>${sc.heartbeat ? when(sc.heartbeat.at) + ' · ' + esc(sc.heartbeat.status) : '—'}</span></div>
+      <p class="mut" style="font-size:12px;margin-top:10px">Runs every 15 minutes while the Mac is on and online; exits immediately when offline or paused. Logs: <code>logs/cycle.log</code> and <code>~/Library/Logs/PaperTradingSim/</code>.</p></div>
+      <div class="card"><h2>Integrity</h2>
+      <div class="stat-row"><span>Audit hash chain</span><span>${b.audit ? (b.audit.chain_ok ? '<span class="pos">verified</span> · ' + esc(b.audit.detail) : '<span class="neg">broken</span>') : '—'}</span></div>
+      <div class="stat-row"><span>Strategy file = frozen</span><span>${b.audit && b.audit.strategy_file_matches_frozen ? '<span class="pos">yes</span>' : (b.audit ? '<span class="neg">no</span>' : '—')}</span></div>
+      <div class="stat-row"><span>Frozen at</span><span>${b.experiment ? when(b.experiment.frozen_at) : 'not frozen'}</span></div>
+      <div class="stat-row"><span>Strategy SHA-256</span><span class="mut" style="font-size:11px">${b.experiment ? esc(b.experiment.strategy_sha256.slice(0, 20)) + '…' : '—'}</span></div>
+      <div class="stat-row"><span>Logged strategy changes</span><span>${(b.changes || []).length}</span></div></div></div>
+    <div class="card" style="margin-top:14px"><h2>Recent runs</h2>${table([{h: 'Started'}, {h: 'Status'}, {h: 'Trigger'}, {h: 'Summary / error', w: 1}], runs, 'No runs yet.')}</div>
+    <div class="card" style="margin-top:14px"><h2>Data & system issues</h2>${table([{h: 'When'}, {h: 'Severity'}, {h: 'Component'}, {h: 'Ticker'}, {h: 'Message', w: 1}], iss, 'No issues logged.')}</div>
+    ${LIVE ? '<div class="card" style="margin-top:14px"><h2>Log (tail)</h2><pre class="log" id="log">Loading…</pre></div>' : ''}`;
+  bindSeg();
+  if (LIVE){ try { const r = await (await fetch('/api/log?lines=150')).json(); const el = $('#log'); if (el){ el.textContent = r.lines.join('\n') || '(empty)'; el.scrollTop = el.scrollHeight; } } catch(e){} }
+}
+
+function viewMethod(){
+  const st = S.state, strat = st.strategies || {}, p = strat.primary || {}, r = strat.research || {};
+  const c = (p.costs || {}), risk = (p.risk || {}), reg = (p.regime || {}), port = (p.portfolio || {}), cat = (r.catalyst || {}), mom = (r.momentum || {});
+  $('#view').innerHTML = `<div class="card prose">
+    <h3 style="margin-top:0">Two frozen books, both starting with $100 on ${esc(st.calendar.start)}</h3>
+    <p><b>Primary</b> keeps only what passed the pre-registered backtest: hold SPY with idle cash (keeping a ${(port.cash_buffer * 100).toFixed(0)}% cash buffer) while SPY is above its ${reg.sma_days}-day average and VIX is below ${reg.vix_risk_off_above} (re-enter below ${reg.vix_risk_on_below}); otherwise hold cash.</p>
+    <p><b>Research</b> runs the original pre-registered strategy forward, including the news filter that could not be backtested: up to ${port.max_single_stock_positions} stock positions at ${(port.target_weight * 100).toFixed(0)}% each.</p>
+    <ul>
+      <li><b>Earnings gaps:</b> S&amp;P 500 stocks that rose ≥${(cat.min_reaction_return * 100).toFixed(0)}% on their earnings reaction day (≥${(cat.min_excess_vs_spy * 100).toFixed(0)}% more than SPY), on ≥${cat.min_volume_ratio}× normal volume, closing in the upper half of the day's range. <i>Must be confirmed</i> by a timestamped earnings headline published before the decision; vetoed on hard negatives (offerings, investigations, restatements, bankruptcy), takeover news, or net-negative tone. Stop ${(cat.stop_max_loss * 100).toFixed(0)}% (or the reaction-day low), ${(cat.trailing_stop * 100).toFixed(0)}% trailing stop, ${cat.max_hold_sessions}-session time exit.</li>
+      <li><b>Momentum:</b> up to ${mom.max_positions} of the strongest 6-month (skip last week) volatility-adjusted performers in confirmed uptrends, rebalanced weekly, never held through earnings, ${(mom.trailing_stop * 100).toFixed(0)}% trailing stop; news can only veto.</li>
+      <li>Leftover cash goes into SPY while the regime is risk-on.</li>
+    </ul>
+    <h3>Risk controls (both books)</h3>
+    <ul><li>Drawdown ≥${(risk.drawdown_pause * 100).toFixed(0)}% from peak: no new stock entries for ${risk.pause_sessions} sessions. Drawdown ≥${(risk.drawdown_halt * 100).toFixed(0)}%: liquidate and hold cash for ${risk.halt_sessions} sessions (the rest of the experiment).</li>
+      <li>No leverage, short selling or options. Fractional shares to 6 decimals. Minimum order $${port.min_order_usd}.</li></ul>
+    <h3>Execution realism</h3>
+    <ul><li>Decisions use only data available at decision time; every fill uses a price observed after the decision: the official open for orders placed before the open, otherwise the open of the next 5-minute bar.</li>
+      <li>Costs per side: SPY ${c.etf_bps} bp; stocks ${c.stock_bps_adv_ge_1b}–${c.stock_bps_other} bp by liquidity; +${c.open_auction_extra_bps} bp at the open; +${c.stop_fill_extra_bps} bp on stop fills; SEC fee on sells.</li>
+      <li>Stops are standing orders, as at a real broker, including while the Mac is asleep; they are processed from market data when the Mac is back online. New decisions only happen while the Mac is on.</li>
+      <li>Stale or missing data means no trade. Missing official closes are rebuilt from 5-minute bars and flagged.</li></ul>
+    <h3>What this can't tell you</h3>
+    <p>One month is about 21 trading sessions. Historically, a single month's return relative to SPY varied by roughly ±4 percentage points (1 s.d.) for this kind of strategy, so no result here, good or bad, is evidence of a lasting edge. This is a research experiment, not investment advice.</p></div>`;
+}
+
+function render(){
+  if (!S.state) return;
+  renderNav(); renderTop(); renderBanners();
+  ({overview: viewOverview, holdings: viewHoldings, activity: viewActivity, decisions: viewDecisions, reports: viewReports, backtest: viewBacktest, system: viewSystem, method: viewMethod}[S.view] || viewOverview)();
+  $('#gen').textContent = 'Updated ' + ago(S.state.generated_at);
+}
+async function load(){
+  if (LIVE){
+    try { S.state = await (await fetch('/api/state', {cache: 'no-store'})).json(); }
+    catch(e){ toast('Could not reach the local server.'); return; }
+  }
+  render();
+}
+(function(){ const t = localGet('theme'); if (t) document.documentElement.dataset.theme = t; })();
+load();
+if (LIVE) setInterval(() => { if (!document.hidden && !document.querySelector('#q:focus')) load(); }, 20000);
+let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(render, 150); });
+</script>
+</body>
+</html>

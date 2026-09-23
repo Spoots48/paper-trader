@@ -1,0 +1,33 @@
+{
+  "name": "30-day paper-trading experiment",
+  "start_date": "2026-09-23",
+  "end_date": "2026-10-22",
+  "starting_cash": 100.0,
+  "report_days": [
+    7,
+    14,
+    21,
+    28,
+    30
+  ],
+  "day_numbering": "Day 1 = start_date; Day N = start_date + (N-1) calendar days; reports cover through the last completed session on or before that date.",
+  "books": [
+    {
+      "id": "primary",
+      "name": "Primary",
+      "subtitle": "Regime-gated SPY (only rules that passed the pre-registered backtest)",
+      "strategy": "config/strategy_v1_primary.json",
+      "ledger": "data/ledger_primary.sqlite"
+    },
+    {
+      "id": "research",
+      "name": "Research",
+      "subtitle": "Pre-registered v1: news-confirmed earnings gaps + momentum (failed backtest; forward test)",
+      "strategy": "config/strategy_v1.json",
+      "ledger": "data/ledger_research.sqlite"
+    }
+  ],
+  "notifications": {
+    "macos_notification_center": true
+  }
+}
