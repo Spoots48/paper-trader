@@ -79,7 +79,8 @@ class Handler(BaseHTTPRequestHandler):
         if u.path == "/api/ping":
             return self._json({"ok": True})
         if u.path == "/api/state":
-            st = full_state()
+            from .live import quotes
+            st = full_state(quotes=quotes() if cloud_viewer() else None)
             st["cycle_running"] = bool(st["scheduler"].get("running")) if st["scheduler"].get("mode") == "cloud" else cycle_running()
             return self._json(st)
         if u.path == "/api/log":
@@ -144,15 +145,8 @@ class Handler(BaseHTTPRequestHandler):
 def serve(port: int = PORT) -> None:
     httpd = ThreadingHTTPServer(("127.0.0.1", port), Handler)
     if cloud_viewer():
-        def _sync_loop():
-            import time
-            while True:
-                try:
-                    sync()
-                except Exception as e:  # keep serving the last good state
-                    print(f"sync failed: {e}", flush=True)
-                time.sleep(90)
-        threading.Thread(target=_sync_loop, daemon=True).start()
+        from .live import start_background
+        start_background()  # 15 s sync + live prices, 60 s cloud status + missed-run watchdog
     print(f"Paper Trader control panel on http://127.0.0.1:{port}", flush=True)
     t = threading.Thread(target=httpd.serve_forever, daemon=True)
     t.start()

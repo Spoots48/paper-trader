@@ -252,3 +252,20 @@ def test_state_dump_restore_round_trip(tmp_path, monkeypatch, cfg):
     with pytest.raises(sqlite3.DatabaseError):
         L2.db.execute("DELETE FROM fills")
     assert statesync.restore() == []  # unchanged dump -> nothing to do
+
+
+def test_watchdog_starts_missed_key_runs():
+    from papertrader.live import watchdog_check
+    from papertrader.nyse_calendar import ET
+    d = dt.date(2026, 9, 23)
+    at = lambda h, m: dt.datetime.combine(d, dt.time(h, m), ET)  # noqa: E731
+    run = lambda h, m: {"createdAt": at(h, m).astimezone(UTC).isoformat().replace("+00:00", "Z"), "status": "completed"}  # noqa: E731
+    st = {"enabled": True, "running": False, "runs": [run(2, 0)]}
+    assert watchdog_check(st, at(9, 20)) is None                   # before the open window
+    assert watchdog_check(st, at(10, 0)) == "record the open"      # the 09:43 run never came
+    st["runs"].append(run(9, 50))
+    assert watchdog_check(st, at(10, 0)) is None                   # it did run
+    assert watchdog_check(st, at(17, 30)) == "close out the day and decide the next open"
+    assert watchdog_check({**st, "running": True}, at(17, 30)) is None
+    assert watchdog_check({**st, "enabled": False}, at(17, 30)) is None
+    assert watchdog_check(st, dt.datetime(2026, 9, 26, 17, 30, tzinfo=ET)) is None  # Saturday

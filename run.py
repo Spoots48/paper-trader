@@ -52,7 +52,17 @@ def cmd_cycle(a) -> None:
     if cloud_viewer():  # the experiment trades on GitHub Actions; this Mac only syncs
         from papertrader.cycle import online, setup_logging
         setup_logging()
-        print(json.dumps(sync() if online() else {"status": "offline"}, indent=1))
+        if not online():
+            print(json.dumps({"status": "offline"}))
+            return
+        out = sync()
+        from papertrader import cloud
+        from papertrader.live import watchdog_check
+        from papertrader.nyse_calendar import now_utc
+        why = watchdog_check(cloud.status(max_age=0), now_utc())
+        if why:  # GitHub skipped a key scheduled run: start it now (manual starts run immediately)
+            out["watchdog"] = {"reason": why, "started": cloud.trigger()}
+        print(json.dumps(out, indent=1, default=str))
         return
     from papertrader.cycle import run_cycle
     r = run_cycle(trigger=a.trigger)

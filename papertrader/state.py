@@ -20,7 +20,9 @@ HEARTBEAT = DATA_DIR / "heartbeat.json"
 def scheduler_status() -> dict:
     from .cloud import cloud_viewer, status as cloud_status
     if cloud_viewer():
-        c = cloud_status()
+        c = dict(cloud_status(max_age=float("inf")))
+        from .cloud import last_sync
+        c["last_sync"] = last_sync()
         runs = c.get("runs") or []
         done = [r for r in runs if r.get("status") == "completed"]
         last = done[0] if done else None
@@ -68,7 +70,7 @@ def perf(snaps: list[dict], cash0: float) -> dict:
             "spy_equity": spy, "spy_ret": (spy / cash0 - 1) if spy else None, "as_of": last["session"]}
 
 
-def book_state(book: dict, exp: dict, n_decisions: int = 400) -> dict:
+def book_state(book: dict, exp: dict, n_decisions: int = 400, quotes: dict | None = None) -> dict:
     path = ROOT / book["ledger"]
     out = {"id": book["id"], "name": book["name"], "subtitle": book["subtitle"], "strategy_file": book["strategy"]}
     if not path.exists():
@@ -94,7 +96,7 @@ def book_state(book: dict, exp: dict, n_decisions: int = 400) -> dict:
         total = cash
         for p in pos:
             p["meta"] = json.loads(p["meta"] or "{}")
-            lm = (live.get("marks") or {}).get(p["ticker"])
+            lm = (quotes or {}).get(p["ticker"]) or (live.get("marks") or {}).get(p["ticker"])
             p["mark"], p["mark_time"] = (lm[0], lm[1]) if lm else (last_marks.get(p["ticker"], p["entry_price"]), "last close")
             p["value"] = p["qty"] * p["mark"]
             p["unrealized"] = (p["mark"] - p["avg_cost"]) * p["qty"]
@@ -112,6 +114,12 @@ def book_state(book: dict, exp: dict, n_decisions: int = 400) -> dict:
         out["risk"] = L.get_state("risk", {})
         out["regime"] = L.get_state("last_regime")
         out["benchmark"] = L.get_state("benchmark")
+        bq = (quotes or {}).get("SPY")
+        bm = out["benchmark"]
+        if bm and bq:
+            out["live_spy_equity"] = bm["qty"] * bq[0] + bm.get("div_cash", 0.0)
+        if quotes and pos:
+            out["live_as_of"] = max(p["mark_time"] for p in pos if p["mark_time"] != "last close") if any(p["mark_time"] != "last close" for p in pos) else out.get("live_as_of")
         out["orders"] = [dict(r) for r in L.db.execute("SELECT order_key, created_at, ticker, side, order_type, session, sleeve, notional, qty, "
                                                        "reason_code, reason, status, status_reason, updated_at FROM orders ORDER BY created_at DESC LIMIT 300")]
         out["fills"] = [dict(r) for r in L.db.execute("SELECT * FROM fills ORDER BY fill_id DESC")]
@@ -192,7 +200,7 @@ def backtest_summary() -> dict | None:
     return out
 
 
-def full_state() -> dict:
+def full_state(quotes: dict | None = None) -> dict:
     exp = load_experiment()
     now = now_utc()
     return {
@@ -200,7 +208,7 @@ def full_state() -> dict:
         "experiment": {k: v for k, v in exp.items() if k != "books"},
         "calendar": experiment_calendar(exp, now),
         "scheduler": scheduler_status(),
-        "books": [book_state(b, exp) for b in exp["books"]],
+        "books": [book_state(b, exp, quotes=quotes) for b in exp["books"]],
         "reports": reports_list(),
         "backtest": backtest_summary(),
         "strategies": {b["id"]: load_json(ROOT / b["strategy"]) for b in exp["books"]},

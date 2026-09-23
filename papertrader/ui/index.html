@@ -345,9 +345,14 @@ function equitySeries(){
   const xs = windowSessions(), cash0 = S.state.experiment.starting_cash;
   const series = [];
   const spyVals = xs.map((_, i) => i === 0 ? cash0 : null);
+  const today = S.state.calendar.today_et, ti = xs.indexOf(today);
   (S.state.books || []).forEach(b => {
     const m = Object.fromEntries((b.snapshots || []).map(s => [s.session, s]));
     const vals = xs.map((x, i) => i === 0 ? cash0 : (m[x] ? m[x].equity : null));
+    if (ti > 0 && vals[ti] == null && (b.positions || []).length && b.live_equity != null){
+      vals[ti] = b.live_equity;  // today's live estimate until the close-out snapshot exists
+      if (spyVals[ti] == null && b.live_spy_equity != null) spyVals[ti] = b.live_spy_equity;
+    }
     xs.forEach((x, i) => { if (m[x] && m[x].spy_bh_equity != null && spyVals[i] == null) spyVals[i] = m[x].spy_bh_equity; });
     series.push({name: b.name, color: COLORS[b.id] || 'var(--info)', values: vals, width: 2.4});
   });
@@ -369,10 +374,12 @@ function viewOverview(){
   let spyEq = null, spyAsOf = null;
   (st.books || []).forEach(b => {
     const p = b.perf || {};
-    if (p.spy_equity != null && spyEq == null){ spyEq = p.spy_equity; spyAsOf = p.as_of; }
-    const live = b.live_equity, liveNote = b.live_as_of && st.calendar.market_open_now ? `Live est. ${money(live)} · ${ago(b.live_as_of)}` : '';
-    cards.push(kpiCard(b.name, COLORS[b.id], money(p.equity ?? cash0), p.ret, `${money(p.pnl, true)} (${pct(p.ret)}) since start`,
-      liveNote || `Max drawdown ${dd(p.max_dd)} · ${(b.positions || []).length} positions`));
+    const hasLive = (b.positions || []).length && b.live_equity != null;
+    const val = hasLive ? b.live_equity : (p.equity ?? cash0);
+    const r = val / cash0 - 1;
+    if (spyEq == null) spyEq = b.live_spy_equity ?? p.spy_equity;
+    const foot = hasLive && b.live_as_of ? `Live prices · ${when(b.live_as_of)} · ${(b.positions || []).length} positions` : `Max drawdown ${dd(p.max_dd)} · ${(b.positions || []).length} positions`;
+    cards.push(kpiCard(b.name, COLORS[b.id], money(val), r, `${money(val - cash0, true)} (${pct(r)}) since start`, foot));
   });
   cards.push(kpiCard('SPY buy & hold', COLORS.spy, money(spyEq ?? cash0), spyEq ? spyEq / cash0 - 1 : null, spyEq ? `${money(spyEq - cash0, true)} (${pct(spyEq / cash0 - 1)}) since start` : 'Starts at the first open', 'Benchmark: $100 in SPY at the first open'));
   cards.push(kpiCard('Cash', COLORS.cash, money(cash0), 0, '+$0.00 (0.00%)', 'Benchmark: do nothing'));
@@ -603,7 +610,7 @@ async function load(){
 }
 (function(){ const t = localGet('theme'); if (t) document.documentElement.dataset.theme = t; })();
 load();
-if (LIVE) setInterval(() => { if (!document.hidden && !document.querySelector('#q:focus')) load(); }, 20000);
+if (LIVE) setInterval(() => { if (!document.hidden && !document.querySelector('#q:focus')) load(); }, 15000);
 let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(render, 150); });
 </script>
 </body>

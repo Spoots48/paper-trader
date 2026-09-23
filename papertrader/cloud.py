@@ -40,15 +40,21 @@ def _run(args: list[str], timeout: int = 60) -> subprocess.CompletedProcess:
     return subprocess.run(args, cwd=str(ROOT), capture_output=True, text=True, timeout=timeout, env=env)
 
 
-def gh(*args: str, timeout: int = 30) -> subprocess.CompletedProcess:
-    return _run([_gh_path(), *args], timeout=timeout)
+def gh(*args: str, timeout: int = 15) -> subprocess.CompletedProcess:
+    try:
+        return _run([_gh_path(), *args], timeout=timeout)
+    except subprocess.TimeoutExpired:
+        return subprocess.CompletedProcess(args, 124, "", f"gh timed out after {timeout}s")
 
 
 def sync(notify_new: bool = True) -> dict:
     """Pull the latest cloud state and rebuild local ledgers. Safe to call often."""
     from .statesync import restore
     out = {"at": iso(now_utc())}
-    r = _run(["git", "pull", "--ff-only", "--quiet"], timeout=90)
+    try:
+        r = _run(["git", "pull", "--ff-only", "--quiet"], timeout=60)
+    except subprocess.TimeoutExpired:
+        r = subprocess.CompletedProcess([], 124, "", "git pull timed out")
     out["pull_ok"] = r.returncode == 0
     if r.returncode != 0:
         out["error"] = (r.stderr or r.stdout).strip()[-400:]
@@ -80,7 +86,10 @@ def last_sync() -> dict | None:
 
 def status(max_age: float = 60) -> dict:
     """Cloud scheduler status for the UI (cached briefly to avoid hammering the GitHub API)."""
-    if _cache.get("t", 0) > time.time() - max_age:
+    if max_age == float("inf"):  # UI path: never block on the network
+        return _cache.get("v") or {"mode": "cloud", "repo": deployment().get("repo"), "enabled": None, "runs": [],
+                                   "running": False, "last_sync": last_sync(), "pending": True}
+    if "v" in _cache and _cache.get("t", 0) > time.time() - max_age:
         return _cache["v"]
     d = deployment()
     repo, wf = d.get("repo"), d.get("workflow", "cycle.yml")
@@ -94,7 +103,6 @@ def status(max_age: float = 60) -> dict:
     if r.returncode == 0:
         st["runs"] = json.loads(r.stdout or "[]")
     st["running"] = any(x.get("status") in ("queued", "in_progress") for x in st["runs"])
-    st["last_sync"] = last_sync()
     _cache.update(t=time.time(), v=st)
     return st
 
