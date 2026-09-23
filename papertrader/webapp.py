@@ -16,6 +16,7 @@ from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
 from .config import DASHBOARD_DIR, LOCK_PATH, LOG_DIR, REPORTS_DIR, ROOT
+from .cloud import cloud_viewer, deployment, set_enabled as cloud_set_enabled, sync, trigger as cloud_trigger
 from .state import PAUSE_FLAG, full_state
 
 UI_PATH = Path(__file__).parent / "ui" / "index.html"
@@ -79,11 +80,13 @@ class Handler(BaseHTTPRequestHandler):
             return self._json({"ok": True})
         if u.path == "/api/state":
             st = full_state()
-            st["cycle_running"] = cycle_running()
+            st["cycle_running"] = bool(st["scheduler"].get("running")) if st["scheduler"].get("mode") == "cloud" else cycle_running()
             return self._json(st)
         if u.path == "/api/log":
             n = int(parse_qs(u.query).get("lines", ["200"])[0])
             p = LOG_DIR / "cycle.log"
+            if cloud_viewer():
+                p = ROOT / "state" / "cycle_log_tail.txt"
             lines = p.read_text(errors="replace").splitlines()[-n:] if p.exists() else []
             return self._json({"lines": lines, "running": cycle_running()})
         if u.path.startswith("/reports/"):
@@ -98,6 +101,18 @@ class Handler(BaseHTTPRequestHandler):
         if not self._allowed_post():
             return self._json({"error": "forbidden"}, 403)
         u = urlparse(self.path)
+        if cloud_viewer():
+            if u.path == "/api/run":
+                ok, msg = cloud_trigger()
+                return self._json({"started": ok, "reason": msg or "started in the cloud", "cloud": True})
+            if u.path in ("/api/pause", "/api/resume"):
+                ok, msg = cloud_set_enabled(u.path == "/api/resume")
+                return self._json({"ok": ok, "paused": u.path == "/api/pause", "output": msg})
+            if u.path == "/api/sync":
+                return self._json(sync())
+            if u.path == "/api/open-github":
+                subprocess.run(["open", f"https://github.com/{deployment().get('repo')}"])
+                return self._json({"ok": True})
         if u.path == "/api/run":
             if cycle_running():
                 return self._json({"started": False, "reason": "a cycle is already running"})
@@ -128,6 +143,16 @@ class Handler(BaseHTTPRequestHandler):
 
 def serve(port: int = PORT) -> None:
     httpd = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+    if cloud_viewer():
+        def _sync_loop():
+            import time
+            while True:
+                try:
+                    sync()
+                except Exception as e:  # keep serving the last good state
+                    print(f"sync failed: {e}", flush=True)
+                time.sleep(180)
+        threading.Thread(target=_sync_loop, daemon=True).start()
     print(f"Paper Trader control panel on http://127.0.0.1:{port}", flush=True)
     t = threading.Thread(target=httpd.serve_forever, daemon=True)
     t.start()

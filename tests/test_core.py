@@ -220,3 +220,35 @@ def test_momentum_entries_blocked_when_earnings_calendar_incomplete(cfg):
     bad_orders, decs = decide(D, S, DecisionContext(**base, earnings_complete=False))
     assert not [x for x in bad_orders if x.sleeve == "momentum"]
     assert any(d.reason_code == "EARNINGS_DATA_MISSING" for d in decs)
+
+
+def test_state_dump_restore_round_trip(tmp_path, monkeypatch, cfg):
+    """Ledgers survive the text round trip used for cloud storage: same rows, same hash chain, guards intact."""
+    from papertrader import statesync
+    L = Ledger(tmp_path / "data" / "ledger_primary.sqlite")
+    L.start_run("r", "t")
+    L.freeze({"start_date": "2026-09-23", "end_date": "2026-10-22", "starting_cash": 100, "report_days": [7]},
+             {"id": "primary", "strategy": "x"}, "v", "sha", "u")
+    o = order("k1", "AAA", "BUY", notional=20)
+    L.insert_order(o)
+    fills, _ = Broker(cfg).execute_open(Portfolio(cash=100), "2026-09-23", [o], {"AAA": 10.0}, {}, "t", "test")
+    L.record_fill(fills[0])
+    L.close()
+    monkeypatch.setattr(statesync, "ROOT", tmp_path)
+    monkeypatch.setattr(statesync, "STATE_DIR", tmp_path / "state")
+    monkeypatch.setattr(statesync, "DATA_DIR", tmp_path / "data")
+    monkeypatch.setattr(statesync, "MARKER", tmp_path / "data" / ".restored.json")
+    monkeypatch.setattr(statesync, "LOG_DIR", tmp_path / "logs")
+    monkeypatch.setattr(statesync, "load_experiment", lambda: {"books": [{"id": "primary", "ledger": "data/ledger_primary.sqlite"}]})
+    assert statesync.dump() == ["ledger_primary.sql"]
+    before = sqlite3.connect(tmp_path / "data" / "ledger_primary.sqlite")
+    rows = {t: before.execute(f"SELECT * FROM {t}").fetchall() for t in ("fills", "orders", "events", "experiment")}
+    before.close()
+    (tmp_path / "data" / "ledger_primary.sqlite").unlink()
+    assert statesync.restore() == ["primary"]
+    L2 = Ledger(tmp_path / "data" / "ledger_primary.sqlite")
+    assert {t: [tuple(r) for r in L2.db.execute(f"SELECT * FROM {t}").fetchall()] for t in rows} == rows
+    assert L2.verify_chain()[0]
+    with pytest.raises(sqlite3.DatabaseError):
+        L2.db.execute("DELETE FROM fills")
+    assert statesync.restore() == []  # unchanged dump -> nothing to do

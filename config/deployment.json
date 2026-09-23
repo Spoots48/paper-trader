@@ -1,0 +1,6 @@
+{
+  "mode": "cloud",
+  "repo": "Spoots48/paper-trader",
+  "workflow": "cycle.yml",
+  "note": "cloud = trading runs on GitHub Actions; the Mac app and launchd job only sync and view. Set mode to 'local' to trade on this Mac instead (disable the workflow first)."
+}

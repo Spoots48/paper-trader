@@ -221,6 +221,14 @@ function renderNav(){
 function schedStatus(){
   const sc = S.state.scheduler || {};
   const hb = sc.heartbeat;
+  if (sc.mode === 'cloud'){
+    const lr = sc.last_run;
+    if (sc.running) return {dot: 'ok pulse', text: 'Cloud run in progress…'};
+    if (sc.enabled === false) return {dot: 'warn', text: 'Cloud runs paused'};
+    if (sc.enabled == null) return {dot: 'warn', text: 'Cloud status unavailable (offline?)'};
+    if (lr && lr.conclusion && lr.conclusion !== 'success') return {dot: 'bad', text: 'Last cloud run ' + lr.conclusion + ' · ' + ago(lr.updatedAt)};
+    return {dot: 'ok', text: 'Cloud · last run ' + (lr ? ago(lr.updatedAt) : 'pending')};
+  }
   if (S.state.cycle_running) return {dot: 'ok pulse', text: 'Running a cycle…'};
   if (!sc.installed) return {dot: 'bad', text: 'Scheduler not installed'};
   if (sc.paused) return {dot: 'warn', text: 'Paused'};
@@ -244,7 +252,8 @@ function renderTop(){
     h += `<button class="btn primary" id="b-run" ${st.cycle_running || sc.paused ? 'disabled' : ''}>Run now</button>`;
     h += sc.paused ? `<button class="btn" id="b-resume">Resume</button>` : `<button class="btn" id="b-pause">Pause</button>`;
     h += `<div class="menu" id="m"><button class="btn" id="b-more">•••</button><div class="pop">
-      ${sc.installed ? '<button data-a="uninstall">Stop scheduler (uninstall)</button>' : '<button data-a="install">Start scheduler (install)</button>'}
+      ${sc.mode === 'cloud' ? '<button data-a="sync">Sync from GitHub now</button><button data-a="github">Open on GitHub</button>'
+        : (sc.installed ? '<button data-a="uninstall">Stop scheduler (uninstall)</button>' : '<button data-a="install">Start scheduler (install)</button>')}
       <button data-a="folder">Open project folder</button>
       <button data-a="export">Export static dashboard</button><hr>
       <button data-a="theme">Toggle light / dark</button></div></div>`;
@@ -252,8 +261,8 @@ function renderTop(){
   $('#controls').innerHTML = h;
   if (!LIVE) return;
   const post = async (path) => { const r = await fetch(path, {method: 'POST', headers: {'X-PT': '1'}}); return r.json(); };
-  $('#b-run') && ($('#b-run').onclick = async () => { const r = await post('/api/run'); toast(r.started ? 'Cycle started — results appear in a minute or two.' : r.reason); setTimeout(load, 1500); });
-  $('#b-pause') && ($('#b-pause').onclick = async () => { await post('/api/pause'); toast('Paused. Scheduled runs will skip until you resume. Stops and orders already placed are still honoured when you resume.'); load(); });
+  $('#b-run') && ($('#b-run').onclick = async () => { const r = await post('/api/run'); toast(r.started ? (r.cloud ? 'Cloud run started on GitHub — results sync here within a few minutes.' : 'Cycle started — results appear in a minute or two.') : r.reason); setTimeout(load, 1500); });
+  $('#b-pause') && ($('#b-pause').onclick = async () => { await post('/api/pause'); toast((st.scheduler || {}).mode === 'cloud' ? 'Cloud runs paused (workflow disabled on GitHub). Missed decisions are logged; stops are processed when you resume.' : 'Paused. Scheduled runs will skip until you resume. Stops and orders already placed are still honoured when you resume.'); load(); });
   $('#b-resume') && ($('#b-resume').onclick = async () => { await post('/api/resume'); toast('Resumed.'); load(); });
   $('#b-more').onclick = e => { e.stopPropagation(); $('#m').classList.toggle('open'); };
   document.onclick = () => $('#m') && $('#m').classList.remove('open');
@@ -262,6 +271,8 @@ function renderTop(){
     if (a === 'install'){ const r = await post('/api/scheduler/install'); toast(r.ok ? 'Scheduler installed: runs every 15 minutes while the Mac is on.' : 'Install failed: ' + r.output); }
     if (a === 'uninstall'){ if (!confirm('Stop the scheduler? No trading decisions will be made until you start it again.')) return; const r = await post('/api/scheduler/uninstall'); toast(r.ok ? 'Scheduler removed.' : 'Failed: ' + r.output); }
     if (a === 'folder') await post('/api/open-folder');
+    if (a === 'sync'){ const r = await post('/api/sync'); toast(r.pull_ok ? 'Synced. ' + (r.restored && r.restored.length ? 'Updated: ' + r.restored.join(', ') : 'Already up to date.') : 'Sync failed: ' + (r.error || 'offline?')); }
+    if (a === 'github') await post('/api/open-github');
     if (a === 'export'){ const r = await post('/api/export'); toast('Saved ' + r.path); }
     if (a === 'theme'){ const cur = document.documentElement.dataset.theme; const dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; document.documentElement.dataset.theme = dark ? 'light' : 'dark'; localSet('theme', document.documentElement.dataset.theme); }
     load();
@@ -270,6 +281,8 @@ function renderTop(){
 
 function renderBanners(){
   const st = S.state, out = [];
+  const sc0 = st.scheduler || {};
+  if (LIVE && sc0.mode === 'cloud') out.push(`<div class="banner info">Trading runs in GitHub's cloud, so it keeps going with this Mac off or the drive unplugged. This app shows the latest synced state${sc0.last_sync ? ' (synced ' + ago(sc0.last_sync.at) + (sc0.last_sync.pull_ok === false ? ', last sync failed' : '') + ')' : ''}.</div>`);
   if (!LIVE) out.push(`<div class="banner info">Static snapshot generated ${when(st.generated_at)}. Open the Paper Trader app for live data and controls.</div>`);
   const unfrozen = (st.books || []).filter(b => !b.frozen);
   if (unfrozen.length) out.push(`<div class="banner warn">Not frozen yet: ${unfrozen.map(b => esc(b.name)).join(', ')}. Run <code>python run.py freeze</code> before the start date.</div>`);
@@ -395,6 +408,15 @@ function viewOverview(){
 
 function healthBlock(){
   const st = S.state, sc = st.scheduler || {}, hb = sc.heartbeat || {};
+  if (sc.mode === 'cloud'){
+    const lr = sc.last_run || {};
+    const cr = [['Runs on', 'GitHub Actions (cloud)'], ['Cloud schedule', sc.enabled === false ? '<span class="neg">paused</span>' : '~7 runs per trading day'],
+      ['Last cloud run', lr.updatedAt ? `${ago(lr.updatedAt)} · ${esc(lr.conclusion || lr.status)}` : '—'],
+      ['Last sync to this Mac', sc.last_sync ? ago(sc.last_sync.at) : 'never']];
+    (st.books || []).forEach(b => cr.push([`${esc(b.name)} audit`, b.audit ? (b.audit.chain_ok ? `OK · ${esc(b.audit.detail)}` : '<span class="neg">BROKEN</span>') : '—']));
+    return cr.map(([a, b]) => `<div class="stat-row"><span>${a}</span><span>${b}</span></div>`).join('') +
+      `<p class="mut" style="font-size:12px;margin:10px 0 0">GitHub emails you if a cloud run fails and when a weekly report is posted as an issue.</p>`;
+  }
   const rows = [['Scheduler', sc.installed ? (sc.loaded ? (sc.paused ? 'Paused' : 'Active (every 15 min)') : 'Installed, not loaded') : 'Not installed'],
     ['Last run', hb.at ? `${ago(hb.at)} · ${esc(hb.status)}` : 'never'],
     ['Last exit code', esc(sc.last_exit ?? '—')]];
@@ -540,6 +562,8 @@ async function viewSystem(){
       <div class="stat-row"><span>Frozen at</span><span>${b.experiment ? when(b.experiment.frozen_at) : 'not frozen'}</span></div>
       <div class="stat-row"><span>Strategy SHA-256</span><span class="mut" style="font-size:11px">${b.experiment ? esc(b.experiment.strategy_sha256.slice(0, 20)) + '…' : '—'}</span></div>
       <div class="stat-row"><span>Logged strategy changes</span><span>${(b.changes || []).length}</span></div></div></div>
+    ${sc.mode === 'cloud' ? `<div class="card" style="margin-top:14px"><h2>Cloud runs (GitHub Actions)</h2>${table([{h: 'Started'}, {h: 'Trigger'}, {h: 'Status'}, {h: ''}],
+      (sc.runs || []).map(r => [when(r.createdAt), esc(r.event), `<span class="badge ${r.conclusion === 'success' ? 'b-buy' : r.conclusion ? 'b-sell' : 'b-info'}">${esc(r.conclusion || r.status)}</span>`, `<a href="${esc(r.url)}" target="_blank" rel="noopener">details</a>`]), 'No cloud runs yet.')}</div>` : ''}
     <div class="card" style="margin-top:14px"><h2>Recent runs</h2>${table([{h: 'Started'}, {h: 'Status'}, {h: 'Trigger'}, {h: 'Summary / error', w: 1}], runs, 'No runs yet.')}</div>
     <div class="card" style="margin-top:14px"><h2>Data & system issues</h2>${table([{h: 'When'}, {h: 'Severity'}, {h: 'Component'}, {h: 'Ticker'}, {h: 'Message', w: 1}], iss, 'No issues logged.')}</div>
     ${LIVE ? '<div class="card" style="margin-top:14px"><h2>Log (tail)</h2><pre class="log" id="log">Loading…</pre></div>' : ''}`;

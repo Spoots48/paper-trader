@@ -48,6 +48,12 @@ def cmd_freeze(a) -> None:
 
 
 def cmd_cycle(a) -> None:
+    from papertrader.cloud import cloud_viewer, sync
+    if cloud_viewer():  # the experiment trades on GitHub Actions; this Mac only syncs
+        from papertrader.cycle import online, setup_logging
+        setup_logging()
+        print(json.dumps(sync() if online() else {"status": "offline"}, indent=1))
+        return
     from papertrader.cycle import run_cycle
     r = run_cycle(trigger=a.trigger)
     print(json.dumps(r, indent=1, default=str))

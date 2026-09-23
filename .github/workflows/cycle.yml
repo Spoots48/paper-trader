@@ -1,0 +1,76 @@
+name: cycle
+# Paper trading only. Runs the experiment on GitHub's servers so it works while the Mac is off.
+# Times are UTC; the experiment (Sep 23 - Oct 22, 2026) is entirely within US daylight time (ET = UTC-4).
+on:
+  schedule:
+    - cron: "37 20 * * 1-5"   # 16:37 ET  close-out + decision for the next open
+    - cron: "11 21 * * 1-5"   # 17:11 ET  backup (scheduled runs can be delayed or dropped)
+    - cron: "13 23 * * 1-5"   # 19:13 ET  backup
+    - cron: "7 13 * * 1-5"    # 09:07 ET  last pre-open chance to decide
+    - cron: "43 13 * * 1-5"   # 09:43 ET  fills at the official open
+    - cron: "17 16 * * 1-5"   # 12:17 ET  intraday stop check
+    - cron: "19 19 * * 1-5"   # 15:19 ET  intraday check / late decision window
+  workflow_dispatch:
+concurrency:
+  group: cycle
+  cancel-in-progress: false
+permissions:
+  contents: write
+  issues: write
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Restore market-data cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data/market_cache.sqlite
+          key: market-${{ github.run_id }}
+          restore-keys: market-
+      - name: Restore ledgers from state/
+        run: python -m papertrader.statesync restore --force
+      - name: Verify integrity (audit chain, frozen strategy hashes, cash)
+        run: python run.py verify
+      - name: Run one cycle
+        run: |
+          ls reports/*.json 2>/dev/null | sort > /tmp/reports_before || true
+          python run.py cycle --trigger github-actions
+          ls reports/*.json 2>/dev/null | sort > /tmp/reports_after || true
+      - name: Save ledgers to state/
+        if: always()
+        run: python -m papertrader.statesync dump
+      - name: Save market-data cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/market_cache.sqlite
+          key: market-${{ github.run_id }}
+      - name: Commit state and reports
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state reports
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -q -m "cycle $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && exit 0; sleep 5; done
+          exit 1
+      - name: Announce new reports (GitHub emails you about new issues)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          comm -13 /tmp/reports_before /tmp/reports_after 2>/dev/null | while read f; do
+            md="${f%.json}.md"
+            day=$(python -c "import json;print(json.load(open('$f'))['day'])")
+            head -c 60000 "$md" > /tmp/body.md
+            gh issue create --title "Paper Trader: Day $day report" --body-file /tmp/body.md || true
+          done

@@ -18,7 +18,23 @@ HEARTBEAT = DATA_DIR / "heartbeat.json"
 
 
 def scheduler_status() -> dict:
-    st = {"installed": PLIST.exists(), "loaded": False, "paused": PAUSE_FLAG.exists(), "last_exit": None, "detail": ""}
+    from .cloud import cloud_viewer, status as cloud_status
+    if cloud_viewer():
+        c = cloud_status()
+        runs = c.get("runs") or []
+        done = [r for r in runs if r.get("status") == "completed"]
+        last = done[0] if done else None
+        hb = None
+        try:
+            hb = json.loads(HEARTBEAT.read_text())
+        except (OSError, ValueError):
+            pass
+        return {"mode": "cloud", "installed": True, "loaded": bool(c.get("enabled")), "paused": c.get("enabled") is False,
+                "enabled": c.get("enabled"), "running": c.get("running"), "runs": runs[:15], "url": c.get("url"),
+                "repo": c.get("repo"), "last_run": last, "last_exit": (last or {}).get("conclusion"),
+                "detail": "GitHub Actions" + ("" if c.get("enabled") is not False else " (disabled)"),
+                "error": c.get("error"), "last_sync": c.get("last_sync"), "heartbeat": hb}
+    st = {"mode": "local", "installed": PLIST.exists(), "loaded": False, "paused": PAUSE_FLAG.exists(), "last_exit": None, "detail": ""}
     try:
         out = subprocess.run(["launchctl", "print", f"gui/{os.getuid()}/{LABEL}"], capture_output=True, text=True, timeout=5)
         if out.returncode == 0:
@@ -188,4 +204,10 @@ def full_state() -> dict:
         "reports": reports_list(),
         "backtest": backtest_summary(),
         "strategies": {b["id"]: load_json(ROOT / b["strategy"]) for b in exp["books"]},
+        "deployment": _deployment(),
     }
+
+
+def _deployment() -> dict:
+    from .cloud import deployment
+    return deployment()
