@@ -1,3 +1,3 @@
-2026-09-24 19:52:57,277 INFO [daytrade] no action needed
-2026-09-24 19:52:57,778 INFO [primary] no action needed
-2026-09-24 19:52:58,266 INFO [research] no action needed
+2026-09-24 20:38:15,834 INFO [daytrade] closed 2026-09-24: equity $99.27 (5 trades)
+2026-09-24 20:38:18,621 INFO [primary] closed 2026-09-24; decided for 2026-09-25: 0 orders (MOO), regime ON
+2026-09-24 20:39:54,898 INFO [research] closed 2026-09-24; decided for 2026-09-25: 0 orders (MOO), regime ON
