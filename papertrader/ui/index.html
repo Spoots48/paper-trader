@@ -140,6 +140,33 @@ pre.log{background:var(--sidebar);border:1px solid var(--line);border-radius:10p
 .toast.show{opacity:1}
 @media (max-width: 1100px){.two{grid-template-columns:1fr}}
 @media (max-width: 760px){.app{grid-template-columns:1fr}aside{position:static;height:auto;flex-direction:row;overflow-x:auto;padding:8px}.brand,.side-foot{display:none}.nav{display:flex;gap:2px}.nav button{width:auto;white-space:nowrap}main{padding:16px}.kpis{grid-template-columns:1fr}}
+
+.nav .sec{font-size:11px;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;padding:14px 10px 4px}
+.hero{font-size:15.5px;line-height:1.6;padding:18px 20px}
+.hero p{margin:0 0 8px}.hero p:last-child{margin:0}
+.hero .big{font-size:18px;font-weight:650;margin-bottom:10px}
+.score{display:flex;flex-direction:column;gap:2px}
+.srow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 4px;border-bottom:1px solid var(--line);align-items:center}
+.srow:last-child{border-bottom:0}
+.srow .nm{font-weight:650;font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.srow .ds{color:var(--muted);font-size:13px;grid-column:1}
+.srow .vl{font-size:24px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;grid-row:1 / span 2;grid-column:2}
+.srow .vl small{display:block;font-size:13px;font-weight:600}
+.chip{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11px;font-weight:700;background:var(--hover);color:var(--muted)}
+.chip.main{background:var(--accent-soft);color:var(--accent)}
+.feed{display:flex;flex-direction:column}
+.fi{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:12px 2px;border-bottom:1px solid var(--line)}
+.fi:last-child{border-bottom:0}
+.fi .tm{color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums;line-height:1.35}
+.fi .tx{font-size:14px;line-height:1.5}
+.fi .who{font-size:11.5px;color:var(--muted);margin-top:2px}
+.ico{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;font-size:12px;font-weight:800;margin-right:6px;vertical-align:-3px}
+.ico.buy{background:var(--accent-soft);color:var(--accent)}.ico.sell{background:var(--bad-soft);color:var(--bad)}.ico.info{background:var(--info-soft);color:var(--info)}
+.steps{counter-reset:st;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:st;position:relative;padding:4px 0 14px 44px;line-height:1.6}
+.steps li::before{content:counter(st);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;display:grid;place-items:center}
+.gl dt{font-weight:650;margin-top:10px}.gl dd{margin:2px 0 0;color:var(--muted)}
+.own{padding:10px 0;border-bottom:1px solid var(--line)}.own:last-child{border-bottom:0}
 </style>
 </head>
 <body>
@@ -171,7 +198,7 @@ pre.log{background:var(--sidebar);border:1px solid var(--line);border-radius:10p
 /*__STATE__*/
 const LIVE = !window.__STATE__;
 const OPEN = new Set();
-const S = {state: window.__STATE__ || null, book: 'primary', view: localGet('view') || 'overview', decFilter: {q: '', action: 'major'}, log: []};
+const S = {state: window.__STATE__ || null, book: 'primary', view: localGet('view') || 'home', decFilter: {q: '', action: 'major'}, log: []};
 const $ = s => document.querySelector(s);
 function localGet(k){ try { return localStorage.getItem('pt.'+k); } catch(e){ return null; } }
 function localSet(k,v){ try { localStorage.setItem('pt.'+k, v); } catch(e){} }
@@ -199,6 +226,10 @@ function ago(iso){
 function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 3500); }
 
 const ICONS = {
+  home: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>',
+  feed: '<path d="M4 6h16M4 12h16M4 18h10"/>',
+  own: '<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5c0-1.2 1.3-2 3-2s3 .8 3 2-1.3 1.8-3 2.2-3 1-3 2.3 1.3 2 3 2 3-.8 3-2"/>',
+  how: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14"/><path d="M12 17h.01"/>',
   overview: '<rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/>',
   holdings: '<path d="M4 7h16v12H4z"/><path d="M8 7V5h8v2"/>',
   activity: '<polyline points="3 12 7 12 10 5 14 19 17 12 21 12"/>',
@@ -208,13 +239,194 @@ const ICONS = {
   system: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
   method: '<circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/>'
 };
-const VIEWS = [['overview','Overview'],['holdings','Holdings'],['activity','Trades & orders'],['decisions','Decisions'],['reports','Reports'],['backtest','Backtest'],['system','System'],['method','Method']];
+const VIEWS = [['home','Home'],['feed','Activity'],['own','What it owns'],['reports','Weekly reports'],['how','How it works'],
+  ['overview','Detailed numbers'],['decisions','Decision log'],['activity','Trades & orders'],['holdings','Positions table'],['backtest','Past-data tests'],['system','System'],['method','Rules (technical)']];
+const MAIN_VIEWS = 5;
+
+
+// ---------------------------------------------------------------- plain-language layer
+const BOT = {
+  daytrade: {name: 'Day trader', tag: 'Main bot', main: true, blurb: 'Buys a few fast-moving stocks each morning and sells everything before the market closes.'},
+  primary: {name: 'Index fund + safety switch', tag: 'Comparison', blurb: 'Just owns the whole S&P 500 (via the SPY fund); switches to cash if the market turns bad.'},
+  research: {name: 'Swing trader', tag: 'Comparison', blurb: 'Holds strong stocks for days or weeks instead of minutes.'},
+};
+const botName = id => (BOT[id] || {}).name || id;
+const co = t => { const n = (S.state.names || {})[t]; return n ? `${esc(n)} <span class="mut">(${esc(t)})</span>` : esc(t); };
+const coTxt = t => { const n = (S.state.names || {})[t]; return n ? `${n} (${t})` : t; };
+function tparse(x){ if (!x) return null; const d = new Date(String(x).slice(0, 25).replace(' ', 'T')); return isNaN(d) ? null : d; }
+function tfmt(x){ const d = tparse(x); if (!d) return ''; return d.toLocaleString('en-US', {timeZone: 'America/New_York', weekday: 'short', month: 'short', day: 'numeric'}) + '<br>' + d.toLocaleString('en-US', {timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit'}) + ' ET'; }
+function dayName(iso){ const d = new Date(iso + 'T12:00:00Z'); return d.toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC'}); }
+
+const WHY_BUY = {
+  ORB_BREAKOUT: 'its price jumped above its early-morning high while trading was unusually busy',
+  MOMENTUM: 'it has been one of the strongest stocks over the past 6 months and is still rising',
+  EARNINGS_GAP: 'it jumped after good earnings news, on heavy trading',
+  RESIDUAL: 'to put spare cash into the whole market'};
+const WHY_SELL = {
+  STOP: 'its price fell to the safety stop, so the loss was kept small',
+  STOP_GAP: 'its price dropped straight through the safety stop',
+  CLOSE_EXIT: 'the trading day ended (a day trader never holds overnight)',
+  TIME_EXIT: 'it had been held for the maximum time allowed',
+  MOMENTUM_EXIT: 'it was no longer one of the strongest stocks',
+  EARNINGS_AVOID: 'it reports earnings soon, which can cause big surprise moves',
+  REGIME_OFF: 'the overall market looked risky, so it moved to cash',
+  DD_HALT: 'losses reached the safety limit, so it stopped trading',
+  FUNDING: 'to free up cash for a new purchase', REBALANCE: 'to keep the mix on target'};
+
+function events(){
+  const out = [];
+  (S.state.books || []).forEach(b => {
+    (b.fills || []).forEach(f => {
+      let text;
+      if (f.side === 'BUY') text = `<span class="ico buy">↑</span>Bought <b>${money(f.qty * f.fill_price)}</b> of ${co(f.ticker)} at ${money(f.fill_price)} a share, because ${WHY_BUY[f.reason_code] || esc(f.reason)}.`;
+      else {
+        const pnl = f.realized_pnl;
+        const res = pnl == null ? '' : ` <b class="${cls(pnl)}">${pnl >= 0 ? 'Made' : 'Lost'} ${money(Math.abs(pnl))}</b>.`;
+        text = `<span class="ico sell">↓</span>Sold ${co(f.ticker)} at ${money(f.fill_price)} a share, because ${WHY_SELL[f.reason_code] || esc(f.reason)}.${res}`;
+      }
+      out.push({t: tparse(f.price_time), time: f.price_time, bot: b.id, text});
+    });
+    (b.decisions || []).filter(d => d.reason_code === 'DAY_SELECTION').forEach(d => {
+      const list = ((d.metrics || {}).candidates || []);
+      const txt = list.length ? `Picked <b>${list.length} stocks to watch</b> today (the busiest, rising ones): ${list.slice(0, 6).map(t => esc(coTxt(t))).join(', ')}${list.length > 6 ? ', …' : ''}. It buys any that break above their early high.`
+                              : 'No stocks met the rules this morning, so it will sit in cash today.';
+      out.push({t: tparse(d.data_through), time: d.data_through, bot: b.id, text: `<span class="ico info">👀</span>${txt}`});
+    });
+  });
+  return out.filter(e => e.t).sort((a, b) => b.t - a.t);
+}
+
+function feedHtml(list, empty){
+  if (!list.length) return `<div class="empty">${empty}</div>`;
+  return `<div class="feed">${list.map(e => `<div class="fi"><div class="tm">${tfmt(e.time)}</div><div><div class="tx">${e.text}</div><div class="who">${esc(botName(e.bot))}</div></div></div>`).join('')}</div>`;
+}
+
+function nowSummary(){
+  const st = S.state, cal = st.calendar, b = book('daytrade');
+  const today = cal.today_et, start = (b.experiment || {}).start_date;
+  const lines = [];
+  lines.push(cal.market_open_now ? 'The stock market is <b>open</b> right now (it closes at 4:00 PM Eastern).'
+                                 : 'The stock market is <b>closed</b> right now. It\'s open weekdays 9:30 AM – 4:00 PM Eastern.');
+  if (b.frozen){
+    if (start && start > today) lines.push(`The day trader starts on <b>${dayName(start)}</b> when the market opens.`);
+    else {
+      const sel = (b.decisions || []).find(d => d.reason_code === 'DAY_SELECTION' && d.session === today);
+      const todays = (b.fills || []).filter(f => f.session === today);
+      const buys = todays.filter(f => f.side === 'BUY').length;
+      const owns = (b.positions || []).map(p => coTxt(p.ticker));
+      if (sel) lines.push(`This morning it picked <b>${((sel.metrics || {}).candidates || []).length} stocks</b> to watch and has made <b>${buys} purchase${buys === 1 ? '' : 's'}</b> so far today.`);
+      else if (cal.market_open_now) lines.push('It picks which stocks to watch at 9:35 AM, after the first five minutes of trading. Results show up here within about 20 minutes.');
+      if (owns.length) lines.push(`Right now it owns: <b>${owns.map(esc).join(', ')}</b>.`);
+      else if (sel || !cal.market_open_now) lines.push('Right now it owns <b>nothing</b>. It\'s all in cash, which is normal outside market hours.');
+    }
+  }
+  lines.push('<span class="mut">Everything here is pretend money. No real stocks are bought or sold.</span>');
+  return lines.map(l => `<p>${l}</p>`).join('');
+}
+
+function botValue(b){
+  const cash0 = S.state.experiment.starting_cash, p = b.perf || {};
+  const hasLive = (b.positions || []).length && b.live_equity != null;
+  return hasLive ? b.live_equity : (p.equity ?? cash0);
+}
+
+function viewHome(){
+  const st = S.state, cash0 = st.experiment.starting_cash;
+  const rows = [];
+  let spy = null;
+  (st.books || []).forEach(b => {
+    const v = botValue(b), r = v / cash0 - 1, m = BOT[b.id] || {};
+    if (spy == null && b.id !== 'daytrade') spy = b.live_spy_equity ?? (b.perf || {}).spy_equity;
+    const started = (b.experiment || {}).start_date, notYet = started && started > st.calendar.today_et;
+    rows.push(`<div class="srow"><div class="nm"><span class="sw" style="width:10px;height:10px;border-radius:3px;background:${COLORS[b.id]}"></span>${esc(m.name || b.name)} <span class="chip ${m.main ? 'main' : ''}">${esc(m.tag || '')}</span></div>
+      <div class="ds">${esc(m.blurb || b.subtitle)}${notYet ? ` <b>Starts ${esc(dayName(started))}.</b>` : ''}</div>
+      <div class="vl">${money(v)}<small class="${cls(r)}">${notYet ? 'not started yet' : `${money(v - cash0, true)} (${pct(r)})`}</small></div></div>`);
+  });
+  rows.push(`<div class="srow"><div class="nm"><span class="sw" style="width:10px;height:10px;border-radius:3px;background:${COLORS.spy}"></span>Just buy the S&amp;P 500 <span class="chip">Benchmark</span></div>
+    <div class="ds">What $100 would be worth if you'd simply bought the S&amp;P 500 index fund on day 1 and done nothing else. A bot is only "good" if it beats this.</div>
+    <div class="vl">${money(spy ?? cash0)}<small class="${cls(spy ? spy / cash0 - 1 : 0)}">${spy ? `${money(spy - cash0, true)} (${pct(spy / cash0 - 1)})` : 'starts day 1'}</small></div></div>`);
+  rows.push(`<div class="srow"><div class="nm"><span class="sw" style="width:10px;height:10px;border-radius:3px;background:${COLORS.cash}"></span>Do nothing <span class="chip">Benchmark</span></div>
+    <div class="ds">Keeping the $100 as cash.</div><div class="vl">${money(cash0)}<small class="mut">$0.00 (0.00%)</small></div></div>`);
+  const ev = events().slice(0, 8);
+  $('#view').innerHTML = `
+    <div class="card hero"><div class="big">What's happening</div>${nowSummary()}</div>
+    <div class="card" style="margin-top:14px"><h2>What each pretend $100 is worth now</h2><div class="score">${rows.join('')}</div></div>
+    <div class="card" style="margin-top:14px"><div class="row" style="justify-content:space-between;margin-bottom:6px"><h2 style="margin:0">How the $100 has changed, day by day</h2>
+      <div class="legend">${equitySeries().series.map(x => `<span><i style="background:${x.color}"></i>${esc(x.name)}</span>`).join('')}</div></div><div class="chart" id="eq"></div>
+      <p class="mut" style="font-size:12.5px;margin:6px 0 0">Each line starts at $100. Above the dashed line = making money, below = losing money.</p></div>
+    <div class="card" style="margin-top:14px"><h2>Latest activity</h2>${feedHtml(ev, 'Nothing has happened yet. Trades will appear here in plain English as soon as they happen.')}
+      ${ev.length ? '<p style="margin:10px 0 0"><a href="#" id="more-act">See all activity →</a></p>' : ''}</div>`;
+  const {xs, series} = equitySeries();
+  lineChart($('#eq'), series, {x: xs, xfmt: shortDate, fmt: (v, full, d) => full ? money(v) : '$' + v.toFixed(d ?? 0), baseline: cash0, minSpan: 6, label: 'Value of each $100', empty: 'The chart fills in after the first trading day.'});
+  const m = $('#more-act'); if (m) m.onclick = e => { e.preventDefault(); S.view = 'feed'; localSet('view', 'feed'); render(); };
+}
+
+function viewFeed(){
+  const f = S.feedBot || 'all';
+  const ev = events().filter(e => f === 'all' || e.bot === f);
+  const opts = [['all', 'All bots'], ...(S.state.books || []).map(b => [b.id, botName(b.id)])];
+  $('#view').innerHTML = `<div class="card"><div class="row" style="justify-content:space-between;margin-bottom:6px"><h2 style="margin:0">Everything the bots have done, newest first</h2>
+    <div class="seg" id="fseg">${opts.map(([id, l]) => `<button class="${f === id ? 'on' : ''}" data-f="${id}">${esc(l)}</button>`).join('')}</div></div>
+    ${feedHtml(ev, 'No activity yet.')}</div>`;
+  document.querySelectorAll('#fseg button').forEach(x => x.onclick = () => { S.feedBot = x.dataset.f; viewFeed(); });
+}
+
+function viewOwn(){
+  const cards = (S.state.books || []).map(b => {
+    const pos = b.positions || [];
+    const body = pos.length ? pos.map(p => {
+      const pl = p.unrealized, cost = p.qty * p.avg_cost;
+      return `<div class="own"><div style="font-weight:650">${co(p.ticker)}</div>
+        <div>Worth <b>${money(p.value)}</b> now · paid ${money(cost)} · <b class="${cls(pl)}">${pl >= 0 ? 'up' : 'down'} ${money(Math.abs(pl))}</b></div>
+        <div class="mut" style="font-size:13px">${p.stop ? `Automatic safety sell if the price falls to ${money(p.stop)} (now ${money(p.mark)}).` : `Current price ${money(p.mark)}.`}
+        ${b.id === 'daytrade' ? ' Will be sold by 4:00 PM today.' : ''}</div></div>`;
+    }).join('') : `<div class="empty" style="text-align:left;padding:8px 0">Owns nothing right now — all ${money(b.cash)} is cash.</div>`;
+    return `<div class="card" style="margin-bottom:14px"><h2>${esc(botName(b.id))}</h2>${body}
+      ${pos.length ? `<p class="mut" style="font-size:12.5px;margin:8px 0 0">Plus ${money(b.cash)} in cash. Prices update every 15 seconds while this app is open.</p>` : ''}</div>`;
+  }).join('');
+  $('#view').innerHTML = cards;
+}
+
+function viewHow(){
+  const dt = (S.state.strategies || {}).daytrade || {};
+  const bt1 = ((S.state.backtest_daytrade || {})['1m'] || {});
+  const btTxt = bt1.full ? `When the day trader's rules were tested on the last ${bt1.full.sessions} trading days of past data, it <b>lost ${pct(-bt1.full.total_return, 1).replace('+', '')}</b>, while simply holding the S&amp;P 500 made ${pct(bt1.spy_same_period.total_return, 1)}. Almost all of the loss came from the small costs of buying and selling many times a day.` : '';
+  $('#view').innerHTML = `<div class="card prose">
+    <h3 style="margin-top:0">In one sentence</h3>
+    <p>This is a practice trading bot. It trades with <b>pretend money</b> using real, live stock prices, so you can see how a day-trading strategy would do without risking anything.</p>
+    <h3>What the day trader does every trading day</h3>
+    <ol class="steps">
+      <li><b>9:30 AM — the market opens.</b> The bot watches the first five minutes of trading for about 500 big US companies (the S&amp;P 500).</li>
+      <li><b>9:35 AM — it picks stocks to watch.</b> It looks for the ones trading far more than usual <i>and</i> whose price went up. Unusually busy trading often means news, and those stocks tend to keep moving.</li>
+      <li><b>During the day — it buys breakouts.</b> If one of those stocks rises above its highest price from the first five minutes, the bot buys it. It can own up to ${(dt.portfolio || {}).max_positions || 5} at once, putting about $20 into each.</li>
+      <li><b>It protects itself.</b> Every purchase gets a <b>safety stop</b>: a price slightly below where it bought. If the price falls to it, the bot sells right away so a small loss can't become a big one.</li>
+      <li><b>4:00 PM — it sells everything.</b> That's what makes it a <i>day</i> trader: it never holds anything overnight.</li>
+    </ol>
+    <h3>How it runs</h3>
+    <p>It runs by itself on GitHub's computers (free), about every 20 minutes during the trading day, so your Mac can be off. This app shows the latest results and refreshes every 15 seconds while it's open. New trades show up within about 20 minutes, at the price they actually happened.</p>
+    <h3>Why there are other lines on the chart</h3>
+    <p>To know if the bot is actually any good, you have to compare it with simple alternatives. <b>"Just buy the S&amp;P 500"</b> is what most people would do; <b>"Do nothing"</b> is keeping cash. The two other bots are earlier strategies kept running for comparison.</p>
+    <h3>Honest expectations</h3>
+    <p>${btTxt} One month of results is far too short to prove a strategy works or doesn't. Treat this as an experiment, not a way to make money. This isn't financial advice.</p>
+    <h3>Words you'll see</h3>
+    <dl class="gl">
+      <dt>Stock</dt><dd>A small piece of ownership in a company. Its price moves every second while the market is open.</dd>
+      <dt>S&amp;P 500 / SPY</dt><dd>The 500 largest US companies. SPY is a fund that owns all of them, so buying SPY is like buying the whole market.</dd>
+      <dt>Day trading</dt><dd>Buying and selling within the same day, never holding overnight.</dd>
+      <dt>Breakout</dt><dd>When a price rises above a level it couldn't get past before (here: its early-morning high).</dd>
+      <dt>Safety stop (stop-loss)</dt><dd>A price at which the bot automatically sells to limit a loss.</dd>
+      <dt>Paper trading</dt><dd>Practice trading with pretend money.</dd>
+    </dl>
+    <details style="margin-top:18px"><summary>Technical details (for the curious)</summary><div id="tech"></div></details></div>`;
+  const saved = $('#view').innerHTML;
+  viewMethod(); const tech = $('#view').innerHTML; $('#view').innerHTML = saved; $('#tech').innerHTML = tech;
+}
 
 function book(id){ return (S.state.books || []).find(b => b.id === (id || S.book)) || {}; }
 
 function renderNav(){
-  $('#nav').innerHTML = VIEWS.map(([id, label]) =>
-    `<button class="${S.view === id ? 'on' : ''}" data-v="${id}"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">${ICONS[id]}</svg>${label}</button>`).join('');
+  const btn = ([id, label]) => `<button class="${S.view === id ? 'on' : ''}" data-v="${id}"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">${ICONS[id] || ICONS.method}</svg>${label}</button>`;
+  $('#nav').innerHTML = VIEWS.slice(0, MAIN_VIEWS).map(btn).join('') + '<div class="sec">Advanced</div>' + VIEWS.slice(MAIN_VIEWS).map(btn).join('');
   document.querySelectorAll('#nav button').forEach(b => b.onclick = () => { S.view = b.dataset.v; localSet('view', S.view); render(); });
 }
 
@@ -223,11 +435,11 @@ function schedStatus(){
   const hb = sc.heartbeat;
   if (sc.mode === 'cloud'){
     const lr = sc.last_run;
-    if (sc.running) return {dot: 'ok pulse', text: 'Cloud run in progress…'};
-    if (sc.enabled === false) return {dot: 'warn', text: 'Cloud runs paused'};
-    if (sc.enabled == null) return {dot: 'warn', text: 'Cloud status unavailable (offline?)'};
-    if (lr && lr.conclusion && lr.conclusion !== 'success') return {dot: 'bad', text: 'Last cloud run ' + lr.conclusion + ' · ' + ago(lr.updatedAt)};
-    return {dot: 'ok', text: 'Cloud · last run ' + (lr ? ago(lr.updatedAt) : 'pending')};
+    if (sc.running) return {dot: 'ok pulse', text: 'Updating now…'};
+    if (sc.enabled === false) return {dot: 'warn', text: 'Paused'};
+    if (sc.enabled == null) return {dot: 'warn', text: 'Can\'t reach the internet'};
+    if (lr && lr.conclusion && lr.conclusion !== 'success') return {dot: 'bad', text: 'Last update had a problem · ' + ago(lr.updatedAt)};
+    return {dot: 'ok', text: 'Running on its own · updated ' + (lr ? ago(lr.updatedAt) : 'soon')};
   }
   if (S.state.cycle_running) return {dot: 'ok pulse', text: 'Running a cycle…'};
   if (!sc.installed) return {dot: 'bad', text: 'Scheduler not installed'};
@@ -243,9 +455,9 @@ function renderTop(){
   const titles = Object.fromEntries(VIEWS);
   $('#title').textContent = titles[S.view];
   const nextRep = (cal.report_schedule || []).find(r => r.date >= cal.today_et);
-  const dayTxt = cal.status === 'not started' ? `Starts ${cal.start}` : (cal.status === 'finished' ? 'Experiment finished' : `Day ${cal.day} of ${cal.total_days}`);
-  $('#subtitle').innerHTML = [dayTxt, `${cal.sessions_done}/${cal.sessions_total} sessions`, cal.market_open_now ? '<span class="pos">Market open</span>' : 'Market closed',
-    nextRep ? `Next report: Day ${nextRep.day} (${nextRep.date})` : ''].filter(Boolean).join(' · ');
+  const dayTxt = cal.status === 'not started' ? `Starts ${cal.start}` : (cal.status === 'finished' ? 'Experiment finished' : `Day ${cal.day} of ${cal.total_days} of the experiment`);
+  $('#subtitle').innerHTML = [dayTxt, cal.market_open_now ? '<span class="pos">Market open</span>' : 'Market closed',
+    nextRep ? `Next weekly report: ${dayName(nextRep.date).split(',')[0]}, ${shortDate(nextRep.date)}` : ''].filter(Boolean).join(' · ');
   const s = schedStatus(), sc = st.scheduler || {};
   let h = `<span class="pill"><span class="dot ${s.dot}"></span>${esc(s.text)}</span>`;
   if (LIVE){
@@ -275,7 +487,7 @@ function renderTop(){
 function renderBanners(){
   const st = S.state, out = [];
   const sc0 = st.scheduler || {};
-  if (LIVE && sc0.mode === 'cloud') out.push(`<div class="banner info">Trading runs in GitHub's cloud, so it keeps going with this Mac off or the drive unplugged. This app updates itself automatically with the latest results${sc0.last_sync ? ' (synced ' + ago(sc0.last_sync.at) + (sc0.last_sync.pull_ok === false ? ', last sync failed' : '') + ')' : ''}.</div>`);
+  if (LIVE && sc0.last_sync && sc0.last_sync.pull_ok === false) out.push(`<div class="banner warn">Couldn't fetch the latest results (no internet?). Showing what was last downloaded.</div>`);
   if (!LIVE) out.push(`<div class="banner info">Static snapshot generated ${when(st.generated_at)}. Open the Paper Trader app for live data and controls.</div>`);
   const unfrozen = (st.books || []).filter(b => !b.frozen);
   if (unfrozen.length) out.push(`<div class="banner warn">Not frozen yet: ${unfrozen.map(b => esc(b.name)).join(', ')}. Run <code>python run.py freeze</code> before the start date.</div>`);
@@ -296,6 +508,7 @@ function lineChart(el, series, opts = {}){
   let lo = Math.min(...all), hi = Math.max(...all);
   const pad = (hi - lo) * 0.12 || Math.max(1, hi * 0.01);
   lo -= pad; hi += pad;
+  if (opts.minSpan && hi - lo < opts.minSpan){ const mid = (hi + lo) / 2; lo = mid - opts.minSpan / 2; hi = mid + opts.minSpan / 2; }
   const X = i => P.l + (xs.length === 1 ? 0 : i * (W - P.l - P.r) / (xs.length - 1));
   const Y = v => P.t + (hi - v) * (H - P.t - P.b) / (hi - lo);
   const span = hi - lo, dec = span < 4 ? 2 : span < 40 ? 1 : 0;
@@ -354,10 +567,10 @@ function equitySeries(){
       if (spyVals[ti] == null && b.live_spy_equity != null) spyVals[ti] = b.live_spy_equity;
     }
     xs.forEach((x, i) => { if (m[x] && m[x].spy_bh_equity != null && spyVals[i] == null) spyVals[i] = m[x].spy_bh_equity; });
-    series.push({name: b.name, color: COLORS[b.id] || 'var(--info)', values: vals, width: 2.4});
+    series.push({name: botName(b.id), color: COLORS[b.id] || 'var(--info)', values: vals, width: b.id === 'daytrade' ? 3 : 2});
   });
-  series.push({name: 'SPY buy & hold', color: COLORS.spy, values: spyVals});
-  series.push({name: 'Cash', color: COLORS.cash, values: xs.map(() => cash0), dash: true, width: 1.5});
+  series.push({name: 'Just buy the S&P 500', color: COLORS.spy, values: spyVals});
+  series.push({name: 'Do nothing', color: COLORS.cash, values: xs.map(() => cash0), dash: true, width: 1.5});
   return {xs, series};
 }
 const shortDate = s => { const d = new Date(s + 'T12:00:00Z'); return d.toLocaleDateString('en-US', {month: 'short', day: 'numeric', timeZone: 'UTC'}); };
@@ -613,7 +826,7 @@ function viewMethod(){
 function render(){
   if (!S.state) return;
   renderNav(); renderTop(); renderBanners();
-  ({overview: viewOverview, holdings: viewHoldings, activity: viewActivity, decisions: viewDecisions, reports: viewReports, backtest: viewBacktest, system: viewSystem, method: viewMethod}[S.view] || viewOverview)();
+  ({home: viewHome, feed: viewFeed, own: viewOwn, how: viewHow, overview: viewOverview, holdings: viewHoldings, activity: viewActivity, decisions: viewDecisions, reports: viewReports, backtest: viewBacktest, system: viewSystem, method: viewMethod}[S.view] || viewHome)();
   $('#gen').textContent = 'Updated ' + ago(S.state.generated_at);
 }
 async function load(){

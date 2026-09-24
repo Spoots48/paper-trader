@@ -214,6 +214,8 @@ def full_state(quotes: dict | None = None) -> dict:
         "backtest_daytrade": _dt_backtests(),
         "strategies": {b["id"]: load_json(ROOT / b["strategy"]) for b in exp["books"]},
         "deployment": _deployment(),
+        "names": {**{m["ticker"]: m["name"] for m in load_json(ROOT / "config" / "universe.json")["members"]},
+                  "SPY": "S&P 500 index fund"},
     }
 
 
