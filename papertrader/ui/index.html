@@ -10,7 +10,7 @@
   --line:#e2e2de; --line-strong:#d1d1cc; --hover:#f0f0ec;
   --accent:#2d6a4f; --accent-soft:#e3efe8; --warn:#9a6700; --warn-soft:#fbf1dc; --bad:#b42318; --bad-soft:#fbe7e5;
   --info:#2458a6; --info-soft:#e4ecf8;
-  --s-primary:#2d6a4f; --s-research:#6d4fc2; --s-spy:#5b7083; --s-cash:#a3a3a3;
+  --s-primary:#2d6a4f; --s-research:#6d4fc2; --s-spy:#5b7083; --s-cash:#a3a3a3; --s-daytrade:#c2410c;
   --radius:12px; --shadow:0 1px 2px rgba(0,0,0,.04),0 1px 1px rgba(0,0,0,.03);
 }
 @media (prefers-color-scheme: dark){
@@ -19,7 +19,7 @@
     --line:#2c2c2f; --line-strong:#3a3a3e; --hover:#242427;
     --accent:#6fc59a; --accent-soft:#1f3329; --warn:#e3b341; --warn-soft:#352b14; --bad:#ff7b72; --bad-soft:#3b1d1b;
     --info:#79a7f0; --info-soft:#1c2a40;
-    --s-primary:#6fc59a; --s-research:#a78bfa; --s-spy:#94a8ba; --s-cash:#6f6f75;
+    --s-primary:#6fc59a; --s-research:#a78bfa; --s-spy:#94a8ba; --s-cash:#6f6f75; --s-daytrade:#fb923c;
     --shadow:none;
   }
 }
@@ -28,7 +28,7 @@
     --line:#2c2c2f; --line-strong:#3a3a3e; --hover:#242427;
     --accent:#6fc59a; --accent-soft:#1f3329; --warn:#e3b341; --warn-soft:#352b14; --bad:#ff7b72; --bad-soft:#3b1d1b;
     --info:#79a7f0; --info-soft:#1c2a40;
-    --s-primary:#6fc59a; --s-research:#a78bfa; --s-spy:#94a8ba; --s-cash:#6f6f75; --shadow:none;
+    --s-primary:#6fc59a; --s-research:#a78bfa; --s-spy:#94a8ba; --s-cash:#6f6f75; --s-daytrade:#fb923c; --shadow:none;
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
@@ -73,7 +73,7 @@ main{min-width:0;padding:22px 28px 60px}
 .banner.info{background:var(--info-soft);border-color:transparent;color:var(--info)}
 .banner.bad{background:var(--bad-soft);border-color:transparent;color:var(--bad)}
 .grid{display:grid;gap:14px}
-.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+.kpis{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);min-width:0}
 .card h2{font-size:13px;font-weight:600;color:var(--muted);margin:0 0 10px;letter-spacing:.01em}
 .card h3{font-size:14px;margin:0 0 8px}
@@ -138,7 +138,7 @@ pre.log{background:var(--sidebar);border:1px solid var(--line);border-radius:10p
 .stat-row span:first-child{color:var(--muted)}
 .toast{position:fixed;bottom:18px;right:18px;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:10px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;max-width:420px;z-index:50}
 .toast.show{opacity:1}
-@media (max-width: 1100px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}}
+@media (max-width: 1100px){.two{grid-template-columns:1fr}}
 @media (max-width: 760px){.app{grid-template-columns:1fr}aside{position:static;height:auto;flex-direction:row;overflow-x:auto;padding:8px}.brand,.side-foot{display:none}.nav{display:flex;gap:2px}.nav button{width:auto;white-space:nowrap}main{padding:16px}.kpis{grid-template-columns:1fr}}
 </style>
 </head>
@@ -330,7 +330,7 @@ function lineChart(el, series, opts = {}){
   };
   svg.onmouseleave = () => { tip.style.display = 'none'; cur.style.display = 'none'; };
 }
-const COLORS = {primary: 'var(--s-primary)', research: 'var(--s-research)', spy: 'var(--s-spy)', cash: 'var(--s-cash)'};
+const COLORS = {daytrade: 'var(--s-daytrade)', primary: 'var(--s-primary)', research: 'var(--s-research)', spy: 'var(--s-spy)', cash: 'var(--s-cash)'};
 
 // sessions of the experiment window (weekdays; holidays show as flat, none fall in this window)
 function windowSessions(){
@@ -538,7 +538,13 @@ function viewBacktest(){
       <p class="mut" style="font-size:12.5px;margin-top:10px">Earnings-gap signal event study (next-open entry, excess vs SPY): n=${es.n ?? 0}, 5-day ${pct(es.excess_5d_mean)} (t=${es.excess_5d_tstat?.toFixed(2)}), 20-day ${pct(es.excess_20d_mean)} (t=${es.excess_20d_tstat?.toFixed(2)}).
       Rolling 30-day windows: the full strategy beat SPY in ${Math.round(d.rolling.pct_windows_beat_spy * 100)}% of ${d.rolling.n_windows} windows; excess-return spread ±${(d.rolling.excess_std * 100).toFixed(1)} pts (1 s.d.).</p></div>`;
   }).join('');
-  $('#view').innerHTML = `<div class="banner info">Historical simulation — not live results. Parameters were fixed before this test (see research/PREREGISTRATION.md). News filtering could not be backtested (no free historical archive), and the universe is today's S&P 500 with each stock allowed only after its index-inclusion date.</div>${per}`;
+  const dbt = S.state.backtest_daytrade || {};
+  const dcard = Object.entries(dbt).map(([k, r]) => `<div class="card" style="margin-top:14px"><h2>Day-trading book · execution on ${k === '1m' ? '1-minute' : '5-minute'} bars · ${esc(r.full.start)} → ${esc(r.full.end)} (${r.full.sessions} sessions)</h2>
+      ${table([{h: ''}, {h: 'Total', n: 1}, {h: 'Max DD', n: 1}, {h: 'Up days', n: 1}], [
+        ['Day-trading book', `<span class="${cls(r.full.total_return)}">${pct(r.full.total_return, 1)}</span>`, pct(-r.full.max_drawdown, 1), Math.round(r.full.pct_up_days * 100) + '%'],
+        ['SPY, same days', `<span class="${cls(r.spy_same_period.total_return)}">${pct(r.spy_same_period.total_return, 1)}</span>`, pct(-r.spy_same_period.max_drawdown, 1), Math.round(r.spy_same_period.pct_up_days * 100) + '%']])}
+      <p class="mut" style="font-size:12.5px;margin-top:10px">${r.trades.n_round_trips} trades (${(r.trades.avg_trades_per_day || 0).toFixed(1)}/day), win rate ${Math.round((r.trades.win_rate || 0) * 100)}%, exits: ${esc(Object.entries(r.trades.exit_reasons || {}).map(([a, b]) => a + ' ' + b).join(', '))}. ${k === '5m' ? 'Pre-registered test; 5-minute bars could not tell whether the tight stop was hit before or after entry, and the worst-case assumption decided 80% of trades.' : 'Same rules at the paper\'s 1-minute resolution; the live book runs this way. Very short sample.'}</p></div>`).join('');
+  $('#view').innerHTML = dcard + `<div class="banner info" style="margin-top:14px">Historical simulation — not live results. Parameters were fixed before this test (see research/PREREGISTRATION.md). News filtering could not be backtested (no free historical archive), and the universe is today's S&P 500 with each stock allowed only after its index-inclusion date.</div>${per}`;
   Object.entries(bt.periods).forEach(([p, d]) => {
     const c = d.curve;
     lineChart($('#bt-' + p), [{name: 'Primary rules', color: 'var(--s-primary)', values: c.regime_gated_spy_only}, {name: 'Research rules', color: 'var(--s-research)', values: c.full_strategy}, {name: 'SPY', color: 'var(--s-spy)', values: c.spy}],
@@ -575,8 +581,16 @@ async function viewSystem(){
 function viewMethod(){
   const st = S.state, strat = st.strategies || {}, p = strat.primary || {}, r = strat.research || {};
   const c = (p.costs || {}), risk = (p.risk || {}), reg = (p.regime || {}), port = (p.portfolio || {}), cat = (r.catalyst || {}), mom = (r.momentum || {});
+  const dt_ = strat.daytrade || {}, dP = dt_.portfolio || {}, dS = dt_.selection || {}, dE = dt_.exit || {}, dR = dt_.risk || {};
   $('#view').innerHTML = `<div class="card prose">
-    <h3 style="margin-top:0">Two frozen books, both starting with $100 on ${esc(st.calendar.start)}</h3>
+    ${dt_.version ? `<h3 style="margin-top:0">Day trading (headline book, $100 from ${esc((book('daytrade').experiment || {}).start_date || '')})</h3>
+    <p>Aggressive and intraday: several stocks a day, everything sold by the close. Based on the "stocks in play" opening-range breakout (Zarattini, Barbon &amp; Aziz, 2023).</p>
+    <ul><li>09:35 ET: find the ${dS.top_n_by_relative_volume} S&amp;P 500 stocks with the heaviest first-5-minute volume versus their normal (at least ${dS.min_relative_volume}×), whose first 5 minutes closed up.</li>
+      <li>Buy any that break above their first-5-minute high: up to ${dP.max_positions} at a time, ${(dP.position_weight * 100).toFixed(0)}% each. Stop at ${(dE.stop_atr_fraction * 100).toFixed(0)}% of the stock's average daily range below entry. Sell whatever is left at the close.</li>
+      <li>Cash account: each dollar can be traded once per day (sale proceeds settle the next day). No leverage, no shorts. News can only veto a trade (offerings, investigations, takeover news).</li>
+      <li>Risk: a ${(dR.drawdown_pause * 100).toFixed(0)}% drawdown pauses trading for ${dR.pause_sessions} sessions; a ${(dR.drawdown_halt * 100).toFixed(0)}% drawdown stops the book.</li>
+      <li>Processed on 1-minute bars, strictly in time order. The cloud runs every ~20 minutes, so trades appear in the app up to ~20 minutes after they happen, priced at the minute they happened.</li></ul>
+    <h3>The two original books, both starting with $100 on ${esc(st.calendar.start)}</h3>` : `<h3 style="margin-top:0">Two frozen books, both starting with $100 on ${esc(st.calendar.start)}</h3>`}
     <p><b>Primary</b> keeps only what passed the pre-registered backtest: hold SPY with idle cash (keeping a ${(port.cash_buffer * 100).toFixed(0)}% cash buffer) while SPY is above its ${reg.sma_days}-day average and VIX is below ${reg.vix_risk_off_above} (re-enter below ${reg.vix_risk_on_below}); otherwise hold cash.</p>
     <p><b>Research</b> runs the original pre-registered strategy forward, including the news filter that could not be backtested: up to ${port.max_single_stock_positions} stock positions at ${(port.target_weight * 100).toFixed(0)}% each.</p>
     <ul>

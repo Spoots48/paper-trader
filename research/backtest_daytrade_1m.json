@@ -1,0 +1,255 @@
+{
+ "note": "Historical simulation, execution on 1-minute Yahoo bars (5-minute: ~60 sessions max; 1-minute: ~20). Not live results. Too short for statistical confidence.",
+ "execution_bar_minutes": 1,
+ "config_version": "dt-1.0.0",
+ "full": {
+  "start": "2026-08-26",
+  "end": "2026-09-23",
+  "sessions": 20,
+  "end_value": 93.28,
+  "total_return": -0.06718798826446704,
+  "max_drawdown": 0.07483309911113256,
+  "daily_mean": -0.0034524516735265796,
+  "daily_std": 0.006352860043041596,
+  "sharpe_ann": -8.626976019997562,
+  "pct_up_days": 0.15
+ },
+ "first_half": {
+  "start": "2026-08-26",
+  "end": "2026-09-09",
+  "sessions": 10,
+  "end_value": 93.37,
+  "total_return": -0.06629789391471208,
+  "max_drawdown": 0.06629789391471208,
+  "daily_mean": -0.006835342170908598,
+  "daily_std": 0.0014620515999159232,
+  "sharpe_ann": -74.21604891905245,
+  "pct_up_days": 0.0
+ },
+ "second_half": {
+  "start": "2026-09-10",
+  "end": "2026-09-23",
+  "sessions": 10,
+  "end_value": 93.28,
+  "total_return": -0.0009532958573766903,
+  "max_drawdown": 0.013330227953845086,
+  "daily_mean": -6.956117614456136e-05,
+  "daily_std": 0.007591665514307364,
+  "sharpe_ann": -0.14545549139657488,
+  "pct_up_days": 0.3
+ },
+ "spy_same_period": {
+  "start": "2026-08-26",
+  "end": "2026-09-23",
+  "sessions": 20,
+  "end_value": 100.4,
+  "total_return": 0.0039883997045015995,
+  "max_drawdown": 0.02462777404004879,
+  "daily_mean": 0.00022130111526136865,
+  "daily_std": 0.0068593529199879235,
+  "sharpe_ann": 0.5121541836431881,
+  "pct_up_days": 0.35
+ },
+ "trades": {
+  "n_round_trips": 96,
+  "win_rate": 0.11458333333333333,
+  "avg_pnl_usd": -0.06998748777548601,
+  "exit_reasons": {
+   "STOP": 80,
+   "CLOSE_EXIT": 11,
+   "STOP_GAP": 5
+  },
+  "avg_trades_per_day": 4.8,
+  "costs_usd": 7.490347779815641
+ },
+ "curve": {
+  "dates": [
+   "2026-08-26",
+   "2026-08-27",
+   "2026-08-28",
+   "2026-08-31",
+   "2026-09-01",
+   "2026-09-02",
+   "2026-09-03",
+   "2026-09-04",
+   "2026-09-08",
+   "2026-09-09",
+   "2026-09-10",
+   "2026-09-11",
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-21",
+   "2026-09-22",
+   "2026-09-23"
+  ],
+  "equity": [
+   99.3709,
+   98.6553,
+   97.8845,
+   97.2172,
+   96.5938,
+   96.3013,
+   95.5322,
+   94.7827,
+   94.0764,
+   93.3702,
+   92.7295,
+   92.9479,
+   92.5988,
+   93.7666,
+   93.1111,
+   93.0595,
+   92.5167,
+   93.8051,
+   93.5689,
+   93.2812
+  ],
+  "spy": [
+   100.1674,
+   100.8251,
+   100.6081,
+   100.2903,
+   99.6038,
+   100.0549,
+   101.0958,
+   100.7205,
+   100.1648,
+   99.694,
+   99.1043,
+   99.9281,
+   99.4822,
+   99.0441,
+   98.606,
+   99.7319,
+   99.5946,
+   101.1494,
+   101.139,
+   100.3988
+  ]
+ },
+ "days": [
+  {
+   "session": "2026-08-26",
+   "candidates": 9,
+   "trades": 5,
+   "equity": 99.37088373511347
+  },
+  {
+   "session": "2026-08-27",
+   "candidates": 11,
+   "trades": 5,
+   "equity": 98.65525825347237
+  },
+  {
+   "session": "2026-08-28",
+   "candidates": 10,
+   "trades": 5,
+   "equity": 97.88446974810276
+  },
+  {
+   "session": "2026-08-31",
+   "candidates": 15,
+   "trades": 5,
+   "equity": 97.21720442110069
+  },
+  {
+   "session": "2026-09-01",
+   "candidates": 13,
+   "trades": 5,
+   "equity": 96.59376444428588
+  },
+  {
+   "session": "2026-09-02",
+   "candidates": 9,
+   "trades": 5,
+   "equity": 96.30129788224943
+  },
+  {
+   "session": "2026-09-03",
+   "candidates": 9,
+   "trades": 5,
+   "equity": 95.53218997174935
+  },
+  {
+   "session": "2026-09-04",
+   "candidates": 14,
+   "trades": 5,
+   "equity": 94.78266869943022
+  },
+  {
+   "session": "2026-09-08",
+   "candidates": 10,
+   "trades": 5,
+   "equity": 94.07643122802885
+  },
+  {
+   "session": "2026-09-09",
+   "candidates": 8,
+   "trades": 5,
+   "equity": 93.3702106085288
+  },
+  {
+   "session": "2026-09-10",
+   "candidates": 9,
+   "trades": 5,
+   "equity": 92.72945183139494
+  },
+  {
+   "session": "2026-09-11",
+   "candidates": 10,
+   "trades": 5,
+   "equity": 92.9479142817969
+  },
+  {
+   "session": "2026-09-14",
+   "candidates": 13,
+   "trades": 5,
+   "equity": 92.59875298437353
+  },
+  {
+   "session": "2026-09-15",
+   "candidates": 11,
+   "trades": 5,
+   "equity": 93.76662051481087
+  },
+  {
+   "session": "2026-09-16",
+   "candidates": 13,
+   "trades": 5,
+   "equity": 93.11108550721539
+  },
+  {
+   "session": "2026-09-17",
+   "candidates": 5,
+   "trades": 3,
+   "equity": 93.0595057386886
+  },
+  {
+   "session": "2026-09-18",
+   "candidates": 6,
+   "trades": 4,
+   "equity": 92.51669008888675
+  },
+  {
+   "session": "2026-09-21",
+   "candidates": 11,
+   "trades": 5,
+   "equity": 93.80505737301763
+  },
+  {
+   "session": "2026-09-22",
+   "candidates": 11,
+   "trades": 5,
+   "equity": 93.56894016526766
+  },
+  {
+   "session": "2026-09-23",
+   "candidates": 9,
+   "trades": 4,
+   "equity": 93.2812011735533
+  }
+ ]
+}

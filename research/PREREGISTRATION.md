@@ -138,3 +138,40 @@ return vs SPY had a standard deviation of 3.5 percentage points. The v1
 strategy beat SPY in 34% of windows in-sample and 40% out-of-sample while
 underperforming over the full periods. A single month's result, good or bad,
 is well inside the noise.
+
+---
+
+## Addendum: day-trading book (written 2026-09-23, before its backtest)
+
+The user asked for an aggressive day-trading model. That is a new book, not a change to the two frozen
+books, which keep running untouched. Rules: `config/strategy_daytrade_v1.json`, with parameters taken
+from Zarattini, Barbon & Aziz (2023) and not tuned. Long only, no leverage, cash-account settlement.
+
+* **Data limit:** Yahoo provides only ~60 sessions of 5-minute history, so the backtest covers about 60
+  trading days. That is far too short for statistical confidence, and it will be reported as such.
+* **Split:** first half = in-sample, second half = out-of-sample; both are reported. No parameter changes
+  based on either.
+* **Decision rule:** the book goes live regardless (the user asked for it), but if the backtest loses
+  money after costs, the reports and the app will say so plainly.
+* **Survivorship:** today's S&P 500 list; over 60 days the effect is small.
+* **News veto:** live only, not backtested.
+
+### Day-trading backtest results (appended 2026-09-23)
+
+| Test | Period | Sessions | Book | SPY same days | Trades | Win rate |
+|---|---|---|---|---|---|---|
+| Pre-registered, 5-minute execution | Jul 21 → Sep 23 | 46 | −15.5% | +2.9% | 142 | 6% |
+| Same rules, 1-minute execution | Aug 26 → Sep 23 | 20 | −6.7% | +0.4% | 96 | 11% |
+
+* **5-minute test was not a fair test.** The paper's stop (0.10 × ATR) is smaller than a typical 5-minute
+  bar's range. 113 of 142 exits came from the pre-registered worst-case rule: when the entry bar's low
+  also reaches the stop, assume the stop was hit. 5-minute bars can't show whether the low came before or
+  after the breakout.
+* **Deviation (disclosed):** the live book processes 1-minute bars, the resolution the paper used. No
+  strategy parameter was changed. The worst-case same-bar rule is kept; it still decided 39 of 96 trades
+  at 1 minute.
+* **1-minute result:** about +0.8% before costs, −6.7% after 7.5% of modeled costs (spread and slippage on
+  ~5 round trips a day on a $100 account). Out-of-sample half: −0.1%. Twenty sessions is statistically
+  meaningless; the costs arithmetic is not.
+* **Decision (as pre-registered):** the book goes live on 2026-09-24 because the user asked for an
+  aggressive day-trading model. The app and reports show these backtest numbers next to the live results.

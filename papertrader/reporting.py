@@ -70,9 +70,11 @@ def build(exp: dict, n: int, date_n: dt.date, as_of: dt.date, prev_as_of: dt.dat
         for x in upto:
             peak = max(peak, x["equity"])
             mdd = max(mdd, 1 - x["equity"] / peak)
-        rows.append([b["name"], _money(s["equity"]), f"{_money(s['equity'] - base, True)} ({_pct(s['equity'] / base - 1)})",
+        started = (b.get("experiment") or {}).get("start_date")
+        label = b["name"] + (f" (since {started})" if started and started != exp["start_date"] else "")
+        rows.append([label, _money(s["equity"]), f"{_money(s['equity'] - base, True)} ({_pct(s['equity'] / base - 1)})",
                      f"{_money(s['equity'] - cash0, True)} ({_pct(s['equity'] / cash0 - 1)})", f"{mdd:.2%}", s["session"]])
-        if s.get("spy_bh_equity") and spy_now is None:
+        if s.get("spy_bh_equity") and spy_now is None and b["id"] != "daytrade":
             spy_now = s["spy_bh_equity"]
             spy_prev = (p or {}).get("spy_bh_equity") or cash0
     if spy_now:

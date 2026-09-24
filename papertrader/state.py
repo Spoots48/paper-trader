@@ -211,6 +211,7 @@ def full_state(quotes: dict | None = None) -> dict:
         "books": [book_state(b, exp, quotes=quotes) for b in exp["books"]],
         "reports": reports_list(),
         "backtest": backtest_summary(),
+        "backtest_daytrade": _dt_backtests(),
         "strategies": {b["id"]: load_json(ROOT / b["strategy"]) for b in exp["books"]},
         "deployment": _deployment(),
     }
@@ -219,3 +220,13 @@ def full_state(quotes: dict | None = None) -> dict:
 def _deployment() -> dict:
     from .cloud import deployment
     return deployment()
+
+
+def _dt_backtests() -> dict:
+    out = {}
+    for m in (5, 1):
+        p = RESEARCH_DIR / f"backtest_daytrade_{m}m.json"
+        if p.exists():
+            r = load_json(p)
+            out[f"{m}m"] = {k: r[k] for k in ("note", "full", "first_half", "second_half", "spy_same_period", "trades", "curve") if k in r}
+    return out

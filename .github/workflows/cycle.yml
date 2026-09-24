@@ -3,14 +3,11 @@ name: cycle
 # Times are UTC; the experiment (Sep 23 - Oct 22, 2026) is entirely within US daylight time (ET = UTC-4).
 on:
   schedule:
-    - cron: "37 20 * * 1-5"   # 16:37 ET  close-out + decision for the next open
-    - cron: "11 21 * * 1-5"   # 17:11 ET  backup (scheduled runs can be delayed or dropped)
-    - cron: "13 23 * * 1-5"   # 19:13 ET  backup
-    - cron: "7 13 * * 1-5"    # 09:07 ET  last pre-open chance to decide
-    - cron: "43 13 * * 1-5"   # 09:43 ET  fills at the official open
-    - cron: "17 16 * * 1-5"   # 12:17 ET  intraday stop check
-    - cron: "19 19 * * 1-5"   # 15:19 ET  intraday check / late decision window
-    - cron: "23 14-18 * * 1-5" # 10:23-14:23 ET hourly backups (GitHub sometimes skips scheduled runs)
+    - cron: "*/20 13-19 * * 1-5" # every 20 min, 09:00-15:40 ET (day-trading book + fills/stops)
+    - cron: "7 20 * * 1-5"       # 16:07 ET  day-trading close-out
+    - cron: "37 20 * * 1-5"      # 16:37 ET  daily books: close-out + decision for the next open
+    - cron: "11 21 * * 1-5"      # 17:11 ET  backup (scheduled runs can be delayed or dropped)
+    - cron: "13 23 * * 1-5"      # 19:13 ET  backup
   workflow_dispatch:
 concurrency:
   group: cycle
@@ -21,7 +18,7 @@ permissions:
 jobs:
   cycle:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:

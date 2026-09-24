@@ -73,6 +73,9 @@ def watchdog_check(st: dict, now: dt.datetime) -> str | None:
     for start, end, why in windows:
         if start <= now <= end and (last is None or last < start):
             return why
+    if session_open(d) + dt.timedelta(minutes=6) <= now <= session_close(d) + dt.timedelta(minutes=10):
+        if last is None or now - last > dt.timedelta(minutes=45):
+            return "keep the day-trading book current (no cloud run in 45 min)"
     return None
 
 

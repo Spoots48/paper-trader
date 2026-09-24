@@ -42,8 +42,8 @@ def cmd_freeze(a) -> None:
         sha = sha256_file(cfg_path)
         usha = sha256_file(UNIVERSE_PATH)
         shutil.copy2(cfg_path, frozen_dir / f"{b['id']}_{sha[:12]}.json")
-        L.freeze(exp, b, cfg["version"], sha, usha)
-        print(f"[{b['id']}] frozen: {cfg['version']} sha256={sha[:16]}… start {exp['start_date']} end {exp['end_date']}")
+        L.freeze({**exp, "start_date": b.get("start_date", exp["start_date"])}, b, cfg["version"], sha, usha)
+        print(f"[{b['id']}] frozen: {cfg['version']} sha256={sha[:16]}… start {b.get('start_date', exp['start_date'])} end {exp['end_date']}")
         L.close()
 
 

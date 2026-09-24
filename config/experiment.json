@@ -13,6 +13,14 @@
   "day_numbering": "Day 1 = start_date; Day N = start_date + (N-1) calendar days; reports cover through the last completed session on or before that date.",
   "books": [
     {
+      "id": "daytrade",
+      "name": "Day trading",
+      "subtitle": "Aggressive intraday: stocks in play, opening-range breakouts, flat by the close",
+      "strategy": "config/strategy_daytrade_v1.json",
+      "ledger": "data/ledger_daytrade.sqlite",
+      "start_date": "2026-09-24"
+    },
+    {
       "id": "primary",
       "name": "Primary",
       "subtitle": "Regime-gated SPY (only rules that passed the pre-registered backtest)",

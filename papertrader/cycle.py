@@ -47,7 +47,7 @@ class _Timeout(Exception):
     pass
 
 
-def run_cycle(trigger: str = "manual", max_seconds: int = 900) -> dict:
+def run_cycle(trigger: str = "manual", max_seconds: int = 1500) -> dict:
     setup_logging()
     if PAUSE_FLAG.exists():
         log.info("paused by user (data/PAUSED exists); skipping")
@@ -100,7 +100,11 @@ def run_cycle(trigger: str = "manual", max_seconds: int = 900) -> dict:
                     L.issue("CRITICAL", "integrity", f"{book['strategy']} differs from the frozen version; new decisions suspended "
                                                      "until the file is restored or the change is logged with run.py log-change")
                 L.set_state("strategy_integrity_ok", ok)
-                summary = Engine(L, md, cfg, {**exp, "book": book["id"]}, now).step()
+                if cfg.get("book_type") == "intraday":
+                    from .day_engine import DayEngine
+                    summary = DayEngine(L, md, cfg, {**exp, "book": book["id"]}, now).step()
+                else:
+                    summary = Engine(L, md, cfg, {**exp, "book": book["id"]}, now).step()
                 L.finish_run("OK", summary)
                 results[book["id"]] = summary
                 log.info(f"[{book['id']}] {summary}")

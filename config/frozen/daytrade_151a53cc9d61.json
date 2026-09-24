@@ -1,0 +1,73 @@
+{
+  "strategy_id": "stocks-in-play-opening-range-breakout",
+  "version": "dt-1.0.0",
+  "description": "Aggressive intraday (day-trading) book. Each morning, find the S&P 500 stocks trading unusually heavy volume in the first 5 minutes and opening strong. Buy those that break above their first 5-minute high, with a tight ATR-based stop. Up to 5 positions at 20% each, everything sold by the close. Long only, no leverage. Based on Zarattini, Barbon & Aziz (2023), 'A Profitable Day Trading Strategy for the U.S. Equity Market' (5-minute opening range breakout on stocks in play). Parameters are taken from that paper, not tuned.",
+  "book_type": "intraday",
+  "portfolio": {
+    "starting_cash": 100.0,
+    "max_positions": 5,
+    "position_weight": 0.2,
+    "min_order_usd": 1.0,
+    "fractional_decimals": 6,
+    "leverage": false,
+    "short_selling": false,
+    "account": "cash account, T+1 settlement: each dollar of settled cash can fund one buy per day; sale proceeds are reusable the next session",
+    "flat_by_close": true
+  },
+  "universe": {
+    "source": "config/universe.json (S&P 500)",
+    "min_price": 5.0,
+    "min_avg_daily_volume_shares": 1000000,
+    "min_atr_usd": 0.5,
+    "atr_days": 14,
+    "avg_volume_days": 14
+  },
+  "selection": {
+    "bar_minutes": 5,
+    "relative_volume_lookback_sessions": 14,
+    "min_relative_volume": 1.0,
+    "top_n_by_relative_volume": 20,
+    "require_first_bar_up": true,
+    "note": "Relative volume = volume of today's 09:30-09:35 bar / average volume of the same bar over the previous 14 sessions. Decided after the first bar completes (09:35 ET)."
+  },
+  "entry": {
+    "type": "buy stop at the first 5-minute bar's high",
+    "trigger_offset_usd": 0.01,
+    "last_entry_bar_minutes_before_close": 35,
+    "priority_if_same_bar": "higher relative volume first",
+    "same_bar_stop_assumption": "if the entry bar's low also reaches the stop, assume the stop was hit (worst case)"
+  },
+  "exit": {
+    "stop_atr_fraction": 0.1,
+    "exit_at_close": "sell at the close of the last 5-minute bar of the session"
+  },
+  "risk": {
+    "drawdown_pause": 0.15,
+    "pause_sessions": 2,
+    "drawdown_halt": 0.25,
+    "note": "Aggressive limits: a 15% drawdown from peak pauses new trades for 2 sessions; a 25% drawdown stops the book for the rest of the experiment."
+  },
+  "news": {
+    "role": "veto only (never a trigger)",
+    "lookback_hours": 24,
+    "veto_on": [
+      "hard negatives: offerings, investigations, restatements, bankruptcy, delisting",
+      "takeover/deal-target headlines (price pinned)"
+    ],
+    "backtested": false
+  },
+  "costs": {
+    "commission_usd": 0.0,
+    "stock_bps_adv_ge_1b": 5.0,
+    "stock_bps_adv_ge_200m": 10.0,
+    "stock_bps_other": 20.0,
+    "entry_stop_extra_bps": 5.0,
+    "stop_exit_extra_bps": 15.0,
+    "close_exit_extra_bps": 3.0,
+    "sec_fee_bps_on_sells": 0.3
+  },
+  "execution": {
+    "bar_minutes": 1,
+    "note": "Entries, stops and exits are processed on 1-minute bars (the resolution used in the source paper). The 5-minute pre-registered test was dominated by the same-bar stop ambiguity (113 of 142 trades); see research/PREREGISTRATION.md."
+  }
+}
