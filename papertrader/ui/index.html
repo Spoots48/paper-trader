@@ -322,6 +322,7 @@ function nowSummary(){
         lines.push('It has already used all of today\'s money, so it <b>can\'t buy anything else today</b>. In a normal cash account, money from a sale can\'t be reused until the next day. It starts fresh tomorrow at 9:35 AM.');
       else if (cal.market_open_now) lines.push('It picks which stocks to watch at 9:35 AM, after the first five minutes of trading. Results show up here within about 20 minutes.');
       if (owns.length) lines.push(`Right now it owns: <b>${owns.map(esc).join(', ')}</b>.`);
+      else if (cal.market_open_now && todays.length) lines.push('Right now it owns <b>nothing</b>: every trade it made today has already been closed.');
       else if (sel || !cal.market_open_now) lines.push('Right now it owns <b>nothing</b>. It\'s all in cash, which is normal outside market hours.');
     }
   }
@@ -441,6 +442,7 @@ function schedStatus(){
     const lr = sc.last_run;
     if (sc.running) return {dot: 'ok pulse', text: 'Updating now…'};
     if (sc.enabled === false) return {dot: 'warn', text: 'Paused'};
+    if (sc.pending) return {dot: 'ok', text: 'Checking status…'};
     if (sc.enabled == null) return {dot: 'warn', text: 'Can\'t reach the internet'};
     if (lr && lr.conclusion && lr.conclusion !== 'success') return {dot: 'bad', text: 'Last update had a problem · ' + ago(lr.updatedAt)};
     return {dot: 'ok', text: 'Running on its own · updated ' + (lr ? ago(lr.updatedAt) : 'soon')};

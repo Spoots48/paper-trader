@@ -35,7 +35,7 @@ def scheduler_status() -> dict:
                 "enabled": c.get("enabled"), "running": c.get("running"), "runs": runs[:15], "url": c.get("url"),
                 "repo": c.get("repo"), "last_run": last, "last_exit": (last or {}).get("conclusion"),
                 "detail": "GitHub Actions" + ("" if c.get("enabled") is not False else " (disabled)"),
-                "error": c.get("error"), "last_sync": c.get("last_sync"), "heartbeat": hb}
+                "error": c.get("error"), "last_sync": c.get("last_sync"), "heartbeat": hb, "pending": c.get("pending")}
     st = {"mode": "local", "installed": PLIST.exists(), "loaded": False, "paused": PAUSE_FLAG.exists(), "last_exit": None, "detail": ""}
     try:
         out = subprocess.run(["launchctl", "print", f"gui/{os.getuid()}/{LABEL}"], capture_output=True, text=True, timeout=5)
