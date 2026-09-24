@@ -315,6 +315,11 @@ function nowSummary(){
       const buys = todays.filter(f => f.side === 'BUY').length;
       const owns = (b.positions || []).map(p => coTxt(p.ticker));
       if (sel) lines.push(`This morning it picked <b>${((sel.metrics || {}).candidates || []).length} stocks</b> to watch and has made <b>${buys} purchase${buys === 1 ? '' : 's'}</b> so far today.`);
+      const sold = todays.filter(f => f.side === 'SELL'), pnl = sold.reduce((a, f) => a + (f.realized_pnl || 0), 0);
+      if (sold.length) lines.push(`Today so far: <b>${sold.filter(f => (f.realized_pnl || 0) > 0).length} of ${sold.length}</b> finished trades made money. Result: <b class="${cls(pnl)}">${pnl >= 0 ? 'up' : 'down'} ${money(Math.abs(pnl))}</b>.`);
+      const ds = b.day_state || {};
+      if (ds.session === today && ds.cash_at_open && ds.buys_used >= ds.cash_at_open * 0.97 && cal.market_open_now)
+        lines.push('It has already used all of today\'s money, so it <b>can\'t buy anything else today</b>. In a normal cash account, money from a sale can\'t be reused until the next day. It starts fresh tomorrow at 9:35 AM.');
       else if (cal.market_open_now) lines.push('It picks which stocks to watch at 9:35 AM, after the first five minutes of trading. Results show up here within about 20 minutes.');
       if (owns.length) lines.push(`Right now it owns: <b>${owns.map(esc).join(', ')}</b>.`);
       else if (sel || !cal.market_open_now) lines.push('Right now it owns <b>nothing</b>. It\'s all in cash, which is normal outside market hours.');
@@ -326,8 +331,7 @@ function nowSummary(){
 
 function botValue(b){
   const cash0 = S.state.experiment.starting_cash, p = b.perf || {};
-  const hasLive = (b.positions || []).length && b.live_equity != null;
-  return hasLive ? b.live_equity : (p.equity ?? cash0);
+  return b.live_equity != null ? b.live_equity : (p.equity ?? cash0);
 }
 
 function viewHome(){

@@ -114,6 +114,11 @@ def book_state(book: dict, exp: dict, n_decisions: int = 400, quotes: dict | Non
         out["risk"] = L.get_state("risk", {})
         out["regime"] = L.get_state("last_regime")
         out["benchmark"] = L.get_state("benchmark")
+        day = L.db.execute("SELECT key, value FROM state WHERE key LIKE 'dt:%' ORDER BY key DESC LIMIT 1").fetchone()
+        if day:
+            ds = json.loads(day["value"])
+            out["day_state"] = {k: ds.get(k) for k in ("session", "cash_at_open", "buys_used", "closed", "processed_through")}
+            out["day_state"]["n_candidates"] = len(ds.get("candidates") or [])
         bq = (quotes or {}).get("SPY")
         bm = out["benchmark"]
         if bm and bq:

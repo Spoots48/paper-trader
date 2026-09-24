@@ -265,6 +265,7 @@ def test_watchdog_starts_missed_key_runs():
     assert watchdog_check(st, at(10, 0)) == "record the open"      # the 09:43 run never came
     st["runs"].append(run(9, 50))
     assert watchdog_check(st, at(10, 0)) is None                   # it did run
+    assert watchdog_check(st, at(10, 30)) is not None               # 40 min without a run during the session
     assert watchdog_check(st, at(17, 30)) == "close out the day and decide the next open"
     assert watchdog_check({**st, "running": True}, at(17, 30)) is None
     assert watchdog_check({**st, "enabled": False}, at(17, 30)) is None

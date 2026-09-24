@@ -74,8 +74,8 @@ def watchdog_check(st: dict, now: dt.datetime) -> str | None:
         if start <= now <= end and (last is None or last < start):
             return why
     if session_open(d) + dt.timedelta(minutes=6) <= now <= session_close(d) + dt.timedelta(minutes=10):
-        if last is None or now - last > dt.timedelta(minutes=45):
-            return "keep the day-trading book current (no cloud run in 45 min)"
+        if last is None or now - last > dt.timedelta(minutes=20):
+            return "keep the day-trading book current (no cloud run in 20 min)"
     return None
 
 
@@ -100,7 +100,7 @@ def start_background() -> None:
             try:
                 st = cloud.status(max_age=0)
                 why = watchdog_check(st, now_utc())
-                if why and time.time() - state["last_dispatch"] > 20 * 60:
+                if why and time.time() - state["last_dispatch"] > 15 * 60:
                     ok, msg = cloud.trigger()
                     state["last_dispatch"] = time.time()
                     print(f"{iso(now_utc())} watchdog started a cloud run ({why}): {ok} {msg}", flush=True)
