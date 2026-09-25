@@ -53,6 +53,7 @@ class PMEngine:
         self.cash0 = e["starting_cash"]
         self.get = fetch or _get
         self.log: list[str] = []
+        self.retired = any(b.get("retired") for b in exp.get("books", []) if b.get("id") == exp.get("book"))
 
     def note(self, m: str) -> None:
         self.log.append(m)
@@ -113,7 +114,7 @@ class PMEngine:
         positions = self.L.get_state("pm_positions", {}) or {}
         cash = self.L.get_state("cash", self.cash0)
         risk = self.L.get_state("risk", {"peak": self.cash0})
-        if today <= self.end and not risk.get("halt_until"):
+        if today <= self.end and not risk.get("halt_until") and not self.retired:
             self.scan(positions, cash)
         self.mark()
         self.snapshot()

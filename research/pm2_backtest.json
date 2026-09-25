@@ -1,0 +1,30 @@
+{
+ "note": "Research only; v2 rules replayed on settled markets; entry = history price + 1c (not true asks).",
+ "config_version": "pm-2.0.0",
+ "period_utc": [
+  "2026-09-19T19:32:00+00:00",
+  "2026-09-25T19:32:00+00:00"
+ ],
+ "ending_equity_from_100": 100.0,
+ "all": {
+  "bets": 0
+ },
+ "in_sample": {
+  "bets": 0
+ },
+ "out_of_sample_last_days": {
+  "bets": 0
+ },
+ "by_window": {
+  "15": {
+   "bets": 0
+  },
+  "60": {
+   "bets": 0
+  },
+  "240": {
+   "bets": 0
+  }
+ },
+ "trades": []
+}

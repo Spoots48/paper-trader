@@ -197,3 +197,38 @@ written before this test and were **not** changed after it.
 
 **Decision:** there's no evidence of an edge. It runs on paper anyway as its own $100 book so the forward
 record exists, clearly labeled with these results.
+
+### v1 post-mortem and v2 (appended 2026-09-25, evening)
+
+**v1 live result, day one:** −$32.79 (−33%). 43 bets. Hourly markets lost $63.90 on $175 staked. The 30%
+loss limit never fired because it was only checked once a day.
+
+**Root cause (verified against official outcomes):**
+* Hourly markets settle on **Binance's 1-hour candle close vs open** (35/35 matches).
+* The 5-min, 15-min and 4-hour markets behave like end price vs start price: "end vs start" matched
+  96–100% of settled windows, better than "average over the window".
+* v1 priced all of them as window averages, which made it overconfident. It then bet against the market
+  when they disagreed (e.g. buying at 8.8¢ because the model said 97%).
+
+**What practitioners report** (public write-ups, treated as anecdotes):
+* 11,717 trades at a 77% win rate netted $292, and 176 trades at a 92% win rate netted $2. Buying
+  favorites needs very high accuracy.
+* Settle-source prices (Chainlink/Binance) matter: spot prices can diverge 0.3–0.5%.
+* Speed arbitrage is captured by sub-100 ms bots, and makers earn rebates while takers pay fees.
+* On-chain studies report ~84% of Polymarket wallets lose money.
+
+**v2 (`config/strategy_pm_v2.json`), rules written before its test:**
+* Close-vs-open math, with Binance data.
+* Estimate anchored halfway to the market's odds; skip when model and market differ by more than 20 points.
+* Buy only between 30¢ and 75¢, at 10–70% of the window.
+* BTC/ETH only; 3% stakes; one bet per settlement time and direction.
+* Loss limits checked every run: 20% drawdown halt, 6% daily limit.
+
+**v2 replay, 6 days (Sep 19–25), 1,506 settled BTC/ETH markets: 0 qualifying bets.** Diagnostics on one
+day (280 decision points):
+* Model minus market: median −2 points; 80% of points within ±10.
+* Best edge after fee and a 1¢ spread: −0.5¢.
+
+At the resolution this system can observe (runs every 20–60 minutes), the market leaves no edge after
+fees. v2 runs on paper so any genuine opportunity is recorded; expect it to bet rarely or never. v1 is
+retired: no new bets, open bets settle, record unchanged.

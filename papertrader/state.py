@@ -218,6 +218,7 @@ def full_state(quotes: dict | None = None) -> dict:
         "backtest": backtest_summary(),
         "backtest_daytrade": _dt_backtests(),
         "pm_calibration": _pm_calibration(),
+        "pm2_backtest": _pm2_backtest(),
         "strategies": {b["id"]: load_json(ROOT / b["strategy"]) for b in exp["books"]},
         "deployment": _deployment(),
         "names": {**{m["ticker"]: m["name"] for m in load_json(ROOT / "config" / "universe.json")["members"]},
@@ -246,3 +247,11 @@ def _pm_calibration() -> dict | None:
         return None
     r = load_json(p)
     return {k: r.get(k) for k in ("period_utc", "samples", "brier_model", "brier_market", "bets_by_window")} | {"one_bet_per_window": r.get("one_bet_per_window")}
+
+
+def _pm2_backtest() -> dict | None:
+    p = RESEARCH_DIR / "pm2_backtest.json"
+    if not p.exists():
+        return None
+    r = load_json(p)
+    return {k: r.get(k) for k in ("period_utc", "ending_equity_from_100", "all", "in_sample", "out_of_sample_last_days", "by_window")}

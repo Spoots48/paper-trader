@@ -21,12 +21,22 @@
       "start_date": "2026-09-24"
     },
     {
+      "id": "crypto2",
+      "name": "Crypto odds bot v2",
+      "subtitle": "Polymarket BTC/ETH up/down, corrected settlement math, market-anchored, small de-correlated bets (paper)",
+      "strategy": "config/strategy_pm_v2.json",
+      "ledger": "data/ledger_crypto2.sqlite",
+      "start_date": "2026-09-25"
+    },
+    {
       "id": "crypto",
-      "name": "Prediction-market bot",
+      "name": "Crypto odds bot v1 (retired)",
       "subtitle": "Polymarket crypto Up/Down odds vs live prices (paper)",
       "strategy": "config/strategy_pm_v1.json",
       "ledger": "data/ledger_crypto.sqlite",
-      "start_date": "2026-09-25"
+      "start_date": "2026-09-25",
+      "retired": true,
+      "retired_reason": "2026-09-25: lost 33% on day one. Bug: it priced every market with the wrong settlement rule (average price instead of close vs open; hourly markets settle on Binance candles). No new bets; open bets still settle. Record kept as-is."
     },
     {
       "id": "primary",

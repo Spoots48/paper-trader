@@ -102,7 +102,9 @@ def run_cycle(trigger: str = "manual", max_seconds: int = 1500) -> dict:
                 L.set_state("strategy_integrity_ok", ok)
                 if cfg.get("book_type") == "predmarket":
                     from .pm_engine import PMEngine
-                    summary = PMEngine(L, md, cfg, {**exp, "book": book["id"]}, now).step()
+                    from .pm_engine2 import PMEngine2
+                    eng = PMEngine2 if cfg.get("engine") == "pm2" else PMEngine
+                    summary = eng(L, md, cfg, {**exp, "book": book["id"]}, now).step()
                 elif cfg.get("book_type") == "intraday":
                     from .day_engine import DayEngine
                     summary = DayEngine(L, md, cfg, {**exp, "book": book["id"]}, now).step()

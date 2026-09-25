@@ -311,9 +311,10 @@ const BOT = {
   daytrade: {name: 'Day trader', tag: 'Main bot', main: true, blurb: 'Buys a few fast-moving stocks each morning and sells everything before the market closes.'},
   primary: {name: 'Index fund + safety switch', tag: 'Comparison', blurb: 'Just owns the whole S&P 500 (via the SPY fund); switches to cash if the market turns bad.'},
   research: {name: 'Swing trader', tag: 'Comparison', blurb: 'Holds strong stocks for days or weeks instead of minutes.'},
-  crypto: {name: 'Crypto odds bot', tag: 'New', blurb: 'Bets on Polymarket "Bitcoin up or down" markets when live prices say the posted odds are wrong by more than the fees.'},
+  crypto2: {name: 'Crypto odds bot v2', tag: 'New', blurb: 'Small bets on Polymarket Bitcoin/Ethereum up-or-down markets, only when live Binance prices and the market odds together point to an edge bigger than the fees.'},
+  crypto: {name: 'Crypto odds bot v1', tag: 'Retired', retired: true, blurb: 'Lost 33% on day one: its math priced the wrong kind of bet. Stopped; record kept.'},
 };
-const TAG = {daytrade: 'DT', crypto: 'PM', primary: 'IX', research: 'SW'};
+const TAG = {daytrade: 'DT', crypto2: 'P2', crypto: 'P1', primary: 'IX', research: 'SW'};
 const botName = id => (BOT[id] || {}).name || id;
 const co = t => { const n = (S.state.names || {})[t]; return n ? `${esc(n)} <span class="mut">(${esc(t)})</span>` : esc(t); };
 const coTxt = t => { const n = (S.state.names || {})[t]; return n ? `${n} (${t})` : t; };
@@ -456,7 +457,7 @@ function viewHome(){
   const tiles = books.map(b => {
     const v = botValue(b), r = v / cash0 - 1, m = BOT[b.id] || {};
     const started = (b.experiment || {}).start_date, notYet = started && started > today;
-    return `<div class="tile ${S.feedBot === b.id ? 'on' : ''}" data-b="${b.id}"><span class="dot2" style="background:${COLORS[b.id]};box-shadow:0 0 10px ${COLORS[b.id]}"></span>
+    return `<div class="tile ${S.feedBot === b.id ? 'on' : ''}" data-b="${b.id}" style="${m.retired ? 'opacity:.55' : ''}"><span class="dot2" style="background:${COLORS[b.id]};box-shadow:0 0 10px ${COLORS[b.id]}"></span>
       <div class="nm" style="color:${COLORS[b.id]}">${esc(m.name || b.name)}</div><div class="bal">${money(v)}</div>
       <div class="${cls(r)}" style="font-size:12px">${notYet ? 'starts ' + esc(started) : `${money(v - cash0, true)} (${pct(r)})`}</div>
       <div class="mut" style="font-size:11px;margin-top:6px;font-family:-apple-system,system-ui">${esc(m.blurb || '')}</div></div>`;
@@ -492,16 +493,17 @@ function viewHome(){
 }
 
 function cryptoSummary(){
-  const b = book('crypto');
+  const b = book('crypto2');
   if (!b.frozen) return '';
   const open = (b.positions || []).length, fills = b.fills || [];
   const settled = fills.filter(x => x.side === 'SELL'), won = settled.filter(x => x.reason_code === 'PM_WIN').length;
   const scan = (b.decisions || []).find(x => x.reason_code === 'PM_SCAN');
-  let t = `<p><b style="color:var(--s-crypto)">Crypto odds bot:</b> `;
+  let t = `<p><b style="color:var(--s-crypto)">Crypto odds bot v2:</b> `;
   t += scan ? `last scan ${ago(scan.created_at)} checked the live Bitcoin/Ethereum/Solana/XRP/Dogecoin up-or-down markets. ` : 'waiting for its first scan. ';
   t += open ? `It has <b>${open} open bet${open === 1 ? '' : 's'}</b>. ` : 'No open bets right now. ';
   if (settled.length) t += `Settled so far: <b>${won} won, ${settled.length - won} lost</b>.`;
-  return t + '</p>';
+  const v1 = book('crypto');
+  return t + '</p>' + (v1.frozen ? `<p class="mut">v1 was retired after losing ${money(Math.abs(botValue(v1) - S.state.experiment.starting_cash))} on its first day. Its pricing math modeled the wrong kind of bet. See "Past-data tests" for what changed.</p>` : '');
 }
 
 function viewFeed(){
@@ -686,7 +688,7 @@ function lineChart(el, series, opts = {}){
   };
   svg.onmouseleave = () => { tip.style.display = 'none'; cur.style.display = 'none'; };
 }
-const COLORS = {crypto: 'var(--s-crypto)', daytrade: 'var(--s-daytrade)', primary: 'var(--s-primary)', research: 'var(--s-research)', spy: 'var(--s-spy)', cash: 'var(--s-cash)'};
+const COLORS = {crypto2: 'var(--s-crypto)', crypto: '#4b6b73', daytrade: 'var(--s-daytrade)', primary: 'var(--s-primary)', research: 'var(--s-research)', spy: 'var(--s-spy)', cash: 'var(--s-cash)'};
 
 // sessions of the experiment window (weekdays; holidays show as flat, none fall in this window)
 function windowSessions(){
@@ -901,11 +903,18 @@ function viewBacktest(){
         ['SPY, same days', `<span class="${cls(r.spy_same_period.total_return)}">${pct(r.spy_same_period.total_return, 1)}</span>`, pct(-r.spy_same_period.max_drawdown, 1), Math.round(r.spy_same_period.pct_up_days * 100) + '%']])}
       <p class="mut" style="font-size:12.5px;margin-top:10px">${r.trades.n_round_trips} trades (${(r.trades.avg_trades_per_day || 0).toFixed(1)}/day), win rate ${Math.round((r.trades.win_rate || 0) * 100)}%, exits: ${esc(Object.entries(r.trades.exit_reasons || {}).map(([a, b]) => a + ' ' + b).join(', '))}. ${k === '5m' ? 'Pre-registered test; 5-minute bars could not tell whether the tight stop was hit before or after entry, and the worst-case assumption decided 80% of trades.' : 'Same rules at the paper\'s 1-minute resolution; the live book runs this way. Very short sample.'}</p></div>`).join('');
   const pc = S.state.pm_calibration;
+  const p2 = S.state.pm2_backtest;
+  const p2card = p2 && p2.all ? `<div class="card" style="margin-top:14px"><h2>Crypto odds bot v2 · replay on settled markets · ${esc((p2.period_utc || [''])[0].slice(0, 10))} → ${esc((p2.period_utc || ['', ''])[1].slice(0, 10))}</h2>
+      ${table([{h: ''}, {h: 'Bets', n: 1}, {h: 'Won', n: 1}, {h: 'Return on money bet', n: 1}], [
+        ['All days', p2.all.bets, p2.all.bets ? Math.round(p2.all.win_rate * 100) + '%' : '—', p2.all.bets ? pct(p2.all.return_on_stake, 1) : '—'],
+        ['Earlier days (used while building)', p2.in_sample.bets, p2.in_sample.bets ? Math.round(p2.in_sample.win_rate * 100) + '%' : '—', p2.in_sample.bets ? pct(p2.in_sample.return_on_stake, 1) : '—'],
+        ['Last 2 days (fresh check)', p2.out_of_sample_last_days.bets, p2.out_of_sample_last_days.bets ? Math.round(p2.out_of_sample_last_days.win_rate * 100) + '%' : '—', p2.out_of_sample_last_days.bets ? pct(p2.out_of_sample_last_days.return_on_stake, 1) : '—']])}
+      <p class="mut" style="font-size:12.5px;margin-top:10px">$100 would have ended at ${money(p2.ending_equity_from_100)}. Uses last-trade prices + 1¢ rather than true asks, so real results would be a bit worse. Too few days to prove anything.</p></div>` : '';
   const pcard = pc ? `<div class="card" style="margin-top:14px"><h2>Crypto odds bot · model vs Polymarket's own odds · ${esc((pc.period_utc || [''])[0].slice(0, 10))} → ${esc((pc.period_utc || ['', ''])[1].slice(0, 10))}</h2>
       ${table([{h: ''}, {h: 'Accuracy score (lower = better)', n: 1}], [['Polymarket\'s own odds', pc.brier_market.toFixed(3)], ['Bot\'s fair-value model', pc.brier_model.toFixed(3)]])}
       <p class="mut" style="font-size:12.5px;margin-top:10px">${pc.samples.toLocaleString()} price snapshots from settled markets. The market's odds were more accurate than the model, so most of the "gaps" the bot sees are the model being overconfident, not the market being wrong.
       ${pc.one_bet_per_window ? `Replaying the bot's exact rules: ${pc.one_bet_per_window.n.toLocaleString()} bets, ${Math.round(pc.one_bet_per_window.win_rate * 100)}% won, overall ${pct(pc.one_bet_per_window.return_on_stake, 1)} after fees.` : ''}</p></div>` : '';
-  $('#view').innerHTML = dcard + pcard + `<div class="banner info" style="margin-top:14px">Historical simulation — not live results. Parameters were fixed before this test (see research/PREREGISTRATION.md). News filtering could not be backtested (no free historical archive), and the universe is today's S&P 500 with each stock allowed only after its index-inclusion date.</div>${per}`;
+  $('#view').innerHTML = dcard + p2card + pcard + `<div class="banner info" style="margin-top:14px">Historical simulation — not live results. Parameters were fixed before this test (see research/PREREGISTRATION.md). News filtering could not be backtested (no free historical archive), and the universe is today's S&P 500 with each stock allowed only after its index-inclusion date.</div>${per}`;
   Object.entries(bt.periods).forEach(([p, d]) => {
     const c = d.curve;
     lineChart($('#bt-' + p), [{name: 'Primary rules', color: 'var(--s-primary)', values: c.regime_gated_spy_only}, {name: 'Research rules', color: 'var(--s-research)', values: c.full_strategy}, {name: 'SPY', color: 'var(--s-spy)', values: c.spy}],
