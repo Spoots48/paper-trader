@@ -79,8 +79,9 @@ class Handler(BaseHTTPRequestHandler):
         if u.path == "/api/ping":
             return self._json({"ok": True})
         if u.path == "/api/state":
-            from .live import quotes
+            from .live import feed, quotes
             st = full_state(quotes=quotes() if cloud_viewer() else None)
+            st["live_feed"] = feed()
             st["cycle_running"] = bool(st["scheduler"].get("running")) if st["scheduler"].get("mode") == "cloud" else cycle_running()
             return self._json(st)
         if u.path == "/api/log":

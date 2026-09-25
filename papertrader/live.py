@@ -13,7 +13,44 @@ import time
 from .nyse_calendar import ET, is_session, iso, now_utc, session_close, session_open
 
 QUOTES: dict[str, tuple[float, str]] = {}
+FEED: dict = {}
 _lock = threading.Lock()
+
+
+def feed() -> dict:
+    with _lock:
+        return dict(FEED)
+
+
+def refresh_feed() -> None:
+    """Display-only market feed: crypto spot prices and the live 15-minute Bitcoin Up/Down market."""
+    import json as _json
+    import requests
+    H = {"User-Agent": "Mozilla/5.0 (PaperTradingSim viewer)"}
+    out = {"at": iso(now_utc())}
+    for sym in ("BTC", "ETH", "SOL"):
+        try:
+            t = requests.get(f"https://api.exchange.coinbase.com/products/{sym}-USD/ticker", headers=H, timeout=8).json()
+            out[sym] = {"price": float(t["price"]), "time": t.get("time")}
+        except Exception:
+            pass
+    try:
+        now = int(now_utc().timestamp())
+        slug = f"btc-updown-15m-{now // 900 * 900}"
+        ev = requests.get("https://gamma-api.polymarket.com/events", params={"slug": slug}, headers=H, timeout=8).json()
+        if ev:
+            m = ev[0]["markets"][0]
+            outs, toks = _json.loads(m["outcomes"]), _json.loads(m["clobTokenIds"])
+            b = requests.get("https://clob.polymarket.com/book", params={"token_id": toks[outs.index("Up")]}, headers=H, timeout=8).json()
+            asks = sorted(((float(x["price"]), float(x["size"])) for x in b.get("asks", [])))[:6]
+            bids = sorted(((float(x["price"]), float(x["size"])) for x in b.get("bids", [])), reverse=True)[:6]
+            out["pm"] = {"title": ev[0]["title"], "slug": slug, "ends": m.get("endDate"), "start": m.get("eventStartTime"),
+                         "asks": asks, "bids": bids}
+    except Exception:
+        pass
+    with _lock:
+        FEED.clear()
+        FEED.update(out)
 
 
 def quotes() -> dict[str, tuple[float, str]]:
@@ -30,7 +67,7 @@ def held_tickers() -> list[str]:
         if p.exists():
             con = sqlite3.connect(p)
             try:
-                out |= {r[0] for r in con.execute("SELECT ticker FROM positions")}
+                out |= {r[0] for r in con.execute("SELECT ticker FROM positions WHERE sleeve != 'predmarket'")}
             finally:
                 con.close()
     return sorted(out)
@@ -93,6 +130,10 @@ def start_background() -> None:
                 refresh_quotes()
             except Exception as e:
                 print(f"quotes failed: {e}", flush=True)
+            try:
+                refresh_feed()
+            except Exception as e:
+                print(f"feed failed: {e}", flush=True)
             time.sleep(15)
 
     def status_loop():

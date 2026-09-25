@@ -8,6 +8,8 @@ on:
     - cron: "37 20 * * 1-5"      # 16:37 ET  daily books: close-out + decision for the next open
     - cron: "11 21 * * 1-5"      # 17:11 ET  backup (scheduled runs can be delayed or dropped)
     - cron: "13 23 * * 1-5"      # 19:13 ET  backup
+    - cron: "43 0-12,21-23 * * *" # hourly overnight, every day (prediction-market bot trades crypto 24/7)
+    - cron: "43 13-20 * * 0,6"    # hourly on weekends during the day
   workflow_dispatch:
 concurrency:
   group: cycle

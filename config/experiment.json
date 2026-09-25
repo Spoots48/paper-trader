@@ -21,6 +21,14 @@
       "start_date": "2026-09-24"
     },
     {
+      "id": "crypto",
+      "name": "Prediction-market bot",
+      "subtitle": "Polymarket crypto Up/Down odds vs live prices (paper)",
+      "strategy": "config/strategy_pm_v1.json",
+      "ledger": "data/ledger_crypto.sqlite",
+      "start_date": "2026-09-25"
+    },
+    {
       "id": "primary",
       "name": "Primary",
       "subtitle": "Regime-gated SPY (only rules that passed the pre-registered backtest)",

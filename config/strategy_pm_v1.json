@@ -1,0 +1,33 @@
+{
+  "strategy_id": "crypto-updown-fair-value",
+  "version": "pm-1.0.0",
+  "book_type": "predmarket",
+  "description": "Paper-trades Polymarket 'Up or Down' crypto markets. For each in-progress window it computes the fair probability of 'Up' from live exchange prices (the market settles on Chainlink's time-weighted average over the window, so the model prices an average, not a closing price). It buys the Up or Down share only when that fair probability exceeds the ask price plus Polymarket's taker fee by a margin, sizes the bet by a fraction of the Kelly criterion, and holds to settlement. Inspired by the 'signal vs posted odds' description in the user's reference posts; rules chosen before any live result.",
+  "portfolio": {"starting_cash": 100.0, "min_shares": 5},
+  "markets": {
+    "assets": {"BTC": {"coinbase": "BTC-USD", "short": "btc", "long": "bitcoin"},
+               "ETH": {"coinbase": "ETH-USD", "short": "eth", "long": "ethereum"},
+               "SOL": {"coinbase": "SOL-USD", "short": "sol", "long": "solana"},
+               "XRP": {"coinbase": "XRP-USD", "short": "xrp", "long": "xrp"},
+               "DOGE": {"coinbase": "DOGE-USD", "short": "doge", "long": "dogecoin"}},
+    "windows_minutes": [5, 15, 60, 240],
+    "min_seconds_remaining": 60,
+    "min_elapsed_fraction": 0.1
+  },
+  "model": {
+    "price_source": "Coinbase Exchange public API, 1-minute candles + ticker (proxy for Chainlink)",
+    "vol_lookback_minutes": 60,
+    "min_vol_per_minute": 0.0004,
+    "basis_buffer_bps": 5,
+    "probability_cap": 0.97,
+    "note": "Settles Up if Chainlink TWAP over the window >= price at the window start. Fair P(Up) = Phi((S_t - K') / (S_t * sigma * sqrt(r/3))) with K' = (S0 - e*A)/(1-e), A = realized average so far, e = elapsed fraction, r = minutes remaining. The basis buffer shifts the threshold against each trade to allow for Coinbase-vs-Chainlink differences; probabilities are capped at 97% because the model can't be more certain than its data."
+  },
+  "entry": {"min_edge": 0.05, "one_entry_per_market": true,
+            "note": "edge = fair probability - (ask + taker fee per share). Only buys when the edge is at least 5 cents per $1 of payout."},
+  "fees": {"crypto_taker_fee_rate": 0.07, "formula": "fee per share = rate * p * (1 - p) (Polymarket docs, crypto category)"},
+  "sizing": {"kelly_fraction": 0.25, "max_per_market": 0.10, "max_open_exposure": 0.60,
+             "note": "quarter-Kelly for a binary paying $1: f = 0.25 * (q - c) / (1 - c), capped at 10% of equity per market and 60% total open exposure"},
+  "risk": {"drawdown_halt": 0.30, "note": "a 30% drawdown from peak stops new bets for the rest of the experiment"},
+  "execution": {"fills": "walk the live order book asks, only levels that still clear the edge threshold; decision and book read in the same run",
+                "settlement": "Polymarket's official resolution (outcomePrices) after the window ends"}
+}

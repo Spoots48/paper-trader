@@ -175,3 +175,25 @@ from Zarattini, Barbon & Aziz (2023) and not tuned. Long only, no leverage, cash
   meaningless; the costs arithmetic is not.
 * **Decision (as pre-registered):** the book goes live on 2026-09-24 because the user asked for an
   aggressive day-trading model. The app and reports show these backtest numbers next to the live results.
+
+---
+
+## Addendum: crypto odds bot (prediction markets), 2026-09-25
+
+The user asked for a bot like the viral "Jev" posts: scan many Polymarket markets, compare live prices with
+the posted odds, and bet when the gap clears a threshold. Rules (`config/strategy_pm_v1.json`) were
+written before this test and were **not** changed after it.
+
+**Calibration test.** 3 days of settled Up/Down windows (BTC/ETH 15-min, five coins 1-hour and 4-hour),
+4,126 snapshots. The model was rebuilt at each point using only earlier exchange data:
+
+* Accuracy score (lower = better): **market 0.149, model 0.183**. The market is better calibrated. The
+  model is overconfident at the extremes: when it said 90–100% Up, Up happened 85% of the time.
+* Replay of the exact entry rule (one bet per market, entry = history price + 1¢, Polymarket crypto taker
+  fee): 1,079 bets, 73% won, **−1.1% return on stake**. By window: 15-min +3.3% (n=91), 1-hour −7.7%, 4-hour
+  +4.6%. Selecting the positive subsets now would be fitting noise, so nothing is changed.
+* **Limitations:** history prices are last trades, not asks, so real fills would be worse. Snapshots are
+  every ~10 minutes, so 5-minute markets couldn't be tested. Only 3 days of data.
+
+**Decision:** there's no evidence of an edge. It runs on paper anyway as its own $100 book so the forward
+record exists, clearly labeled with these results.

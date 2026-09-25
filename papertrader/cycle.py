@@ -100,7 +100,10 @@ def run_cycle(trigger: str = "manual", max_seconds: int = 1500) -> dict:
                     L.issue("CRITICAL", "integrity", f"{book['strategy']} differs from the frozen version; new decisions suspended "
                                                      "until the file is restored or the change is logged with run.py log-change")
                 L.set_state("strategy_integrity_ok", ok)
-                if cfg.get("book_type") == "intraday":
+                if cfg.get("book_type") == "predmarket":
+                    from .pm_engine import PMEngine
+                    summary = PMEngine(L, md, cfg, {**exp, "book": book["id"]}, now).step()
+                elif cfg.get("book_type") == "intraday":
                     from .day_engine import DayEngine
                     summary = DayEngine(L, md, cfg, {**exp, "book": book["id"]}, now).step()
                 else:

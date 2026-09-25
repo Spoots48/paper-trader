@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Paper Trader</title>
+<title>Paper Trader · Command Center</title>
 <style>
 :root{
   --bg:#f5f5f3; --panel:#ffffff; --sidebar:#ecece9; --ink:#1c1c1e; --muted:#6c6c70; --faint:#9a9a9e;
@@ -167,6 +167,68 @@ pre.log{background:var(--sidebar);border:1px solid var(--line);border-radius:10p
 .steps li::before{content:counter(st);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;display:grid;place-items:center}
 .gl dt{font-weight:650;margin-top:10px}.gl dd{margin:2px 0 0;color:var(--muted)}
 .own{padding:10px 0;border-bottom:1px solid var(--line)}.own:last-child{border-bottom:0}
+
+/* ---- neon trading-terminal theme (always dark) ---- */
+:root:not(#_){
+  --bg:#07060a; --panel:#0e0b13; --sidebar:#0a080e; --ink:#f4eaf2; --muted:#9c8c9a; --faint:#5e5260;
+  --line:#2a1d2b; --line-strong:#3d2940; --hover:#1a1220;
+  --accent:#ff2d95; --accent-soft:#3a0f26; --warn:#ffb020; --warn-soft:#33240a; --bad:#ff4d6d; --bad-soft:#3a1019;
+  --info:#8ab4ff; --info-soft:#141d33; --gain:#2dff8f; --gain-soft:#0c2b1c;
+  --s-daytrade:#ff2d95; --s-crypto:#22e0ff; --s-primary:#2dff8f; --s-research:#b28dff; --s-spy:#8fa3b8; --s-cash:#5e5260;
+  --shadow:none; --radius:6px;
+}
+body{font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;letter-spacing:.01em;
+  background:radial-gradient(1200px 600px at 70% -10%,#2a0a1e 0%,transparent 60%),var(--bg)}
+.pos{color:var(--gain)} .neg{color:var(--bad)}
+.card{border-color:var(--line-strong);background:linear-gradient(180deg,#120d18,#0c0910)}
+.card h2{text-transform:uppercase;letter-spacing:.12em;font-size:11px;color:var(--muted)}
+.card h2::before{content:"// ";color:var(--accent)}
+.brand .logo{background:var(--accent);box-shadow:0 0 18px rgba(255,45,149,.6)}
+.nav button.on{background:var(--hover);box-shadow:inset 2px 0 0 var(--accent)}
+.btn.primary{color:#12060c}
+.badge.b-buy{background:var(--gain-soft);color:var(--gain)}
+.ico.buy{background:var(--gain-soft);color:var(--gain)}
+.chip.main{background:var(--accent-soft);color:var(--accent)}
+.top h1{text-transform:uppercase;letter-spacing:.14em;font-size:18px}
+/* command center */
+.cc-strip{display:flex;gap:22px;align-items:center;flex-wrap:wrap;padding:10px 14px;border:1px solid var(--line-strong);border-radius:var(--radius);
+  background:#0b0810;margin-bottom:12px;font-size:12px}
+.cc-strip .k{color:var(--muted);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;display:block}
+.cc-strip .v{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
+.live{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-weight:800;letter-spacing:.16em;font-size:11px}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.35}}
+.paper{border:1px solid var(--warn);color:var(--warn);padding:2px 8px;border-radius:4px;font-size:10.5px;letter-spacing:.14em;font-weight:800}
+.cc-grid{display:grid;gap:12px}
+.cc-stats{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.stat{padding:12px 14px}
+.stat .k{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font-size:28px;font-weight:800;margin-top:6px;font-variant-numeric:tabular-nums}
+.stat .s{font-size:11.5px;color:var(--muted);margin-top:2px}
+.glow-pink{color:#ffd2e8;text-shadow:0 0 16px rgba(255,45,149,.55)}
+.glow-green{color:var(--gain);text-shadow:0 0 16px rgba(45,255,143,.45)}
+.glow-red{color:var(--bad);text-shadow:0 0 16px rgba(255,77,109,.45)}
+.cc-main{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
+.term{font-size:12px;line-height:1.55;max-height:330px;overflow:auto;padding-right:4px}
+.term .ln{display:grid;grid-template-columns:62px 34px 1fr;gap:8px;padding:3px 0;border-bottom:1px dashed #1c1320}
+.term .t{color:var(--faint)} .term .b{font-weight:800}
+.term .buy{color:var(--gain)} .term .sell{color:var(--bad)} .term .info{color:var(--info)} .term .win{color:var(--gain);font-weight:800} .term .loss{color:var(--bad);font-weight:800}
+.ob{font-size:12px;font-variant-numeric:tabular-nums}
+.ob .row{display:grid;grid-template-columns:70px 1fr 70px;gap:8px;align-items:center;padding:2px 0;position:relative}
+.ob .bar{height:14px;border-radius:2px}
+.ob .ask .bar{background:linear-gradient(90deg,transparent,rgba(255,77,109,.45))}
+.ob .bid .bar{background:linear-gradient(90deg,transparent,rgba(45,255,143,.40))}
+.ob .mid{font-size:18px;font-weight:800;text-align:center;padding:6px 0;color:#fff}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tile{border:1px solid var(--line-strong);border-radius:var(--radius);padding:12px;background:#0c0910;cursor:pointer;position:relative}
+.tile:hover{border-color:var(--accent)}
+.tile.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 0 22px rgba(255,45,149,.25)}
+.tile .nm{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800}
+.tile .bal{font-size:20px;font-weight:800;margin:8px 0 2px;font-variant-numeric:tabular-nums}
+.tile .dot2{position:absolute;top:12px;right:12px;width:8px;height:8px;border-radius:50%}
+.hero2{font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:14px;line-height:1.6}
+.hero2 p{margin:0 0 6px}
+@media (max-width:1100px){.cc-main{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -174,7 +236,7 @@ pre.log{background:var(--sidebar);border:1px solid var(--line);border-radius:10p
   <aside>
     <div class="brand">
       <div class="logo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg></div>
-      <div><b>Paper Trader</b><small>30-day experiment</small></div>
+      <div><b>PAPER TRADER</b><small>command center · paper money</small></div>
     </div>
     <div class="nav" id="nav"></div>
     <div class="side-foot">Paper trading only.<br>No real money, no brokerage.<br><span id="gen"></span></div>
@@ -239,7 +301,7 @@ const ICONS = {
   system: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
   method: '<circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/>'
 };
-const VIEWS = [['home','Home'],['feed','Activity'],['own','What it owns'],['reports','Weekly reports'],['how','How it works'],
+const VIEWS = [['home','Command center'],['feed','Activity'],['own','What it owns'],['reports','Weekly reports'],['how','How it works'],
   ['overview','Detailed numbers'],['decisions','Decision log'],['activity','Trades & orders'],['holdings','Positions table'],['backtest','Past-data tests'],['system','System'],['method','Rules (technical)']];
 const MAIN_VIEWS = 5;
 
@@ -249,7 +311,9 @@ const BOT = {
   daytrade: {name: 'Day trader', tag: 'Main bot', main: true, blurb: 'Buys a few fast-moving stocks each morning and sells everything before the market closes.'},
   primary: {name: 'Index fund + safety switch', tag: 'Comparison', blurb: 'Just owns the whole S&P 500 (via the SPY fund); switches to cash if the market turns bad.'},
   research: {name: 'Swing trader', tag: 'Comparison', blurb: 'Holds strong stocks for days or weeks instead of minutes.'},
+  crypto: {name: 'Crypto odds bot', tag: 'New', blurb: 'Bets on Polymarket "Bitcoin up or down" markets when live prices say the posted odds are wrong by more than the fees.'},
 };
+const TAG = {daytrade: 'DT', crypto: 'PM', primary: 'IX', research: 'SW'};
 const botName = id => (BOT[id] || {}).name || id;
 const co = t => { const n = (S.state.names || {})[t]; return n ? `${esc(n)} <span class="mut">(${esc(t)})</span>` : esc(t); };
 const coTxt = t => { const n = (S.state.names || {})[t]; return n ? `${n} (${t})` : t; };
@@ -261,7 +325,8 @@ const WHY_BUY = {
   ORB_BREAKOUT: 'its price jumped above its early-morning high while trading was unusually busy',
   MOMENTUM: 'it has been one of the strongest stocks over the past 6 months and is still rising',
   EARNINGS_GAP: 'it jumped after good earnings news, on heavy trading',
-  RESIDUAL: 'to put spare cash into the whole market'};
+  RESIDUAL: 'to put spare cash into the whole market',
+  PM_ENTRY: 'live prices said this outcome was more likely than the odds on Polymarket, by more than the fees'};
 const WHY_SELL = {
   STOP: 'its price fell to the safety stop, so the loss was kept small',
   STOP_GAP: 'its price dropped straight through the safety stop',
@@ -271,7 +336,8 @@ const WHY_SELL = {
   EARNINGS_AVOID: 'it reports earnings soon, which can cause big surprise moves',
   REGIME_OFF: 'the overall market looked risky, so it moved to cash',
   DD_HALT: 'losses reached the safety limit, so it stopped trading',
-  FUNDING: 'to free up cash for a new purchase', REBALANCE: 'to keep the mix on target'};
+  FUNDING: 'to free up cash for a new purchase', REBALANCE: 'to keep the mix on target',
+  PM_WIN: 'the bet settled in our favor', PM_LOSS: 'the bet settled against us'};
 
 function events(){
   const out = [];
@@ -335,35 +401,107 @@ function botValue(b){
   return b.live_equity != null ? b.live_equity : (p.equity ?? cash0);
 }
 
-function viewHome(){
-  const st = S.state, cash0 = st.experiment.starting_cash;
-  const rows = [];
-  let spy = null;
-  (st.books || []).forEach(b => {
-    const v = botValue(b), r = v / cash0 - 1, m = BOT[b.id] || {};
-    if (spy == null && b.id !== 'daytrade') spy = b.live_spy_equity ?? (b.perf || {}).spy_equity;
-    const started = (b.experiment || {}).start_date, notYet = started && started > st.calendar.today_et;
-    rows.push(`<div class="srow"><div class="nm"><span class="sw" style="width:10px;height:10px;border-radius:3px;background:${COLORS[b.id]}"></span>${esc(m.name || b.name)} <span class="chip ${m.main ? 'main' : ''}">${esc(m.tag || '')}</span></div>
-      <div class="ds">${esc(m.blurb || b.subtitle)}${notYet ? ` <b>Starts ${esc(dayName(started))}.</b>` : ''}</div>
-      <div class="vl">${money(v)}<small class="${cls(r)}">${notYet ? 'not started yet' : `${money(v - cash0, true)} (${pct(r)})`}</small></div></div>`);
+
+function termLines(limit){
+  const out = [];
+  (S.state.books || []).forEach(b => {
+    (b.fills || []).forEach(f => {
+      const d = tparse(f.price_time) || tparse(f.recorded_at);
+      let cls_ = f.side === 'BUY' ? 'buy' : 'sell', act = f.side, txt;
+      if (f.reason_code === 'PM_WIN'){ cls_ = 'win'; act = 'WIN'; }
+      if (f.reason_code === 'PM_LOSS'){ cls_ = 'loss'; act = 'LOSS'; }
+      const amt = f.qty * f.fill_price, pnl = f.realized_pnl;
+      if (f.side === 'BUY') txt = `<span class="${cls_} b">${act}</span> ${esc(f.ticker)} ${money(amt)} @ ${f.fill_price < 2 ? f.fill_price.toFixed(3) : money(f.fill_price)}`;
+      else txt = `<span class="${cls_} b">${act}</span> ${esc(f.ticker)}${pnl != null ? ` <span class="${pnl >= 0 ? 'win' : 'loss'}">${money(pnl, true)}</span>` : ''} <span class="mut">${esc((WHY_SELL[f.reason_code] || '').split(',')[0])}</span>`;
+      out.push({d, html: `<div class="ln"><span class="t">${d ? d.toLocaleTimeString('en-US', {timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: false}) : ''}</span><span class="info">${TAG[b.id] || '··'}</span><span>${txt}</span></div>`});
+    });
+    (b.decisions || []).filter(x => x.reason_code === 'DAY_SELECTION' || x.reason_code === 'PM_SCAN').slice(0, 30).forEach(x => {
+      const d = tparse(x.reason_code === 'PM_SCAN' ? x.created_at : x.data_through);
+      const txt = x.reason_code === 'PM_SCAN' ? `SCAN ${esc(x.reason.split(';')[0])}` : `SELECT ${((x.metrics || {}).candidates || []).length} stocks in play: ${esc(((x.metrics || {}).candidates || []).slice(0, 6).join(' '))}`;
+      out.push({d, html: `<div class="ln"><span class="t">${d ? d.toLocaleTimeString('en-US', {timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: false}) : ''}</span><span class="info">${TAG[b.id] || '··'}</span><span class="mut">${txt}</span></div>`});
+    });
   });
-  rows.push(`<div class="srow"><div class="nm"><span class="sw" style="width:10px;height:10px;border-radius:3px;background:${COLORS.spy}"></span>Just buy the S&amp;P 500 <span class="chip">Benchmark</span></div>
-    <div class="ds">What $100 would be worth if you'd simply bought the S&amp;P 500 index fund on day 1 and done nothing else. A bot is only "good" if it beats this.</div>
-    <div class="vl">${money(spy ?? cash0)}<small class="${cls(spy ? spy / cash0 - 1 : 0)}">${spy ? `${money(spy - cash0, true)} (${pct(spy / cash0 - 1)})` : 'starts day 1'}</small></div></div>`);
-  rows.push(`<div class="srow"><div class="nm"><span class="sw" style="width:10px;height:10px;border-radius:3px;background:${COLORS.cash}"></span>Do nothing <span class="chip">Benchmark</span></div>
-    <div class="ds">Keeping the $100 as cash.</div><div class="vl">${money(cash0)}<small class="mut">$0.00 (0.00%)</small></div></div>`);
-  const ev = events().slice(0, 8);
+  return out.filter(x => x.d).sort((a, b) => b.d - a.d).slice(0, limit).map(x => x.html).join('');
+}
+
+function obPanel(){
+  const f = S.state.live_feed || {}, pm = f.pm;
+  if (!pm) return '<div class="empty">Live market feed loads a few seconds after the app opens.</div>';
+  const mx = Math.max(1, ...pm.asks.map(a => a[1]), ...pm.bids.map(b => b[1]));
+  const row = (p, sz, cl) => `<div class="row ${cl}"><span>${(p * 100).toFixed(1)}¢</span><div class="bar" style="width:${Math.max(4, sz / mx * 100)}%"></div><span style="text-align:right">${Math.round(sz).toLocaleString()}</span></div>`;
+  const mid = pm.asks.length && pm.bids.length ? (pm.asks[0][0] + pm.bids[0][0]) / 2 : null;
+  const ends = tparse(pm.ends), left = ends ? Math.max(0, Math.round((ends - Date.now()) / 60000)) : null;
+  return `<div class="mut" style="font-size:11.5px;margin-bottom:6px">${esc(pm.title)} · Polymarket · ${left != null ? left + ' min left' : ''}</div>
+    <div class="ob">${pm.asks.slice().reverse().map(a => row(a[0], a[1], 'ask')).join('')}
+    <div class="mid">UP ${mid != null ? (mid * 100).toFixed(1) + '¢' : '—'} <span class="mut" style="font-size:11px">= ${mid != null ? Math.round(mid * 100) : '—'}% chance Bitcoin ends up</span></div>
+    ${pm.bids.map(b => row(b[0], b[1], 'bid')).join('')}</div>
+    <p class="mut" style="font-size:11px;margin:8px 0 0">Red = people selling "Up" shares, green = buying. Live, refreshed every 15 s. The bot's paper bets use this same order book.</p>`;
+}
+
+function viewHome(){
+  const st = S.state, cash0 = st.experiment.starting_cash, f = st.live_feed || {};
+  const books = st.books || [];
+  const main = book('daytrade');
+  const allFills = books.flatMap(b => (b.fills || []).map(x => ({...x, _b: b.id})));
+  const closed = allFills.filter(x => x.side === 'SELL' && x.realized_pnl != null && x.sleeve !== 'residual');
+  const wins = closed.filter(x => x.realized_pnl > 0).length;
+  const today = st.calendar.today_et;
+  const tradesToday = allFills.filter(x => x.side === 'BUY' && (x.session === today)).length;
+  const totalVal = books.reduce((a, b) => a + botValue(b), 0), totalStart = books.length * cash0;
+  const spyB = book('primary'), spy = spyB.live_spy_equity ?? (spyB.perf || {}).spy_equity;
+  const mv = botValue(main), mr = mv / cash0 - 1;
+  const cl = x => x > 0 ? 'glow-green' : x < 0 ? 'glow-red' : 'glow-pink';
+  const clock = new Date().toLocaleTimeString('en-US', {timeZone: 'America/New_York', hour12: false});
+  const px = k => f[k] ? money(f[k].price) : '—';
+  const tiles = books.map(b => {
+    const v = botValue(b), r = v / cash0 - 1, m = BOT[b.id] || {};
+    const started = (b.experiment || {}).start_date, notYet = started && started > today;
+    return `<div class="tile ${S.feedBot === b.id ? 'on' : ''}" data-b="${b.id}"><span class="dot2" style="background:${COLORS[b.id]};box-shadow:0 0 10px ${COLORS[b.id]}"></span>
+      <div class="nm" style="color:${COLORS[b.id]}">${esc(m.name || b.name)}</div><div class="bal">${money(v)}</div>
+      <div class="${cls(r)}" style="font-size:12px">${notYet ? 'starts ' + esc(started) : `${money(v - cash0, true)} (${pct(r)})`}</div>
+      <div class="mut" style="font-size:11px;margin-top:6px;font-family:-apple-system,system-ui">${esc(m.blurb || '')}</div></div>`;
+  }).join('') + `<div class="tile" style="cursor:default"><span class="dot2" style="background:var(--s-spy)"></span><div class="nm" style="color:var(--s-spy)">Just buy S&amp;P 500</div>
+      <div class="bal">${money(spy ?? cash0)}</div><div class="${cls(spy ? spy - cash0 : 0)}" style="font-size:12px">${spy ? `${money(spy - cash0, true)} (${pct(spy / cash0 - 1)})` : ''}</div>
+      <div class="mut" style="font-size:11px;margin-top:6px;font-family:-apple-system,system-ui">The yardstick: a bot is only good if it beats this.</div></div>`;
   $('#view').innerHTML = `
-    <div class="card hero"><div class="big">What's happening</div>${nowSummary()}</div>
-    <div class="card" style="margin-top:14px"><h2>What each pretend $100 is worth now</h2><div class="score">${rows.join('')}</div></div>
-    <div class="card" style="margin-top:14px"><div class="row" style="justify-content:space-between;margin-bottom:6px"><h2 style="margin:0">How the $100 has changed, day by day</h2>
-      <div class="legend">${equitySeries().series.map(x => `<span><i style="background:${x.color}"></i>${esc(x.name)}</span>`).join('')}</div></div><div class="chart" id="eq"></div>
-      <p class="mut" style="font-size:12.5px;margin:6px 0 0">Each line starts at $100. Above the dashed line = making money, below = losing money.</p></div>
-    <div class="card" style="margin-top:14px"><h2>Latest activity</h2>${feedHtml(ev, 'Nothing has happened yet. Trades will appear here in plain English as soon as they happen.')}
-      ${ev.length ? '<p style="margin:10px 0 0"><a href="#" id="more-act">See all activity →</a></p>' : ''}</div>`;
+    <div class="cc-strip"><span class="live">LIVE</span><span class="paper">PAPER MONEY</span>
+      <div><span class="k">BTC</span><span class="v">${px('BTC')}</span></div><div><span class="k">ETH</span><span class="v">${px('ETH')}</span></div>
+      <div><span class="k">SOL</span><span class="v">${px('SOL')}</span></div>
+      <div><span class="k">Stock market</span><span class="v ${st.calendar.market_open_now ? 'pos' : 'mut'}">${st.calendar.market_open_now ? 'OPEN' : 'CLOSED'}</span></div>
+      <div style="margin-left:auto;text-align:right"><span class="k">New York time</span><span class="v">${clock}</span></div></div>
+    <div class="cc-grid cc-stats">
+      <div class="card stat"><div class="k">Day trader balance</div><div class="v ${cl(mr)}">${money(mv)}</div><div class="s">started with ${money(cash0)} · ${pct(mr)}</div></div>
+      <div class="card stat"><div class="k">All bots · total P&amp;L</div><div class="v ${cl(totalVal - totalStart)}">${money(totalVal - totalStart, true)}</div><div class="s">${books.length} bots × ${money(cash0)} pretend money</div></div>
+      <div class="card stat"><div class="k">Win rate</div><div class="v glow-pink">${closed.length ? Math.round(wins / closed.length * 100) + '%' : '—'}</div><div class="s">${wins}W / ${closed.length - wins}L finished trades</div></div>
+      <div class="card stat"><div class="k">Trades today</div><div class="v glow-pink">${tradesToday}</div><div class="s">updated ${ago(st.generated_at)}</div></div>
+    </div>
+    <div class="cc-grid cc-main" style="margin-top:12px">
+      <div class="card"><div class="row" style="justify-content:space-between;margin-bottom:6px"><h2 style="margin:0">Balance history</h2>
+        <div class="legend">${equitySeries().series.map(x => `<span><i style="background:${x.color}"></i>${esc(x.name)}</span>`).join('')}</div></div>
+        <div class="chart" id="eq"></div></div>
+      <div class="card"><h2>Activity log · live</h2><div class="term">${termLines(40) || '<div class="empty">No trades yet.</div>'}</div></div>
+    </div>
+    <div class="cc-grid cc-main" style="margin-top:12px">
+      <div class="card hero2"><h2>What's happening</h2>${nowSummary()}${cryptoSummary()}</div>
+      <div class="card"><h2>Order book · BTC 15-min up/down</h2>${obPanel()}</div>
+    </div>
+    <div class="card" style="margin-top:12px"><h2>Bots</h2><div class="tiles">${tiles}</div></div>`;
   const {xs, series} = equitySeries();
-  lineChart($('#eq'), series, {x: xs, xfmt: shortDate, fmt: (v, full, d) => full ? money(v) : '$' + v.toFixed(d ?? 0), baseline: cash0, minSpan: 6, label: 'Value of each $100', empty: 'The chart fills in after the first trading day.'});
-  const m = $('#more-act'); if (m) m.onclick = e => { e.preventDefault(); S.view = 'feed'; localSet('view', 'feed'); render(); };
+  lineChart($('#eq'), series, {x: xs, xfmt: shortDate, fmt: (v, full, d) => full ? money(v) : '$' + v.toFixed(d ?? 0), baseline: cash0, minSpan: 6, height: 250, label: 'Value of each $100', empty: 'The chart fills in after the first trading day.'});
+  document.querySelectorAll('.tile[data-b]').forEach(t => t.onclick = () => { S.feedBot = t.dataset.b; S.view = 'feed'; localSet('view', 'feed'); render(); });
+}
+
+function cryptoSummary(){
+  const b = book('crypto');
+  if (!b.frozen) return '';
+  const open = (b.positions || []).length, fills = b.fills || [];
+  const settled = fills.filter(x => x.side === 'SELL'), won = settled.filter(x => x.reason_code === 'PM_WIN').length;
+  const scan = (b.decisions || []).find(x => x.reason_code === 'PM_SCAN');
+  let t = `<p><b style="color:var(--s-crypto)">Crypto odds bot:</b> `;
+  t += scan ? `last scan ${ago(scan.created_at)} checked the live Bitcoin/Ethereum/Solana/XRP/Dogecoin up-or-down markets. ` : 'waiting for its first scan. ';
+  t += open ? `It has <b>${open} open bet${open === 1 ? '' : 's'}</b>. ` : 'No open bets right now. ';
+  if (settled.length) t += `Settled so far: <b>${won} won, ${settled.length - won} lost</b>.`;
+  return t + '</p>';
 }
 
 function viewFeed(){
@@ -470,8 +608,7 @@ function renderTop(){
     h += `<div class="menu" id="m"><button class="btn" id="b-more" aria-label="More">•••</button><div class="pop">
       ${sc.mode === 'cloud' ? '<button data-a="github">Open on GitHub</button>' : ''}
       <button data-a="folder">Open project folder</button>
-      <button data-a="export">Export static dashboard</button><hr>
-      <button data-a="theme">Toggle light / dark</button></div></div>`;
+      <button data-a="export">Export static dashboard</button></div></div>`;
   }
   $('#controls').innerHTML = h;
   if (!LIVE) return;
@@ -549,7 +686,7 @@ function lineChart(el, series, opts = {}){
   };
   svg.onmouseleave = () => { tip.style.display = 'none'; cur.style.display = 'none'; };
 }
-const COLORS = {daytrade: 'var(--s-daytrade)', primary: 'var(--s-primary)', research: 'var(--s-research)', spy: 'var(--s-spy)', cash: 'var(--s-cash)'};
+const COLORS = {crypto: 'var(--s-crypto)', daytrade: 'var(--s-daytrade)', primary: 'var(--s-primary)', research: 'var(--s-research)', spy: 'var(--s-spy)', cash: 'var(--s-cash)'};
 
 // sessions of the experiment window (weekdays; holidays show as flat, none fall in this window)
 function windowSessions(){
@@ -763,7 +900,12 @@ function viewBacktest(){
         ['Day-trading book', `<span class="${cls(r.full.total_return)}">${pct(r.full.total_return, 1)}</span>`, pct(-r.full.max_drawdown, 1), Math.round(r.full.pct_up_days * 100) + '%'],
         ['SPY, same days', `<span class="${cls(r.spy_same_period.total_return)}">${pct(r.spy_same_period.total_return, 1)}</span>`, pct(-r.spy_same_period.max_drawdown, 1), Math.round(r.spy_same_period.pct_up_days * 100) + '%']])}
       <p class="mut" style="font-size:12.5px;margin-top:10px">${r.trades.n_round_trips} trades (${(r.trades.avg_trades_per_day || 0).toFixed(1)}/day), win rate ${Math.round((r.trades.win_rate || 0) * 100)}%, exits: ${esc(Object.entries(r.trades.exit_reasons || {}).map(([a, b]) => a + ' ' + b).join(', '))}. ${k === '5m' ? 'Pre-registered test; 5-minute bars could not tell whether the tight stop was hit before or after entry, and the worst-case assumption decided 80% of trades.' : 'Same rules at the paper\'s 1-minute resolution; the live book runs this way. Very short sample.'}</p></div>`).join('');
-  $('#view').innerHTML = dcard + `<div class="banner info" style="margin-top:14px">Historical simulation — not live results. Parameters were fixed before this test (see research/PREREGISTRATION.md). News filtering could not be backtested (no free historical archive), and the universe is today's S&P 500 with each stock allowed only after its index-inclusion date.</div>${per}`;
+  const pc = S.state.pm_calibration;
+  const pcard = pc ? `<div class="card" style="margin-top:14px"><h2>Crypto odds bot · model vs Polymarket's own odds · ${esc((pc.period_utc || [''])[0].slice(0, 10))} → ${esc((pc.period_utc || ['', ''])[1].slice(0, 10))}</h2>
+      ${table([{h: ''}, {h: 'Accuracy score (lower = better)', n: 1}], [['Polymarket\'s own odds', pc.brier_market.toFixed(3)], ['Bot\'s fair-value model', pc.brier_model.toFixed(3)]])}
+      <p class="mut" style="font-size:12.5px;margin-top:10px">${pc.samples.toLocaleString()} price snapshots from settled markets. The market's odds were more accurate than the model, so most of the "gaps" the bot sees are the model being overconfident, not the market being wrong.
+      ${pc.one_bet_per_window ? `Replaying the bot's exact rules: ${pc.one_bet_per_window.n.toLocaleString()} bets, ${Math.round(pc.one_bet_per_window.win_rate * 100)}% won, overall ${pct(pc.one_bet_per_window.return_on_stake, 1)} after fees.` : ''}</p></div>` : '';
+  $('#view').innerHTML = dcard + pcard + `<div class="banner info" style="margin-top:14px">Historical simulation — not live results. Parameters were fixed before this test (see research/PREREGISTRATION.md). News filtering could not be backtested (no free historical archive), and the universe is today's S&P 500 with each stock allowed only after its index-inclusion date.</div>${per}`;
   Object.entries(bt.periods).forEach(([p, d]) => {
     const c = d.curve;
     lineChart($('#bt-' + p), [{name: 'Primary rules', color: 'var(--s-primary)', values: c.regime_gated_spy_only}, {name: 'Research rules', color: 'var(--s-research)', values: c.full_strategy}, {name: 'SPY', color: 'var(--s-spy)', values: c.spy}],
