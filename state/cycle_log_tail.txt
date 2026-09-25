@@ -1,4 +1,4 @@
-2026-09-25 16:39:50,319 INFO [daytrade] no action needed
-2026-09-25 16:40:00,205 INFO [crypto] WON SOL 15m 12:15 Up +1.98; BET SOL 4h 12:00 Up 5.0 @ 0.800 (edge 0.06)
-2026-09-25 16:40:00,519 INFO [primary] no action needed
-2026-09-25 16:40:00,975 INFO [research] no action needed
+2026-09-25 17:00:40,339 INFO [daytrade] no action needed
+2026-09-25 17:00:48,906 INFO [crypto] BET XRP 4h 12:00 Down 5.0 @ 0.720 (edge 0.06)
+2026-09-25 17:00:49,157 INFO [primary] no action needed
+2026-09-25 17:00:49,541 INFO [research] no action needed
