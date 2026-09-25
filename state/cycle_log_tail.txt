@@ -1,4 +1,4 @@
-2026-09-25 18:38:55,994 INFO [daytrade] no action needed
-2026-09-25 18:39:03,382 INFO [crypto] LOST SOL 15m 14:15 Up -7.58; LOST XRP 15m 14:15 Up -7.58; BET XRP 5m 14:35 Up 8.39 @ 0.650 (edge 0.30)
-2026-09-25 18:39:03,566 INFO [primary] no action needed
-2026-09-25 18:39:03,815 INFO [research] no action needed
+2026-09-25 18:59:07,266 INFO [daytrade] no action needed
+2026-09-25 18:59:12,959 INFO [crypto] WON XRP 5m 14:35 Up +2.80; BET ETH 4h 12:00 Up 7.52 @ 0.823 (edge 0.10)
+2026-09-25 18:59:13,263 INFO [primary] no action needed
+2026-09-25 18:59:13,666 INFO [research] no action needed
