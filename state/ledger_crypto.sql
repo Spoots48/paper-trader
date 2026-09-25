@@ -596,6 +596,7 @@ INSERT INTO "runs" VALUES('20260925T202649Z-crypto','2026-09-25T20:26:55Z','2026
 INSERT INTO "runs" VALUES('20260925T203611Z-crypto','2026-09-25T20:36:17Z','2026-09-25T20:36:17Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20260925T204359Z-crypto','2026-09-25T20:44:05Z','2026-09-25T20:44:05Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20260925T231353Z-crypto','2026-09-25T23:13:58Z','2026-09-25T23:13:58Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20260925T232853Z-crypto','2026-09-25T23:28:58Z','2026-09-25T23:28:58Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -603,9 +604,9 @@ CREATE TABLE snapshots (
 );
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','74.22458862','2026-09-25T20:10:36Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-25T23:13:58Z');
-INSERT INTO "state" VALUES('pm_positions','{}','2026-09-25T23:13:58Z');
-INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-09-25T23:13:53Z", "marks": {}}','2026-09-25T23:13:58Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-25T23:28:58Z');
+INSERT INTO "state" VALUES('pm_positions','{}','2026-09-25T23:28:58Z');
+INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-09-25T23:28:53Z", "marks": {}}','2026-09-25T23:28:58Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
