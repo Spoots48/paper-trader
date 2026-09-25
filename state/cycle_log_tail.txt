@@ -1,4 +1,4 @@
-2026-09-25 15:16:25,069 INFO [daytrade] no action needed
-2026-09-25 15:16:43,631 INFO [crypto] LOST ETH 1h 10:00 Down -17.05; WON ETH 15m 10:45 Up +1.44; LOST XRP 1h 10:00 Down -13.06; BET SOL 1h 11:00 Up 11.79 @ 0.740 (edge 0.08); BET XRP 4h 08:00 Down 7.88 @ 0.584 (edge 0.07); BET DOGE 5m 11:15 Down 14.59 @ 0.770 (edge 0.19); BET DOGE 4h 08:00 Down 11.14 @ 0.567 (edge 0.32)
-2026-09-25 15:16:45,167 INFO [primary] no action needed
-2026-09-25 15:16:45,679 INFO [research] no action needed
+2026-09-25 15:37:15,986 INFO [daytrade] no action needed
+2026-09-25 15:37:22,734 INFO [crypto] LOST BTC 1h 10:00 Down -10.52; WON DOGE 5m 11:15 Down +3.17; BET BTC 1h 11:00 Down 11.65 @ 0.850 (edge 0.11); BET XRP 5m 11:35 Up 6.99 @ 0.480 (edge 0.46)
+2026-09-25 15:37:22,923 INFO [primary] no action needed
+2026-09-25 15:37:23,171 INFO [research] no action needed
