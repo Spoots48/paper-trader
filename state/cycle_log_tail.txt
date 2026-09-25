@@ -1,4 +1,4 @@
-2026-09-25 13:38:23,209 INFO [daytrade] 2026-09-25: 11 candidates (CSGP, DDOG, COST, GEN, MGM, FSLR, GDDY, ILMN…); BUY JBL @ 324.49 (ORB_BREAKOUT); BUY COST @ 910.68 (ORB_BREAKOUT); SELL COST @ 906.70 (STOP); BUY PCAR @ 111.84 (ORB_BREAKOUT); SELL PCAR @ 111.11 (STOP)
-2026-09-25 13:38:34,387 INFO [crypto] BET BTC 1h 09:00 Down 12.04 @ 0.820 (edge 0.14); BET BTC 4h 08:00 Down 13.46 @ 0.729 (edge 0.17); BET ETH 1h 09:00 Down 11.26 @ 0.880 (edge 0.08); BET ETH 4h 08:00 Down 10.57 @ 0.700 (edge 0.09); BET SOL 1h 09:00 Down 11.26 @ 0.880 (edge 0.08); BET SOL 4h 08:00 Down 11.67 @ 0.750 (edge 0.08)
-2026-09-25 13:38:34,717 INFO [primary] no action needed
-2026-09-25 13:38:35,198 INFO [research] no action needed
+2026-09-25 13:52:56,375 INFO [daytrade] BUY CSGP @ 27.88 (ORB_BREAKOUT); BUY FSLR @ 177.99 (ORB_BREAKOUT); SELL FSLR @ 176.17 (STOP); SELL JBL @ 322.07 (STOP)
+2026-09-25 13:53:06,375 INFO [crypto] no action needed
+2026-09-25 13:53:06,624 INFO [primary] no action needed
+2026-09-25 13:53:07,011 INFO [research] no action needed
