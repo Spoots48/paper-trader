@@ -1,4 +1,4 @@
-2026-09-25 17:57:13,072 INFO [daytrade] no action needed
-2026-09-25 17:57:21,438 INFO [crypto] no action needed
-2026-09-25 17:57:21,628 INFO [primary] no action needed
-2026-09-25 17:57:21,922 INFO [research] no action needed
+2026-09-25 18:18:05,561 INFO [daytrade] no action needed
+2026-09-25 18:18:19,441 INFO [crypto] WON BTC 1h 13:00 Up +2.29; WON ETH 1h 13:00 Up +2.82; WON SOL 1h 13:00 Up +1.67; WON XRP 1h 13:00 Up +2.96; LOST DOGE 1h 13:00 Up -7.06; BET BTC 1h 14:00 Up 9.03 @ 0.830 (edge 0.13); BET BTC 4h 12:00 Up 9.52 @ 0.770 (edge 0.09); BET ETH 1h 14:00 Up 8.37 @ 0.900 (edge 0.06); BET SOL 15m 14:15 Up 9.13 @ 0.820 (edge 0.14); BET XRP 15m 14:15 Up 10.33 @ 0.720 (edge 0.13)
+2026-09-25 18:18:19,738 INFO [primary] no action needed
+2026-09-25 18:18:20,147 INFO [research] no action needed
