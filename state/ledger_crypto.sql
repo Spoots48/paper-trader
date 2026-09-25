@@ -8,6 +8,7 @@ CREATE TABLE decisions (
   created_at TEXT NOT NULL, data_through TEXT NOT NULL, session TEXT NOT NULL, ticker TEXT NOT NULL,
   sleeve TEXT, action TEXT NOT NULL, reason_code TEXT, reason TEXT, metrics TEXT, news_ids TEXT
 );
+INSERT INTO "decisions" VALUES(1,'pm:scan:2026-09-25T13:14:45Z','20260925T131445Z-crypto','2026-09-25T13:14:45Z','2026-09-25T13:14:45Z','2026-09-25','*','predmarket','INFO','PM_SCAN','scanned 10 live markets; 0 bet(s). Best gaps: btc-updown-4h-1790337600 Down +0.03, xrp-up-or-down-september-25-2026-9am-et Down +0.03, xrp-updown-4h-1790337600 Up +0.02, sol-updown-4h-1790337600 Down +0.01, dogecoin-up-or-down-september-25-2026-9am-et Down +0.00','{"scanned": [{"market": "bitcoin-up-or-down-september-25-2026-9am-et", "p_up": 0.44, "best_side": "Down", "edge": -0.06}, {"market": "btc-updown-4h-1790337600", "p_up": 0.316, "best_side": "Down", "edge": 0.029}, {"market": "ethereum-up-or-down-september-25-2026-9am-et", "p_up": 0.368, "best_side": "Down", "edge": -0.046}, {"market": "eth-updown-4h-1790337600", "p_up": 0.409, "best_side": "Down", "edge": -0.011}, {"market": "solana-up-or-down-september-25-2026-9am-et", "p_up": 0.479, "best_side": "Up", "edge": -0.096}, {"market": "sol-updown-4h-1790337600", "p_up": 0.41, "best_side": "Down", "edge": 0.006}, {"market": "xrp-up-or-down-september-25-2026-9am-et", "p_up": 0.281, "best_side": "Down", "edge": 0.026}, {"market": "xrp-updown-4h-1790337600", "p_up": 0.598, "best_side": "Up", "edge": 0.023}, {"market": "dogecoin-up-or-down-september-25-2026-9am-et", "p_up": 0.272, "best_side": "Down", "edge": 0.001}, {"market": "doge-updown-4h-1790337600", "p_up": 0.621, "best_side": "Up", "edge": -0.006}]}','[]');
 CREATE TABLE dividends (
   ticker TEXT NOT NULL, ex_date TEXT NOT NULL, per_share REAL NOT NULL, qty REAL NOT NULL,
   amount REAL NOT NULL, recorded_at TEXT NOT NULL, PRIMARY KEY (ticker, ex_date)
@@ -17,6 +18,7 @@ CREATE TABLE events (
   payload TEXT NOT NULL, prev_hash TEXT NOT NULL, hash TEXT NOT NULL
 );
 INSERT INTO "events" VALUES(1,'2026-09-25T13:13:46Z',NULL,'freeze','{"book": "crypto", "end": "2026-10-22", "start": "2026-09-25", "strategy_sha256": "25a8a20803d222eeee466b548b1db6c923293e26df5e94960c6f226c70b81217", "universe_sha256": "172ba39de91f49af21ee2539df0b42cd5d6aa9c7afbd426114cb33bba2c27afa", "version": "pm-1.0.0"}','GENESIS','dd6067cbd17c0ed13ee27f3c52db532716941d05ac3d91dbea535b0fc73aae39');
+INSERT INTO "events" VALUES(2,'2026-09-25T13:14:50Z','20260925T131445Z-crypto','decision','{"action": "INFO", "code": "PM_SCAN", "key": "pm:scan:2026-09-25T13:14:45Z", "reason": "scanned 10 live markets; 0 bet(s). Best gaps: btc-updown-4h-1790337600 Down +0.03, xrp-up-or-down-september-25-2026-9am-et Down +0.03, xrp-updown-4h-1790337600 Up +0.02, sol-updown-4h-1790337600 Down +0.01, dogecoin-up-or-down-september-25-2026-9am-et Down +0.00", "ticker": "*"}','dd6067cbd17c0ed13ee27f3c52db532716941d05ac3d91dbea535b0fc73aae39','d07731ab1dffe7b3a79ce477737c2929e4c392b1ed672d93c8931c404198c021');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -57,6 +59,7 @@ CREATE TABLE runs (
   run_id TEXT PRIMARY KEY, started_at TEXT NOT NULL, finished_at TEXT, status TEXT NOT NULL,
   trigger TEXT, summary TEXT, error TEXT
 );
+INSERT INTO "runs" VALUES('20260925T131445Z-crypto','2026-09-25T13:14:45Z','2026-09-25T13:14:50Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -64,6 +67,9 @@ CREATE TABLE snapshots (
 );
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','100.0','2026-09-25T13:13:46Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-25T13:14:45Z');
+INSERT INTO "state" VALUES('pm_positions','{}','2026-09-25T13:14:50Z');
+INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-09-25T13:14:45Z", "marks": {}}','2026-09-25T13:14:50Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
@@ -87,5 +93,6 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',1);
+INSERT INTO "sqlite_sequence" VALUES('events',2);
+INSERT INTO "sqlite_sequence" VALUES('decisions',1);
 COMMIT;
