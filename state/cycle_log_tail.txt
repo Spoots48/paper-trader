@@ -1,4 +1,4 @@
-2026-09-25 13:52:56,375 INFO [daytrade] BUY CSGP @ 27.88 (ORB_BREAKOUT); BUY FSLR @ 177.99 (ORB_BREAKOUT); SELL FSLR @ 176.17 (STOP); SELL JBL @ 322.07 (STOP)
-2026-09-25 13:53:06,375 INFO [crypto] no action needed
-2026-09-25 13:53:06,624 INFO [primary] no action needed
-2026-09-25 13:53:07,011 INFO [research] no action needed
+2026-09-25 14:13:42,312 INFO [daytrade] no action needed
+2026-09-25 14:14:01,677 INFO [crypto] WON ETH 1h 09:00 Down +1.27; BET BTC 1h 10:00 Down 14.92 @ 0.690 (edge 0.12); BET SOL 15m 10:00 Down 70.25999999999999 @ 0.082 (edge 0.90)
+2026-09-25 14:14:01,845 INFO [primary] no action needed
+2026-09-25 14:14:02,142 INFO [research] no action needed
