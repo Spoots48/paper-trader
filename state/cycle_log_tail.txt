@@ -1,4 +1,4 @@
-2026-09-25 19:19:39,299 INFO [daytrade] no action needed
-2026-09-25 19:19:47,305 INFO [crypto] WON BTC 1h 14:00 Up +1.45; WON ETH 1h 14:00 Up +0.78; BET DOGE 4h 12:00 Up 8.65 @ 0.714 (edge 0.10)
-2026-09-25 19:19:47,468 INFO [primary] no action needed
-2026-09-25 19:19:47,729 INFO [research] no action needed
+2026-09-25 19:39:44,431 INFO [daytrade] no action needed
+2026-09-25 19:39:50,059 INFO [crypto] no action needed
+2026-09-25 19:39:50,224 INFO [primary] no action needed
+2026-09-25 19:39:50,456 INFO [research] no action needed
