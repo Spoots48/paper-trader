@@ -29,6 +29,14 @@
       "start_date": "2026-09-25"
     },
     {
+      "id": "mm",
+      "name": "Market maker",
+      "subtitle": "Posts bids on both sides of Polymarket BTC/ETH up/down markets; earns the spread and rebates if both fill (paper)",
+      "strategy": "config/strategy_mm_v1.json",
+      "ledger": "data/ledger_mm.sqlite",
+      "start_date": "2026-09-25"
+    },
+    {
       "id": "crypto",
       "name": "Crypto odds bot v1 (retired)",
       "subtitle": "Polymarket crypto Up/Down odds vs live prices (paper)",

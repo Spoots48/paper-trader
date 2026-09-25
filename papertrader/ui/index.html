@@ -312,9 +312,10 @@ const BOT = {
   primary: {name: 'Index fund + safety switch', tag: 'Comparison', blurb: 'Just owns the whole S&P 500 (via the SPY fund); switches to cash if the market turns bad.'},
   research: {name: 'Swing trader', tag: 'Comparison', blurb: 'Holds strong stocks for days or weeks instead of minutes.'},
   crypto2: {name: 'Crypto odds bot v2', tag: 'New', blurb: 'Small bets on Polymarket Bitcoin/Ethereum up-or-down markets, only when live Binance prices and the market odds together point to an edge bigger than the fees.'},
+  mm: {name: 'Market maker', tag: 'New', blurb: 'Posts its own buy offers on both "Up" and "Down" so the pair costs under $1; if both get filled it pockets the difference plus fee rebates. Risk: only one side fills.'},
   crypto: {name: 'Crypto odds bot v1', tag: 'Retired', retired: true, blurb: 'Lost 33% on day one: its math priced the wrong kind of bet. Stopped; record kept.'},
 };
-const TAG = {daytrade: 'DT', crypto2: 'P2', crypto: 'P1', primary: 'IX', research: 'SW'};
+const TAG = {daytrade: 'DT', mm: 'MM', crypto2: 'P2', crypto: 'P1', primary: 'IX', research: 'SW'};
 const botName = id => (BOT[id] || {}).name || id;
 const co = t => { const n = (S.state.names || {})[t]; return n ? `${esc(n)} <span class="mut">(${esc(t)})</span>` : esc(t); };
 const coTxt = t => { const n = (S.state.names || {})[t]; return n ? `${n} (${t})` : t; };
@@ -327,7 +328,8 @@ const WHY_BUY = {
   MOMENTUM: 'it has been one of the strongest stocks over the past 6 months and is still rising',
   EARNINGS_GAP: 'it jumped after good earnings news, on heavy trading',
   RESIDUAL: 'to put spare cash into the whole market',
-  PM_ENTRY: 'live prices said this outcome was more likely than the odds on Polymarket, by more than the fees'};
+  PM_ENTRY: 'live prices said this outcome was more likely than the odds on Polymarket, by more than the fees',
+  MM_FILL: 'someone sold into the market maker\'s standing offer (it collects a fee rebate instead of paying a fee)'};
 const WHY_SELL = {
   STOP: 'its price fell to the safety stop, so the loss was kept small',
   STOP_GAP: 'its price dropped straight through the safety stop',
@@ -502,6 +504,14 @@ function cryptoSummary(){
   t += scan ? `last scan ${ago(scan.created_at)} checked the live Bitcoin/Ethereum/Solana/XRP/Dogecoin up-or-down markets. ` : 'waiting for its first scan. ';
   t += open ? `It has <b>${open} open bet${open === 1 ? '' : 's'}</b>. ` : 'No open bets right now. ';
   if (settled.length) t += `Settled so far: <b>${won} won, ${settled.length - won} lost</b>.`;
+  const mmB = book('mm');
+  if (mmB.frozen){
+    const mf = (mmB.fills || []).filter(x => x.side === 'BUY'), ms = (mmB.fills || []).filter(x => x.side === 'SELL');
+    const reb = (mmB.dividends || []).reduce((a, d) => a + d.amount, 0);
+    const q = (mmB.decisions || []).find(x => x.reason_code === 'MM_QUOTES');
+    t += `<p><b style="color:#ffb020">Market maker:</b> ${q ? `last quoted ${ago(q.created_at)}. ` : 'waiting for its first quotes. '}` +
+         `${mf.length} offer${mf.length === 1 ? '' : 's'} filled so far, ${ms.length} settled, est. rebates ${money(reb)}.</p>`;
+  }
   const v1 = book('crypto');
   return t + '</p>' + (v1.frozen ? `<p class="mut">v1 was retired after losing ${money(Math.abs(botValue(v1) - S.state.experiment.starting_cash))} on its first day. Its pricing math modeled the wrong kind of bet. See "Past-data tests" for what changed.</p>` : '');
 }
@@ -688,7 +698,7 @@ function lineChart(el, series, opts = {}){
   };
   svg.onmouseleave = () => { tip.style.display = 'none'; cur.style.display = 'none'; };
 }
-const COLORS = {crypto2: 'var(--s-crypto)', crypto: '#4b6b73', daytrade: 'var(--s-daytrade)', primary: 'var(--s-primary)', research: 'var(--s-research)', spy: 'var(--s-spy)', cash: 'var(--s-cash)'};
+const COLORS = {mm: '#ffb020', crypto2: 'var(--s-crypto)', crypto: '#4b6b73', daytrade: 'var(--s-daytrade)', primary: 'var(--s-primary)', research: 'var(--s-research)', spy: 'var(--s-spy)', cash: 'var(--s-cash)'};
 
 // sessions of the experiment window (weekdays; holidays show as flat, none fall in this window)
 function windowSessions(){

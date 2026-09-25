@@ -232,3 +232,35 @@ day (280 decision points):
 At the resolution this system can observe (runs every 20–60 minutes), the market leaves no edge after
 fees. v2 runs on paper so any genuine opportunity is recorded; expect it to bet rarely or never. v1 is
 retired: no new bets, open bets settle, record unchanged.
+
+---
+
+## Addendum: market maker (2026-09-25)
+
+The user asked to add the market-making approach, which is where public reports say the steady profits in
+these markets go. Rules: `config/strategy_mm_v1.json`.
+
+* **Quotes:** bids on both Up and Down of live BTC/ETH 15-minute and 1-hour markets, costing at most 98¢
+  per pair. Each joins the best bid, or improves it by 1¢ when there's room. Quotes last 5 minutes, only
+  in the first half of a window.
+* **Sizing:** equal shares on both sides, about 10% of equity per pair. If only one side filled, only the
+  missing side is quoted afterwards.
+* **Fills:** simulated from Polymarket's public taker-trade tape, respecting the queue ahead of the order
+  at placement (a real exchange's time priority). Complementary trades count; a trade through the price
+  fills the whole order. Fills are at the limit price, no fee.
+* **Rebates:** 20% of the taker fee, as an estimate.
+* **Risk:** the 20% drawdown and 6% daily loss limits are checked every run.
+* **No backtest:** historical order books aren't available, so there's no honest way to reconstruct past
+  quotes. It's a forward paper test only.
+
+**Pre-launch dry run (throwaway ledger), which exposed a design flaw fixed before freezing.** The first
+draft sized each side at the same dollar amount, which buys unequal share counts (7.04 Up at 71¢ vs 18.51
+Down at 27¢). Only matched shares form a riskless pair, so sizing now uses equal shares. In the same dry
+run, 2 of 6 quotes filled (one ETH pair); the BTC quotes and the hourly ones were behind 39–802 queued
+shares and didn't fill.
+
+**Expected risks:**
+* Adverse selection: one side fills when the price is moving against it.
+* Queue position: our paper orders can't know about cancellations ahead of them, so fills may be
+  understated or overstated.
+* Quotes are only live for about 5 minutes per cloud run, so fill opportunities are limited.

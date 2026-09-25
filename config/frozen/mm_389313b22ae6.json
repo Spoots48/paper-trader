@@ -1,0 +1,63 @@
+{
+  "strategy_id": "crypto-updown-market-maker",
+  "version": "mm-1.0.0",
+  "book_type": "predmarket",
+  "engine": "mm",
+  "description": "Paper market maker on Polymarket BTC/ETH Up/Down markets. Instead of paying taker fees, it posts buy orders (bids) on both Up and Down, priced so both together cost less than $1. If both fill, the difference is locked-in profit whatever happens; makers also earn a share of taker fees as rebates. The risk is adverse selection: often only one side fills, usually the side that is about to lose. Fills are simulated from Polymarket's public trade tape with queue position respected. Forward test only: no historical order-book data exists to backtest honestly.",
+  "portfolio": {
+    "starting_cash": 100.0,
+    "min_shares": 5
+  },
+  "markets": {
+    "assets": {
+      "BTC": {
+        "binance": "BTCUSDT",
+        "short": "btc",
+        "long": "bitcoin"
+      },
+      "ETH": {
+        "binance": "ETHUSDT",
+        "short": "eth",
+        "long": "ethereum"
+      }
+    },
+    "windows_minutes": [
+      15,
+      60
+    ],
+    "max_elapsed_fraction": 0.5,
+    "min_minutes_remaining": 5,
+    "min_seconds_remaining": 300
+  },
+  "quoting": {
+    "price_rule": "join the best bid on each side; if the two best bids add up to 97c or less, improve each by 1c (never at or above the best ask)",
+    "max_combined_bid": 0.98,
+    "tick": 0.01,
+    "order_lifetime_minutes": 5,
+    "inventory_rule": "if this market already has unmatched shares on one side, quote only the other side (to complete the pair)"
+  },
+  "fills": {
+    "source": "data-api.polymarket.com/trades (taker trades)",
+    "rule": "a bid on outcome O at price p fills from taker SELLs of O at <= p and taker BUYs of the other outcome at >= 1-p (the same trade seen from the complementary side), after the shares already queued at p when the order was placed; any trade through the level (better price) fills the whole order",
+    "fill_price": "the order's own limit price (makers pay no fee)"
+  },
+  "rebates": {
+    "maker_share_of_taker_fee": 0.2,
+    "taker_fee_rate": 0.07,
+    "note": "estimate: 20% of the taker fee on shares traded against our orders (Polymarket's crypto maker-rebate programme redistributes fees pro rata; the actual share can differ)"
+  },
+  "sizing": {
+    "per_pair_fraction": 0.1,
+    "max_reserved_fraction": 0.5,
+    "max_markets_per_run": 4,
+    "note": "the same number of shares is bid on Up and Down, costing about 10% of equity per pair (a pair pays exactly $1 at settlement); when only one side has filled, the next quote is only for the missing side, up to the unmatched share count"
+  },
+  "fees": {
+    "crypto_taker_fee_rate": 0.07
+  },
+  "risk": {
+    "drawdown_halt": 0.2,
+    "daily_loss_limit": 0.06,
+    "note": "checked every run; a halt cancels quoting (open positions still settle)"
+  }
+}
