@@ -510,7 +510,7 @@ function viewHome(){
     <div class="cc-grid cc-main" style="margin-top:12px">
       <div class="card"><div class="row" style="justify-content:space-between;margin-bottom:6px"><h2 style="margin:0">Balance history</h2>
         <div class="legend">${equitySeries().series.map(x => `<span><i style="background:${x.color}"></i>${esc(x.name)}</span>`).join('')}</div></div>
-        <div class="chart" id="eq"></div></div>
+        <div class="chart" id="eq" data-keep></div></div>
       <div class="card"><h2>Activity log · live</h2><div class="term">${termLines(40) || '<div class="empty">No trades yet.</div>'}</div></div>
     </div>
     <div class="cc-grid cc-main" style="margin-top:12px">
@@ -601,11 +601,54 @@ function viewHow(){
       <dt>Safety stop (stop-loss)</dt><dd>A price at which the bot automatically sells to limit a loss.</dd>
       <dt>Paper trading</dt><dd>Practice trading with pretend money.</dd>
     </dl>
-    <details style="margin-top:18px"><summary>Technical details (for the curious)</summary><div id="tech"></div></details></div>`;
-  const saved = $('#view').innerHTML;
-  viewMethod(); const tech = $('#view').innerHTML; $('#view').innerHTML = saved; $('#tech').innerHTML = tech;
+    <details style="margin-top:18px" data-id="how-tech" ${OPEN.has('how-tech') ? 'open' : ''}><summary>Technical details (for the curious)</summary><div id="tech">${viewMethod(true)}</div></details></div>`;
+  document.querySelectorAll('details[data-id]').forEach(el => el.ontoggle = () => el.open ? OPEN.add(el.dataset.id) : OPEN.delete(el.dataset.id));
 }
 
+
+
+// ---------------------------------------------------------------- in-place updates
+// Refreshes don't rebuild the page: the new HTML is compared with what's on screen and only the
+// parts that changed are touched, so scroll position, open sections, hover and animations survive.
+function sameNode(a, b){
+  if (a.nodeType !== b.nodeType) return false;
+  if (a.nodeType !== 1) return true;
+  return a.tagName === b.tagName && (a.id || '') === (b.id || '') && (a.getAttribute('data-id') || '') === (b.getAttribute('data-id') || '');
+}
+function patchNode(a, b){
+  if (a.nodeType !== 1){ if (a.nodeValue !== b.nodeValue) a.nodeValue = b.nodeValue; return; }
+  const keepOpen = a.tagName === 'DETAILS';  // an expandable section stays however the viewer left it
+  for (const at of [...a.attributes]) if (!b.hasAttribute(at.name) && !(keepOpen && at.name === 'open')) a.removeAttribute(at.name);
+  for (const at of [...b.attributes]) if (a.getAttribute(at.name) !== at.value && !(keepOpen && at.name === 'open')) a.setAttribute(at.name, at.value);
+  if ((a.tagName === 'INPUT' || a.tagName === 'TEXTAREA' || a.tagName === 'SELECT') && document.activeElement !== a && 'value' in b && a.value !== b.value) a.value = b.value;
+  if (a.hasAttribute('data-keep') && a.childNodes.length) return;  // content filled in separately (e.g. the log)
+  morphChildren(a, b);
+}
+function morphChildren(a, b){
+  const bn = [...b.childNodes];
+  bn.forEach((y, i) => {
+    const x = a.childNodes[i];
+    if (!x) a.appendChild(y);
+    else if (sameNode(x, y)) patchNode(x, y);
+    else a.replaceChild(y, x);
+  });
+  while (a.childNodes.length > bn.length) a.removeChild(a.lastChild);
+}
+const _nativeHTML = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML');
+function setHTML(el, html){
+  if (!el) return;
+  if (S.entering || !el.firstChild){ _nativeHTML.set.call(el, html); return; }
+  const t = document.createElement('template');
+  t.innerHTML = html;
+  morphChildren(el, t.content);
+}
+// the page's main areas update in place whenever their content is set
+function liveRegion(el){
+  if (!el || el._live) return;
+  el._live = true;
+  Object.defineProperty(el, 'innerHTML', {configurable: true, get(){ return _nativeHTML.get.call(this); }, set(v){ setHTML(this, v); }});
+}
+['#view', '#nav', '#controls', '#banners', '#subtitle'].forEach(q => liveRegion(document.querySelector(q)));
 
 // ---------------------------------------------------------------- sound effects (synthesized, no files)
 const SFX = {
@@ -752,7 +795,7 @@ function lineChart(el, series, opts = {}){
   const W = el.clientWidth || 700, H = opts.height || 260, P = {l: 56, r: 16, t: 12, b: 28};
   const xs = opts.x;  // array of labels
   const all = series.flatMap(s => s.values.filter(v => v != null));
-  if (!all.length){ el.innerHTML = `<div class="empty">${opts.empty || 'No data yet.'}</div>`; return; }
+  if (!all.length){ setHTML(el, `<div class="empty">${opts.empty || 'No data yet.'}</div>`); return; }
   let lo = Math.min(...all), hi = Math.max(...all);
   const pad = (hi - lo) * 0.12 || Math.max(1, hi * 0.01);
   lo -= pad; hi += pad;
@@ -776,7 +819,7 @@ function lineChart(el, series, opts = {}){
     return `<path class="${S.entering && !s.dash ? 'anim' : ''}" d="${d}" fill="none" stroke="${s.color}" stroke-width="${s.width || 2}" stroke-linejoin="round" stroke-linecap="round" ${s.dash ? 'stroke-dasharray="4 4"' : ''}/>`;
   }).join('');
   const base = opts.baseline != null ? `<line x1="${P.l}" x2="${W - P.r}" y1="${Y(opts.baseline)}" y2="${Y(opts.baseline)}" stroke="var(--line-strong)" stroke-dasharray="2 3"/>` : '';
-  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.label || 'chart')}">${grid.join('')}${base}${paths}<line class="cur" y1="${P.t}" y2="${H - P.b}" stroke="var(--line-strong)" style="display:none"/><rect x="${P.l}" y="${P.t}" width="${W - P.l - P.r}" height="${H - P.t - P.b}" fill="transparent"/></svg>`;
+  setHTML(el, `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.label || 'chart')}">${grid.join('')}${base}${paths}<line class="cur" y1="${P.t}" y2="${H - P.b}" stroke="var(--line-strong)" style="display:none"/><rect x="${P.l}" y="${P.t}" width="${W - P.l - P.r}" height="${H - P.t - P.b}" fill="transparent"/></svg>`);
   const svg = el.querySelector('svg'), tip = $('#tip'), cur = svg.querySelector('.cur');
   svg.onmousemove = e => {
     const r = svg.getBoundingClientRect(), sx = (e.clientX - r.left) * W / r.width;
@@ -857,7 +900,7 @@ function viewOverview(){
     <div class="card" style="margin-top:14px">
       <div class="row" style="justify-content:space-between;margin-bottom:6px"><h2 style="margin:0">Portfolio value — ${esc(cal.start)} to ${esc(cal.end)}</h2>
       <div class="legend">${equitySeries().series.map(s => `<span><i style="background:${s.color}"></i>${esc(s.name)}</span>`).join('')}</div></div>
-      <div class="chart" id="eq"></div>
+      <div class="chart" id="eq" data-keep></div>
       <div class="progress"><div class="fill" style="width:${frac * 100}%"></div>${marks}</div>
     </div>
     <div class="grid two" style="margin-top:14px">
@@ -1016,7 +1059,7 @@ function viewBacktest(){
     const es = d.event_study.passes_all_filters || {};
     return `<div class="card" style="margin-top:14px"><div class="row" style="justify-content:space-between"><h2 style="margin:0">${p === 'in_sample' ? 'In-sample' : 'Out-of-sample'} · ${esc(d.start)} → ${esc(d.end)}</h2>
       <div class="legend"><span><i style="background:var(--s-primary)"></i>Primary rules</span><span><i style="background:var(--s-research)"></i>Research rules</span><span><i style="background:var(--s-spy)"></i>SPY</span></div></div>
-      <div class="chart" id="bt-${p}" style="margin:8px 0 14px"></div>
+      <div class="chart" id="bt-${p}" data-keep style="margin:8px 0 14px"></div>
       ${table([{h: 'Variant ($100 start, costs incl.)'}, {h: 'Total', n: 1}, {h: 'CAGR', n: 1}, {h: 'Max DD', n: 1}, {h: 'Sharpe', n: 1}, {h: 'Stock trades', n: 1}, {h: 'Costs', n: 1}], rows)}
       <p class="mut" style="font-size:12.5px;margin-top:10px">Earnings-gap signal event study (next-open entry, excess vs SPY): n=${es.n ?? 0}, 5-day ${pct(es.excess_5d_mean)} (t=${es.excess_5d_tstat?.toFixed(2)}), 20-day ${pct(es.excess_20d_mean)} (t=${es.excess_20d_tstat?.toFixed(2)}).
       Rolling 30-day windows: the full strategy beat SPY in ${Math.round(d.rolling.pct_windows_beat_spy * 100)}% of ${d.rolling.n_windows} windows; excess-return spread ±${(d.rolling.excess_std * 100).toFixed(1)} pts (1 s.d.).</p></div>`;
@@ -1068,16 +1111,16 @@ async function viewSystem(){
       (sc.runs || []).map(r => [when(r.createdAt), esc(r.event), `<span class="badge ${r.conclusion === 'success' ? 'b-buy' : r.conclusion ? 'b-sell' : 'b-info'}">${esc(r.conclusion || r.status)}</span>`, `<a href="${esc(r.url)}" target="_blank" rel="noopener">details</a>`]), 'No cloud runs yet.')}</div>` : ''}
     <div class="card" style="margin-top:14px"><h2>Recent runs</h2>${table([{h: 'Started'}, {h: 'Status'}, {h: 'Trigger'}, {h: 'Summary / error', w: 1}], runs, 'No runs yet.')}</div>
     <div class="card" style="margin-top:14px"><h2>Data & system issues</h2>${table([{h: 'When'}, {h: 'Severity'}, {h: 'Component'}, {h: 'Ticker'}, {h: 'Message', w: 1}], iss, 'No issues logged.')}</div>
-    ${LIVE ? '<div class="card" style="margin-top:14px"><h2>Log (tail)</h2><pre class="log" id="log">Loading…</pre></div>' : ''}`;
+    ${LIVE ? '<div class="card" style="margin-top:14px"><h2>Log (tail)</h2><pre class="log" id="log" data-keep>Loading…</pre></div>' : ''}`;
   bindSeg();
   if (LIVE){ try { const r = await (await fetch('/api/log?lines=150')).json(); const el = $('#log'); if (el){ el.textContent = r.lines.join('\n') || '(empty)'; el.scrollTop = el.scrollHeight; } } catch(e){} }
 }
 
-function viewMethod(){
+function viewMethod(capture){
   const st = S.state, strat = st.strategies || {}, p = strat.primary || {}, r = strat.research || {};
   const c = (p.costs || {}), risk = (p.risk || {}), reg = (p.regime || {}), port = (p.portfolio || {}), cat = (r.catalyst || {}), mom = (r.momentum || {});
   const dt_ = strat.daytrade || {}, dP = dt_.portfolio || {}, dS = dt_.selection || {}, dE = dt_.exit || {}, dR = dt_.risk || {};
-  $('#view').innerHTML = `<div class="card prose">
+  const html = `<div class="card prose">
     ${dt_.version ? `<h3 style="margin-top:0">Day trading (headline book, $100 from ${esc((book('daytrade').experiment || {}).start_date || '')})</h3>
     <p>Aggressive and intraday: several stocks a day, everything sold by the close. Based on the "stocks in play" opening-range breakout (Zarattini, Barbon &amp; Aziz, 2023).</p>
     <ul><li>09:35 ET: find the ${dS.top_n_by_relative_volume} S&amp;P 500 stocks with the heaviest first-5-minute volume versus their normal (at least ${dS.min_relative_volume}×), whose first 5 minutes closed up.</li>
@@ -1103,6 +1146,8 @@ function viewMethod(){
       <li>Stale or missing data means no trade. Missing official closes are rebuilt from 5-minute bars and flagged.</li></ul>
     <h3>What this can't tell you</h3>
     <p>One month is about 21 trading sessions. Historically, a single month's return relative to SPY varied by roughly ±4 percentage points (1 s.d.) for this kind of strategy, so no result here, good or bad, is evidence of a lasting edge. This is a research experiment, not investment advice.</p></div>`;
+  if (capture) return html;
+  $('#view').innerHTML = html;
 }
 
 function render(){
