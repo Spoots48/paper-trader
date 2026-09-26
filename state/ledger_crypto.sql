@@ -603,6 +603,7 @@ INSERT INTO "runs" VALUES('20260926T000854Z-crypto','2026-09-26T00:09:00Z','2026
 INSERT INTO "runs" VALUES('20260926T012931Z-crypto','2026-09-26T01:29:36Z','2026-09-26T01:29:36Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20260926T052542Z-crypto','2026-09-26T05:26:01Z','2026-09-26T05:26:01Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20260926T101343Z-crypto','2026-09-26T10:14:02Z','2026-09-26T10:14:02Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20260926T144327Z-crypto','2026-09-26T14:43:46Z','2026-09-26T14:43:46Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -611,9 +612,9 @@ CREATE TABLE snapshots (
 INSERT INTO "snapshots" VALUES('2026-09-25','2026-09-26T05:25:42Z','20260926T052542Z-crypto',74.22458862,74.22458862,0.0,NULL,100.0,100.0,2.57754113799999906e-01,'0 open bets','{"peak": 100.0, "drawdown": 0.2577541137999999}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','74.22458862','2026-09-25T20:10:36Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-26T10:14:02Z');
-INSERT INTO "state" VALUES('pm_positions','{}','2026-09-26T10:14:02Z');
-INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-09-26T10:13:43Z", "marks": {}}','2026-09-26T10:14:02Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-26T14:43:46Z');
+INSERT INTO "state" VALUES('pm_positions','{}','2026-09-26T14:43:46Z');
+INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-09-26T14:43:27Z", "marks": {}}','2026-09-26T14:43:46Z');
 INSERT INTO "state" VALUES('risk','{"peak": 100.0, "drawdown": 0.2577541137999999}','2026-09-26T05:26:01Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
