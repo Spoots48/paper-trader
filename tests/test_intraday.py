@@ -15,6 +15,9 @@ from papertrader.nyse_calendar import ET, UTC, prev_session, sessions_between
 from papertrader.strategy import NewsVerdict
 
 CFG = load_json(ROOT / "config/strategy_daytrade_v1.json")
+# the mechanics tests below use the v1 rules (no earnings filter, ATR stop); v2 is tested separately
+CFG["selection"]["require_earnings_catalyst"] = False
+CFG["exit"].pop("stop_mode", None)
 
 
 def cand(t, trigger=100.61, stop_distance=0.2, rank=1):
@@ -118,6 +121,7 @@ def fake_download(self, tickers, **kw):
 def make(tmp_path, monkeypatch):
     monkeypatch.setattr(MarketData, "_download", fake_download)
     monkeypatch.setattr(NewsService, "check", lambda self, t, p, m: NewsVerdict(True, "no_veto", "ok"))
+    monkeypatch.setattr(DE.DayEngine, "_stocktwits", lambda self, t: {})  # no network in tests
     exp = {"start_date": S.isoformat(), "end_date": S.isoformat(), "starting_cash": 100.0, "report_days": [1]}
     book = {"id": "daytrade", "strategy": "config/strategy_daytrade_v1.json"}
 
