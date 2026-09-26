@@ -1,0 +1,66 @@
+{
+ "kind": "daily",
+ "date": "2026-09-24",
+ "day": 2,
+ "weekday": "Thursday",
+ "generated_at": "2026-09-26T16:08:20Z",
+ "summary": "All bots together went from $298.78 to $297.42 today (\u2212$1.36). Biggest loss: Day trading (\u2212$0.73). The S&P 500 (SPY) moved \u22120.08%.",
+ "rows": [
+  {
+   "id": "daytrade",
+   "name": "Day trading",
+   "status": "trading",
+   "value": 99.26933944886812,
+   "change": -0.7306605511318764,
+   "since_start": -0.7306605511318764,
+   "trades": 10,
+   "wins": 0,
+   "losses": 5
+  },
+  {
+   "id": "crypto2",
+   "name": "Crypto odds bot v2",
+   "status": "not started yet"
+  },
+  {
+   "id": "mm",
+   "name": "Market maker",
+   "status": "not started yet"
+  },
+  {
+   "id": "crypto",
+   "name": "Crypto odds bot v1 (retired)",
+   "status": "not started yet"
+  },
+  {
+   "id": "primary",
+   "name": "Primary",
+   "status": "trading",
+   "value": 99.22052849028573,
+   "change": -0.07983673876952935,
+   "since_start": -0.7794715097142699,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "research",
+   "name": "Research",
+   "status": "trading",
+   "value": 98.93009817244817,
+   "change": -0.5487761883544806,
+   "since_start": -1.0699018275518313,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  }
+ ],
+ "spy": {
+  "value": 99.20461757191936,
+  "change_pct": -0.000820521854125067
+ },
+ "missing": [],
+ "total_before": 298.7792395898579,
+ "total_end": 297.419966111602,
+ "late_by_hours": 35.1
+}
