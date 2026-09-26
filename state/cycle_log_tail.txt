@@ -1,6 +1,6 @@
-2026-09-26 14:43:27,405 INFO [daytrade] no action needed
-2026-09-26 14:43:32,854 INFO [crypto2] no action needed
-2026-09-26 14:43:46,884 INFO [mm] LOST BTC 1h 01:00 Up -5.11; WON BTC 1h 01:00 Down +5.31; FILL ETH 1h 06:00 Up 10.23 @ 0.83; FILL ETH 1h 06:00 Down 10.23 @ 0.15
-2026-09-26 14:43:46,894 INFO [crypto] no action needed
-2026-09-26 14:43:46,905 INFO [primary] no action needed
-2026-09-26 14:43:46,912 INFO [research] no action needed
+2026-09-26 15:43:42,116 INFO [daytrade] no action needed
+2026-09-26 15:43:46,465 INFO [crypto2] no action needed
+2026-09-26 15:43:46,793 INFO [mm] WON ETH 1h 06:00 Up +1.74; LOST ETH 1h 06:00 Down -1.53
+2026-09-26 15:43:46,798 INFO [crypto] no action needed
+2026-09-26 15:43:46,804 INFO [primary] no action needed
+2026-09-26 15:43:46,809 INFO [research] no action needed
