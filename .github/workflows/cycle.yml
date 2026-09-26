@@ -3,7 +3,7 @@ name: cycle
 # Times are UTC; the experiment (Sep 23 - Oct 22, 2026) is entirely within US daylight time (ET = UTC-4).
 on:
   schedule:
-    - cron: "*/20 13-19 * * 1-5" # every 20 min, 09:00-15:40 ET (day-trading book + fills/stops)
+    - cron: "*/15 13-19 * * 1-5" # every 15 min, 09:00-15:45 ET (day-trading book + fills/stops)
     - cron: "7 20 * * 1-5"       # 16:07 ET  day-trading close-out
     - cron: "37 20 * * 1-5"      # 16:37 ET  daily books: close-out + decision for the next open
     - cron: "11 21 * * 1-5"      # 17:11 ET  backup (scheduled runs can be delayed or dropped)

@@ -95,6 +95,28 @@ def _last_cloud_start(st: dict) -> dt.datetime | None:
     return max(starts) if starts else None
 
 
+MONTH_BUDGET_MINUTES = 1700  # GitHub Free: 2,000 private-repo minutes/month; extra app-triggered runs stop well before that
+
+
+def month_minutes_used() -> float | None:
+    """Estimate this month's billed Actions minutes from run durations (each job rounds up to a whole minute)."""
+    import json as _json
+    from . import cloud
+    first = now_utc().strftime("%Y-%m-01")
+    r = cloud.gh("run", "list", "--workflow", cloud.deployment().get("workflow", "cycle.yml"), "--created", f">={first}",
+                 "--limit", "2000", "--json", "createdAt,updatedAt", timeout=30)
+    if r.returncode != 0:
+        return None
+    runs = _json.loads(r.stdout or "[]")
+    import math
+    tot = 0
+    for x in runs:
+        a = dt.datetime.fromisoformat(x["createdAt"].replace("Z", "+00:00"))
+        b = dt.datetime.fromisoformat(x["updatedAt"].replace("Z", "+00:00"))
+        tot += max(1, math.ceil((b - a).total_seconds() / 60))
+    return tot
+
+
 def watchdog_check(st: dict, now: dt.datetime) -> str | None:
     """Return a reason to start a cloud run now, or None. Key windows: after the open, after the close."""
     if st.get("enabled") is False or st.get("running") or not st.get("runs"):
@@ -136,11 +158,20 @@ def start_background() -> None:
                 print(f"feed failed: {e}", flush=True)
             time.sleep(15)
 
+    budget = {"used": None, "checked": 0.0}
+
     def status_loop():
         while True:
             try:
                 st = cloud.status(max_age=0)
                 why = watchdog_check(st, now_utc())
+                # while the app is open, keep results fresh at any hour (within the monthly free-minutes budget)
+                if not why and not st.get("running") and st.get("enabled") is not False:
+                    if time.time() - budget["checked"] > 1800:
+                        budget["used"], budget["checked"] = month_minutes_used(), time.time()
+                    last = _last_cloud_start(st)
+                    if last and now_utc() - last > dt.timedelta(minutes=20) and (budget["used"] or 0) < MONTH_BUDGET_MINUTES:
+                        why = "app is open and the last update is over 20 minutes old"
                 if why and time.time() - state["last_dispatch"] > 15 * 60:
                     ok, msg = cloud.trigger()
                     state["last_dispatch"] = time.time()

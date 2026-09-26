@@ -35,7 +35,8 @@ def scheduler_status() -> dict:
                 "enabled": c.get("enabled"), "running": c.get("running"), "runs": runs[:15], "url": c.get("url"),
                 "repo": c.get("repo"), "last_run": last, "last_exit": (last or {}).get("conclusion"),
                 "detail": "GitHub Actions" + ("" if c.get("enabled") is not False else " (disabled)"),
-                "error": c.get("error"), "last_sync": c.get("last_sync"), "heartbeat": hb, "pending": c.get("pending")}
+                "error": c.get("error"), "last_sync": c.get("last_sync"), "heartbeat": hb, "pending": c.get("pending"),
+                "month_minutes": _minutes_cached()}
     st = {"mode": "local", "installed": PLIST.exists(), "loaded": False, "paused": PAUSE_FLAG.exists(), "last_exit": None, "detail": ""}
     try:
         out = subprocess.run(["launchctl", "print", f"gui/{os.getuid()}/{LABEL}"], capture_output=True, text=True, timeout=5)
@@ -255,3 +256,17 @@ def _pm2_backtest() -> dict | None:
         return None
     r = load_json(p)
     return {k: r.get(k) for k in ("period_utc", "ending_equity_from_100", "all", "in_sample", "out_of_sample_last_days", "by_window")}
+
+
+_MIN_CACHE: dict = {}
+
+
+def _minutes_cached():
+    import time as _t
+    if _MIN_CACHE.get("t", 0) < _t.time() - 1800:
+        try:
+            from .live import month_minutes_used
+            _MIN_CACHE.update(t=_t.time(), v=month_minutes_used())
+        except Exception:
+            _MIN_CACHE.update(t=_t.time(), v=None)
+    return _MIN_CACHE.get("v")

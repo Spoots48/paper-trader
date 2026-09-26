@@ -21,6 +21,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
     func applicationDidFinishLaunching(_ note: Notification) {
         buildMenu()
         let cfg = WKWebViewConfiguration()
+        cfg.mediaTypesRequiringUserActionForPlayback = []
         cfg.websiteDataStore = .default()
         web = WKWebView(frame: .zero, configuration: cfg)
         web.navigationDelegate = self
