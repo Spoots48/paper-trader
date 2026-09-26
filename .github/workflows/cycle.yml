@@ -42,9 +42,9 @@ jobs:
         run: python run.py verify
       - name: Run one cycle
         run: |
-          ls reports/*.json 2>/dev/null | sort > /tmp/reports_before || true
+          ls reports/day*.json 2>/dev/null | sort > /tmp/reports_before || true
           python run.py cycle --trigger github-actions
-          ls reports/*.json 2>/dev/null | sort > /tmp/reports_after || true
+          ls reports/day*.json 2>/dev/null | sort > /tmp/reports_after || true
       - name: Save ledgers to state/
         if: always()
         run: python -m papertrader.statesync dump

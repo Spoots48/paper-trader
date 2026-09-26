@@ -178,7 +178,7 @@ def experiment_calendar(exp: dict, now: dt.datetime) -> dict:
 
 def reports_list() -> list[dict]:
     out = []
-    for p in sorted(REPORTS_DIR.glob("*.html")):
+    for p in sorted(REPORTS_DIR.glob("day*.html")):
         meta = p.with_suffix(".json")
         m = json.loads(meta.read_text()) if meta.exists() else {}
         out.append({"file": p.name, "md": p.with_suffix(".md").name, **m})
@@ -216,6 +216,7 @@ def full_state(quotes: dict | None = None) -> dict:
         "scheduler": scheduler_status(),
         "books": [book_state(b, exp, quotes=quotes) for b in exp["books"]],
         "reports": reports_list(),
+        "daily_reports": __import__("papertrader.daily_report", fromlist=["daily_list"]).daily_list(),
         "backtest": backtest_summary(),
         "backtest_daytrade": _dt_backtests(),
         "pm_calibration": _pm_calibration(),

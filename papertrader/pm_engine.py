@@ -280,7 +280,8 @@ class PMEngine:
             return
         positions = self.L.get_state("pm_positions", {}) or {}
         cash = self.L.get_state("cash", self.cash0)
-        pos_val = sum(p.get("mark", 0.0) * p["shares"] for p in positions.values())
+        # a bet with no price (market ended, not yet resolved) is valued at what it cost, not at $0
+        pos_val = sum(p.get("mark", p["cost"] / max(p["shares"], 1e-9)) * p["shares"] for p in positions.values())
         equity = cash + pos_val
         risk = self.L.get_state("risk", {"peak": self.cash0})
         risk["peak"] = max(risk.get("peak", self.cash0), equity)

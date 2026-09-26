@@ -1,0 +1,6 @@
+{
+  "_about": "Explanatory notes shown in daily reports. They never change recorded numbers; they explain them.",
+  "2026-09-25": {
+    "mm": "Correction note: the saved end-of-day value ($90.07) is about $10.00 too low. It bought both sides of the ETH 21:00 market (Up at 0.61 + Down at 0.37 = $0.98 per pair, so a locked-in 2¢ per pair). When the balance was saved, that market had ended but not yet been resolved, so it had no price and the two bets were counted as $0 instead of their $10.00 cost. They resolved as +$3.98 and −$3.77 (net +$0.21). The true end-of-day value was about $100.07. Fixed on 2026-09-26 (unpriced bets are now valued at cost); the saved value is left as recorded."
+  }
+}
