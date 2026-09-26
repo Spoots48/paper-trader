@@ -30,6 +30,7 @@ class Candidate:
     adv_usd: float
     trigger: float
     stop_distance: float
+    stop_price: float | None = None  # fixed stop (e.g. opening-range low); overrides stop_distance when set
 
 
 @dataclass
@@ -106,7 +107,8 @@ def select_candidates(first_bars: dict[str, tuple], hist_first_vol: dict[str, li
             continue
         out.append(Candidate(ticker=t, rank=rank, rvol=rvol, first_open=o, first_high=h, first_low=l, first_close=c,
                              first_volume=v, atr=dd["atr"], adv_usd=dd["adv_usd"], trigger=h + ENT["trigger_offset_usd"],
-                             stop_distance=EX["stop_atr_fraction"] * dd["atr"]))
+                             stop_distance=EX["stop_atr_fraction"] * dd["atr"],
+                             stop_price=(l - ENT["trigger_offset_usd"]) if EX.get("stop_mode") == "opening_range_low" else None))
     return out, skipped
 
 
@@ -181,12 +183,12 @@ def process_bar(st: DayState, bar_time: str, bars: dict[str, tuple], cfg: dict, 
             q = _floor(budget / px, P["fractional_decimals"])
             st.cash -= q * px
             st.buys_used += q * px
-            stop = ref - cand["stop_distance"]
+            stop = cand["stop_price"] if cand.get("stop_price") else ref - cand["stop_distance"]
             st.positions[t] = asdict(DayPosition(t, q, px, ref, stop, bar_time))
             st.traded.append(t)
             events.append(DayEvent("BUY", t, q, ref, px, bps, bar_time, "ORB_BREAKOUT",
                                    f"broke above first 5-min high {cand['first_high']:.2f} (rel. volume {cand['rvol']:.1f}x, "
-                                   f"rank {cand['rank']}); stop {stop:.2f} = entry − 0.10×ATR ({cand['atr']:.2f})"))
+                                   f"rank {cand['rank']}); stop {stop:.2f}" + (" = low of the first 5 minutes" if cand.get("stop_price") else f" = entry − 0.10×ATR ({cand['atr']:.2f})")))
             # 3) worst case inside the entry bar: if its low also reached the stop, assume we were stopped
             if l <= stop:
                 sell(t, stop, "stop", "STOP", f"entry bar low {l:.2f} also reached stop {stop:.2f} (worst-case assumption)")

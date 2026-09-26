@@ -264,3 +264,42 @@ shares and didn't fill.
 * Queue position: our paper orders can't know about cancellations ahead of them, so fills may be
   understated or overstated.
 * Quotes are only live for about 5 minutes per cloud run, so fill opportunities are limited.
+
+---
+
+## Addendum: day-trader improvement test (written 2026-09-26, before results)
+
+**Live evidence:** 10 trades, 10 losses, all stopped out within minutes (Sep 24–25). The 0.10×ATR stop is
+tighter than normal intraday noise.
+
+**Variants (declared before running):**
+* **A** Current frozen rules.
+* **B** Earnings catalyst: only stocks in play whose earnings reaction day is today (reported after
+  yesterday's close or before today's open). Timing comes from the earnings calendar, so there's no
+  look-ahead.
+* **C** Wider stop: at the low of the first 5-minute bar (standard opening-range practice) instead of
+  0.10×ATR.
+* **D** B + C.
+
+**Data:** 5-minute execution (46 sessions) and 1-minute execution (20 sessions), same cost model.
+
+**Adoption rule:** a variant replaces A only if it beats A on total return in **both** data sets **and** in
+both halves of the 46-session set. If several qualify, the one with the higher 1-minute return wins. If
+none qualify, A stays. Historical news with intraday timestamps isn't freely available (Google News history
+has dates only), so news and social filters beyond the earnings calendar can't be tested this way. They'd
+be collected forward (StockTwits sentiment is free and live) and evaluated later.
+
+### Day-trader variant results (appended after running)
+
+| | 5-min, 46 sessions | halves | 1-min, 20 sessions | trades (1-min) | win rate (1-min) |
+|---|---|---|---|---|---|
+| A current | −15.5% | −12.9% / −3.0% | −6.7% | 96 | 11% |
+| B earnings catalyst | −8.7% | −6.9% / −2.0% | −2.0% | 13 | 0% |
+| C wide stop | +2.6% | +10.5% / −7.2% | −2.6% | 96 | 34% |
+| **D both** | **+11.8%** | **+9.5% / +2.1%** | **+2.4%** | 13 | 46% |
+| SPY same days | +2.9% | | +0.4% | | |
+
+* **Result:** B and D pass the adoption rule; C fails the second half. **D is adopted** (higher 1-minute
+  return), effective 2026-09-28, via `run.py log-change`, so the day-one history is kept.
+* **Caveats:** the 1-minute sample has only 13 trades, and the two periods overlap. D only trades on days
+  with earnings reports, so expect idle days until earnings season (mid-October).

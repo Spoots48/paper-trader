@@ -1,7 +1,7 @@
 {
   "strategy_id": "stocks-in-play-opening-range-breakout",
-  "version": "dt-1.0.0",
-  "description": "Aggressive intraday (day-trading) book. Each morning, find the S&P 500 stocks trading unusually heavy volume in the first 5 minutes and opening strong. Buy those that break above their first 5-minute high, with a tight ATR-based stop. Up to 5 positions at 20% each, everything sold by the close. Long only, no leverage. Based on Zarattini, Barbon & Aziz (2023), 'A Profitable Day Trading Strategy for the U.S. Equity Market' (5-minute opening range breakout on stocks in play). Parameters are taken from that paper, not tuned.",
+  "version": "dt-2.0.0",
+  "description": "Aggressive intraday (day-trading) book. Each morning, find the S&P 500 stocks trading unusually heavy volume in the first 5 minutes and opening strong. Buy those that break above their first 5-minute high, with a tight ATR-based stop. Up to 5 positions at 20% each, everything sold by the close. Long only, no leverage. Based on Zarattini, Barbon & Aziz (2023), 'A Profitable Day Trading Strategy for the U.S. Equity Market' (5-minute opening range breakout on stocks in play). Parameters are taken from that paper, not tuned. v2 (2026-09-28): trades only stocks in play that just reported earnings, with the stop at the opening-range low; adopted under the pre-registered variant test (research/PREREGISTRATION.md, research/dt_variants.json).",
   "book_type": "intraday",
   "portfolio": {
     "starting_cash": 100.0,
@@ -28,7 +28,9 @@
     "min_relative_volume": 1.0,
     "top_n_by_relative_volume": 20,
     "require_first_bar_up": true,
-    "note": "Relative volume = volume of today's 09:30-09:35 bar / average volume of the same bar over the previous 14 sessions. Decided after the first bar completes (09:35 ET)."
+    "note": "Relative volume = volume of today's 09:30-09:35 bar / average volume of the same bar over the previous 14 sessions. Decided after the first bar completes (09:35 ET).",
+    "require_earnings_catalyst": true,
+    "note_v2": "v2: only stocks in play whose earnings reaction day is today (Nasdaq earnings calendar: reported after yesterday's close or before today's open)"
   },
   "entry": {
     "type": "buy stop at the first 5-minute bar's high",
@@ -39,7 +41,9 @@
   },
   "exit": {
     "stop_atr_fraction": 0.1,
-    "exit_at_close": "sell at the close of the last 5-minute bar of the session"
+    "exit_at_close": "sell at the close of the last 5-minute bar of the session",
+    "stop_mode": "opening_range_low",
+    "note": "v2: stop at the low of the first 5-minute bar (was 0.10 x ATR, which normal noise kept hitting)"
   },
   "risk": {
     "drawdown_pause": 0.15,

@@ -1,0 +1,125 @@
+{
+ "5m:A_baseline": {
+  "sessions": 46,
+  "total_return": -0.1549,
+  "first_half": -0.1293,
+  "second_half": -0.0295,
+  "max_drawdown": 0.1549,
+  "trades": 142,
+  "win_rate": 0.063,
+  "costs_usd": 10.57,
+  "exit_reasons": {
+   "STOP": 131,
+   "CLOSE_EXIT": 9,
+   "STOP_GAP": 2
+  },
+  "spy": 0.0288
+ },
+ "5m:B_earnings_catalyst": {
+  "sessions": 46,
+  "total_return": -0.087,
+  "first_half": -0.0688,
+  "second_half": -0.0196,
+  "max_drawdown": 0.087,
+  "trades": 75,
+  "win_rate": 0.027,
+  "costs_usd": 5.72,
+  "exit_reasons": {
+   "STOP": 73,
+   "CLOSE_EXIT": 2
+  },
+  "spy": 0.0288
+ },
+ "5m:C_wide_stop": {
+  "sessions": 46,
+  "total_return": 0.0257,
+  "first_half": 0.105,
+  "second_half": -0.0717,
+  "max_drawdown": 0.0742,
+  "trades": 223,
+  "win_rate": 0.368,
+  "costs_usd": 15.88,
+  "exit_reasons": {
+   "CLOSE_EXIT": 151,
+   "STOP": 71,
+   "STOP_GAP": 1
+  },
+  "spy": 0.0288
+ },
+ "5m:D_catalyst_and_wide_stop": {
+  "sessions": 46,
+  "total_return": 0.1178,
+  "first_half": 0.0952,
+  "second_half": 0.0206,
+  "max_drawdown": 0.0176,
+  "trades": 75,
+  "win_rate": 0.533,
+  "costs_usd": 4.74,
+  "exit_reasons": {
+   "CLOSE_EXIT": 65,
+   "STOP": 10
+  },
+  "spy": 0.0288
+ },
+ "1m:A_baseline": {
+  "sessions": 20,
+  "total_return": -0.0672,
+  "first_half": -0.0663,
+  "second_half": -0.001,
+  "max_drawdown": 0.0748,
+  "trades": 96,
+  "win_rate": 0.115,
+  "costs_usd": 7.49,
+  "exit_reasons": {
+   "STOP": 80,
+   "CLOSE_EXIT": 11,
+   "STOP_GAP": 5
+  },
+  "spy": 0.004
+ },
+ "1m:B_earnings_catalyst": {
+  "sessions": 20,
+  "total_return": -0.0196,
+  "first_half": -0.0152,
+  "second_half": -0.0045,
+  "max_drawdown": 0.0196,
+  "trades": 13,
+  "win_rate": 0,
+  "costs_usd": 1.02,
+  "exit_reasons": {
+   "STOP": 13
+  },
+  "spy": 0.004
+ },
+ "1m:C_wide_stop": {
+  "sessions": 20,
+  "total_return": -0.0256,
+  "first_half": -0.0106,
+  "second_half": -0.0152,
+  "max_drawdown": 0.0488,
+  "trades": 96,
+  "win_rate": 0.344,
+  "costs_usd": 6.68,
+  "exit_reasons": {
+   "CLOSE_EXIT": 59,
+   "STOP": 33,
+   "STOP_GAP": 4
+  },
+  "spy": 0.004
+ },
+ "1m:D_catalyst_and_wide_stop": {
+  "sessions": 20,
+  "total_return": 0.0238,
+  "first_half": 0.0203,
+  "second_half": 0.0034,
+  "max_drawdown": 0.0146,
+  "trades": 13,
+  "win_rate": 0.462,
+  "costs_usd": 0.77,
+  "exit_reasons": {
+   "CLOSE_EXIT": 11,
+   "STOP": 2
+  },
+  "spy": 0.004
+ }
+}

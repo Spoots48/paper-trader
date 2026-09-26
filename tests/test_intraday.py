@@ -169,3 +169,25 @@ def test_day_engine_live_matches_catch_up(make):
     assert fills(L2) == f
     assert L2.db.execute("SELECT COUNT(*) FROM decisions WHERE reason LIKE '%after the bar%'").fetchone()[0] > 0
     assert L.verify_chain()[0] and L2.verify_chain()[0]
+
+
+def test_v2_requires_an_earnings_catalyst(make, monkeypatch):
+    import copy
+    cfg2 = copy.deepcopy(CFG)
+    cfg2["selection"]["require_earnings_catalyst"] = True
+    cfg2["exit"]["stop_mode"] = "opening_range_low"
+    # only DDD reported earnings before today's open
+    monkeypatch.setattr(MarketData, "earnings_for_dates", lambda self, dates, uni, now: (
+        setattr(self, "earnings_failed", []) or [{"ticker": "DDD", "announce_date": S.isoformat(), "time_code": "time-pre-market",
+                                                   "announce_ts": f"{S.isoformat()} 07:00", "source": "nasdaq", "eps_forecast": "", "retrieved_at": "x"}]))
+    monkeypatch.setattr(DE.DayEngine, "_stocktwits", lambda self, t: {})
+    md, L = make("v2")
+    NOW["t"] = at(10, 40)
+    L.start_run("v2", "test")
+    e = DE.DayEngine(L, md, cfg2, {}, at(10, 40))
+    e.stocks, e.names = TICK, {t: t for t in TICK}
+    e.step()
+    cands = {r["ticker"] for r in L.db.execute("SELECT ticker FROM decisions WHERE reason_code='CANDIDATE'")}
+    assert cands == {"DDD"}  # AAA was in play too, but had no earnings catalyst
+    buy = L.db.execute("SELECT reason FROM fills WHERE ticker='DDD' AND side='BUY'").fetchone()
+    assert buy and "low of the first 5 minutes" in buy["reason"]

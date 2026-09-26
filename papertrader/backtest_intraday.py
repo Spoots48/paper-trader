@@ -36,8 +36,8 @@ def daily_metrics(daily: pd.DataFrame, tickers: list[str], before: dt.date, cfg:
     return out
 
 
-def run(data_dir: Path, exec_minutes: int = 5) -> dict:
-    cfg = load_json(ROOT / "config" / "strategy_daytrade_v1.json")
+def run(data_dir: Path, exec_minutes: int = 5, cfg: dict | None = None, catalyst: set | None = None) -> dict:
+    cfg = cfg or load_json(ROOT / "config" / "strategy_daytrade_v1.json")
     bars = pd.read_pickle(data_dir / "bars_5m.pkl")  # selection (opening range, relative volume) always uses 5-minute bars
     daily = pd.read_pickle(data_dir / "daily_6mo.pkl")
     bars["session"] = bars["ts"].dt.date
@@ -70,6 +70,8 @@ def run(data_dir: Path, exec_minutes: int = 5) -> dict:
             hist[t] = [float(first.loc[(s, t)].Volume) for s in hist_sessions if (s, t) in first.index]
         dm = daily_metrics(daily, list(fb), S, cfg)
         cands, _ = select_candidates(fb, hist, dm, cfg)
+        if catalyst is not None:
+            cands = [c for c in cands if (c.ticker, S) in catalyst]
         st = DayState(session=S.isoformat(), cash_at_open=cash, cash=cash, candidates=[c.__dict__ for c in cands],
                       pending=[c.ticker for c in cands])
         g = by_session[S]

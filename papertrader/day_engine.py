@@ -128,6 +128,14 @@ class DayEngine:
             return None  # today's opening bars not available yet (or data outage): try again next run
         hist = {t: [v for _, v in sorted(x)][-self.cfg["selection"]["relative_volume_lookback_sessions"]:] for t, x in hist.items()}
         cands, skipped = select_candidates(first_today, hist, self._daily_metrics(S), self.cfg)
+        if self.cfg["selection"].get("require_earnings_catalyst"):
+            reacting = self._earnings_reacting(S)
+            if reacting is None:
+                self.L.issue("WARN", "earnings", f"{S}: earnings calendar unavailable; no catalyst-confirmed candidates today")
+                reacting = set()
+            skipped += [(c.ticker, "in play but no earnings report today (catalyst required)") for c in cands if c.ticker not in reacting]
+            cands = [c for c in cands if c.ticker in reacting]
+        social = self._stocktwits([c.ticker for c in cands])
         risk = self.L.get_state("risk", {"peak": self.cash0})
         halted = bool(risk.get("halt_until") and S.isoformat() <= risk["halt_until"])
         paused = bool(risk.get("pause_until") and S.isoformat() <= risk["pause_until"])
@@ -141,7 +149,8 @@ class DayEngine:
                 self.L.insert_decision(f"{S}:dt:cand:{c.ticker}", asof, S.isoformat(), Decision(
                     c.ticker, "daytrade", "INFO", "CANDIDATE",
                     f"stock in play: first 5-min volume {c.rvol:.1f}x normal (rank {c.rank}), first bar up "
-                    f"{c.first_open:.2f}→{c.first_close:.2f}; buy stop at {c.trigger:.2f}", c.__dict__), iso(self.now))
+                    f"{c.first_open:.2f}→{c.first_close:.2f}; buy stop at {c.trigger:.2f}",
+                    {**c.__dict__, "stocktwits": social.get(c.ticker)}), iso(self.now))
                 if not (halted or paused):
                     self.L.insert_order(Order(key=f"{S}:daytrade:{c.ticker}:BUY:ORB", ticker=c.ticker, side="BUY", order_type="STOP_ENTRY",
                                               session=S.isoformat(), created_at=asof, sleeve="daytrade", reason_code="ORB_BREAKOUT",
@@ -157,6 +166,34 @@ class DayEngine:
             self.L.set_state(f"dt:{S}", st.to_json())
         self.note(f"{S}: {len(cands)} candidates ({', '.join(c.ticker for c in cands[:8])}{'…' if len(cands) > 8 else ''})")
         return st
+
+    def _earnings_reacting(self, S: dt.date) -> set | None:
+        """Tickers whose earnings reaction day is S (reported after the previous close or before today's open)."""
+        from .strategy import map_reaction
+        D = prev_session(S)
+        days = [D + dt.timedelta(days=i) for i in range((S - D).days + 1)]
+        cal = self.md.earnings_for_dates(days, set(self.stocks), self.now)
+        if self.md.earnings_failed:
+            return None
+        sess = sessions_between(S - dt.timedelta(days=10), S + dt.timedelta(days=10))
+        return {e["ticker"] for e in cal if (mp := map_reaction(e["announce_ts"], 12, sess)) and mp[0] == S}
+
+    def _stocktwits(self, tickers: list[str]) -> dict:
+        """Forward data collection only (does not affect trades): StockTwits message sentiment tags."""
+        import requests
+        out = {}
+        for t in tickers[:10]:
+            try:
+                r = requests.get(f"https://api.stocktwits.com/api/2/streams/symbol/{t}.json", timeout=10,
+                                 headers={"User-Agent": "Mozilla/5.0 (PaperTradingSim research)"})
+                msgs = r.json().get("messages", []) if r.status_code == 200 else []
+                tags = [((m.get("entities") or {}).get("sentiment") or {}).get("basic") for m in msgs]
+                times = [m.get("created_at") for m in msgs if m.get("created_at")]
+                out[t] = {"messages": len(msgs), "bullish": tags.count("Bullish"), "bearish": tags.count("Bearish"),
+                          "newest": max(times) if times else None, "oldest": min(times) if times else None, "retrieved_at": iso(self.now)}
+            except Exception:
+                continue
+        return out
 
     def _init_benchmark(self, S: dt.date) -> None:
         if self.L.get_state("benchmark") or S != self.start:
