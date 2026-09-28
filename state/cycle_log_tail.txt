@@ -1,7 +1,6 @@
-2026-09-28 05:49:24,539 INFO [daytrade] no action needed
-2026-09-28 05:49:29,355 INFO [crypto2] no action needed
-2026-09-28 05:49:30,303 INFO [mm] no action needed
-2026-09-28 05:49:30,309 INFO [crypto] no action needed
-2026-09-28 05:49:30,313 INFO [primary] no action needed
-2026-09-28 05:49:30,318 INFO [research] no action needed
-2026-09-28 05:49:30,345 INFO daily reports generated: ['daily_2026-09-27']
+2026-09-28 10:23:55,719 INFO [daytrade] no action needed
+2026-09-28 10:24:00,644 INFO [crypto2] no action needed
+2026-09-28 10:24:08,558 INFO [mm] FILL ETH 15m 01:45 Up 10.08 @ 0.62
+2026-09-28 10:24:08,562 INFO [crypto] no action needed
+2026-09-28 10:24:08,566 INFO [primary] no action needed
+2026-09-28 10:24:08,569 INFO [research] no action needed
