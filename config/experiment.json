@@ -15,7 +15,7 @@
     {
       "id": "daytrade",
       "name": "Day trading",
-      "subtitle": "Aggressive intraday: stocks in play, opening-range breakouts, flat by the close",
+      "subtitle": "Earnings-catalyst intraday breakouts; 0.25% modeled risk per trade, 1% session loss budget, flat by close",
       "strategy": "config/strategy_daytrade_v1.json",
       "ledger": "data/ledger_daytrade.sqlite",
       "start_date": "2026-09-24"
@@ -23,15 +23,15 @@
     {
       "id": "crypto2",
       "name": "Crypto odds bot v2",
-      "subtitle": "Polymarket BTC/ETH up/down, corrected settlement math, market-anchored, small de-correlated bets (paper)",
+      "subtitle": "Market-anchored BTC/ETH odds with persistent daily loss stops and a protected profit budget (paper)",
       "strategy": "config/strategy_pm_v2.json",
       "ledger": "data/ledger_crypto2.sqlite",
       "start_date": "2026-09-25"
     },
     {
       "id": "mm",
-      "name": "Market maker",
-      "subtitle": "Posts bids on both sides of Polymarket BTC/ETH up/down markets; earns the spread and rebates if both fill (paper)",
+      "name": "Market maker v2",
+      "subtitle": "One market at a time; capped one-sided loss, inventory-aware paired quotes, estimated rebates excluded from cash (paper)",
       "strategy": "config/strategy_mm_v1.json",
       "ledger": "data/ledger_mm.sqlite",
       "start_date": "2026-09-25"

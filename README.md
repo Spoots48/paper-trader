@@ -8,6 +8,35 @@ locally on this Mac with free data sources. Cost: $0.
   generated after that day's close and announced with a macOS notification.
 - **Benchmarks:** $100 in SPY bought at the first open (same cost model, dividends included), and $100 cash.
 
+## Current strategy revision — 2026-09-28
+
+There are now six books (see `config/experiment.json`); the two-book description
+below records the original experiment. The active capital-preservation revision is:
+
+- **Day trading v3:** keep the earnings-catalyst opening-range entries and stops;
+  size by loss at the stop, including costs. At most 0.25% of session-opening
+  capital per trade and a 1% session loss budget including remaining positions.
+  On a $100 book that is $0.25 planned risk per trade. Gaps can exceed these limits.
+  A 5% closing drawdown pauses entries and 10% halts the book.
+- **Market maker v2:** one active market, quotes sized together, at most 3% equity
+  at risk if only the losing side fills; at most 10% in inventory plus quotes.
+  Hedge prices must work with the actual cost of existing shares. Fills are
+  limited to observed tape volume; estimated rebates do not increase cash.
+- **Crypto odds v2.1:** retain the probability model and entry threshold, but cap
+  new bets by remaining worst-case settlement loss capacity (6% cost exposure ceiling).
+- **Both active crypto books:** refresh marks before new risk; 3% daily loss stop,
+  10% lifetime drawdown halt. Once a daily gain reaches 2%, reserve half the
+  peak gain when budgeting new trades. A breached daily stop lasts through that
+  New York date, even after a restart or recovery. This stops new risk, not an
+  instant liquidation of existing bets. Minimum-size orders that cannot fit are skipped.
+
+The original crypto bot remains retired. Primary and Research retain their frozen
+rules. No history or balances were reset. See
+[revision evidence](research/revamp_2026_09_28/SUMMARY.md) and
+[replay results](research/revamp_2026_09_28/replay_results.json).
+Risk sizing reduced both drawdown and returns in the historical sample. The tested
+trailing stop was rejected for deployment. This revision is not evidence of profitability.
+
 ## How to use it
 
 Open **Paper Trader** (in `~/Applications`, or search Spotlight). The app shows:

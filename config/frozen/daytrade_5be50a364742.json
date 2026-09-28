@@ -1,7 +1,7 @@
 {
   "strategy_id": "stocks-in-play-opening-range-breakout",
-  "version": "dt-3.0.0",
-  "description": "Earnings-catalyst opening-range breakout, long only and flat by close. Retains v2 selection and opening-range-low stop. v3 sizes each position to at most 0.25% session-opening capital at its modeled stop (including entry and exit costs), subject to the original 20% notional cap and a 1% session loss budget across realized losses and remaining stop exposure. Gaps can exceed modeled limits. Trailing-stop proposal was tested and rejected; profitability remains unproven.",
+  "version": "dt-2.0.0",
+  "description": "Aggressive intraday (day-trading) book. Each morning, find the S&P 500 stocks trading unusually heavy volume in the first 5 minutes and opening strong. Buy those that break above their first 5-minute high, with a tight ATR-based stop. Up to 5 positions at 20% each, everything sold by the close. Long only, no leverage. Based on Zarattini, Barbon & Aziz (2023), 'A Profitable Day Trading Strategy for the U.S. Equity Market' (5-minute opening range breakout on stocks in play). Parameters are taken from that paper, not tuned. v2 (2026-09-28): trades only stocks in play that just reported earnings, with the stop at the opening-range low; adopted under the pre-registered variant test (research/PREREGISTRATION.md, research/dt_variants.json).",
   "book_type": "intraday",
   "portfolio": {
     "starting_cash": 100.0,
@@ -46,12 +46,10 @@
     "note": "v2: stop at the low of the first 5-minute bar (was 0.10 x ATR, which normal noise kept hitting)"
   },
   "risk": {
-    "drawdown_pause": 0.05,
+    "drawdown_pause": 0.15,
     "pause_sessions": 2,
-    "drawdown_halt": 0.1,
-    "note": "Entry sizing: at most 0.25% opening capital lost at each modeled stop; all existing stops plus realized losses must fit a 1% session budget. Gap risk remains. 5% end-of-session drawdown pauses entries; 10% halts the book.",
-    "per_trade_risk": 0.0025,
-    "daily_loss_limit": 0.01
+    "drawdown_halt": 0.25,
+    "note": "Aggressive limits: a 15% drawdown from peak pauses new trades for 2 sessions; a 25% drawdown stops the book for the rest of the experiment."
   },
   "news": {
     "role": "veto only (never a trigger)",

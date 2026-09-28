@@ -222,6 +222,7 @@ INSERT INTO "events" VALUES(135,'2026-09-28T20:00:22Z','20260928T200014Z-mm','de
 INSERT INTO "events" VALUES(136,'2026-09-28T20:20:41Z','20260928T202033Z-mm','decision','{"action": "INFO", "code": "MM_QUOTES", "key": "mm:quote:2026-09-28T20:20:33Z", "reason": "quoted 0 market(s): btc-updown-15m-1790626500: best bids 0.36+0.63 leave no room under $1; bitcoin-up-or-down-september-28-2026-4pm-et: best bids 0.77+0.22 leave no room under $1; eth-updown-15m-1790626500: best bids 0.24+0.75 leave no room under $1; ethereum-up-or-down-september-28-2026-4pm-et: best bids 0.83+0.16 leave no room under $1", "ticker": "*"}','ee316766157a48955a9ac201bfeaccd54a3a2a5b373b2cefedad4d21aadb097b','79a3ac8ac000591b6bce8d231fbecc20112add8d73db9edaa4c527ceb3f8d306');
 INSERT INTO "events" VALUES(137,'2026-09-28T20:36:11Z','20260928T203606Z-mm','decision','{"action": "INFO", "code": "MM_QUOTES", "key": "mm:quote:2026-09-28T20:36:06Z", "reason": "quoted 0 market(s): btc-updown-15m-1790627400: best bids 0.57+0.42 leave no room under $1; bitcoin-up-or-down-september-28-2026-4pm-et: 60% elapsed, not quoting; eth-updown-15m-1790627400: best bids 0.63+0.36 leave no room under $1; ethereum-up-or-down-september-28-2026-4pm-et: 60% elapsed, not quoting", "ticker": "*"}','79a3ac8ac000591b6bce8d231fbecc20112add8d73db9edaa4c527ceb3f8d306','1305cb02153464058a44585250cecdda9ba3cbe149d9acbd27eac05ae700803f');
 INSERT INTO "events" VALUES(138,'2026-09-28T21:37:04Z','20260928T213658Z-mm','decision','{"action": "INFO", "code": "MM_QUOTES", "key": "mm:quote:2026-09-28T21:36:58Z", "reason": "quoted 0 market(s): btc-updown-15m-1790631000: best bids 0.6+0.39 leave no room under $1; bitcoin-up-or-down-september-28-2026-5pm-et: 62% elapsed, not quoting; eth-updown-15m-1790631000: best bids 0.69+0.3 leave no room under $1; ethereum-up-or-down-september-28-2026-5pm-et: 62% elapsed, not quoting", "ticker": "*"}','1305cb02153464058a44585250cecdda9ba3cbe149d9acbd27eac05ae700803f','b5da3d39238755dde7159c3a5cba6bbaefc79b460dfd4d3910e4d0f65928dec9');
+INSERT INTO "events" VALUES(139,'2026-09-28T22:03:00Z',NULL,'strategy_change','{"book": "mm", "description": "Market maker v2: size atomic quote pairs by one-sided loss, limit inventory and resting orders, hedge using actual acquisition cost, volume-limit fills, exclude estimated rebates from cash. Current marks, persistent daily stops and protected profit budget; robust delayed settlement.", "to_sha256": "02451982e192530ea77d7cae430fd4b483500177ab7ba69ea3bf808b0ec27179"}','b5da3d39238755dde7159c3a5cba6bbaefc79b460dfd4d3910e4d0f65928dec9','61139d621b843375693c4d7e78baca1016a6047f713ea3469323453071a67051');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -373,7 +374,7 @@ INSERT INTO "snapshots" VALUES('2026-09-26','2026-09-27T05:42:10Z','20260927T054
 INSERT INTO "snapshots" VALUES('2026-09-27','2026-09-28T05:49:24Z','20260928T054924Z-mm',98.848623164,98.848623164,0.0,NULL,100.0,101.323023164,2.44209057599374945e-02,'0 open bets','{"peak": 101.323023164, "drawdown": 0.024420905759937495}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','101.59552568400001','2026-09-28T19:39:57Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-28T21:37:03Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-28T22:03:00Z');
 INSERT INTO "state" VALUES('mm_orders','[]','2026-09-28T21:37:03Z');
 INSERT INTO "state" VALUES('risk','{"peak": 102.72926188400001, "drawdown": 0.011036156390184071}','2026-09-28T21:37:03Z');
 INSERT INTO "state" VALUES('pm_day','{"date": "2026-09-28", "start_equity": 98.848623164}','2026-09-28T21:37:03Z');
@@ -384,6 +385,7 @@ CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
 );
+INSERT INTO "strategy_changes" VALUES(1,'2026-09-28T22:03:00Z','mm-1.0.0','mm-2.0.0','389313b22ae633d70f0881a8b34067458eb84ec5fac14d02d970b801dc3bc6de','02451982e192530ea77d7cae430fd4b483500177ab7ba69ea3bf808b0ec27179','next decision after 2026-09-28 deployment','Market maker v2: size atomic quote pairs by one-sided loss, limit inventory and resting orders, hedge using actual acquisition cost, volume-limit fills, exclude estimated rebates from cash. Current marks, persistent daily stops and protected profit budget; robust delayed settlement.','research/revamp_2026_09_28/SUMMARY.md: 62 tests passed; independent review; fixed-variant replay at 1m/5m. Drawdown improved but returns lower; no claim of proven profit.');
 CREATE TRIGGER fills_no_update BEFORE UPDATE ON fills BEGIN SELECT RAISE(ABORT, 'fills is append-only'); END;
 CREATE TRIGGER fills_no_delete BEFORE DELETE ON fills BEGIN SELECT RAISE(ABORT, 'fills is append-only'); END;
 CREATE TRIGGER snapshots_no_update BEFORE UPDATE ON snapshots BEGIN SELECT RAISE(ABORT, 'snapshots is append-only'); END;
@@ -403,7 +405,8 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',138);
+INSERT INTO "sqlite_sequence" VALUES('events',139);
 INSERT INTO "sqlite_sequence" VALUES('decisions',53);
 INSERT INTO "sqlite_sequence" VALUES('fills',30);
+INSERT INTO "sqlite_sequence" VALUES('strategy_changes',1);
 COMMIT;

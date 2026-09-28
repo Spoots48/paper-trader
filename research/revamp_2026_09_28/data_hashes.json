@@ -1,0 +1,6 @@
+{
+  "data/intraday/bars_1m.pkl": "2fbc92c753a6e2186c6dd563cadaf2804a7c53a8ef9cc11a50f7b06616e91bda",
+  "data/intraday/bars_5m.pkl": "2b761bf3faf18f70eaa5eebbb3c4c3b7d36f788beeda124eaa611c909aae3718",
+  "data/intraday/daily_6mo.pkl": "83447adc63adf141e2fa822d8be92650c41ab49af6424966ab189d2a037780c2",
+  "data/history/earnings.pkl": "d3bc845f7e31c7964d80e48da07688a566582345862a079b98d90235767d4d58"
+}
