@@ -1,6 +1,6 @@
-2026-09-28 20:20:35,151 INFO [daytrade] closed 2026-09-28: equity $98.82 (0 trades)
-2026-09-28 20:20:40,612 INFO [crypto2] no action needed
-2026-09-28 20:20:41,988 INFO [mm] no action needed
-2026-09-28 20:20:41,992 INFO [crypto] no action needed
-2026-09-28 20:20:44,777 INFO [primary] closed 2026-09-28; decided for 2026-09-29: 0 orders (MOO), regime ON
-2026-09-28 20:22:11,160 INFO [research] closed 2026-09-28; decided for 2026-09-29: 0 orders (MOO), regime ON
+2026-09-28 20:36:06,542 INFO [daytrade] no action needed
+2026-09-28 20:36:11,095 INFO [crypto2] no action needed
+2026-09-28 20:36:11,981 INFO [mm] no action needed
+2026-09-28 20:36:11,985 INFO [crypto] no action needed
+2026-09-28 20:36:11,991 INFO [primary] no action needed
+2026-09-28 20:36:11,995 INFO [research] no action needed
