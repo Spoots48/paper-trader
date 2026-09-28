@@ -180,11 +180,30 @@ def process_bar(st: DayState, bar_time: str, bars: dict[str, tuple], cfg: dict, 
             if budget < P["min_order_usd"]:
                 events.append(DayEvent("SKIP", t, 0, 0, 0, 0, bar_time, "NO_CASH", "today's settled cash already used (cash account)"))
                 continue
+            stop = cand["stop_price"] if cand.get("stop_price") else ref - cand["stop_distance"]
+            R = cfg['risk']
+            if R.get('per_trade_risk') is not None:
+                stop_fill = stop * (1 - cost_bps(cfg, cand['adv_usd'], 'stop') / 1e4)
+                loss_per_share = px - stop_fill
+                if not 0 < stop < ref or loss_per_share <= 0:
+                    events.append(DayEvent('SKIP', t, 0, 0, 0, 0, bar_time, 'INVALID_STOP', 'stop must be below entry'))
+                    continue
+                floor_equity = st.cash + sum(
+                    p['qty'] * p['stop'] * (1 - cost_bps(cfg, cands[k]['adv_usd'], 'stop') / 1e4)
+                    for k, p in st.positions.items())
+                headroom = max(0., floor_equity - st.cash_at_open * (1 - R['daily_loss_limit']))
+                risk_budget = min(R['per_trade_risk'] * st.cash_at_open, headroom)
+                budget = min(budget, risk_budget / loss_per_share * px)
             q = _floor(budget / px, P["fractional_decimals"])
+            if q * px < P['min_order_usd']:
+                events.append(DayEvent('SKIP', t, 0, 0, 0, 0, bar_time, 'RISK_BUDGET',
+                                       'remaining loss budget cannot fund the minimum order'))
+                continue
             st.cash -= q * px
             st.buys_used += q * px
             stop = cand["stop_price"] if cand.get("stop_price") else ref - cand["stop_distance"]
             st.positions[t] = asdict(DayPosition(t, q, px, ref, stop, bar_time))
+            st.positions[t]["initial_risk"] = ref - stop
             st.traded.append(t)
             events.append(DayEvent("BUY", t, q, ref, px, bps, bar_time, "ORB_BREAKOUT",
                                    f"broke above first 5-min high {cand['first_high']:.2f} (rel. volume {cand['rvol']:.1f}x, "
@@ -192,6 +211,17 @@ def process_bar(st: DayState, bar_time: str, bars: dict[str, tuple], cfg: dict, 
             # 3) worst case inside the entry bar: if its low also reached the stop, assume we were stopped
             if l <= stop:
                 sell(t, stop, "stop", "STOP", f"entry bar low {l:.2f} also reached stop {stop:.2f} (worst-case assumption)")
+    # A stop derived from this completed close is active only on the NEXT bar.
+    # Never test this bar's earlier low against a newly raised stop.
+    EX = cfg['exit']
+    if EX.get('trail_activate_r') is not None:
+        for t, p in st.positions.items():
+            if t not in bars:
+                continue
+            risk = p.get('initial_risk', p['entry_ref'] - p['stop'])
+            close = bars[t][3]
+            if risk > 0 and close >= p['entry_ref'] + EX['trail_activate_r'] * risk:
+                p['stop'] = max(p['stop'], close - EX['trail_distance_r'] * risk)
     # 4) end of session: flat by the close
     if is_last_bar:
         for t in list(st.positions):

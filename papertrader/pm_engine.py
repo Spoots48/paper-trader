@@ -111,18 +111,25 @@ class PMEngine:
         if today < self.start:
             return f"starts {self.start}"
         self.settle()
+        marks_ok = self.mark()
         positions = self.L.get_state("pm_positions", {}) or {}
         cash = self.L.get_state("cash", self.cash0)
         risk = self.L.get_state("risk", {"peak": self.cash0})
-        if today <= self.end and not risk.get("halt_until") and not self.retired:
+        if not marks_ok:
+            self.note("no new bets: current position marks unavailable")
+        elif not self.L.get_state("strategy_integrity_ok", True):
+            self.note("no new bets: strategy integrity check failed")
+        elif today <= self.end and not risk.get("halt_until") and not self.retired:
             self.scan(positions, cash)
         self.mark()
         self.snapshot()
         return "; ".join(self.log) or "no action needed"
 
-    def settle(self) -> None:
+    def settle(self, pending_slugs=()) -> None:
         positions = self.L.get_state("pm_positions", {}) or {}
         for key, p in list(positions.items()):
+            if p["slug"] in pending_slugs:
+                continue  # reconcile every quote before writing one final settlement
             if self.now < _ts(p["end"]) + dt.timedelta(minutes=1):
                 continue
             try:
@@ -247,14 +254,23 @@ class PMEngine:
                     f"scanned {len(scanned)} live markets; {trades} bet(s). Best gaps: " +
                     ", ".join(f"{s['market']} {s['best_side']} {s['edge']:+.2f}" for s in top), {"scanned": scanned}), iso(self.now))
 
-    def mark(self) -> None:
+    def mark(self) -> bool:
         positions = self.L.get_state("pm_positions", {}) or {}
         marks = {}
+        complete = True
         for k, p in positions.items():
             try:
                 _, bids = self.book(p["token"])
-                bid = max((b for b, _ in bids), default=0.0)
+                valid = [b for b, size in bids if math.isfinite(b) and 0 <= b <= 1 and size > 0]
+                if not valid:
+                    raise ValueError("no executable bid")
+                bid = max(valid)
             except Exception:
+                complete = False
+                # An expired, unresolved market has no executable quote. Do not
+                # turn missing data into a fictitious zero-dollar loss.
+                if self.now >= _ts(p["end"]):
+                    p.pop("mark", None)
                 continue
             p["mark"] = bid
             marks[p["label"]] = (bid, iso(self.now))
@@ -262,6 +278,7 @@ class PMEngine:
             self.L.set_state("pm_positions", positions)
             self._save_positions(positions)
             self.L.set_state("live_marks", {"as_of": iso(self.now), "marks": marks})
+        return complete
 
     def _save_positions(self, positions: dict) -> None:
         self.L.db.execute("DELETE FROM positions")

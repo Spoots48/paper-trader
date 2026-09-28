@@ -8,6 +8,7 @@ from .broker import Fill as LFill, Order
 from .nyse_calendar import ET, iso
 from .pm2 import decide_v2, sigma_from_closes
 from .pm_engine import PMEngine, _ts
+from .pm_risk import marked_equity, protected_floor, settlement_floor
 from .predmarket import walk_book
 from .strategy import Decision
 
@@ -24,7 +25,7 @@ class PMEngine2(PMEngine):
     def risk_gate(self, positions: dict, cash: float) -> str | None:
         """Checked every run (v1 only checked once a day, which is why its loss limit never fired)."""
         R = self.cfg["risk"]
-        equity = cash + sum(p.get("mark", p["cost"] / p["shares"]) * p["shares"] for p in positions.values())
+        equity = marked_equity(cash, positions)
         risk = self.L.get_state("risk", {"peak": self.cash0})
         risk["peak"] = max(risk.get("peak", self.cash0), equity)
         dd = 1 - equity / risk["peak"]
@@ -32,15 +33,24 @@ class PMEngine2(PMEngine):
         day = self.L.get_state("pm_day", {})
         if day.get("date") != today:
             day = {"date": today, "start_equity": equity}
-        why = None
+        day["peak"] = max(day.get("peak", day["start_equity"]), equity)
+        why = day.get("stop_reason")
         if risk.get("halt_until"):
             why = "drawdown halt active"
         elif dd >= R["drawdown_halt"]:
             risk["halt_until"] = self.end.isoformat()
             self.L.issue("CRITICAL", "risk", f"crypto bot v2 drawdown {dd:.1%}: no new bets for the rest of the experiment")
             why = "drawdown halt triggered"
+        elif why:
+            pass  # once tripped, the daily stop survives recoveries and restarts
         elif equity <= day["start_equity"] * (1 - R["daily_loss_limit"]):
             why = f"daily loss limit: down {1 - equity / day['start_equity']:.1%} today"
+        elif equity <= protected_floor(risk, day, R):
+            why = "daily profit protection: half of the peak gain given back"
+        if why and not day.get("stop_reason"):
+            day["stop_reason"] = why
+            self.L.event("risk_stop", {"reason": why, "equity": equity, "date": today})
+        day["protected_floor"] = protected_floor(risk, day, R)
         risk["drawdown"] = dd
         with self.L.tx():
             self.L.set_state("risk", risk)
@@ -53,7 +63,7 @@ class PMEngine2(PMEngine):
         if why:
             self.note(f"no new bets: {why}")
             return
-        equity = cash + sum(p.get("mark", p["cost"] / p["shares"]) * p["shares"] for p in positions.values())
+        equity = marked_equity(cash, positions)
         exposure = sum(p["cost"] for p in positions.values())
         taken = {(p["end"], p["side"]) for p in positions.values()}
         scanned, trades = [], 0
@@ -113,10 +123,12 @@ class PMEngine2(PMEngine):
                     scanned[-1]["result"] = f"skipped: only ${depth:.0f} available near the best price"
                     continue
                 S = cfg["sizing"]
-                stake = min(S["per_bet_fraction"] * equity, S["max_open_exposure"] * equity - exposure, cash)
+                floor = self.L.get_state("pm_day")["protected_floor"]
+                headroom = max(0.0, settlement_floor(cash, positions) - floor)
+                stake = min(S["per_bet_fraction"] * equity, S["max_open_exposure"] * equity - exposure, cash, headroom)
                 fill = walk_book(books[d["side"]][0], d["q"], stake, cfg["entry"]["min_edge"], cfg["fees"]["crypto_taker_fee_rate"])
                 if not fill or fill.shares < cfg["portfolio"]["min_shares"]:
-                    scanned[-1]["result"] = "skipped: bet would be below the 5-share minimum"
+                    scanned[-1]["result"] = "skipped: remaining risk/cash budget cannot fund the 5-share minimum"
                     continue
                 label = f"{name} {'1h' if minutes == 60 else ev['slug'].split('-')[2]} {start.astimezone(ET).strftime('%H:%M')} {d['side']}"
                 okey = f"pm:{key}:{d['side']}:BUY"
