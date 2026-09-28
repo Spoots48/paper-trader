@@ -1,6 +1,6 @@
-2026-09-28 15:48:45,896 INFO [daytrade] no action needed
-2026-09-28 15:48:51,206 INFO [crypto2] no action needed
-2026-09-28 15:48:51,964 INFO [mm] no action needed
-2026-09-28 15:48:51,972 INFO [crypto] no action needed
-2026-09-28 15:48:52,538 INFO [primary] no action needed
-2026-09-28 15:48:52,858 INFO [research] no action needed
+2026-09-28 17:50:15,753 INFO [daytrade] no action needed
+2026-09-28 17:50:21,385 INFO [crypto2] no action needed
+2026-09-28 17:50:36,483 INFO [mm] FILL ETH 15m 11:45 Up 10.33 @ 0.56; FILL ETH 15m 11:45 Down 10.33 @ 0.42
+2026-09-28 17:50:36,487 INFO [crypto] no action needed
+2026-09-28 17:50:37,035 INFO [primary] no action needed
+2026-09-28 17:50:37,524 INFO [research] no action needed
