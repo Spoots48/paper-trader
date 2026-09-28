@@ -1,0 +1,81 @@
+{
+ "kind": "daily",
+ "date": "2026-09-27",
+ "day": 5,
+ "weekday": "Sunday",
+ "generated_at": "2026-09-28T05:49:24Z",
+ "summary": "All bots together went from $573.23 to $571.26 today (\u2212$1.96). Biggest loss: Market maker (\u2212$1.96). The stock market was closed.",
+ "rows": [
+  {
+   "id": "daytrade",
+   "name": "Day trading",
+   "status": "market closed",
+   "value": 98.82487279427308,
+   "change": 0.0,
+   "since_start": -1.1751272057269233,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto2",
+   "name": "Crypto odds bot v2",
+   "status": "trading",
+   "value": 100.0,
+   "change": 0.0,
+   "since_start": 0.0,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "mm",
+   "name": "Market maker",
+   "status": "trading",
+   "value": 98.848623164,
+   "change": -1.9648626640000089,
+   "since_start": -1.1513768359999972,
+   "trades": 6,
+   "wins": 1,
+   "losses": 2
+  },
+  {
+   "id": "crypto",
+   "name": "Crypto odds bot v1 (retired)",
+   "status": "retired (only settles old bets)",
+   "value": 74.22458862,
+   "change": 0.0,
+   "since_start": -25.775411379999994,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "primary",
+   "name": "Primary",
+   "status": "market closed",
+   "value": 99.74896540459237,
+   "change": 0.0,
+   "since_start": -0.2510345954076314,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "research",
+   "name": "Research",
+   "status": "market closed",
+   "value": 99.61326316378117,
+   "change": 0.0,
+   "since_start": -0.38673683621883015,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  }
+ ],
+ "spy": null,
+ "missing": [],
+ "total_before": 573.2251758106466,
+ "total_end": 571.2603131466466,
+ "late_by_hours": 0.8
+}
