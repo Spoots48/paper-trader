@@ -47,17 +47,29 @@ def valid_bar(o: float, h: float, l: float, c: float, v: float) -> bool:
 
 
 # ---------------------------------------------------------------------------- regime
-def regime_series(spy_close: pd.Series, spy_sma: pd.Series, vix: pd.Series, cfg: dict) -> pd.Series:
-    """Sequential regime with hysteresis. Missing inputs keep the previous state and flag it."""
+def regime_series(spy_close: pd.Series, spy_sma: pd.Series, vix: pd.Series, cfg: dict,
+                  next_trading_session: Callable[[dt.date], dt.date] | None = None) -> pd.Series:
+    """Causal close signals; weekly reviews use the exchange schedule, never future prices."""
+    from .nyse_calendar import next_session
+
     r = cfg["regime"]
-    out, prev = {}, "OFF"
+    frequency = r.get("review_frequency", "daily")
+    if frequency not in ("daily", "weekly"):
+        raise ValueError(f"Unsupported regime review frequency: {frequency}")
+    next_trading_session = next_trading_session or next_session
+    use_vix = r.get("use_vix", True)
+    out, prev, unknown = {}, "OFF", False
     for d in spy_close.index:
-        c, s, x = spy_close.get(d), spy_sma.get(d), vix.get(d)
-        if any(y is None or not math.isfinite(y) for y in (c, s, x)):
-            out[d] = prev + "?"  # unknown; decisions treat '?' as no-new-entries
+        if frequency == "weekly" and next_trading_session(d.date()).isocalendar()[:2] == d.date().isocalendar()[:2]:
+            out[d] = prev + ("?" if unknown else "")
             continue
-        above = c > s
-        on = above and (x < r["vix_risk_off_above"] if prev == "ON" else x < r["vix_risk_on_below"])
+        c, s, x = spy_close.get(d), spy_sma.get(d), vix.get(d)
+        inputs = (c, s, x) if use_vix else (c, s)
+        unknown = any(y is None or not math.isfinite(y) for y in inputs)
+        if unknown:
+            out[d] = prev + "?"  # no new entries until the next valid scheduled review
+            continue
+        on = c > s and (not use_vix or x < r["vix_risk_off_above" if prev == "ON" else "vix_risk_on_below"])
         prev = "ON" if on else "OFF"
         out[d] = prev
     return pd.Series(out)

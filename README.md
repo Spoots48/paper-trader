@@ -37,6 +37,16 @@ rules. No history or balances were reset. See
 Risk sizing reduced both drawdown and returns in the historical sample. The tested
 trailing stop was rejected for deployment. This revision is not evidence of profitability.
 
+## Four-round strategy search — 2026-09-28
+
+The subsequent [four-round comparison](research/four_rounds_2026_09_28/SUMMARY.md)
+tested selection, entry timing, exits and slower SPY trend rules. No candidate
+qualified for activation. The historical backtest now preserves the original
+equity peak after a drawdown halt, matching the live ledger. Earlier daily
+backtest reports used a peak reset and are not evidence of returns under the
+live halt rules. The shared-code audit and rejected candidates are retained
+in the research report; active configurations and balances were not changed.
+
 ## How to use it
 
 Open **Paper Trader** (in `~/Applications`, or search Spotlight). The app shows:

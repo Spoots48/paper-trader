@@ -1,0 +1,34 @@
+{
+  "data": {
+    "data/intraday/bars_1m.pkl": "2fbc92c753a6e2186c6dd563cadaf2804a7c53a8ef9cc11a50f7b06616e91bda",
+    "data/intraday/bars_5m.pkl": "2b761bf3faf18f70eaa5eebbb3c4c3b7d36f788beeda124eaa611c909aae3718",
+    "data/intraday/daily_6mo.pkl": "83447adc63adf141e2fa822d8be92650c41ab49af6424966ab189d2a037780c2",
+    "data/history/daily_open.pkl": "1019371b5f8e232b6878fc9efe9015adffcf5ac92b56aa63728e5f9efe8b25dd",
+    "data/history/daily_high.pkl": "01bb9c51cf2863585d7854590d3bd7f1b8da7204cddfda5939e29aa65d262ad4",
+    "data/history/daily_low.pkl": "c530fef5c55b0d62d9075903f4be97645cbd6fd760b8eca8546e53e908d20b5d",
+    "data/history/daily_close.pkl": "0786d33bc846969006c487fb4dd80852bc39b9ea3331236ff790047fe8481a8c",
+    "data/history/daily_volume.pkl": "20d52a7e6175217454827c3de5095ad0e7930f0dd6b3e080e55a2b2aefe7dd4b",
+    "data/history/daily_dividends.pkl": "6f7954d6effc0a3dffd313e0c680f999e6844a88d6106de8c3e5867bab4d9efd",
+    "data/history/earnings.pkl": "d3bc845f7e31c7964d80e48da07688a566582345862a079b98d90235767d4d58",
+    "config/universe.json": "172ba39de91f49af21ee2539df0b42cd5d6aa9c7afbd426114cb33bba2c27afa"
+  },
+  "source_and_configs": {
+    "papertrader/intraday.py": "77d5158e7c47f0f1d20b98f1ec5478f6335ce17c0cc7a598951209c90be091de",
+    "papertrader/intraday_signals.py": "a9fd391bb5f36512283beca0b9908e0643a201b8503a8a878e3874567cd8a514",
+    "papertrader/strategy.py": "c95ae50e0f696d315fb08f2af4af378a99577aa6f8721184b3f520a1880fe631",
+    "papertrader/backtest.py": "ff52a312542e0c41ef64aec958d4c225493309b7c4c8233061e299528eba233c",
+    "papertrader/broker.py": "4fb167423a8292f1636be0e5ca4db49bdad10dd602f37f0cb85fae0f7a5029ee",
+    "papertrader/nyse_calendar.py": "5f5f9490c1f7c5ae34c94a487e0299a4785d4965902185744073498c818cc474",
+    "requirements.txt": "2185fd2ee903b9b154a490fe2c2b44c2aa85cb2c26933099de0d3407cd08547c",
+    "research/four_rounds_2026_09_28/replay.py": "b8c6d8bf648a2138feafca367c3c3bd8b524959f6f6ed3a2b809a00459d732db",
+    "research/four_rounds_2026_09_28/shared_daily.py": "9a31314b024ea1d4700b983812ea5669736227b4459c22bdec8028fe8ad0e393",
+    "research/four_rounds_2026_09_28/daily.py": "e88137f1fd59b33f8831b6fdfb673dd3b422429d219de58fe885e2dff58dd71b",
+    "research/four_rounds_2026_09_28/baseline.json": "617c95587c1a67d7855d82c915a23cecae2940cad86837a4fe0a51d1c1bb913c",
+    "research/four_rounds_2026_09_28/primary_baseline.json": "ae2f38cca0c133372123ccfda86bbe6767d74c7bc3daae71bb58b07cc8dde816",
+    "research/four_rounds_2026_09_28/primary_candidate.json": "36f4488f00a6fe15de2dcb6c428dacdf537be94b44d7c4f997645c06ef2cbdcf"
+  },
+  "baseline_revision": "771f64c",
+  "selection_plan": "PLAN.md",
+  "candidate_activated": false,
+  "note": "Market-data caches are local inputs, not committed to the repository."
+}

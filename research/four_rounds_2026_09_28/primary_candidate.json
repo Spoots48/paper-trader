@@ -1,0 +1,103 @@
+{
+  "strategy_id": "weekly-200-day-spy-candidate",
+  "version": "2.0.0-primary-candidate",
+  "description": "Research candidate only. Weekly SPY trend; unchanged cash buffer and risk controls.",
+  "portfolio": {
+    "starting_cash": 100.0,
+    "max_single_stock_positions": 4,
+    "target_weight": 0.2,
+    "max_weight_at_entry": 0.25,
+    "cash_buffer": 0.02,
+    "residual_etf": "SPY",
+    "residual_rebalance_band": 0.05,
+    "min_order_usd": 1.0,
+    "fractional_shares": true,
+    "fractional_decimals": 6,
+    "leverage": false,
+    "short_selling": false,
+    "options": false
+  },
+  "regime": {
+    "benchmark": "SPY",
+    "sma_days": 200,
+    "vix_ticker": "^VIX",
+    "vix_risk_off_above": 30.0,
+    "vix_risk_on_below": 25.0,
+    "note": "Review SPY versus its 200-session mean at the last scheduled close of the week; execute at the following open. VIX gate disabled.",
+    "use_vix": false,
+    "review_frequency": "weekly"
+  },
+  "catalyst": {
+    "enabled": false,
+    "max_positions": 4,
+    "min_reaction_return": 0.05,
+    "min_excess_vs_spy": 0.04,
+    "min_close_location": 0.5,
+    "min_volume_ratio": 2.0,
+    "volume_lookback": 20,
+    "min_price": 10.0,
+    "min_adv_usd": 50000000,
+    "stop_max_loss": 0.08,
+    "stop_use_reaction_low": true,
+    "stop_min_distance": 0.03,
+    "trailing_stop": 0.1,
+    "max_hold_sessions": 20,
+    "rank_by": "excess_return",
+    "announce_hour_cutoff": 12,
+    "news_required": true,
+    "news_lookback_hours": 36,
+    "note": "Reaction day R = announcement date if announced before 12:00 ET, else the next session. Signal evaluated after R's close; entry at the next session's open (or next available price)."
+  },
+  "momentum": {
+    "enabled": false,
+    "max_positions": 2,
+    "lookback_sessions": 126,
+    "skip_recent_sessions": 5,
+    "vol_lookback_sessions": 63,
+    "require_close_above_sma50": true,
+    "require_sma50_above_sma200": true,
+    "min_price": 10.0,
+    "min_adv_usd": 100000000,
+    "rebalance": "first session of each week",
+    "exit_rank_buffer": 10,
+    "earnings_blackout_sessions": 5,
+    "exit_before_earnings": true,
+    "stop_max_loss": 0.12,
+    "trailing_stop": 0.12,
+    "news_veto": true,
+    "news_lookback_hours": 72
+  },
+  "risk": {
+    "drawdown_pause": 0.1,
+    "pause_sessions": 5,
+    "drawdown_halt": 0.15,
+    "halt_sessions": 21,
+    "note": "Drawdown measured on end-of-day equity vs running peak. Pause blocks new single-stock entries; halt liquidates everything and blocks all buys (for the live 30-day experiment this effectively means cash until the end)."
+  },
+  "costs": {
+    "commission_usd": 0.0,
+    "etf_bps": 2.0,
+    "stock_bps_adv_ge_1b": 5.0,
+    "stock_bps_adv_ge_200m": 10.0,
+    "stock_bps_other": 20.0,
+    "open_auction_extra_bps": 5.0,
+    "stop_fill_extra_bps": 15.0,
+    "sec_fee_bps_on_sells": 0.3,
+    "note": "Per-side cost applied as an adverse price adjustment (buys fill higher, sells lower). Covers half-spread plus slippage; deliberately conservative for liquid large caps."
+  },
+  "data": {
+    "max_signal_data_age_sessions": 0,
+    "max_open_gap_without_event": 0.4,
+    "intraday_interval": "5m",
+    "mkt_order_latest_et": "15:30",
+    "note": "Signals require the most recent completed session's bar to be present and valid; otherwise that ticker (or, for SPY/VIX, the whole decision) is skipped."
+  },
+  "news": {
+    "sources": [
+      "yahoo_finance_ticker_news",
+      "google_news_rss"
+    ],
+    "role": "confirmation and veto only; news never triggers a trade by itself",
+    "hard_negative_veto": true
+  }
+}

@@ -46,7 +46,8 @@ class HistData:
                 self.added[m["ticker"]] = dt.date.fromisoformat(m["date_added"])
             except ValueError:
                 pass
-        self.regime = regime_series(self.c["SPY"], self.ind.sma200["SPY"], self.vix, cfg)
+        self.sidx = {d: i for i, d in enumerate(self.sessions)}
+        self.regime = regime_series(self.c["SPY"], self.ind.sma200["SPY"], self.vix, cfg, lambda d: self.add_sessions(d, 1))
         ev = pd.read_pickle(HISTORY_DIR / "earnings.pkl")
         events = []
         cutoff = cfg["catalyst"]["announce_hour_cutoff"]
@@ -58,7 +59,6 @@ class HistData:
                                         r.eps_estimate, r.eps_reported, r.surprise_pct, "yahoo"))
         self.events = events
         self.book = EarningsBook(events)
-        self.sidx = {d: i for i, d in enumerate(self.sessions)}
 
     def add_sessions(self, d: dt.date, n: int) -> dt.date:
         i = self.sidx.get(d)
@@ -81,7 +81,8 @@ class HistData:
 
 
 # ---------------------------------------------------------------------------- simulation
-def run(cfg: dict, data: HistData, start: str, end: str, label: str) -> dict:
+def run(cfg: dict, data: HistData, start: str, end: str, label: str, *, reset_peak_after_halt: bool = False) -> dict:
+    # Keep the original running peak, as the live ledger does. Legacy reset is an explicit research audit only.
     sess = [d for d in data.sessions if dt.date.fromisoformat(start) <= d <= dt.date.fromisoformat(end)]
     broker = Broker(cfg)
     pf = Portfolio(cash=cfg["portfolio"]["starting_cash"])
@@ -122,7 +123,8 @@ def run(cfg: dict, data: HistData, start: str, end: str, label: str) -> dict:
         halted = i <= halt_until
         if not halted and dd >= R["drawdown_halt"]:
             halt_until, halted = i + R["halt_sessions"], True
-            peak = eq  # reset so the halt doesn't re-trigger immediately after it expires
+            if reset_peak_after_halt:
+                peak = eq  # legacy research behavior; False matches the live running peak
         elif dd >= R["drawdown_pause"]:
             pause_until = max(pause_until, i + R["pause_sessions"])
         risk = {"halted": halted, "paused": i <= pause_until and not halted, "drawdown": dd}

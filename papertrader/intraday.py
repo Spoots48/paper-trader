@@ -15,6 +15,8 @@ from __future__ import annotations
 import math
 from dataclasses import asdict, dataclass, field
 
+from .intraday_signals import update_confirmations, schedule_stagnation_exits
+
 
 @dataclass
 class Candidate:
@@ -69,6 +71,7 @@ class DayState:
     traded: list[str] = field(default_factory=list)  # one entry per ticker per day
     processed_through: str | None = None  # bar start time (ET ISO) of the last processed bar
     closed: bool = False
+    entry_signals: dict[str, dict] = field(default_factory=dict)
 
     def to_json(self) -> dict:
         return asdict(self)
@@ -104,6 +107,12 @@ def select_candidates(first_bars: dict[str, tuple], hist_first_vol: dict[str, li
             continue
         if SEL["require_first_bar_up"] and not c > o:
             skipped.append((t, f"first bar down ({o:.2f} → {c:.2f}); long-only book"))
+            continue
+        if (c - l) / max(h - l, 1e-9) < SEL.get('min_close_location', 0):
+            skipped.append((t, 'opening close is too low in its range'))
+            continue
+        if o / dd['prev_close'] - 1 < SEL.get('min_opening_gap', -float('inf')):
+            skipped.append((t, 'opening gap below threshold'))
             continue
         out.append(Candidate(ticker=t, rank=rank, rvol=rvol, first_open=o, first_high=h, first_low=l, first_close=c,
                              first_volume=v, atr=dd["atr"], adv_usd=dd["adv_usd"], trigger=h + ENT["trigger_offset_usd"],
@@ -152,8 +161,12 @@ def process_bar(st: DayState, bar_time: str, bars: dict[str, tuple], cfg: dict, 
         stop = st.positions[t]["stop"]
         if o <= stop:
             sell(t, o, "stop", "STOP_GAP", f"bar opened {o:.2f} below stop {stop:.2f}")
+        elif st.positions[t].get("exit_next_open"):
+            sell(t, o, "close", "STAGNATION", "weak follow-through after the time limit; next bar open")
         elif l <= stop:
             sell(t, stop, "stop", "STOP", f"low {l:.2f} hit stop {stop:.2f}")
+        elif st.positions[t].get('target') is not None and h >= st.positions[t]['target']:
+            sell(t, st.positions[t]['target'], 'close', 'PROFIT_TARGET', 'preplaced profit target reached')
     # 2) breakout entries, higher relative volume first
     if entries_allowed:
         for t in sorted(st.pending, key=lambda x: cands[x]["rank"]):
@@ -162,9 +175,17 @@ def process_bar(st: DayState, bar_time: str, bars: dict[str, tuple], cfg: dict, 
                 continue
             o, h, l, c = b
             cand = cands[t]
-            if h < cand["trigger"]:
+            confirmed = cfg['entry'].get('confirmation')
+            if confirmed:
+                if not st.entry_signals.get(t, {}).get('ready'):
+                    continue
+            elif h < cand["trigger"]:
                 continue
             st.pending.remove(t)
+            if confirmed and o < cand['trigger']:
+                events.append(DayEvent('SKIP', t, 0, 0, 0, 0, bar_time, 'FAILED_CONFIRMATION',
+                                       'next bar opened back below confirmed breakout'))
+                continue
             if len(st.positions) >= P["max_positions"]:
                 events.append(DayEvent("SKIP", t, 0, 0, 0, 0, bar_time, "NO_SLOT", "breakout, but all position slots in use"))
                 continue
@@ -173,7 +194,7 @@ def process_bar(st: DayState, bar_time: str, bars: dict[str, tuple], cfg: dict, 
                 if not ok:
                     events.append(DayEvent("SKIP", t, 0, 0, 0, 0, bar_time, "NEWS_VETO", why))
                     continue
-            ref = max(cand["trigger"], o)  # a buy stop fills at the trigger, or at the open if the bar gapped above it
+            ref = o if confirmed else max(cand["trigger"], o)  # a buy stop fills at the trigger, or at the open if the bar gapped above it
             bps = cost_bps(cfg, cand["adv_usd"], "entry")
             px = ref * (1 + bps / 1e4)
             budget = min(P["position_weight"] * st.cash_at_open, st.cash_at_open - st.buys_used, st.cash)
@@ -204,6 +225,8 @@ def process_bar(st: DayState, bar_time: str, bars: dict[str, tuple], cfg: dict, 
             stop = cand["stop_price"] if cand.get("stop_price") else ref - cand["stop_distance"]
             st.positions[t] = asdict(DayPosition(t, q, px, ref, stop, bar_time))
             st.positions[t]["initial_risk"] = ref - stop
+            if cfg['exit'].get('take_profit_r') is not None:
+                st.positions[t]['target'] = ref + cfg['exit']['take_profit_r'] * (ref - stop)
             st.traded.append(t)
             events.append(DayEvent("BUY", t, q, ref, px, bps, bar_time, "ORB_BREAKOUT",
                                    f"broke above first 5-min high {cand['first_high']:.2f} (rel. volume {cand['rvol']:.1f}x, "
@@ -211,6 +234,10 @@ def process_bar(st: DayState, bar_time: str, bars: dict[str, tuple], cfg: dict, 
             # 3) worst case inside the entry bar: if its low also reached the stop, assume we were stopped
             if l <= stop:
                 sell(t, stop, "stop", "STOP", f"entry bar low {l:.2f} also reached stop {stop:.2f} (worst-case assumption)")
+            elif st.positions[t].get('target') is not None and h >= st.positions[t]['target']:
+                sell(t, st.positions[t]['target'], 'close', 'PROFIT_TARGET', 'preplaced profit target reached on entry bar')
+    update_confirmations(st, bar_time, bars, cfg)
+    schedule_stagnation_exits(st, bar_time, bars, cfg)
     # A stop derived from this completed close is active only on the NEXT bar.
     # Never test this bar's earlier low against a newly raised stop.
     EX = cfg['exit']

@@ -1,0 +1,268 @@
+{
+  "round": 3,
+  "incumbent": {
+    "full": {
+      "return": 0.03321384370516678,
+      "drawdown": 0.0045241513012039825,
+      "trades": 57,
+      "win_rate": 0.543859649122807,
+      "costs": 1.0539390734266816,
+      "fallback_exits": 0
+    },
+    "fold1": {
+      "return": 0.030643124810684208,
+      "drawdown": 0.0038958308870385983,
+      "trades": 45,
+      "win_rate": 0.6,
+      "costs": 0.9021932842428905,
+      "fallback_exits": 0
+    },
+    "fold2": {
+      "return": 0.0024943144792657357,
+      "drawdown": 0.004524130346410193,
+      "trades": 12,
+      "win_rate": 0.3333333333333333,
+      "costs": 0.14723297384712628,
+      "fallback_exits": 0
+    }
+  },
+  "candidates": {
+    "target_2r": {
+      "full": {
+        "return": 0.026227675761859137,
+        "drawdown": 0.004524145198796847,
+        "trades": 59,
+        "win_rate": 0.5254237288135594,
+        "costs": 1.084158085467978,
+        "fallback_exits": 0
+      },
+      "fold1": {
+        "return": 0.025491429403987187,
+        "drawdown": 0.0038958308870385983,
+        "trades": 47,
+        "win_rate": 0.574468085106383,
+        "costs": 0.9333229730467628,
+        "fallback_exits": 0
+      },
+      "fold2": {
+        "return": 0.0007180465415281834,
+        "drawdown": 0.004524130346410193,
+        "trades": 12,
+        "win_rate": 0.3333333333333333,
+        "costs": 0.1470854211395472,
+        "fallback_exits": 0
+      }
+    },
+    "target_3r": {
+      "full": {
+        "return": 0.03119859629852373,
+        "drawdown": 0.004524131964719125,
+        "trades": 58,
+        "win_rate": 0.5344827586206896,
+        "costs": 1.0743611431160263,
+        "fallback_exits": 0
+      },
+      "fold1": {
+        "return": 0.02817877773840416,
+        "drawdown": 0.0038958308870385983,
+        "trades": 46,
+        "win_rate": 0.5869565217391305,
+        "costs": 0.9229413140694661,
+        "fallback_exits": 0
+      },
+      "fold2": {
+        "return": 0.002937054550030682,
+        "drawdown": 0.004524130346410193,
+        "trades": 12,
+        "win_rate": 0.3333333333333333,
+        "costs": 0.14726975179869975,
+        "fallback_exits": 0
+      }
+    },
+    "stagnation_exit": {
+      "full": {
+        "return": 0.022625769791532635,
+        "drawdown": 0.009512940298472938,
+        "trades": 62,
+        "win_rate": 0.5806451612903226,
+        "costs": 1.0983199098346108,
+        "fallback_exits": 0
+      },
+      "fold1": {
+        "return": 0.016989943877964375,
+        "drawdown": 0.009512940298472938,
+        "trades": 50,
+        "win_rate": 0.58,
+        "costs": 0.9480473762978237,
+        "fallback_exits": 0
+      },
+      "fold2": {
+        "return": 0.00554174675090513,
+        "drawdown": 0.0013140892375844704,
+        "trades": 12,
+        "win_rate": 0.5833333333333334,
+        "costs": 0.14776324424572776,
+        "fallback_exits": 0
+      }
+    }
+  },
+  "selected": "incumbent",
+  "config_before": {
+    "strategy_id": "stocks-in-play-opening-range-breakout",
+    "version": "dt-3.0.0",
+    "description": "Earnings-catalyst opening-range breakout, long only and flat by close. Retains v2 selection and opening-range-low stop. v3 sizes each position to at most 0.25% session-opening capital at its modeled stop (including entry and exit costs), subject to the original 20% notional cap and a 1% session loss budget across realized losses and remaining stop exposure. Gaps can exceed modeled limits. Trailing-stop proposal was tested and rejected; profitability remains unproven.",
+    "book_type": "intraday",
+    "portfolio": {
+      "starting_cash": 100.0,
+      "max_positions": 5,
+      "position_weight": 0.2,
+      "min_order_usd": 1.0,
+      "fractional_decimals": 6,
+      "leverage": false,
+      "short_selling": false,
+      "account": "cash account, T+1 settlement: each dollar of settled cash can fund one buy per day; sale proceeds are reusable the next session",
+      "flat_by_close": true
+    },
+    "universe": {
+      "source": "config/universe.json (S&P 500)",
+      "min_price": 5.0,
+      "min_avg_daily_volume_shares": 1000000,
+      "min_atr_usd": 0.5,
+      "atr_days": 14,
+      "avg_volume_days": 14
+    },
+    "selection": {
+      "bar_minutes": 5,
+      "relative_volume_lookback_sessions": 14,
+      "min_relative_volume": 1.0,
+      "top_n_by_relative_volume": 20,
+      "require_first_bar_up": true,
+      "note": "Relative volume = volume of today's 09:30-09:35 bar / average volume of the same bar over the previous 14 sessions. Decided after the first bar completes (09:35 ET).",
+      "require_earnings_catalyst": true,
+      "note_v2": "v2: only stocks in play whose earnings reaction day is today (Nasdaq earnings calendar: reported after yesterday's close or before today's open)"
+    },
+    "entry": {
+      "type": "buy stop at the first 5-minute bar's high",
+      "trigger_offset_usd": 0.01,
+      "last_entry_bar_minutes_before_close": 35,
+      "priority_if_same_bar": "higher relative volume first",
+      "same_bar_stop_assumption": "if the entry bar's low also reaches the stop, assume the stop was hit (worst case)"
+    },
+    "exit": {
+      "stop_atr_fraction": 0.1,
+      "exit_at_close": "sell at the close of the last 5-minute bar of the session",
+      "stop_mode": "opening_range_low",
+      "note": "v2: stop at the low of the first 5-minute bar (was 0.10 x ATR, which normal noise kept hitting)"
+    },
+    "risk": {
+      "drawdown_pause": 0.05,
+      "pause_sessions": 2,
+      "drawdown_halt": 0.1,
+      "note": "Entry sizing: at most 0.25% opening capital lost at each modeled stop; all existing stops plus realized losses must fit a 1% session budget. Gap risk remains. 5% end-of-session drawdown pauses entries; 10% halts the book.",
+      "per_trade_risk": 0.0025,
+      "daily_loss_limit": 0.01
+    },
+    "news": {
+      "role": "veto only (never a trigger)",
+      "lookback_hours": 24,
+      "veto_on": [
+        "hard negatives: offerings, investigations, restatements, bankruptcy, delisting",
+        "takeover/deal-target headlines (price pinned)"
+      ],
+      "backtested": false
+    },
+    "costs": {
+      "commission_usd": 0.0,
+      "stock_bps_adv_ge_1b": 5.0,
+      "stock_bps_adv_ge_200m": 10.0,
+      "stock_bps_other": 20.0,
+      "entry_stop_extra_bps": 5.0,
+      "stop_exit_extra_bps": 15.0,
+      "close_exit_extra_bps": 3.0,
+      "sec_fee_bps_on_sells": 0.3
+    },
+    "execution": {
+      "bar_minutes": 1,
+      "note": "Entries, stops and exits are processed on 1-minute bars (the resolution used in the source paper). The 5-minute pre-registered test was dominated by the same-bar stop ambiguity (113 of 142 trades); see research/PREREGISTRATION.md."
+    }
+  },
+  "config_after": {
+    "strategy_id": "stocks-in-play-opening-range-breakout",
+    "version": "dt-3.0.0",
+    "description": "Earnings-catalyst opening-range breakout, long only and flat by close. Retains v2 selection and opening-range-low stop. v3 sizes each position to at most 0.25% session-opening capital at its modeled stop (including entry and exit costs), subject to the original 20% notional cap and a 1% session loss budget across realized losses and remaining stop exposure. Gaps can exceed modeled limits. Trailing-stop proposal was tested and rejected; profitability remains unproven.",
+    "book_type": "intraday",
+    "portfolio": {
+      "starting_cash": 100.0,
+      "max_positions": 5,
+      "position_weight": 0.2,
+      "min_order_usd": 1.0,
+      "fractional_decimals": 6,
+      "leverage": false,
+      "short_selling": false,
+      "account": "cash account, T+1 settlement: each dollar of settled cash can fund one buy per day; sale proceeds are reusable the next session",
+      "flat_by_close": true
+    },
+    "universe": {
+      "source": "config/universe.json (S&P 500)",
+      "min_price": 5.0,
+      "min_avg_daily_volume_shares": 1000000,
+      "min_atr_usd": 0.5,
+      "atr_days": 14,
+      "avg_volume_days": 14
+    },
+    "selection": {
+      "bar_minutes": 5,
+      "relative_volume_lookback_sessions": 14,
+      "min_relative_volume": 1.0,
+      "top_n_by_relative_volume": 20,
+      "require_first_bar_up": true,
+      "note": "Relative volume = volume of today's 09:30-09:35 bar / average volume of the same bar over the previous 14 sessions. Decided after the first bar completes (09:35 ET).",
+      "require_earnings_catalyst": true,
+      "note_v2": "v2: only stocks in play whose earnings reaction day is today (Nasdaq earnings calendar: reported after yesterday's close or before today's open)"
+    },
+    "entry": {
+      "type": "buy stop at the first 5-minute bar's high",
+      "trigger_offset_usd": 0.01,
+      "last_entry_bar_minutes_before_close": 35,
+      "priority_if_same_bar": "higher relative volume first",
+      "same_bar_stop_assumption": "if the entry bar's low also reaches the stop, assume the stop was hit (worst case)"
+    },
+    "exit": {
+      "stop_atr_fraction": 0.1,
+      "exit_at_close": "sell at the close of the last 5-minute bar of the session",
+      "stop_mode": "opening_range_low",
+      "note": "v2: stop at the low of the first 5-minute bar (was 0.10 x ATR, which normal noise kept hitting)"
+    },
+    "risk": {
+      "drawdown_pause": 0.05,
+      "pause_sessions": 2,
+      "drawdown_halt": 0.1,
+      "note": "Entry sizing: at most 0.25% opening capital lost at each modeled stop; all existing stops plus realized losses must fit a 1% session budget. Gap risk remains. 5% end-of-session drawdown pauses entries; 10% halts the book.",
+      "per_trade_risk": 0.0025,
+      "daily_loss_limit": 0.01
+    },
+    "news": {
+      "role": "veto only (never a trigger)",
+      "lookback_hours": 24,
+      "veto_on": [
+        "hard negatives: offerings, investigations, restatements, bankruptcy, delisting",
+        "takeover/deal-target headlines (price pinned)"
+      ],
+      "backtested": false
+    },
+    "costs": {
+      "commission_usd": 0.0,
+      "stock_bps_adv_ge_1b": 5.0,
+      "stock_bps_adv_ge_200m": 10.0,
+      "stock_bps_other": 20.0,
+      "entry_stop_extra_bps": 5.0,
+      "stop_exit_extra_bps": 15.0,
+      "close_exit_extra_bps": 3.0,
+      "sec_fee_bps_on_sells": 0.3
+    },
+    "execution": {
+      "bar_minutes": 1,
+      "note": "Entries, stops and exits are processed on 1-minute bars (the resolution used in the source paper). The 5-minute pre-registered test was dominated by the same-bar stop ambiguity (113 of 142 trades); see research/PREREGISTRATION.md."
+    }
+  }
+}

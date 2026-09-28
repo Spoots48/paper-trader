@@ -1,0 +1,153 @@
+{
+  "results": {
+    "legacy_research": {
+      "development": {
+        "current_primary": {
+          "start_value": 100.0,
+          "end_value": 162.68,
+          "total_return": 0.6267673477365896,
+          "cagr": 0.0846191008122974,
+          "ann_vol": 0.1075973030309837,
+          "sharpe_rf0": 0.8089704348793627,
+          "max_drawdown": 0.1949144869885342,
+          "n_fills": 122,
+          "n_stock_round_trips": 0,
+          "win_rate": null,
+          "avg_win_usd": null,
+          "avg_loss_usd": null,
+          "costs_usd": 2.784214239620592,
+          "realized_pnl_by_sleeve": {},
+          "exit_reasons": {}
+        },
+        "weekly_candidate": {
+          "start_value": 100.0,
+          "end_value": 213.04,
+          "total_return": 1.1304180542897315,
+          "cagr": 0.13457108078658275,
+          "ann_vol": 0.11495205213545809,
+          "sharpe_rf0": 1.1560763018666265,
+          "max_drawdown": 0.12695437317583536,
+          "n_fills": 88,
+          "n_stock_round_trips": 0,
+          "win_rate": null,
+          "avg_win_usd": null,
+          "avg_loss_usd": null,
+          "costs_usd": 1.4223789064574102,
+          "realized_pnl_by_sleeve": {},
+          "exit_reasons": {}
+        }
+      },
+      "final": {
+        "current_primary": {
+          "start_value": 100.0,
+          "end_value": 134.8,
+          "total_return": 0.3479649100050668,
+          "cagr": 0.06538325736878003,
+          "ann_vol": 0.1071625555701918,
+          "sharpe_rf0": 0.6477581498543126,
+          "max_drawdown": 0.22850770678277188,
+          "n_fills": 133,
+          "n_stock_round_trips": 0,
+          "win_rate": null,
+          "avg_win_usd": null,
+          "avg_loss_usd": null,
+          "costs_usd": 2.1825690239025746,
+          "realized_pnl_by_sleeve": {},
+          "exit_reasons": {}
+        },
+        "weekly_candidate": {
+          "start_value": 100.0,
+          "end_value": 141.2,
+          "total_return": 0.41199889376319465,
+          "cagr": 0.07592269341037894,
+          "ann_vol": 0.10744959287878311,
+          "sharpe_rf0": 0.7383985347925479,
+          "max_drawdown": 0.21264989649190003,
+          "n_fills": 90,
+          "n_stock_round_trips": 0,
+          "win_rate": null,
+          "avg_win_usd": null,
+          "avg_loss_usd": null,
+          "costs_usd": 1.2283700170328897,
+          "realized_pnl_by_sleeve": {},
+          "exit_reasons": {}
+        }
+      }
+    },
+    "live_running_peak": {
+      "development": {
+        "current_primary": {
+          "start_value": 100.0,
+          "end_value": 123.64,
+          "total_return": 0.23636427722383346,
+          "cagr": 0.03605380048773532,
+          "ann_vol": 0.09132892612542168,
+          "sharpe_rf0": 0.43375386364642216,
+          "max_drawdown": 0.1949144869885342,
+          "n_fills": 81,
+          "n_stock_round_trips": 0,
+          "win_rate": null,
+          "avg_win_usd": null,
+          "avg_loss_usd": null,
+          "costs_usd": 2.1028155506688697,
+          "realized_pnl_by_sleeve": {},
+          "exit_reasons": {}
+        },
+        "weekly_candidate": {
+          "start_value": 100.0,
+          "end_value": 213.04,
+          "total_return": 1.1304180542897315,
+          "cagr": 0.13457108078658275,
+          "ann_vol": 0.11495205213545809,
+          "sharpe_rf0": 1.1560763018666265,
+          "max_drawdown": 0.12695437317583536,
+          "n_fills": 88,
+          "n_stock_round_trips": 0,
+          "win_rate": null,
+          "avg_win_usd": null,
+          "avg_loss_usd": null,
+          "costs_usd": 1.4223789064574102,
+          "realized_pnl_by_sleeve": {},
+          "exit_reasons": {}
+        }
+      },
+      "final": {
+        "current_primary": {
+          "start_value": 100.0,
+          "end_value": 84.41,
+          "total_return": -0.15586654379566423,
+          "cagr": -0.035302379281111795,
+          "ann_vol": 0.030976219866832293,
+          "sharpe_rf0": -1.150543430321207,
+          "max_drawdown": 0.15586654379566423,
+          "n_fills": 18,
+          "n_stock_round_trips": 0,
+          "win_rate": null,
+          "avg_win_usd": null,
+          "avg_loss_usd": null,
+          "costs_usd": 0.7406284591653959,
+          "realized_pnl_by_sleeve": {},
+          "exit_reasons": {}
+        },
+        "weekly_candidate": {
+          "start_value": 100.0,
+          "end_value": 84.14,
+          "total_return": -0.15857593452578767,
+          "cagr": -0.03595997451175337,
+          "ann_vol": 0.02899204896302815,
+          "sharpe_rf0": -1.2549980238796659,
+          "max_drawdown": 0.15857593452578767,
+          "n_fills": 12,
+          "n_stock_round_trips": 0,
+          "win_rate": null,
+          "avg_win_usd": null,
+          "avg_loss_usd": null,
+          "costs_usd": 0.4999546378593645,
+          "realized_pnl_by_sleeve": {},
+          "exit_reasons": {}
+        }
+      }
+    }
+  },
+  "note": "Shared strategy.decide and Broker; live_running_peak matches persistent peak semantics. Daily historical fills still differ from live data timing. No news dependency because both stock sleeves are disabled."
+}

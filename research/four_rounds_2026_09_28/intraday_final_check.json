@@ -1,0 +1,2254 @@
+{
+  "period": [
+    "2026-09-01",
+    "2026-09-23"
+  ],
+  "development": [
+    "2026-07-21",
+    "2026-08-31"
+  ],
+  "results": {
+    "5m_1x_costs": {
+      "baseline": {
+        "days": [
+          {
+            "session": "2026-09-01",
+            "equity": 100.0,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-02",
+            "equity": 99.50001904283994,
+            "return": -0.004999809571600622
+          },
+          {
+            "session": "2026-09-03",
+            "equity": 99.72680491509851,
+            "return": 0.002279254561357691
+          },
+          {
+            "session": "2026-09-04",
+            "equity": 99.64035861622057,
+            "return": -0.0008668311288178021
+          },
+          {
+            "session": "2026-09-08",
+            "equity": 99.64035861622057,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-09",
+            "equity": 99.64035861622057,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-10",
+            "equity": 99.69381467618474,
+            "return": 0.0005364900398447947
+          },
+          {
+            "session": "2026-09-11",
+            "equity": 99.73969807185287,
+            "return": 0.0004602431536717688
+          },
+          {
+            "session": "2026-09-14",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-15",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-16",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-17",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-18",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-21",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-22",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-23",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          }
+        ],
+        "trades": [
+          {
+            "kind": "BUY",
+            "ticker": "BF-B",
+            "qty": 0.274008,
+            "ref_price": 27.6979997253418,
+            "fill_price": 27.76724472465515,
+            "cost_bps": 25.0,
+            "bar_time": "2026-09-02T09:35:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 27.69 (rel. volume 2.9x, rank 6); stop 26.95 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "DELL",
+            "qty": 0.013025,
+            "ref_price": 474.77998901367187,
+            "fill_price": 475.25476900268546,
+            "cost_bps": 10.0,
+            "bar_time": "2026-09-02T09:40:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 474.77 (rel. volume 8.2x, rank 1); stop 456.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "DELL",
+            "qty": 0.013025,
+            "ref_price": 456.99,
+            "fill_price": 456.06231030000004,
+            "cost_bps": 20.3,
+            "bar_time": "2026-09-02T09:50:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 453.55 hit stop 456.99",
+            "realized_pnl": -0.2499817746024777,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "BF-B",
+            "qty": 0.274008,
+            "ref_price": 26.949999084472655,
+            "fill_price": 26.854865587704467,
+            "cost_bps": 35.3,
+            "bar_time": "2026-09-02T10:30:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 26.74 hit stop 26.95",
+            "realized_pnl": -0.2499991825575828,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "NTAP",
+            "qty": 0.019369,
+            "ref_price": 173.16499877929687,
+            "fill_price": 173.42474627746583,
+            "cost_bps": 15.0,
+            "bar_time": "2026-09-03T09:35:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 173.15 (rel. volume 6.7x, rank 4); stop 160.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "NTAP",
+            "qty": 0.019369,
+            "ref_price": 185.3800048828125,
+            "fill_price": 185.13344947631836,
+            "cost_bps": 13.3,
+            "bar_time": "2026-09-03T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.22678587225857472,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "LULU",
+            "qty": 0.059353,
+            "ref_price": 101.77999664306641,
+            "fill_price": 101.93266663803102,
+            "cost_bps": 15.0,
+            "bar_time": "2026-09-04T09:40:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 101.77 (rel. volume 45.7x, rank 1); stop 97.98 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "LULU",
+            "qty": 0.059353,
+            "ref_price": 100.61000061035156,
+            "fill_price": 100.47618930953979,
+            "cost_bps": 13.3,
+            "bar_time": "2026-09-04T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.0864462988779401,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "COO",
+            "qty": 0.092139,
+            "ref_price": 53.39000106811523,
+            "fill_price": 53.52347607078552,
+            "cost_bps": 25.0,
+            "bar_time": "2026-09-10T09:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 53.38 (rel. volume 47.7x, rank 1); stop 51.00 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "COO",
+            "qty": 0.092139,
+            "ref_price": 54.22999954223633,
+            "fill_price": 54.10364364330292,
+            "cost_bps": 23.3,
+            "bar_time": "2026-09-10T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.053456059964180395,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "KR",
+            "qty": 0.083401,
+            "ref_price": 58.399999389648436,
+            "fill_price": 58.48759938873291,
+            "cost_bps": 15.0,
+            "bar_time": "2026-09-11T09:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 58.39 (rel. volume 7.0x, rank 2); stop 55.64 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "ADBE",
+            "qty": 0.027668,
+            "ref_price": 249.7798974609375,
+            "fill_price": 250.0296773583984,
+            "cost_bps": 10.0,
+            "bar_time": "2026-09-11T10:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 249.77 (rel. volume 6.3x, rank 5); stop 241.51 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "KR",
+            "qty": 0.083401,
+            "ref_price": 58.45500183105469,
+            "fill_price": 58.37725667861938,
+            "cost_bps": 13.3,
+            "bar_time": "2026-09-11T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.00920269236617836,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "ADBE",
+            "qty": 0.027668,
+            "ref_price": 252.22999572753906,
+            "fill_price": 252.0206448310852,
+            "cost_bps": 8.3,
+            "bar_time": "2026-09-11T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.055086088034298514,
+            "session": "2026-09-11"
+          }
+        ],
+        "stats": {
+          "return": -0.0026030192814713304,
+          "drawdown": 0.004999809571600622,
+          "trades": 7,
+          "win_rate": 0.42857142857142855,
+          "costs": 0.14055203719314574,
+          "fallback_exits": 0
+        },
+        "pnl_without_best_trade": -0.48708780040570004
+      },
+      "finalist": {
+        "days": [
+          {
+            "session": "2026-09-01",
+            "equity": 100.0,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-02",
+            "equity": 99.50001904283994,
+            "return": -0.004999809571600622
+          },
+          {
+            "session": "2026-09-03",
+            "equity": 99.72680491509851,
+            "return": 0.002279254561357691
+          },
+          {
+            "session": "2026-09-04",
+            "equity": 99.64035861622057,
+            "return": -0.0008668311288178021
+          },
+          {
+            "session": "2026-09-08",
+            "equity": 99.64035861622057,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-09",
+            "equity": 99.64035861622057,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-10",
+            "equity": 99.69381467618474,
+            "return": 0.0005364900398447947
+          },
+          {
+            "session": "2026-09-11",
+            "equity": 99.73969807185287,
+            "return": 0.0004602431536717688
+          },
+          {
+            "session": "2026-09-14",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-15",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-16",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-17",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-18",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-21",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-22",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-23",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          }
+        ],
+        "trades": [
+          {
+            "kind": "BUY",
+            "ticker": "BF-B",
+            "qty": 0.274008,
+            "ref_price": 27.6979997253418,
+            "fill_price": 27.76724472465515,
+            "cost_bps": 25.0,
+            "bar_time": "2026-09-02T09:35:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 27.69 (rel. volume 2.9x, rank 6); stop 26.95 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "DELL",
+            "qty": 0.013025,
+            "ref_price": 474.77998901367187,
+            "fill_price": 475.25476900268546,
+            "cost_bps": 10.0,
+            "bar_time": "2026-09-02T09:40:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 474.77 (rel. volume 8.2x, rank 1); stop 456.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "DELL",
+            "qty": 0.013025,
+            "ref_price": 456.99,
+            "fill_price": 456.06231030000004,
+            "cost_bps": 20.3,
+            "bar_time": "2026-09-02T09:50:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 453.55 hit stop 456.99",
+            "realized_pnl": -0.2499817746024777,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "BF-B",
+            "qty": 0.274008,
+            "ref_price": 26.949999084472655,
+            "fill_price": 26.854865587704467,
+            "cost_bps": 35.3,
+            "bar_time": "2026-09-02T10:30:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 26.74 hit stop 26.95",
+            "realized_pnl": -0.2499991825575828,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "NTAP",
+            "qty": 0.019369,
+            "ref_price": 173.16499877929687,
+            "fill_price": 173.42474627746583,
+            "cost_bps": 15.0,
+            "bar_time": "2026-09-03T09:35:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 173.15 (rel. volume 6.7x, rank 4); stop 160.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "NTAP",
+            "qty": 0.019369,
+            "ref_price": 185.3800048828125,
+            "fill_price": 185.13344947631836,
+            "cost_bps": 13.3,
+            "bar_time": "2026-09-03T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.22678587225857472,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "LULU",
+            "qty": 0.059353,
+            "ref_price": 101.77999664306641,
+            "fill_price": 101.93266663803102,
+            "cost_bps": 15.0,
+            "bar_time": "2026-09-04T09:40:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 101.77 (rel. volume 45.7x, rank 1); stop 97.98 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "LULU",
+            "qty": 0.059353,
+            "ref_price": 100.61000061035156,
+            "fill_price": 100.47618930953979,
+            "cost_bps": 13.3,
+            "bar_time": "2026-09-04T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.0864462988779401,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "COO",
+            "qty": 0.092139,
+            "ref_price": 53.39000106811523,
+            "fill_price": 53.52347607078552,
+            "cost_bps": 25.0,
+            "bar_time": "2026-09-10T09:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 53.38 (rel. volume 47.7x, rank 1); stop 51.00 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "COO",
+            "qty": 0.092139,
+            "ref_price": 54.22999954223633,
+            "fill_price": 54.10364364330292,
+            "cost_bps": 23.3,
+            "bar_time": "2026-09-10T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.053456059964180395,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "KR",
+            "qty": 0.083401,
+            "ref_price": 58.399999389648436,
+            "fill_price": 58.48759938873291,
+            "cost_bps": 15.0,
+            "bar_time": "2026-09-11T09:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 58.39 (rel. volume 7.0x, rank 2); stop 55.64 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "ADBE",
+            "qty": 0.027668,
+            "ref_price": 249.7798974609375,
+            "fill_price": 250.0296773583984,
+            "cost_bps": 10.0,
+            "bar_time": "2026-09-11T10:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 249.77 (rel. volume 6.3x, rank 5); stop 241.51 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "KR",
+            "qty": 0.083401,
+            "ref_price": 58.45500183105469,
+            "fill_price": 58.37725667861938,
+            "cost_bps": 13.3,
+            "bar_time": "2026-09-11T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.00920269236617836,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "ADBE",
+            "qty": 0.027668,
+            "ref_price": 252.22999572753906,
+            "fill_price": 252.0206448310852,
+            "cost_bps": 8.3,
+            "bar_time": "2026-09-11T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.055086088034298514,
+            "session": "2026-09-11"
+          }
+        ],
+        "stats": {
+          "return": -0.0026030192814713304,
+          "drawdown": 0.004999809571600622,
+          "trades": 7,
+          "win_rate": 0.42857142857142855,
+          "costs": 0.14055203719314574,
+          "fallback_exits": 0
+        },
+        "pnl_without_best_trade": -0.48708780040570004
+      }
+    },
+    "5m_2x_costs": {
+      "baseline": {
+        "days": [
+          {
+            "session": "2026-09-01",
+            "equity": 100.0,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-02",
+            "equity": 99.5000193254594,
+            "return": -0.004999806745405899
+          },
+          {
+            "session": "2026-09-03",
+            "equity": 99.70628912207633,
+            "return": 0.002073062879939913
+          },
+          {
+            "session": "2026-09-04",
+            "equity": 99.61186433860664,
+            "return": -0.0009470293629529891
+          },
+          {
+            "session": "2026-09-08",
+            "equity": 99.61186433860664,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-09",
+            "equity": 99.61186433860664,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-10",
+            "equity": 99.63830524776053,
+            "return": 0.00026543935634015803
+          },
+          {
+            "session": "2026-09-11",
+            "equity": 99.65609982947188,
+            "return": 0.00017859177418877437
+          },
+          {
+            "session": "2026-09-14",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-15",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-16",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-17",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-18",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-21",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-22",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-23",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          }
+        ],
+        "trades": [
+          {
+            "kind": "BUY",
+            "ticker": "BF-B",
+            "qty": 0.232178,
+            "ref_price": 27.6979997253418,
+            "fill_price": 27.836489723968505,
+            "cost_bps": 50.0,
+            "bar_time": "2026-09-02T09:35:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 27.69 (rel. volume 2.9x, rank 6); stop 26.95 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "DELL",
+            "qty": 0.012138,
+            "ref_price": 474.77998901367187,
+            "fill_price": 475.72954899169923,
+            "cost_bps": 20.0,
+            "bar_time": "2026-09-02T09:40:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 474.77 (rel. volume 8.2x, rank 1); stop 456.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "DELL",
+            "qty": 0.012138,
+            "ref_price": 456.99,
+            "fill_price": 455.1346206,
+            "cost_bps": 40.6,
+            "bar_time": "2026-09-02T09:50:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 453.55 hit stop 456.99",
+            "realized_pnl": -0.24998124081844522,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "BF-B",
+            "qty": 0.232178,
+            "ref_price": 26.949999084472655,
+            "fill_price": 26.75973209093628,
+            "cost_bps": 70.6,
+            "bar_time": "2026-09-02T10:30:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 26.74 hit stop 26.95",
+            "realized_pnl": -0.24999943372215624,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "NTAP",
+            "qty": 0.018413,
+            "ref_price": 173.16499877929687,
+            "fill_price": 173.68449377563473,
+            "cost_bps": 30.0,
+            "bar_time": "2026-09-03T09:35:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 173.15 (rel. volume 6.7x, rank 4); stop 160.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "NTAP",
+            "qty": 0.018413,
+            "ref_price": 185.3800048828125,
+            "fill_price": 184.88689406982422,
+            "cost_bps": 26.6,
+            "bar_time": "2026-09-03T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.20626979661691103,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "LULU",
+            "qty": 0.054175,
+            "ref_price": 101.77999664306641,
+            "fill_price": 102.0853366329956,
+            "cost_bps": 30.0,
+            "bar_time": "2026-09-04T09:40:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 101.77 (rel. volume 45.7x, rank 1); stop 97.98 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "LULU",
+            "qty": 0.054175,
+            "ref_price": 100.61000061035156,
+            "fill_price": 100.34237800872803,
+            "cost_bps": 26.6,
+            "bar_time": "2026-09-04T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.09442478346969574,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "COO",
+            "qty": 0.082541,
+            "ref_price": 53.39000106811523,
+            "fill_price": 53.6569510734558,
+            "cost_bps": 50.0,
+            "bar_time": "2026-09-10T09:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 53.38 (rel. volume 47.7x, rank 1); stop 51.00 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "COO",
+            "qty": 0.082541,
+            "ref_price": 54.22999954223633,
+            "fill_price": 53.977287744369505,
+            "cost_bps": 46.6,
+            "bar_time": "2026-09-10T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.02644090915388807,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "KR",
+            "qty": 0.077437,
+            "ref_price": 58.399999389648436,
+            "fill_price": 58.57519938781738,
+            "cost_bps": 30.0,
+            "bar_time": "2026-09-11T09:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 58.39 (rel. volume 7.0x, rank 2); stop 55.64 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "ADBE",
+            "qty": 0.025553,
+            "ref_price": 249.7798974609375,
+            "fill_price": 250.27945725585937,
+            "cost_bps": 20.0,
+            "bar_time": "2026-09-11T10:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 249.77 (rel. volume 6.3x, rank 5); stop 241.51 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "KR",
+            "qty": 0.077437,
+            "ref_price": 58.45500183105469,
+            "fill_price": 58.299511526184084,
+            "cost_bps": 26.6,
+            "bar_time": "2026-09-11T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.021348440941297394,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "ADBE",
+            "qty": 0.025553,
+            "ref_price": 252.22999572753906,
+            "fill_price": 251.81129393463135,
+            "cost_bps": 16.6,
+            "bar_time": "2026-09-11T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.03914302265266043,
+            "session": "2026-09-11"
+          }
+        ],
+        "stats": {
+          "return": -0.0034390017052811084,
+          "drawdown": 0.004999806745405899,
+          "trades": 7,
+          "win_rate": 0.42857142857142855,
+          "costs": 0.2520272625102517,
+          "fallback_exits": 0
+        },
+        "pnl_without_best_trade": -0.5501699671450461
+      },
+      "finalist": {
+        "days": [
+          {
+            "session": "2026-09-01",
+            "equity": 100.0,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-02",
+            "equity": 99.5000193254594,
+            "return": -0.004999806745405899
+          },
+          {
+            "session": "2026-09-03",
+            "equity": 99.70628912207633,
+            "return": 0.002073062879939913
+          },
+          {
+            "session": "2026-09-04",
+            "equity": 99.61186433860664,
+            "return": -0.0009470293629529891
+          },
+          {
+            "session": "2026-09-08",
+            "equity": 99.61186433860664,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-09",
+            "equity": 99.61186433860664,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-10",
+            "equity": 99.63830524776053,
+            "return": 0.00026543935634015803
+          },
+          {
+            "session": "2026-09-11",
+            "equity": 99.65609982947188,
+            "return": 0.00017859177418877437
+          },
+          {
+            "session": "2026-09-14",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-15",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-16",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-17",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-18",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-21",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-22",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-23",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          }
+        ],
+        "trades": [
+          {
+            "kind": "BUY",
+            "ticker": "BF-B",
+            "qty": 0.232178,
+            "ref_price": 27.6979997253418,
+            "fill_price": 27.836489723968505,
+            "cost_bps": 50.0,
+            "bar_time": "2026-09-02T09:35:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 27.69 (rel. volume 2.9x, rank 6); stop 26.95 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "DELL",
+            "qty": 0.012138,
+            "ref_price": 474.77998901367187,
+            "fill_price": 475.72954899169923,
+            "cost_bps": 20.0,
+            "bar_time": "2026-09-02T09:40:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 474.77 (rel. volume 8.2x, rank 1); stop 456.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "DELL",
+            "qty": 0.012138,
+            "ref_price": 456.99,
+            "fill_price": 455.1346206,
+            "cost_bps": 40.6,
+            "bar_time": "2026-09-02T09:50:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 453.55 hit stop 456.99",
+            "realized_pnl": -0.24998124081844522,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "BF-B",
+            "qty": 0.232178,
+            "ref_price": 26.949999084472655,
+            "fill_price": 26.75973209093628,
+            "cost_bps": 70.6,
+            "bar_time": "2026-09-02T10:30:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 26.74 hit stop 26.95",
+            "realized_pnl": -0.24999943372215624,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "NTAP",
+            "qty": 0.018413,
+            "ref_price": 173.16499877929687,
+            "fill_price": 173.68449377563473,
+            "cost_bps": 30.0,
+            "bar_time": "2026-09-03T09:35:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 173.15 (rel. volume 6.7x, rank 4); stop 160.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "NTAP",
+            "qty": 0.018413,
+            "ref_price": 185.3800048828125,
+            "fill_price": 184.88689406982422,
+            "cost_bps": 26.6,
+            "bar_time": "2026-09-03T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.20626979661691103,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "LULU",
+            "qty": 0.054175,
+            "ref_price": 101.77999664306641,
+            "fill_price": 102.0853366329956,
+            "cost_bps": 30.0,
+            "bar_time": "2026-09-04T09:40:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 101.77 (rel. volume 45.7x, rank 1); stop 97.98 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "LULU",
+            "qty": 0.054175,
+            "ref_price": 100.61000061035156,
+            "fill_price": 100.34237800872803,
+            "cost_bps": 26.6,
+            "bar_time": "2026-09-04T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.09442478346969574,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "COO",
+            "qty": 0.082541,
+            "ref_price": 53.39000106811523,
+            "fill_price": 53.6569510734558,
+            "cost_bps": 50.0,
+            "bar_time": "2026-09-10T09:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 53.38 (rel. volume 47.7x, rank 1); stop 51.00 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "COO",
+            "qty": 0.082541,
+            "ref_price": 54.22999954223633,
+            "fill_price": 53.977287744369505,
+            "cost_bps": 46.6,
+            "bar_time": "2026-09-10T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.02644090915388807,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "KR",
+            "qty": 0.077437,
+            "ref_price": 58.399999389648436,
+            "fill_price": 58.57519938781738,
+            "cost_bps": 30.0,
+            "bar_time": "2026-09-11T09:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 58.39 (rel. volume 7.0x, rank 2); stop 55.64 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "ADBE",
+            "qty": 0.025553,
+            "ref_price": 249.7798974609375,
+            "fill_price": 250.27945725585937,
+            "cost_bps": 20.0,
+            "bar_time": "2026-09-11T10:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 249.77 (rel. volume 6.3x, rank 5); stop 241.51 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "KR",
+            "qty": 0.077437,
+            "ref_price": 58.45500183105469,
+            "fill_price": 58.299511526184084,
+            "cost_bps": 26.6,
+            "bar_time": "2026-09-11T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.021348440941297394,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "ADBE",
+            "qty": 0.025553,
+            "ref_price": 252.22999572753906,
+            "fill_price": 251.81129393463135,
+            "cost_bps": 16.6,
+            "bar_time": "2026-09-11T15:55:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.03914302265266043,
+            "session": "2026-09-11"
+          }
+        ],
+        "stats": {
+          "return": -0.0034390017052811084,
+          "drawdown": 0.004999806745405899,
+          "trades": 7,
+          "win_rate": 0.42857142857142855,
+          "costs": 0.2520272625102517,
+          "fallback_exits": 0
+        },
+        "pnl_without_best_trade": -0.5501699671450461
+      }
+    },
+    "1m_1x_costs": {
+      "baseline": {
+        "days": [
+          {
+            "session": "2026-09-01",
+            "equity": 100.0,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-02",
+            "equity": 99.50001904283994,
+            "return": -0.004999809571600622
+          },
+          {
+            "session": "2026-09-03",
+            "equity": 99.72680491509851,
+            "return": 0.002279254561357691
+          },
+          {
+            "session": "2026-09-04",
+            "equity": 99.64035861622057,
+            "return": -0.0008668311288178021
+          },
+          {
+            "session": "2026-09-08",
+            "equity": 99.64035861622057,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-09",
+            "equity": 99.64035861622057,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-10",
+            "equity": 99.69381467618474,
+            "return": 0.0005364900398447947
+          },
+          {
+            "session": "2026-09-11",
+            "equity": 99.73969807185287,
+            "return": 0.0004602431536717688
+          },
+          {
+            "session": "2026-09-14",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-15",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-16",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-17",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-18",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-21",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-22",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-23",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          }
+        ],
+        "trades": [
+          {
+            "kind": "BUY",
+            "ticker": "BF-B",
+            "qty": 0.274008,
+            "ref_price": 27.6979997253418,
+            "fill_price": 27.76724472465515,
+            "cost_bps": 25.0,
+            "bar_time": "2026-09-02T09:35:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 27.69 (rel. volume 2.9x, rank 6); stop 26.95 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "DELL",
+            "qty": 0.013025,
+            "ref_price": 474.77998901367187,
+            "fill_price": 475.25476900268546,
+            "cost_bps": 10.0,
+            "bar_time": "2026-09-02T09:42:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 474.77 (rel. volume 8.2x, rank 1); stop 456.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "DELL",
+            "qty": 0.013025,
+            "ref_price": 456.99,
+            "fill_price": 456.06231030000004,
+            "cost_bps": 20.3,
+            "bar_time": "2026-09-02T09:52:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 454.55 hit stop 456.99",
+            "realized_pnl": -0.2499817746024777,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "BF-B",
+            "qty": 0.274008,
+            "ref_price": 26.949999084472655,
+            "fill_price": 26.854865587704467,
+            "cost_bps": 35.3,
+            "bar_time": "2026-09-02T10:30:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 26.74 hit stop 26.95",
+            "realized_pnl": -0.2499991825575828,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "NTAP",
+            "qty": 0.019369,
+            "ref_price": 173.16499877929687,
+            "fill_price": 173.42474627746583,
+            "cost_bps": 15.0,
+            "bar_time": "2026-09-03T09:39:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 173.15 (rel. volume 6.7x, rank 4); stop 160.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "NTAP",
+            "qty": 0.019369,
+            "ref_price": 185.3800048828125,
+            "fill_price": 185.13344947631836,
+            "cost_bps": 13.3,
+            "bar_time": "2026-09-03T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.22678587225857472,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "LULU",
+            "qty": 0.059353,
+            "ref_price": 101.77999664306641,
+            "fill_price": 101.93266663803102,
+            "cost_bps": 15.0,
+            "bar_time": "2026-09-04T09:44:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 101.77 (rel. volume 45.7x, rank 1); stop 97.98 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "LULU",
+            "qty": 0.059353,
+            "ref_price": 100.61000061035156,
+            "fill_price": 100.47618930953979,
+            "cost_bps": 13.3,
+            "bar_time": "2026-09-04T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.0864462988779401,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "COO",
+            "qty": 0.092139,
+            "ref_price": 53.39000106811523,
+            "fill_price": 53.52347607078552,
+            "cost_bps": 25.0,
+            "bar_time": "2026-09-10T09:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 53.38 (rel. volume 47.7x, rank 1); stop 51.00 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "COO",
+            "qty": 0.092139,
+            "ref_price": 54.22999954223633,
+            "fill_price": 54.10364364330292,
+            "cost_bps": 23.3,
+            "bar_time": "2026-09-10T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.053456059964180395,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "KR",
+            "qty": 0.083401,
+            "ref_price": 58.399999389648436,
+            "fill_price": 58.48759938873291,
+            "cost_bps": 15.0,
+            "bar_time": "2026-09-11T09:46:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 58.39 (rel. volume 7.0x, rank 2); stop 55.64 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "ADBE",
+            "qty": 0.027668,
+            "ref_price": 249.7798974609375,
+            "fill_price": 250.0296773583984,
+            "cost_bps": 10.0,
+            "bar_time": "2026-09-11T10:46:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 249.77 (rel. volume 6.3x, rank 5); stop 241.51 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "KR",
+            "qty": 0.083401,
+            "ref_price": 58.45500183105469,
+            "fill_price": 58.37725667861938,
+            "cost_bps": 13.3,
+            "bar_time": "2026-09-11T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.00920269236617836,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "ADBE",
+            "qty": 0.027668,
+            "ref_price": 252.22999572753906,
+            "fill_price": 252.0206448310852,
+            "cost_bps": 8.3,
+            "bar_time": "2026-09-11T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.055086088034298514,
+            "session": "2026-09-11"
+          }
+        ],
+        "stats": {
+          "return": -0.0026030192814713304,
+          "drawdown": 0.004999809571600622,
+          "trades": 7,
+          "win_rate": 0.42857142857142855,
+          "costs": 0.14055203719314574,
+          "fallback_exits": 0
+        },
+        "pnl_without_best_trade": -0.48708780040570004
+      },
+      "finalist": {
+        "days": [
+          {
+            "session": "2026-09-01",
+            "equity": 100.0,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-02",
+            "equity": 99.50001904283994,
+            "return": -0.004999809571600622
+          },
+          {
+            "session": "2026-09-03",
+            "equity": 99.72680491509851,
+            "return": 0.002279254561357691
+          },
+          {
+            "session": "2026-09-04",
+            "equity": 99.64035861622057,
+            "return": -0.0008668311288178021
+          },
+          {
+            "session": "2026-09-08",
+            "equity": 99.64035861622057,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-09",
+            "equity": 99.64035861622057,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-10",
+            "equity": 99.69381467618474,
+            "return": 0.0005364900398447947
+          },
+          {
+            "session": "2026-09-11",
+            "equity": 99.73969807185287,
+            "return": 0.0004602431536717688
+          },
+          {
+            "session": "2026-09-14",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-15",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-16",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-17",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-18",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-21",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-22",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-23",
+            "equity": 99.73969807185287,
+            "return": 0.0
+          }
+        ],
+        "trades": [
+          {
+            "kind": "BUY",
+            "ticker": "BF-B",
+            "qty": 0.274008,
+            "ref_price": 27.6979997253418,
+            "fill_price": 27.76724472465515,
+            "cost_bps": 25.0,
+            "bar_time": "2026-09-02T09:35:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 27.69 (rel. volume 2.9x, rank 6); stop 26.95 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "DELL",
+            "qty": 0.013025,
+            "ref_price": 474.77998901367187,
+            "fill_price": 475.25476900268546,
+            "cost_bps": 10.0,
+            "bar_time": "2026-09-02T09:42:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 474.77 (rel. volume 8.2x, rank 1); stop 456.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "DELL",
+            "qty": 0.013025,
+            "ref_price": 456.99,
+            "fill_price": 456.06231030000004,
+            "cost_bps": 20.3,
+            "bar_time": "2026-09-02T09:52:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 454.55 hit stop 456.99",
+            "realized_pnl": -0.2499817746024777,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "BF-B",
+            "qty": 0.274008,
+            "ref_price": 26.949999084472655,
+            "fill_price": 26.854865587704467,
+            "cost_bps": 35.3,
+            "bar_time": "2026-09-02T10:30:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 26.74 hit stop 26.95",
+            "realized_pnl": -0.2499991825575828,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "NTAP",
+            "qty": 0.019369,
+            "ref_price": 173.16499877929687,
+            "fill_price": 173.42474627746583,
+            "cost_bps": 15.0,
+            "bar_time": "2026-09-03T09:39:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 173.15 (rel. volume 6.7x, rank 4); stop 160.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "NTAP",
+            "qty": 0.019369,
+            "ref_price": 185.3800048828125,
+            "fill_price": 185.13344947631836,
+            "cost_bps": 13.3,
+            "bar_time": "2026-09-03T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.22678587225857472,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "LULU",
+            "qty": 0.059353,
+            "ref_price": 101.77999664306641,
+            "fill_price": 101.93266663803102,
+            "cost_bps": 15.0,
+            "bar_time": "2026-09-04T09:44:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 101.77 (rel. volume 45.7x, rank 1); stop 97.98 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "LULU",
+            "qty": 0.059353,
+            "ref_price": 100.61000061035156,
+            "fill_price": 100.47618930953979,
+            "cost_bps": 13.3,
+            "bar_time": "2026-09-04T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.0864462988779401,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "COO",
+            "qty": 0.092139,
+            "ref_price": 53.39000106811523,
+            "fill_price": 53.52347607078552,
+            "cost_bps": 25.0,
+            "bar_time": "2026-09-10T09:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 53.38 (rel. volume 47.7x, rank 1); stop 51.00 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "COO",
+            "qty": 0.092139,
+            "ref_price": 54.22999954223633,
+            "fill_price": 54.10364364330292,
+            "cost_bps": 23.3,
+            "bar_time": "2026-09-10T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.053456059964180395,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "KR",
+            "qty": 0.083401,
+            "ref_price": 58.399999389648436,
+            "fill_price": 58.48759938873291,
+            "cost_bps": 15.0,
+            "bar_time": "2026-09-11T09:46:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 58.39 (rel. volume 7.0x, rank 2); stop 55.64 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "ADBE",
+            "qty": 0.027668,
+            "ref_price": 249.7798974609375,
+            "fill_price": 250.0296773583984,
+            "cost_bps": 10.0,
+            "bar_time": "2026-09-11T10:46:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 249.77 (rel. volume 6.3x, rank 5); stop 241.51 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "KR",
+            "qty": 0.083401,
+            "ref_price": 58.45500183105469,
+            "fill_price": 58.37725667861938,
+            "cost_bps": 13.3,
+            "bar_time": "2026-09-11T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.00920269236617836,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "ADBE",
+            "qty": 0.027668,
+            "ref_price": 252.22999572753906,
+            "fill_price": 252.0206448310852,
+            "cost_bps": 8.3,
+            "bar_time": "2026-09-11T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.055086088034298514,
+            "session": "2026-09-11"
+          }
+        ],
+        "stats": {
+          "return": -0.0026030192814713304,
+          "drawdown": 0.004999809571600622,
+          "trades": 7,
+          "win_rate": 0.42857142857142855,
+          "costs": 0.14055203719314574,
+          "fallback_exits": 0
+        },
+        "pnl_without_best_trade": -0.48708780040570004
+      }
+    },
+    "1m_2x_costs": {
+      "baseline": {
+        "days": [
+          {
+            "session": "2026-09-01",
+            "equity": 100.0,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-02",
+            "equity": 99.5000193254594,
+            "return": -0.004999806745405899
+          },
+          {
+            "session": "2026-09-03",
+            "equity": 99.70628912207633,
+            "return": 0.002073062879939913
+          },
+          {
+            "session": "2026-09-04",
+            "equity": 99.61186433860664,
+            "return": -0.0009470293629529891
+          },
+          {
+            "session": "2026-09-08",
+            "equity": 99.61186433860664,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-09",
+            "equity": 99.61186433860664,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-10",
+            "equity": 99.63830524776053,
+            "return": 0.00026543935634015803
+          },
+          {
+            "session": "2026-09-11",
+            "equity": 99.65609982947188,
+            "return": 0.00017859177418877437
+          },
+          {
+            "session": "2026-09-14",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-15",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-16",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-17",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-18",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-21",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-22",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-23",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          }
+        ],
+        "trades": [
+          {
+            "kind": "BUY",
+            "ticker": "BF-B",
+            "qty": 0.232178,
+            "ref_price": 27.6979997253418,
+            "fill_price": 27.836489723968505,
+            "cost_bps": 50.0,
+            "bar_time": "2026-09-02T09:35:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 27.69 (rel. volume 2.9x, rank 6); stop 26.95 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "DELL",
+            "qty": 0.012138,
+            "ref_price": 474.77998901367187,
+            "fill_price": 475.72954899169923,
+            "cost_bps": 20.0,
+            "bar_time": "2026-09-02T09:42:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 474.77 (rel. volume 8.2x, rank 1); stop 456.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "DELL",
+            "qty": 0.012138,
+            "ref_price": 456.99,
+            "fill_price": 455.1346206,
+            "cost_bps": 40.6,
+            "bar_time": "2026-09-02T09:52:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 454.55 hit stop 456.99",
+            "realized_pnl": -0.24998124081844522,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "BF-B",
+            "qty": 0.232178,
+            "ref_price": 26.949999084472655,
+            "fill_price": 26.75973209093628,
+            "cost_bps": 70.6,
+            "bar_time": "2026-09-02T10:30:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 26.74 hit stop 26.95",
+            "realized_pnl": -0.24999943372215624,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "NTAP",
+            "qty": 0.018413,
+            "ref_price": 173.16499877929687,
+            "fill_price": 173.68449377563473,
+            "cost_bps": 30.0,
+            "bar_time": "2026-09-03T09:39:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 173.15 (rel. volume 6.7x, rank 4); stop 160.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "NTAP",
+            "qty": 0.018413,
+            "ref_price": 185.3800048828125,
+            "fill_price": 184.88689406982422,
+            "cost_bps": 26.6,
+            "bar_time": "2026-09-03T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.20626979661691103,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "LULU",
+            "qty": 0.054175,
+            "ref_price": 101.77999664306641,
+            "fill_price": 102.0853366329956,
+            "cost_bps": 30.0,
+            "bar_time": "2026-09-04T09:44:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 101.77 (rel. volume 45.7x, rank 1); stop 97.98 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "LULU",
+            "qty": 0.054175,
+            "ref_price": 100.61000061035156,
+            "fill_price": 100.34237800872803,
+            "cost_bps": 26.6,
+            "bar_time": "2026-09-04T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.09442478346969574,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "COO",
+            "qty": 0.082541,
+            "ref_price": 53.39000106811523,
+            "fill_price": 53.6569510734558,
+            "cost_bps": 50.0,
+            "bar_time": "2026-09-10T09:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 53.38 (rel. volume 47.7x, rank 1); stop 51.00 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "COO",
+            "qty": 0.082541,
+            "ref_price": 54.22999954223633,
+            "fill_price": 53.977287744369505,
+            "cost_bps": 46.6,
+            "bar_time": "2026-09-10T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.02644090915388807,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "KR",
+            "qty": 0.077437,
+            "ref_price": 58.399999389648436,
+            "fill_price": 58.57519938781738,
+            "cost_bps": 30.0,
+            "bar_time": "2026-09-11T09:46:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 58.39 (rel. volume 7.0x, rank 2); stop 55.64 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "ADBE",
+            "qty": 0.025553,
+            "ref_price": 249.7798974609375,
+            "fill_price": 250.27945725585937,
+            "cost_bps": 20.0,
+            "bar_time": "2026-09-11T10:46:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 249.77 (rel. volume 6.3x, rank 5); stop 241.51 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "KR",
+            "qty": 0.077437,
+            "ref_price": 58.45500183105469,
+            "fill_price": 58.299511526184084,
+            "cost_bps": 26.6,
+            "bar_time": "2026-09-11T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.021348440941297394,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "ADBE",
+            "qty": 0.025553,
+            "ref_price": 252.22999572753906,
+            "fill_price": 251.81129393463135,
+            "cost_bps": 16.6,
+            "bar_time": "2026-09-11T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.03914302265266043,
+            "session": "2026-09-11"
+          }
+        ],
+        "stats": {
+          "return": -0.0034390017052811084,
+          "drawdown": 0.004999806745405899,
+          "trades": 7,
+          "win_rate": 0.42857142857142855,
+          "costs": 0.2520272625102517,
+          "fallback_exits": 0
+        },
+        "pnl_without_best_trade": -0.5501699671450461
+      },
+      "finalist": {
+        "days": [
+          {
+            "session": "2026-09-01",
+            "equity": 100.0,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-02",
+            "equity": 99.5000193254594,
+            "return": -0.004999806745405899
+          },
+          {
+            "session": "2026-09-03",
+            "equity": 99.70628912207633,
+            "return": 0.002073062879939913
+          },
+          {
+            "session": "2026-09-04",
+            "equity": 99.61186433860664,
+            "return": -0.0009470293629529891
+          },
+          {
+            "session": "2026-09-08",
+            "equity": 99.61186433860664,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-09",
+            "equity": 99.61186433860664,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-10",
+            "equity": 99.63830524776053,
+            "return": 0.00026543935634015803
+          },
+          {
+            "session": "2026-09-11",
+            "equity": 99.65609982947188,
+            "return": 0.00017859177418877437
+          },
+          {
+            "session": "2026-09-14",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-15",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-16",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-17",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-18",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-21",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-22",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          },
+          {
+            "session": "2026-09-23",
+            "equity": 99.65609982947188,
+            "return": 0.0
+          }
+        ],
+        "trades": [
+          {
+            "kind": "BUY",
+            "ticker": "BF-B",
+            "qty": 0.232178,
+            "ref_price": 27.6979997253418,
+            "fill_price": 27.836489723968505,
+            "cost_bps": 50.0,
+            "bar_time": "2026-09-02T09:35:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 27.69 (rel. volume 2.9x, rank 6); stop 26.95 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "DELL",
+            "qty": 0.012138,
+            "ref_price": 474.77998901367187,
+            "fill_price": 475.72954899169923,
+            "cost_bps": 20.0,
+            "bar_time": "2026-09-02T09:42:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 474.77 (rel. volume 8.2x, rank 1); stop 456.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "DELL",
+            "qty": 0.012138,
+            "ref_price": 456.99,
+            "fill_price": 455.1346206,
+            "cost_bps": 40.6,
+            "bar_time": "2026-09-02T09:52:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 454.55 hit stop 456.99",
+            "realized_pnl": -0.24998124081844522,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "BF-B",
+            "qty": 0.232178,
+            "ref_price": 26.949999084472655,
+            "fill_price": 26.75973209093628,
+            "cost_bps": 70.6,
+            "bar_time": "2026-09-02T10:30:00-04:00",
+            "reason_code": "STOP",
+            "reason": "low 26.74 hit stop 26.95",
+            "realized_pnl": -0.24999943372215624,
+            "session": "2026-09-02"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "NTAP",
+            "qty": 0.018413,
+            "ref_price": 173.16499877929687,
+            "fill_price": 173.68449377563473,
+            "cost_bps": 30.0,
+            "bar_time": "2026-09-03T09:39:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 173.15 (rel. volume 6.7x, rank 4); stop 160.99 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "NTAP",
+            "qty": 0.018413,
+            "ref_price": 185.3800048828125,
+            "fill_price": 184.88689406982422,
+            "cost_bps": 26.6,
+            "bar_time": "2026-09-03T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.20626979661691103,
+            "session": "2026-09-03"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "LULU",
+            "qty": 0.054175,
+            "ref_price": 101.77999664306641,
+            "fill_price": 102.0853366329956,
+            "cost_bps": 30.0,
+            "bar_time": "2026-09-04T09:44:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 101.77 (rel. volume 45.7x, rank 1); stop 97.98 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "LULU",
+            "qty": 0.054175,
+            "ref_price": 100.61000061035156,
+            "fill_price": 100.34237800872803,
+            "cost_bps": 26.6,
+            "bar_time": "2026-09-04T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.09442478346969574,
+            "session": "2026-09-04"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "COO",
+            "qty": 0.082541,
+            "ref_price": 53.39000106811523,
+            "fill_price": 53.6569510734558,
+            "cost_bps": 50.0,
+            "bar_time": "2026-09-10T09:45:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 53.38 (rel. volume 47.7x, rank 1); stop 51.00 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "COO",
+            "qty": 0.082541,
+            "ref_price": 54.22999954223633,
+            "fill_price": 53.977287744369505,
+            "cost_bps": 46.6,
+            "bar_time": "2026-09-10T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.02644090915388807,
+            "session": "2026-09-10"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "KR",
+            "qty": 0.077437,
+            "ref_price": 58.399999389648436,
+            "fill_price": 58.57519938781738,
+            "cost_bps": 30.0,
+            "bar_time": "2026-09-11T09:46:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 58.39 (rel. volume 7.0x, rank 2); stop 55.64 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "BUY",
+            "ticker": "ADBE",
+            "qty": 0.025553,
+            "ref_price": 249.7798974609375,
+            "fill_price": 250.27945725585937,
+            "cost_bps": 20.0,
+            "bar_time": "2026-09-11T10:46:00-04:00",
+            "reason_code": "ORB_BREAKOUT",
+            "reason": "broke above first 5-min high 249.77 (rel. volume 6.3x, rank 5); stop 241.51 = low of the first 5 minutes",
+            "realized_pnl": null,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "KR",
+            "qty": 0.077437,
+            "ref_price": 58.45500183105469,
+            "fill_price": 58.299511526184084,
+            "cost_bps": 26.6,
+            "bar_time": "2026-09-11T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": -0.021348440941297394,
+            "session": "2026-09-11"
+          },
+          {
+            "kind": "SELL",
+            "ticker": "ADBE",
+            "qty": 0.025553,
+            "ref_price": 252.22999572753906,
+            "fill_price": 251.81129393463135,
+            "cost_bps": 16.6,
+            "bar_time": "2026-09-11T15:59:00-04:00",
+            "reason_code": "CLOSE_EXIT",
+            "reason": "day trade: sold at the close",
+            "realized_pnl": 0.03914302265266043,
+            "session": "2026-09-11"
+          }
+        ],
+        "stats": {
+          "return": -0.0034390017052811084,
+          "drawdown": 0.004999806745405899,
+          "trades": 7,
+          "win_rate": 0.42857142857142855,
+          "costs": 0.2520272625102517,
+          "fallback_exits": 0
+        },
+        "pnl_without_best_trade": -0.5501699671450461
+      }
+    }
+  },
+  "bootstrap_daily_excess_95_interval": [
+    0.0,
+    0.0
+  ],
+  "checks": {
+    "5m_1x_costs": false,
+    "5m_2x_costs": false,
+    "1m_1x_costs": false,
+    "1m_2x_costs": false
+  },
+  "eligible_for_live": false,
+  "data_hashes": {
+    "data/intraday/bars_5m.pkl": "2b761bf3faf18f70eaa5eebbb3c4c3b7d36f788beeda124eaa611c909aae3718",
+    "data/intraday/bars_1m.pkl": "2fbc92c753a6e2186c6dd563cadaf2804a7c53a8ef9cc11a50f7b06616e91bda",
+    "data/intraday/daily_6mo.pkl": "83447adc63adf141e2fa822d8be92650c41ab49af6424966ab189d2a037780c2",
+    "data/history/earnings.pkl": "d3bc845f7e31c7964d80e48da07688a566582345862a079b98d90235767d4d58",
+    "research/four_rounds_2026_09_28/baseline.json": "617c95587c1a67d7855d82c915a23cecae2940cad86837a4fe0a51d1c1bb913c"
+  }
+}
