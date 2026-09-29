@@ -1,10 +1,10 @@
-2026-09-29 22:40:22,302 INFO [daytrade] SELL CCL @ 25.11 (CLOSE_EXIT); closed 2026-09-29: equity $98.86 (1 trades)
-2026-09-29 22:40:28,442 INFO [crypto2] no action needed
-2026-09-29 22:40:28,758 INFO [mm] no action needed
-2026-09-29 22:40:28,763 INFO [crypto] no action needed
-2026-09-29 22:40:31,483 INFO [primary] closed 2026-09-29; decided for 2026-09-30: 0 orders (MOO), regime ON
-2026-09-29 22:41:33,278 INFO [research] closed 2026-09-29; decided for 2026-09-30: 2 orders (MOO), regime ON
-2026-09-29 22:41:33,294 ERROR report generation failed: Traceback (most recent call last):
+2026-09-29 23:38:46,093 INFO [daytrade] no action needed
+2026-09-29 23:38:51,391 INFO [crypto2] no action needed
+2026-09-29 23:38:51,668 INFO [mm] no action needed
+2026-09-29 23:38:51,675 INFO [crypto] no action needed
+2026-09-29 23:38:51,679 INFO [primary] no action needed
+2026-09-29 23:38:51,683 INFO [research] no action needed
+2026-09-29 23:38:51,704 ERROR report generation failed: Traceback (most recent call last):
   File "/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py", line 131, in run_cycle
     made = maybe_generate_reports(exp, primary, md, now)
   File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 368, in maybe_generate_reports
