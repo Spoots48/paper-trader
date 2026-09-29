@@ -17,6 +17,7 @@ concurrency:
 permissions:
   contents: write
   issues: write
+  actions: write # lets a session run start its successor
 jobs:
   cycle:
     runs-on: ubuntu-latest
@@ -46,7 +47,8 @@ jobs:
         id: cycle
         run: |
           ls reports/day*.json 2>/dev/null | sort > /tmp/reports_before || true
-          python run.py cycle --trigger github-actions
+          # Inside the weekday morning window this loops every 5 min for ~20 min (papertrader/session.py); otherwise one cycle.
+          python -m papertrader.session loop
           ls reports/day*.json 2>/dev/null | sort > /tmp/reports_after || true
       # Only after the cycle step ran: a failed test/restore/verify must never dump absent or unverified ledgers over state/.
       - name: Save ledgers to state/
@@ -78,3 +80,11 @@ jobs:
             head -c 60000 "$md" > /tmp/body.md
             gh issue create --title "Paper Trader: Day $day report" --body-file /tmp/body.md || true
           done
+      # GitHub delivers only a few of the cron slots, so in the morning window each successful run starts the next one.
+      # Only after success (a failing run must not hot-loop); concurrency keeps at most one pending run, so chains merge.
+      - name: Continue the trading-window session
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if python -m papertrader.session chain; then gh workflow run cycle.yml; else echo "outside the window; cron takes over"; fi
