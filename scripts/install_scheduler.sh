@@ -2,6 +2,9 @@
 # Installs a per-user launchd agent that runs one cycle every 15 minutes while you are logged in,
 # the Mac is awake, the external drive is mounted and (checked by the cycle itself) online.
 # Everything project-related lives on the external drive; only the LaunchAgents plist (OS registration) is local.
+# NOTE: on macOS a launchd-spawned /bin/bash is denied access to the external volume (job exits 126) unless the user grants
+# /bin/bash "Removable Volumes" (or Full Disk Access) in System Settings > Privacy & Security. That is a security setting the
+# user must grant; after that this installer works. Without it the cloud (GitHub Actions) still trades; the Paper Trader app syncs while open.
 set -euo pipefail
 HOME_DIR="/Volumes/X10 Pro/Paper Trading Sim"
 [ -d "$HOME_DIR/installed/runtime" ] || { echo "external drive not mounted or runtime missing: $HOME_DIR/installed/runtime" >&2; exit 1; }
