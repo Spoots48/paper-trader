@@ -20,6 +20,12 @@ def quote_prices(best_bid_up: float | None, best_ask_up: float | None, best_bid_
             pu = round(pu + t, 3)
         if best_ask_dn is None or pd + t < best_ask_dn - 1e-9:
             pd = round(pd + t, 3)
+    distance = Q.get("min_midpoint_distance", 0)
+    if distance:
+        # Hummingbot-style spread around a reference, adapted to binary BUY legs.
+        # Round DOWN: nearest-tick rounding can erase the required spread.
+        pu = round(math.floor((min(pu, (best_bid_up + best_ask_up)/2 - distance) + 1e-12)/t)*t, 10)
+        pd = round(math.floor((min(pd, (best_bid_dn + best_ask_dn)/2 - distance) + 1e-12)/t)*t, 10)
     if pu + pd > Q["max_combined_bid"] + 1e-9 or pu <= 0 or pd <= 0:
         return None
     return {"Up": pu, "Down": pd, "improved": {"Up": pu > best_bid_up, "Down": pd > best_bid_dn}}

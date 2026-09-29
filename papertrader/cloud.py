@@ -62,6 +62,12 @@ def sync(notify_new: bool = True) -> dict:
         out["restored"] = restore()
     except Exception as e:  # a bad dump must not break the viewer; the previous ledgers stay in place
         out["restore_error"] = f"{type(e).__name__}: {e}"
+    if out["pull_ok"] and "restore_error" not in out:  # advisory local news review; never affects syncing or trading
+        try:
+            from .laya_news import trigger_background
+            out["laya"] = trigger_background(ROOT)
+        except Exception as e:
+            out["laya"] = {"launched": False, "reason": f"{type(e).__name__}: {e}"[:200]}
     prev = json.loads(SYNC_STATE.read_text()) if SYNC_STATE.exists() else {}
     seen = set(prev.get("reports_seen", []))
     current = sorted(p.name for p in REPORTS_DIR.glob("*.json"))

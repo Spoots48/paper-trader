@@ -20,6 +20,7 @@ def market_maker(tmp_path):
         conditionId='cid', eventStartTime='2026-09-28T14:55:00Z', endDate='2026-09-28T15:10:00Z',
         outcomes=json.dumps(['Up', 'Down']), clobTokenIds=json.dumps(['u','d']))])
     e.book = lambda token: ([(.49 if token=='u' else .51, 100)], [(.48 if token=='u' else .50, 100)])
+    e.book_times = {'u': e.now.timestamp(), 'd': e.now.timestamp()}
     e.risk_gate({}, 100)
     return e
 
@@ -118,3 +119,15 @@ def test_settlement_waits_for_unreconciled_quotes_then_pays_once(tmp_path):
     assert e.L.get_state('pm_positions') == {}
     e.settle()
     assert e.L.db.execute("select count(*) from fills where side='SELL'").fetchone()[0] == 1
+
+
+def test_cooldown_blocks_new_market_but_allows_risk_reducing_completion(tmp_path,monkeypatch):
+    from papertrader import mm_engine
+    e=market_maker(tmp_path)
+    monkeypatch.setattr(mm_engine,'ledger_cooldown',lambda *args:{'until':'2026-09-28T16:00:00Z'})
+    e.quote({},100)
+    assert not e.L.get_state('mm_orders')
+    pos={'market:Up':dict(slug='market',side='Up',shares=5.,cost=2.4)}
+    e.quote(pos,97.6)
+    orders=e.L.get_state('mm_orders')
+    assert len(orders)==1 and orders[0]['outcome']=='Down' and orders[0]['shares']==5

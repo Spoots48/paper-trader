@@ -7,9 +7,14 @@ import WebKit
 let port = 8765
 let baseURL = URL(string: "http://127.0.0.1:\(port)/")!
 
+// Project logs live next to the installed runtime on the external drive (installed/logs), never in ~/Library.
+func logsURL() -> URL {
+    URL(fileURLWithPath: projectPath()).deletingLastPathComponent().appendingPathComponent("logs")
+}
+
 func projectPath() -> String {
     if let p = Bundle.main.object(forInfoDictionaryKey: "PTProjectPath") as? String { return p }
-    return "/Volumes/X10 Pro/Paper Trading Sim"
+    return "/Volumes/X10 Pro/Paper Trading Sim/installed/runtime"
 }
 
 final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDelegate {
@@ -22,7 +27,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         buildMenu()
         let cfg = WKWebViewConfiguration()
         cfg.mediaTypesRequiringUserActionForPlayback = []
-        cfg.websiteDataStore = .default()
+        cfg.websiteDataStore = .nonPersistent()
         web = WKWebView(frame: .zero, configuration: cfg)
         web.navigationDelegate = self
         web.uiDelegate = self
@@ -33,7 +38,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         window.title = "Paper Trader"
         window.minSize = NSSize(width: 900, height: 600)
         window.center()
-        window.setFrameAutosaveName("PaperTraderMain")
         window.contentView = web
         splash = NSTextField(labelWithString: "Starting Paper Trader…")
         splash.font = NSFont.systemFont(ofSize: 15, weight: .medium)
@@ -69,8 +73,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
                 p.executableURL = URL(fileURLWithPath: py)
                 p.arguments = [proj + "/run.py", "serve", "--port", "\(port)"]
                 p.currentDirectoryURL = URL(fileURLWithPath: proj)
-                let logDir = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Logs/PaperTradingSim")
-                try? FileManager.default.createDirectory(at: logDir, withIntermediateDirectories: true)
+                let logDir = logsURL()
+                guard FileManager.default.fileExists(atPath: logDir.path) else {
+                    self.fail("Can't find the project log folder at\n\(logDir.path)\n\nIs the external drive connected?")
+                    return
+                }
+                let home = URL(fileURLWithPath: proj).deletingLastPathComponent().deletingLastPathComponent().path
+                var env = ProcessInfo.processInfo.environment
+                env["TMPDIR"] = home + "/.cache/tmp"; env["HF_HOME"] = home + "/.cache/huggingface"
+                env["TORCH_HOME"] = home + "/.cache/torch"; env["PYTHONDONTWRITEBYTECODE"] = "1"
+                p.environment = env
                 let logURL = logDir.appendingPathComponent("app-server.log")
                 if !FileManager.default.fileExists(atPath: logURL.path) { FileManager.default.createFile(atPath: logURL.path, contents: nil) }
                 if let fh = try? FileHandle(forWritingTo: logURL) { fh.seekToEndOfFile(); p.standardOutput = fh; p.standardError = fh }
@@ -87,7 +99,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         ping { up in
             DispatchQueue.main.async {
                 if up { self.load() }
-                else if attempts <= 0 { self.fail("The control server didn't start. See ~/Library/Logs/PaperTradingSim/app-server.log") }
+                else if attempts <= 0 { self.fail("The control server didn't start. See installed/logs/app-server.log on the external drive.") }
                 else { DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { self.waitForServer(attempts: attempts - 1) } }
             }
         }
@@ -154,7 +166,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
     @objc func openFolder(_ sender: Any?) { NSWorkspace.shared.open(URL(fileURLWithPath: projectPath())) }
     @objc func openReports(_ sender: Any?) { NSWorkspace.shared.open(URL(fileURLWithPath: projectPath() + "/reports")) }
     @objc func openLogs(_ sender: Any?) {
-        NSWorkspace.shared.open(FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Logs/PaperTradingSim"))
+        NSWorkspace.shared.open(logsURL())
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ app: NSApplication) -> Bool { true }

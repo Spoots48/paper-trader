@@ -3,10 +3,13 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import math
 
 from .broker import Fill as LFill, Order
 from .nyse_calendar import ET, iso
 from .pm2 import decide_v2, sigma_from_closes
+from .market_quality import closed_closes, parse_klines
+from .entry_protections import ledger_cooldown
 from .pm_engine import PMEngine, _ts
 from .pm_risk import marked_equity, protected_floor, settlement_floor
 from .predmarket import walk_book
@@ -17,10 +20,16 @@ BINANCE = "https://data-api.binance.vision/api/v3"
 
 class PMEngine2(PMEngine):
     def prices(self, symbol: str) -> dict:
+        available_at = self.clock().timestamp()
         k = self.get(f"{BINANCE}/klines", symbol=symbol, interval="1m", limit=300)
-        candles = {int(r[0]) // 1000: (float(r[1]), float(r[4])) for r in k}
-        tick = self.get(f"{BINANCE}/ticker/price", symbol=symbol)
-        return {"candles": candles, "s_now": float(tick["price"])}
+        # A partial candle cannot become complete merely while later requests are running.
+        candles = {t: bar for t,bar in parse_klines(k).items() if t+60 <= available_at}
+        # Timestamped public trade, rather than a price-only ticker with unknown age.
+        tick = self.get(f"{BINANCE}/trades", symbol=symbol, limit=1)[-1]
+        price = float(tick['price'])
+        if not math.isfinite(price) or price <= 0:
+            raise ValueError('invalid underlying trade price')
+        return {"candles": candles, "s_now": price, "tick_time": float(tick['time'])/1000}
 
     def risk_gate(self, positions: dict, cash: float) -> str | None:
         """Checked every run (v1 only checked once a day, which is why its loss limit never fired)."""
@@ -59,9 +68,14 @@ class PMEngine2(PMEngine):
 
     def scan(self, positions: dict, cash: float) -> None:
         cfg, Mk, M = self.cfg, self.cfg["markets"], self.cfg["model"]
+        self.now = self.clock()
         why = self.risk_gate(positions, cash)
         if why:
             self.note(f"no new bets: {why}")
+            return
+        lock = ledger_cooldown(self.L, self.now, cfg.get('protections', {}))
+        if lock:
+            self.note(f"entry cooldown until {lock['until']}: {lock['reason']}")
             return
         equity = marked_equity(cash, positions)
         exposure = sum(p["cost"] for p in positions.values())
@@ -97,15 +111,24 @@ class PMEngine2(PMEngine):
                 t0 = int(start.timestamp())
                 if t0 not in px["candles"]:
                     continue
-                last = int(self.now.timestamp()) // 60 * 60 - 60
-                closes = [px["candles"][k][1] for k in range(last - 60 * M["vol_lookback_minutes"], last + 1, 60) if k in px["candles"]]
-                sigma = sigma_from_closes(closes, M["min_vol_per_minute"])
+                if not math.isfinite(px['candles'][t0][0]) or px['candles'][t0][0] <= 0:
+                    continue
                 outs, toks = json.loads(m["outcomes"]), json.loads(m["clobTokenIds"])
                 try:
                     books = {o: self.book(t) for o, t in zip(outs, toks)}
                 except Exception as e:
                     self.L.issue("WARN", "predmarket", f"order book unavailable for {key}: {e}")
                     continue
+                if set(outs) != {'Up', 'Down'} or not self.entry_quality(key, toks, px.get('tick_time'), require_underlying=True):
+                    continue
+                if not (start <= self.now < end-dt.timedelta(seconds=Mk['min_seconds_remaining'])):
+                    continue
+                try:
+                    closes = closed_closes(px['candles'], self.now, M['vol_lookback_minutes'])
+                except ValueError as ex:
+                    scanned.append({'market': key, 'result': str(ex)})
+                    continue
+                sigma = sigma_from_closes(closes, M['min_vol_per_minute'])
                 asks = {o: min((p for p, _ in b[0]), default=None) for o, b in books.items()}
                 bu = books.get("Up", ([], []))
                 mid = (min(p for p, _ in bu[0]) + max(p for p, _ in bu[1])) / 2 if bu[0] and bu[1] else None

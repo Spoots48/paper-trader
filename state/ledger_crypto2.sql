@@ -103,6 +103,7 @@ INSERT INTO "events" VALUES(43,'2026-09-28T21:37:03Z','20260928T213658Z-crypto2'
 INSERT INTO "events" VALUES(44,'2026-09-28T22:03:00Z',NULL,'strategy_change','{"book": "crypto2", "description": "Crypto v2.1: retain probability model, refresh marks before risk, enforce strategy integrity, persist daily loss and profit-protection stops, and cap entries by remaining worst-case settlement budget.", "to_sha256": "25b3b8b0cbb8728f212b71963332241ff0cf0c0cb0e0daaa08ea58f2e63e7dd2"}','1791aa0c42e37b5ec1f9248c36edb9c45d531a7093b1a99e08403ba7b064e319','312ed42f095e01c453ff5a108836748ea95f45fadc9c53f2a87d83bffa570980');
 INSERT INTO "events" VALUES(45,'2026-09-28T22:04:39Z','20260928T220434Z-crypto2','decision','{"action": "INFO", "code": "PM_SCAN", "key": "pm:scan:2026-09-28T22:04:34Z", "reason": "scanned 6 live markets; 0 bet(s).", "ticker": "*"}','312ed42f095e01c453ff5a108836748ea95f45fadc9c53f2a87d83bffa570980','456705eea9bbb89c38a7000bde74140a066253cef0e5173e93d494cb259341d1');
 INSERT INTO "events" VALUES(46,'2026-09-28T22:38:56Z','20260928T223852Z-crypto2','decision','{"action": "INFO", "code": "PM_SCAN", "key": "pm:scan:2026-09-28T22:38:52Z", "reason": "scanned 6 live markets; 0 bet(s).", "ticker": "*"}','456705eea9bbb89c38a7000bde74140a066253cef0e5173e93d494cb259341d1','2ce6824f38e889c912481cc14e70952c905945efe02a849bf511831671bdbf19');
+INSERT INTO "events" VALUES(47,'2026-09-29T02:15:36Z',NULL,'strategy_change','{"book": "crypto2", "description": "pm-2.1.0 -> pm-2.2.0. Input-quality gate (timestamped Binance trades, full contiguous 61 closed minute closes, max 30s data age / 10s skew, no future timestamps) and an entry cooldown: two net-losing settled markets within 240 minutes pause new entries for 60 minutes. Risk budgets are unchanged; the change can only reduce trading.", "to_sha256": "210216662e794f7a67420f4ad6daaa4cb354759154e035979ae47b612eb220b9"}','2ce6824f38e889c912481cc14e70952c905945efe02a849bf511831671bdbf19','238670c5b4b89f72280536af692669a1b439aed122b6d8be3edc8f199ede1042');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -194,7 +195,7 @@ INSERT INTO "snapshots" VALUES('2026-09-26','2026-09-27T05:42:10Z','20260927T054
 INSERT INTO "snapshots" VALUES('2026-09-27','2026-09-28T05:49:24Z','20260928T054924Z-crypto2',100.0,100.0,0.0,NULL,100.0,100.0,0.0,'0 open bets','{"peak": 100.0, "drawdown": 0.0}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','100.0','2026-09-25T20:09:49Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-28T22:38:52Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-09-29T02:15:36Z');
 INSERT INTO "state" VALUES('risk','{"peak": 100.0, "drawdown": 0.0}','2026-09-28T22:38:52Z');
 INSERT INTO "state" VALUES('pm_day','{"date": "2026-09-28", "start_equity": 100.0, "peak": 100.0, "protected_floor": 97.0}','2026-09-28T22:38:52Z');
 INSERT INTO "state" VALUES('pm_positions','{}','2026-09-28T22:38:56Z');
@@ -204,6 +205,7 @@ CREATE TABLE strategy_changes (
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
 );
 INSERT INTO "strategy_changes" VALUES(1,'2026-09-28T22:03:00Z','pm-2.0.0','pm-2.1.0','bbcc594254a8b6a103f74d7e7247a694e70d059bd59efdd046b8f5257344564c','25b3b8b0cbb8728f212b71963332241ff0cf0c0cb0e0daaa08ea58f2e63e7dd2','next decision after 2026-09-28 deployment','Crypto v2.1: retain probability model, refresh marks before risk, enforce strategy integrity, persist daily loss and profit-protection stops, and cap entries by remaining worst-case settlement budget.','research/revamp_2026_09_28/SUMMARY.md: 62 tests passed; independent review; fixed-variant replay at 1m/5m. Drawdown improved but returns lower; no claim of proven profit.');
+INSERT INTO "strategy_changes" VALUES(2,'2026-09-29T02:15:36Z','pm-2.1.0','pm-2.2.0','25b3b8b0cbb8728f212b71963332241ff0cf0c0cb0e0daaa08ea58f2e63e7dd2','210216662e794f7a67420f4ad6daaa4cb354759154e035979ae47b612eb220b9','next decision','pm-2.1.0 -> pm-2.2.0. Input-quality gate (timestamped Binance trades, full contiguous 61 closed minute closes, max 30s data age / 10s skew, no future timestamps) and an entry cooldown: two net-losing settled markets within 240 minutes pause new entries for 60 minutes. Risk budgets are unchanged; the change can only reduce trading.','Independent adaptations of Jesse completed-candle handling, OctoBot freshness checks and Freqtrade StoplossGuard (research/upstream_2026_09_28/PLAN.md, SOURCES.md). 99 unit tests pass. No profitability evidence; forward paper results only.');
 CREATE TRIGGER fills_no_update BEFORE UPDATE ON fills BEGIN SELECT RAISE(ABORT, 'fills is append-only'); END;
 CREATE TRIGGER fills_no_delete BEFORE DELETE ON fills BEGIN SELECT RAISE(ABORT, 'fills is append-only'); END;
 CREATE TRIGGER snapshots_no_update BEFORE UPDATE ON snapshots BEGIN SELECT RAISE(ABORT, 'snapshots is append-only'); END;
@@ -223,7 +225,7 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',46);
+INSERT INTO "sqlite_sequence" VALUES('events',47);
 INSERT INTO "sqlite_sequence" VALUES('decisions',41);
-INSERT INTO "sqlite_sequence" VALUES('strategy_changes',1);
+INSERT INTO "sqlite_sequence" VALUES('strategy_changes',2);
 COMMIT;

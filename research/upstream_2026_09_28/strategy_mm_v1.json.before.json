@@ -1,9 +1,9 @@
 {
   "strategy_id": "crypto-updown-market-maker",
-  "version": "mm-2.1.0",
+  "version": "mm-2.0.0",
   "book_type": "predmarket",
   "engine": "mm",
-  "description": "Conservative paper market maker: one active binary market, size both quote legs together against worst-case one-sided fills and remaining daily capital. Total inventory plus quotes is capped; completion must be profitable using actual inventory cost. Trade-tape volume limits simulated fills. Estimated rebates are disclosed but never credited to cash. Forward test only; profitability is unproven. Upstream-inspired revision: synchronized timestamped data and one-hour entry cooldown after two net losing markets in four hours; no increase in risk budget.",
+  "description": "Conservative paper market maker: one active binary market, size both quote legs together against worst-case one-sided fills and remaining daily capital. Total inventory plus quotes is capped; completion must be profitable using actual inventory cost. Trade-tape volume limits simulated fills. Estimated rebates are disclosed but never credited to cash. Forward test only; profitability is unproven.",
   "portfolio": {
     "starting_cash": 100.0,
     "min_shares": 5
@@ -30,12 +30,11 @@
     "min_seconds_remaining": 300
   },
   "quoting": {
-    "price_rule": "Improve/join only while bid stays at least 0.5c below its own midpoint; round down to tick and cap pair cost at 98c.",
+    "price_rule": "join the best bid on each side; if the two best bids add up to 97c or less, improve each by 1c (never at or above the best ask)",
     "max_combined_bid": 0.98,
     "tick": 0.01,
     "order_lifetime_minutes": 5,
-    "inventory_rule": "Quote the missing side only if actual average paid price plus new bid is at most 98c; never add to a completed pair.",
-    "min_midpoint_distance": 0.005
+    "inventory_rule": "Quote the missing side only if actual average paid price plus new bid is at most 98c; never add to a completed pair."
   },
   "fills": {
     "source": "data-api.polymarket.com/trades (taker trades)",
@@ -66,15 +65,5 @@
     "note": "Check current marks every run. Daily stops persist until the next New York date. After +2% daily peak gain, preserve half via an entry risk budget. Existing positions still settle; no guaranteed intraday liquidation.",
     "profit_lock_activation": 0.02,
     "profit_lock_giveback": 0.5
-  },
-  "data_quality": {
-    "max_age_seconds": 30,
-    "max_skew_seconds": 10,
-    "future_tolerance_seconds": 5
-  },
-  "protections": {
-    "loss_limit": 2,
-    "lookback_minutes": 240,
-    "cooldown_minutes": 60
   }
 }

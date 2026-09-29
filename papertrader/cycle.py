@@ -84,7 +84,7 @@ def run_cycle(trigger: str = "manual", max_seconds: int = 1500) -> dict:
             ledgers[book["id"]] = L
             e = L.experiment()
             if not e:
-                results[book["id"]] = "not frozen (run: python run.py freeze)"
+                results[book["id"]] = "ERROR not frozen (run: python run.py freeze)"
                 continue
             cfg = load_json(ROOT / book["strategy"])
             run_id = f"{now.strftime('%Y%m%dT%H%M%SZ')}-{book['id']}"
@@ -105,7 +105,7 @@ def run_cycle(trigger: str = "manual", max_seconds: int = 1500) -> dict:
                     from .pm_engine2 import PMEngine2
                     from .mm_engine import MMEngine
                     eng = {"pm2": PMEngine2, "mm": MMEngine}.get(cfg.get("engine"), PMEngine)
-                    summary = eng(L, md, cfg, {**exp, "book": book["id"]}, now).step()
+                    summary = eng(L, md, cfg, {**exp, "book": book["id"]}, now, clock=now_utc).step()
                 elif cfg.get("book_type") == "intraday":
                     from .day_engine import DayEngine
                     summary = DayEngine(L, md, cfg, {**exp, "book": book["id"]}, now).step()
@@ -136,6 +136,7 @@ def run_cycle(trigger: str = "manual", max_seconds: int = 1500) -> dict:
                         for L in ledgers.values():
                             L.set_state("experiment_finished", iso(now))
             except Exception:
+                results["reports"] = "ERROR report generation failed"
                 log.error("report generation failed: " + traceback.format_exc())
                 primary.issue("ERROR", "reporting", traceback.format_exc()[-1500:])
             try:
@@ -145,6 +146,7 @@ def run_cycle(trigger: str = "manual", max_seconds: int = 1500) -> dict:
                     results["daily_reports"] = daily
                     log.info(f"daily reports generated: {daily}")
             except Exception:
+                results["daily_reports"] = "ERROR daily report generation failed"
                 log.error("daily report failed: " + traceback.format_exc())
         for L in ledgers.values():
             L.close()
@@ -160,6 +162,8 @@ def run_cycle(trigger: str = "manual", max_seconds: int = 1500) -> dict:
             from .webapp import export_static
             export_static()
         except Exception:
+            results["dashboard"] = "ERROR static dashboard export failed"
+            _heartbeat("error", trigger, results)
             log.error("static dashboard export failed: " + traceback.format_exc())
         fcntl.flock(lock, fcntl.LOCK_UN)
         lock.close()

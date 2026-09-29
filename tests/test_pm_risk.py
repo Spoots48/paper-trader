@@ -120,11 +120,13 @@ def test_directional_bet_cannot_spend_beyond_remaining_daily_loss_budget(tmp_pat
     e.cfg['markets']['windows_minutes'] = [60]
     e.cfg['entry']['min_depth_usd'] = 1
     start = NOW - dt.timedelta(minutes=20)
-    e.prices = lambda symbol: {'candles': {int(start.timestamp()): (100, 100)}, 's_now': 100}
+    e.prices = lambda symbol: {'candles': {int(NOW.timestamp())-i*60: (100,100) for i in range(62)},
+                                's_now':100, 'tick_time':NOW.timestamp()}
     e.slugs = lambda *args: ['test']
     e.event = lambda slug: dict(slug='test', title='Test', markets=[dict(eventStartTime=start.isoformat(),
         endDate=(NOW+dt.timedelta(minutes=40)).isoformat(), outcomes=json.dumps(['Up','Down']), clobTokenIds=json.dumps(['u','d']))])
     e.book = lambda token: ([(.30, 100)], [(.29, 100)])
+    e.book_times = {'u': NOW.timestamp(), 'd': NOW.timestamp()}
     monkeypatch.setattr(pm_engine2, 'decide_v2', lambda *args: dict(side='Up', q=.8, ask=.3, unit=.3147,
                                                                edge=.4853, model_up=.8, mid_up=.8))
     e.scan({}, 99)

@@ -79,3 +79,23 @@ def test_rejects_crossed_missing_and_nonfinite_quotes():
     assert quote_prices(.5, .49, .45, .46, CFG) is None
     assert quote_prices(.48, None, .5, .51, CFG) is None
     assert quote_prices(float('nan'), .49, .5, .51, CFG) is None
+
+
+def test_spread_floor_prevents_improving_bid_to_midpoint():
+    import copy
+    cfg=copy.deepcopy(CFG)
+    cfg['quoting']['min_midpoint_distance']=.005
+    q=quote_prices(.46,.48,.49,.51,cfg)
+    assert q['Up']==.46 and q['Down']==.49
+    assert not any(q['improved'].values())
+
+
+def test_passive_quotes_round_down_to_tick_never_up():
+    import copy
+    cfg=copy.deepcopy(CFG)
+    cfg['quoting']['min_midpoint_distance']=.005
+    q=quote_prices(.455,.485,.495,.515,cfg)
+    assert q['Up']==.46 and q['Down']==.50
+    for side,mid in [('Up',.47),('Down',.505)]:
+        assert q[side]<=mid-.005+1e-9
+        assert abs(q[side]/.01-round(q[side]/.01))<1e-9

@@ -48,8 +48,9 @@ def ensure_dirs() -> None:
     for d in (DATA_DIR, HISTORY_DIR, REPORTS_DIR, DASHBOARD_DIR, LOG_DIR, RESEARCH_DIR):
         d.mkdir(parents=True, exist_ok=True)
 
-# The live experiment runs from the Mac's internal disk so it keeps working when the external drive is unplugged.
-LIVE_RUNTIME = Path.home() / "Library" / "Application Support" / "PaperTradingSim" / "runtime"
+# The installed (live) runtime, its logs and every cache live on the external drive; nothing project-related is kept on the internal disk.
+EXTERNAL_HOME = Path("/Volumes/X10 Pro/Paper Trading Sim")
+LIVE_RUNTIME = EXTERNAL_HOME / "installed" / "runtime"
 
 
 def is_live_copy() -> bool:

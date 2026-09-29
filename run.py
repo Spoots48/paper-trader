@@ -67,6 +67,8 @@ def cmd_cycle(a) -> None:
     from papertrader.cycle import run_cycle
     r = run_cycle(trigger=a.trigger)
     print(json.dumps(r, indent=1, default=str))
+    if "error" in r or r.get("status") in ("error", "offline") or any(str(v).startswith("ERROR") for v in r.values()):
+        raise SystemExit(1)
 
 
 def cmd_status(a) -> None:
@@ -108,6 +110,8 @@ def cmd_verify(a) -> None:
         e = L.experiment()
         if not e:
             print(f"[{b['id']}] not frozen")
+            ok_all = False
+            L.close()
             continue
         ok, msg = L.verify_chain()
         approved = e["strategy_sha256"]

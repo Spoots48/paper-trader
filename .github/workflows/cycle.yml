@@ -30,6 +30,8 @@ jobs:
           python-version: "3.13"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: Test before trading
+        run: python -m pytest -q
       - name: Restore market-data cache
         uses: actions/cache/restore@v4
         with:
@@ -41,21 +43,23 @@ jobs:
       - name: Verify integrity (audit chain, frozen strategy hashes, cash)
         run: python run.py verify
       - name: Run one cycle
+        id: cycle
         run: |
           ls reports/day*.json 2>/dev/null | sort > /tmp/reports_before || true
           python run.py cycle --trigger github-actions
           ls reports/day*.json 2>/dev/null | sort > /tmp/reports_after || true
+      # Only after the cycle step ran: a failed test/restore/verify must never dump absent or unverified ledgers over state/.
       - name: Save ledgers to state/
-        if: always()
+        if: always() && steps.cycle.conclusion != 'skipped'
         run: python -m papertrader.statesync dump
       - name: Save market-data cache
-        if: always()
+        if: always() && steps.cycle.conclusion != 'skipped'
         uses: actions/cache/save@v4
         with:
           path: data/market_cache.sqlite
           key: market-${{ github.run_id }}
       - name: Commit state and reports
-        if: always()
+        if: always() && steps.cycle.conclusion != 'skipped'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

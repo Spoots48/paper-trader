@@ -1,9 +1,9 @@
 {
   "strategy_id": "crypto-updown-anchored-digital",
-  "version": "pm-2.2.0",
+  "version": "pm-2.1.0",
   "book_type": "predmarket",
   "engine": "pm2",
-  "description": "v2 of the crypto odds bot, rebuilt after v1 lost 33% in a day. Fixes: (1) correct settlement math: hourly markets settle on Binance's 1-hour candle close vs open, the others effectively on the end price vs the start price (verified against official outcomes), (2) Binance prices instead of Coinbase, (3) the market's own odds anchor the estimate and big disagreements are treated as model error, (4) no chasing favorites: only buys between 30c and 75c, (5) small, fixed, de-correlated bets, (6) loss limits checked every run, (7) only the two deepest markets (BTC, ETH). v2.1: current marks before risk; persistent daily stops and profit protection; new bets must fit the remaining worst-case settlement budget. Entry probability model unchanged. Upstream-inspired revision: synchronized timestamped data and one-hour entry cooldown after two net losing markets in four hours; no increase in risk budget.",
+  "description": "v2 of the crypto odds bot, rebuilt after v1 lost 33% in a day. Fixes: (1) correct settlement math: hourly markets settle on Binance's 1-hour candle close vs open, the others effectively on the end price vs the start price (verified against official outcomes), (2) Binance prices instead of Coinbase, (3) the market's own odds anchor the estimate and big disagreements are treated as model error, (4) no chasing favorites: only buys between 30c and 75c, (5) small, fixed, de-correlated bets, (6) loss limits checked every run, (7) only the two deepest markets (BTC, ETH). v2.1: current marks before risk; persistent daily stops and profit protection; new bets must fit the remaining worst-case settlement budget. Entry probability model unchanged.",
   "portfolio": {
     "starting_cash": 100.0,
     "min_shares": 5
@@ -38,7 +38,7 @@
     "basis_buffer_bps": 10,
     "market_anchor_weight": 0.5,
     "max_model_market_disagreement": 0.2,
-    "note": "P(Up) = Phi(ln(S_t/S_open) / (sigma * sqrt(minutes_left))), with the threshold shifted 10 bps against each trade. The estimate used for trading is halfway between this and the market's mid price; if the model and the market differ by more than 20 points, the bot skips (model error is the likelier explanation). Volatility requires all 61 completed minute closes for 60 returns; gaps block new entries."
+    "note": "P(Up) = Phi(ln(S_t/S_open) / (sigma * sqrt(minutes_left))), with the threshold shifted 10 bps against each trade. The estimate used for trading is halfway between this and the market's mid price; if the model and the market differ by more than 20 points, the bot skips (model error is the likelier explanation)."
   },
   "entry": {
     "min_edge": 0.04,
@@ -62,15 +62,5 @@
     "note": "Check current marks every run. Daily stops persist until the next New York date. After +2% daily peak gain, preserve half via an entry risk budget. Existing positions still settle; no guaranteed intraday liquidation.",
     "profit_lock_activation": 0.02,
     "profit_lock_giveback": 0.5
-  },
-  "data_quality": {
-    "max_age_seconds": 30,
-    "max_skew_seconds": 10,
-    "future_tolerance_seconds": 5
-  },
-  "protections": {
-    "loss_limit": 2,
-    "lookback_minutes": 240,
-    "cooldown_minutes": 60
   }
 }

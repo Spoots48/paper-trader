@@ -9,6 +9,7 @@ import datetime as dt
 import json
 
 from .broker import Fill as LFill, Order
+from .entry_protections import ledger_cooldown
 from .mm import plan_quotes, quote_prices, simulate_fill
 from .nyse_calendar import ET, iso
 from .pm_engine import _ts
@@ -22,6 +23,7 @@ class MMEngine(PMEngine2):
     def step(self) -> str:
         if self.L.get_state("experiment_finished"):
             return "experiment finished; nothing to do"
+        self.now = self.clock()
         today = self.now.astimezone(ET).date()
         if today < self.start:
             return f"starts {self.start}"
@@ -133,6 +135,7 @@ class MMEngine(PMEngine2):
         orders = self.L.get_state("mm_orders", []) or []
         resting = {o["slug"] for o in orders}
         now_ts = int(self.now.timestamp())
+        lock = ledger_cooldown(self.L, self.clock(), cfg.get("protections", {}))
         quoted, notes = 0, []
         for name, asset in Mk["assets"].items():
             for minutes in Mk["windows_minutes"]:
@@ -159,12 +162,21 @@ class MMEngine(PMEngine2):
                     continue
                 if ev["slug"] in resting:
                     continue
+                if lock and not any(p['slug']==ev['slug'] for p in positions.values()):
+                    notes.append(f"{ev['slug']}: entry cooldown until {lock['until']}")
+                    continue
                 outs, toks = json.loads(m["outcomes"]), json.loads(m["clobTokenIds"])
                 try:
                     books = {o: self.book(t) for o, t in zip(outs, toks)}
                 except Exception as e:
                     self.L.issue("WARN", "marketmaker", f"order book unavailable for {ev['slug']}: {e}")
                     continue
+                if set(outs) != {'Up', 'Down'} or not self.entry_quality(ev['slug'], toks):
+                    continue
+                elapsed = (self.now-start).total_seconds()/(end-start).total_seconds()
+                if not (0 <= elapsed <= Mk['max_elapsed_fraction'] and (end-self.now).total_seconds() >= Mk['min_minutes_remaining']*60):
+                    continue
+                now_ts = int(self.now.timestamp())
                 bb = {o: max((p for p, _ in b[1]), default=None) for o, b in books.items()}
                 ba = {o: min((p for p, _ in b[0]), default=None) for o, b in books.items()}
                 qp = quote_prices(bb.get("Up"), ba.get("Up"), bb.get("Down"), ba.get("Down"), cfg)
@@ -189,7 +201,7 @@ class MMEngine(PMEngine2):
                           "title": ev["title"], "label": label}
                     self.L.insert_order(Order(key=od["key"], ticker=label, side="BUY", order_type="PM_LIMIT_GTD",
                                               session=self.now.astimezone(ET).date().isoformat(), created_at=iso(self.now), sleeve="predmarket",
-                                              reason_code="MM_QUOTE", reason=f"bid {price:.2f} for {side} ({'1c above the best bid' if qp['improved'][side] else f'joining {queue:.0f} shares at the best bid'}); expires in 5 min",
+                                              reason_code="MM_QUOTE", reason=f"passive bid {price:.2f} for {side}; {queue:.0f} shares ahead at this price; midpoint spread floor {cfg['quoting'].get('min_midpoint_distance', 0):.3f}; expires in {cfg['quoting']['order_lifetime_minutes']} min",
                                               notional=price * shares, meta={"queue_ahead": queue}))
                     orders.append(od)
                     reserved += price * shares

@@ -45,13 +45,15 @@ def _ts(s: str) -> dt.datetime:
 
 
 class PMEngine:
-    def __init__(self, ledger: Ledger, md, cfg: dict, exp: dict, now: dt.datetime, fetch=None):
+    def __init__(self, ledger: Ledger, md, cfg: dict, exp: dict, now: dt.datetime, fetch=None, clock=None):
         self.L, self.cfg, self.now = ledger, cfg, now
         e = ledger.experiment()
         self.start = dt.date.fromisoformat(e["start_date"])
         self.end = dt.date.fromisoformat(e["end_date"])
         self.cash0 = e["starting_cash"]
         self.get = fetch or _get
+        self.clock = clock or (lambda: self.now)
+        self.book_times = {}
         self.log: list[str] = []
         self.retired = any(b.get("retired") for b in exp.get("books", []) if b.get("id") == exp.get("book"))
 
@@ -75,9 +77,34 @@ class PMEngine:
 
     def book(self, token: str) -> tuple[list, list]:
         b = self.get(f"{CLOB}/book", token_id=token)
-        asks = [(float(x["price"]), float(x["size"])) for x in b.get("asks", [])]
-        bids = [(float(x["price"]), float(x["size"])) for x in b.get("bids", [])]
+        from .market_quality import freshness_checks, parse_book
+        asks, bids = parse_book(b)
+        self.now = self.clock()
+        timestamp = float(b['timestamp']) if b.get('timestamp') is not None else None
+        if timestamp is not None and timestamp > 1e11:
+            timestamp /= 1000  # CLOB timestamps are milliseconds; accept explicit second timestamps too.
+        self.book_times[token] = timestamp
+        quality = self.cfg.get('data_quality')
+        if quality and not all(c['ok'] for c in freshness_checks({token: timestamp}, self.now, quality)):
+            raise ValueError('order book is missing a current source timestamp')
         return asks, bids
+
+    def entry_quality(self, slug: str, tokens: list, underlying_time=None, *, require_underlying=False) -> bool:
+        from .market_quality import freshness_checks
+        self.now = self.clock()
+        quality = self.cfg.get('data_quality')
+        if not quality:
+            return True
+        observations = {f'book:{t}': self.book_times.get(t) for t in tokens}
+        if require_underlying:
+            observations['underlying_trade'] = underlying_time
+        checks = freshness_checks(observations, self.now, quality)
+        ok = all(c['ok'] for c in checks)
+        self.L.insert_decision(f'quality:{slug}:{iso(self.now)}', iso(self.now), self.now.astimezone(ET).date().isoformat(),
+                              Decision(slug, 'predmarket', 'INFO' if ok else 'SKIP', 'INPUT_QUALITY',
+                                       'input timestamps agree' if ok else 'stale, missing or unsynchronized inputs',
+                                       {'checks': checks}), iso(self.now))
+        return ok
 
     def prices(self, product: str) -> dict:
         end = self.now.replace(second=0, microsecond=0)
@@ -107,6 +134,7 @@ class PMEngine:
     def step(self) -> str:
         if self.L.get_state("experiment_finished"):
             return "experiment finished; nothing to do"
+        self.now = self.clock()
         today = self.now.astimezone(ET).date()
         if today < self.start:
             return f"starts {self.start}"

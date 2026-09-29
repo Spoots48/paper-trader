@@ -1,0 +1,342 @@
+{
+ "created": "2026-09-28",
+ "note": "Labels written before any Laya output was seen. Synthetic headlines with fictional tickers. A classification check only; not a trading backtest.",
+ "items": [
+  {
+   "id": "a01",
+   "ticker": "ACME",
+   "headline": "Acme Corp discloses SEC subpoena over revenue recognition and delays annual report",
+   "event": "material_adverse",
+   "tone": "negative"
+  },
+  {
+   "id": "a02",
+   "ticker": "BRVO",
+   "headline": "Bravo Foods recalls all lots of frozen entrees after FDA links them to listeria illness",
+   "event": "material_adverse",
+   "tone": "negative"
+  },
+  {
+   "id": "a03",
+   "ticker": "CYNT",
+   "headline": "Cynter Systems confirms ransomware attack disrupted manufacturing at three plants",
+   "event": "material_adverse",
+   "tone": "negative"
+  },
+  {
+   "id": "a04",
+   "ticker": "DLTA",
+   "headline": "Delta Motion files for Chapter 11 bankruptcy protection",
+   "event": "material_adverse",
+   "tone": "negative"
+  },
+  {
+   "id": "a05",
+   "ticker": "ECHO",
+   "headline": "Echo Labs receives Nasdaq delisting notice after missing filing deadline",
+   "event": "material_adverse",
+   "tone": "negative"
+  },
+  {
+   "id": "a06",
+   "ticker": "FRGE",
+   "headline": "Forge Pharma says FDA issued complete response letter, rejecting its lead drug",
+   "event": "material_adverse",
+   "tone": "negative"
+  },
+  {
+   "id": "a07",
+   "ticker": "GLXY",
+   "headline": "Galaxy Retail CFO resigns abruptly as auditor withdraws prior opinion",
+   "event": "material_adverse",
+   "tone": "negative"
+  },
+  {
+   "id": "a08",
+   "ticker": "HRZN",
+   "headline": "Horizon Energy withdraws full-year guidance, cites loss of its largest customer",
+   "event": "material_adverse",
+   "tone": "negative"
+  },
+  {
+   "id": "a09",
+   "ticker": "IRIS",
+   "headline": "Iris Networks discloses data breach exposing 4 million customer records",
+   "event": "material_adverse",
+   "tone": "negative"
+  },
+  {
+   "id": "a10",
+   "ticker": "JUNO",
+   "headline": "Juno Airlines grounds fleet after federal safety regulator order",
+   "event": "material_adverse",
+   "tone": "negative"
+  },
+  {
+   "id": "a11",
+   "ticker": "KEPL",
+   "headline": "Kepler Bank shares halted as regulators seize subsidiary over capital shortfall",
+   "event": "material_adverse",
+   "tone": "negative"
+  },
+  {
+   "id": "a12",
+   "ticker": "LUMA",
+   "headline": "Luma Devices announces going-concern doubt in quarterly filing",
+   "event": "material_adverse",
+   "tone": "negative"
+  },
+  {
+   "id": "e01",
+   "ticker": "MRCY",
+   "headline": "Mercury Tech posts third-quarter EPS of $1.20, beating estimates of $1.05",
+   "event": "earnings_update",
+   "tone": "positive"
+  },
+  {
+   "id": "e02",
+   "ticker": "NOVA",
+   "headline": "Nova Health misses revenue estimates and cuts full-year outlook",
+   "event": "earnings_update",
+   "tone": "negative"
+  },
+  {
+   "id": "e03",
+   "ticker": "ORBT",
+   "headline": "Orbit Software raises annual guidance after record quarterly bookings",
+   "event": "earnings_update",
+   "tone": "positive"
+  },
+  {
+   "id": "e04",
+   "ticker": "PLSE",
+   "headline": "Pulse Foods reports quarterly earnings in line with expectations",
+   "event": "earnings_update",
+   "tone": "neutral"
+  },
+  {
+   "id": "e05",
+   "ticker": "QNTM",
+   "headline": "Quantum Freight beats on earnings but lowers next-quarter guidance",
+   "event": "earnings_update",
+   "tone": "negative"
+  },
+  {
+   "id": "e06",
+   "ticker": "RIVR",
+   "headline": "River Steel to report second-quarter results on October 14",
+   "event": "earnings_update",
+   "tone": "neutral"
+  },
+  {
+   "id": "e07",
+   "ticker": "SLVR",
+   "headline": "Silver Apparel swings to quarterly loss as margins compress",
+   "event": "earnings_update",
+   "tone": "negative"
+  },
+  {
+   "id": "e08",
+   "ticker": "TRON",
+   "headline": "Tron Semiconductor reports revenue up 30% and lifts full-year forecast",
+   "event": "earnings_update",
+   "tone": "positive"
+  },
+  {
+   "id": "e09",
+   "ticker": "UNIT",
+   "headline": "Unit Logistics earnings per share rose to $0.88 from $0.61 a year earlier",
+   "event": "earnings_update",
+   "tone": "positive"
+  },
+  {
+   "id": "e10",
+   "ticker": "VRTX2",
+   "headline": "Vertex Media quarterly profit falls short of analyst forecasts",
+   "event": "earnings_update",
+   "tone": "negative"
+  },
+  {
+   "id": "e11",
+   "ticker": "WAVE",
+   "headline": "Wave Systems reaffirms fiscal-year guidance alongside quarterly results",
+   "event": "earnings_update",
+   "tone": "neutral"
+  },
+  {
+   "id": "e12",
+   "ticker": "XENO",
+   "headline": "Xeno Bio posts smaller-than-expected quarterly loss and raises cash runway",
+   "event": "earnings_update",
+   "tone": "positive"
+  },
+  {
+   "id": "p01",
+   "ticker": "YARD",
+   "headline": "Analyst upgrades Yard Goods to Buy, sets $60 price target",
+   "event": "promotional_or_opinion",
+   "tone": "positive"
+  },
+  {
+   "id": "p02",
+   "ticker": "ZEST",
+   "headline": "Rumor: Zest Beverage could be takeover target, sources say (unconfirmed)",
+   "event": "promotional_or_opinion",
+   "tone": "neutral"
+  },
+  {
+   "id": "p03",
+   "ticker": "ABLE",
+   "headline": "Shareholder alert: Pomerantz investigating claims on behalf of Able Corp investors",
+   "event": "promotional_or_opinion",
+   "tone": "negative"
+  },
+  {
+   "id": "p04",
+   "ticker": "BOLT",
+   "headline": "Why Bolt Energy stock could double by 2030, says market commentator",
+   "event": "promotional_or_opinion",
+   "tone": "positive"
+  },
+  {
+   "id": "p05",
+   "ticker": "CRUX",
+   "headline": "3 hot stocks to buy now: is Crux Inc. on the list?",
+   "event": "promotional_or_opinion",
+   "tone": "positive"
+  },
+  {
+   "id": "p06",
+   "ticker": "DUNE",
+   "headline": "Investors who lost money on Dune Holdings encouraged to contact law firm",
+   "event": "promotional_or_opinion",
+   "tone": "negative"
+  },
+  {
+   "id": "p07",
+   "ticker": "EDGE",
+   "headline": "Edge Motors bear says the stock is overvalued and headed lower",
+   "event": "promotional_or_opinion",
+   "tone": "negative"
+  },
+  {
+   "id": "p08",
+   "ticker": "FLUX",
+   "headline": "Should you buy Flux Energy before earnings? One analyst weighs in",
+   "event": "promotional_or_opinion",
+   "tone": "neutral"
+  },
+  {
+   "id": "p09",
+   "ticker": "GRID",
+   "headline": "Grid Power stock forum: traders debate breakout chances",
+   "event": "promotional_or_opinion",
+   "tone": "neutral"
+  },
+  {
+   "id": "p10",
+   "ticker": "HALO",
+   "headline": "Halo Media price target lowered to $22 from $25 by brokerage",
+   "event": "promotional_or_opinion",
+   "tone": "negative"
+  },
+  {
+   "id": "p11",
+   "ticker": "INGO",
+   "headline": "Opinion: Why Ingo Corp is the best dividend stock of the decade",
+   "event": "promotional_or_opinion",
+   "tone": "positive"
+  },
+  {
+   "id": "p12",
+   "ticker": "JADE",
+   "headline": "Rumors swirl of activist stake in Jade Retail, no filing yet",
+   "event": "promotional_or_opinion",
+   "tone": "neutral"
+  },
+  {
+   "id": "o01",
+   "ticker": "KITE",
+   "headline": "Kite Software announces new office lease in Austin",
+   "event": "other",
+   "tone": "neutral"
+  },
+  {
+   "id": "o02",
+   "ticker": "LOOM",
+   "headline": "Loom Corp director sells 5,000 shares in routine Form 4 filing",
+   "event": "other",
+   "tone": "neutral"
+  },
+  {
+   "id": "o03",
+   "ticker": "MAPL",
+   "headline": "Maple Industries stock falls 2.1 percent after the close",
+   "event": "other",
+   "tone": "neutral"
+  },
+  {
+   "id": "o04",
+   "ticker": "NEON",
+   "headline": "Neon Devices launches updated version of its flagship product",
+   "event": "other",
+   "tone": "positive"
+  },
+  {
+   "id": "o05",
+   "ticker": "OAKS",
+   "headline": "Oaks Holdings declares regular quarterly dividend of $0.20",
+   "event": "other",
+   "tone": "neutral"
+  },
+  {
+   "id": "o06",
+   "ticker": "PACE",
+   "headline": "Pace Motors names new head of marketing",
+   "event": "other",
+   "tone": "neutral"
+  },
+  {
+   "id": "o07",
+   "ticker": "QUIL",
+   "headline": "Quill Bank to present at investor conference next week",
+   "event": "other",
+   "tone": "neutral"
+  },
+  {
+   "id": "o08",
+   "ticker": "RUSH",
+   "headline": "Rush Retail opens 12 new stores this quarter",
+   "event": "other",
+   "tone": "positive"
+  },
+  {
+   "id": "o09",
+   "ticker": "SAGE",
+   "headline": "Sage Analytics stock trades sideways on light volume",
+   "event": "other",
+   "tone": "neutral"
+  },
+  {
+   "id": "o10",
+   "ticker": "TIDE",
+   "headline": "Tide Water Co. files routine prospectus supplement",
+   "event": "other",
+   "tone": "neutral"
+  },
+  {
+   "id": "o11",
+   "ticker": "ULTR",
+   "headline": "Ultra Fuel says it found no evidence of fraud after internal review",
+   "event": "other",
+   "tone": "neutral"
+  },
+  {
+   "id": "o12",
+   "ticker": "VOLT",
+   "headline": "Volt Power partners with university on battery research program",
+   "event": "other",
+   "tone": "positive"
+  }
+ ]
+}

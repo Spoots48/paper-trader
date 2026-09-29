@@ -1,0 +1,18 @@
+{
+  "runtime": "/Volumes/X10 Pro/Paper Trading Sim/installed/runtime",
+  "app": "/Volumes/X10 Pro/Paper Trading Sim/installed/Paper Trader.app",
+  "logs": "/Volumes/X10 Pro/Paper Trading Sim/installed/logs",
+  "ledger_hashes": {
+    "ledger_mm.sqlite": "a1c4603cc00fb69d8e71ddee320c0599e2f95525b88d36df3f8f189abb5751e4",
+    "ledger_primary.sqlite": "f0a0b61cf0196925c66f038cdf3f828ab0b24b191b32c556d4bb450a20674de2",
+    "ledger_daytrade.sqlite": "566a5f86883c19b7d7b200c73964cb2ef48fabe8f5f3e612f938b82fc51a0538",
+    "ledger_crypto2.sqlite": "13cbcc3142f7126f4510fac83aec8ead972e0ca407e3e0c25d50e0c18ea00771",
+    "ledger_research.sqlite": "f00c0cc70c4b82369a6c4ab42599d80550734ab146f945e167024f171824dc40",
+    "ledger_crypto.sqlite": "3c9c74feaaea9bcda39fc458162def597fe9eb91150d777152b2f512c6b3111c"
+  },
+  "compatibility_links": [
+    "~/Library/Application Support/PaperTradingSim",
+    "~/Library/Logs/PaperTradingSim",
+    "~/Applications/Paper Trader.app"
+  ]
+}

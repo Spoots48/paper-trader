@@ -37,3 +37,15 @@ Evidence: research/revamp_2026_09_28/SUMMARY.md: 62 tests passed; independent re
 Day trader v3: retain earnings-catalyst opening-range rules, size to 0.25% risk per trade including costs within a 1% session stop-loss budget. Tighten drawdown pause/halt to 5%/10%. Tested trailing-stop proposal rejected.
 
 Evidence: research/revamp_2026_09_28/SUMMARY.md: 62 tests passed; independent review; fixed-variant replay at 1m/5m. Drawdown improved but returns lower; no claim of proven profit.
+
+## 2026-09-29T02:15:36Z — crypto2: pm-2.1.0 → pm-2.2.0
+
+pm-2.1.0 -> pm-2.2.0. Input-quality gate (timestamped Binance trades, full contiguous 61 closed minute closes, max 30s data age / 10s skew, no future timestamps) and an entry cooldown: two net-losing settled markets within 240 minutes pause new entries for 60 minutes. Risk budgets are unchanged; the change can only reduce trading.
+
+Evidence: Independent adaptations of Jesse completed-candle handling, OctoBot freshness checks and Freqtrade StoplossGuard (research/upstream_2026_09_28/PLAN.md, SOURCES.md). 99 unit tests pass. No profitability evidence; forward paper results only.
+
+## 2026-09-29T02:15:36Z — mm: mm-2.0.0 → mm-2.1.0
+
+mm-2.0.0 -> mm-2.1.0. Bids stay at least 0.5c below their own midpoint (rounded down to tick, pair cost still capped at 98c), same input-quality gate as crypto2, and a 60-minute new-market cooldown after two net-losing settled markets in 240 minutes (existing inventory may still be completed within risk limits). Exposure limits unchanged.
+
+Evidence: Adapted from Hummingbot spread-vs-reference/tick-rounding, Freqtrade StoplossGuard (net per market, not per leg) and OctoBot freshness (research/upstream_2026_09_28/PLAN.md). 99 unit tests pass. No profitability evidence; forward paper results only.
