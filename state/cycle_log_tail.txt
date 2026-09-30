@@ -1,10 +1,10 @@
-2026-09-30 07:29:43,778 INFO [daytrade] no action needed
-2026-09-30 07:29:48,225 INFO [crypto2] no action needed
-2026-09-30 07:29:48,884 INFO [mm] no action needed
-2026-09-30 07:29:48,890 INFO [crypto] no action needed
-2026-09-30 07:29:48,894 INFO [primary] no action needed
-2026-09-30 07:29:48,899 INFO [research] no action needed
-2026-09-30 07:29:48,926 ERROR report generation failed: Traceback (most recent call last):
+2026-09-30 14:16:22,054 INFO [daytrade] 2026-09-30: 1 candidates (JBL); BUY JBL @ 321.98 (ORB_BREAKOUT); SELL JBL @ 303.72 (STOP)
+2026-09-30 14:16:27,227 INFO [crypto2] no action needed
+2026-09-30 14:16:29,028 INFO [mm] no action needed
+2026-09-30 14:16:29,033 INFO [crypto] no action needed
+2026-09-30 14:16:29,424 INFO [primary] no action needed
+2026-09-30 14:16:29,871 INFO [research] FILL SELL SPY 0.0260 @ 765.89 (FUNDING); FILL BUY CCL 0.7749 @ 25.43 (EARNINGS_GAP)
+2026-09-30 14:16:29,892 ERROR report generation failed: Traceback (most recent call last):
   File "/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py", line 131, in run_cycle
     made = maybe_generate_reports(exp, primary, md, now)
   File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 368, in maybe_generate_reports
@@ -16,4 +16,3 @@
                                                        ~^^^^^^^^^^^
 KeyError: 'etf_bps'
 
-2026-09-30 07:29:48,947 INFO daily reports generated: ['daily_2026-09-29']
