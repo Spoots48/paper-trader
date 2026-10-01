@@ -1,10 +1,10 @@
-2026-10-01 07:49:54,045 INFO [daytrade] no action needed
-2026-10-01 07:49:58,812 INFO [crypto2] no action needed
-2026-10-01 07:49:59,436 INFO [mm] no action needed
-2026-10-01 07:49:59,442 INFO [crypto] no action needed
-2026-10-01 07:49:59,446 INFO [primary] no action needed
-2026-10-01 07:49:59,449 INFO [research] no action needed
-2026-10-01 07:49:59,474 ERROR report generation failed: Traceback (most recent call last):
+2026-10-01 15:42:26,917 INFO [daytrade] 2026-10-01: 1 candidates (ACN); BUY ACN @ 224.24 (ORB_BREAKOUT); SELL ACN @ 214.12 (STOP)
+2026-10-01 15:42:32,430 INFO [crypto2] no action needed
+2026-10-01 15:42:32,800 INFO [mm] no action needed
+2026-10-01 15:42:32,804 INFO [crypto] no action needed
+2026-10-01 15:42:33,225 INFO [primary] no action needed
+2026-10-01 15:42:33,661 INFO [research] no action needed
+2026-10-01 15:42:33,692 ERROR report generation failed: Traceback (most recent call last):
   File "/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py", line 131, in run_cycle
     made = maybe_generate_reports(exp, primary, md, now)
   File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 368, in maybe_generate_reports
@@ -16,4 +16,3 @@
                                                        ~^^^^^^^^^^^
 KeyError: 'etf_bps'
 
-2026-10-01 07:49:59,492 INFO daily reports generated: ['daily_2026-09-30']
