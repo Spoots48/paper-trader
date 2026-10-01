@@ -1,10 +1,10 @@
-2026-10-01 18:45:37,130 INFO [daytrade] no action needed
-2026-10-01 18:45:41,160 INFO [crypto2] no action needed
-2026-10-01 18:45:42,016 INFO [mm] no action needed
-2026-10-01 18:45:42,022 INFO [crypto] no action needed
-2026-10-01 18:45:42,197 INFO [primary] no action needed
-2026-10-01 18:45:42,467 INFO [research] no action needed
-2026-10-01 18:45:42,498 ERROR report generation failed: Traceback (most recent call last):
+2026-10-01 22:56:56,664 INFO [daytrade] closed 2026-10-01: equity $98.37 (1 trades)
+2026-10-01 22:57:02,033 INFO [crypto2] no action needed
+2026-10-01 22:57:02,713 INFO [mm] FILL ETH 15m 14:45 Up 5.28 @ 0.56; LOST ETH 15m 14:45 Up -2.96
+2026-10-01 22:57:02,719 INFO [crypto] no action needed
+2026-10-01 22:57:05,533 INFO [primary] closed 2026-10-01; decided for 2026-10-02: 0 orders (MOO), regime ON
+2026-10-01 22:58:07,359 INFO [research] closed 2026-10-01; decided for 2026-10-02: 0 orders (MOO), regime ON
+2026-10-01 22:58:07,389 ERROR report generation failed: Traceback (most recent call last):
   File "/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py", line 131, in run_cycle
     made = maybe_generate_reports(exp, primary, md, now)
   File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 368, in maybe_generate_reports
