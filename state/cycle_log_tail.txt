@@ -1,10 +1,10 @@
-2026-10-01 00:51:37,342 INFO [daytrade] no action needed
-2026-10-01 00:51:42,863 INFO [crypto2] no action needed
-2026-10-01 00:51:44,169 INFO [mm] no action needed
-2026-10-01 00:51:44,174 INFO [crypto] no action needed
-2026-10-01 00:51:44,177 INFO [primary] no action needed
-2026-10-01 00:51:44,181 INFO [research] no action needed
-2026-10-01 00:51:44,204 ERROR report generation failed: Traceback (most recent call last):
+2026-10-01 02:05:13,207 INFO [daytrade] no action needed
+2026-10-01 02:05:19,345 INFO [crypto2] no action needed
+2026-10-01 02:05:21,438 INFO [mm] no action needed
+2026-10-01 02:05:21,442 INFO [crypto] no action needed
+2026-10-01 02:05:21,446 INFO [primary] no action needed
+2026-10-01 02:05:21,450 INFO [research] no action needed
+2026-10-01 02:05:21,480 ERROR report generation failed: Traceback (most recent call last):
   File "/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py", line 131, in run_cycle
     made = maybe_generate_reports(exp, primary, md, now)
   File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 368, in maybe_generate_reports
