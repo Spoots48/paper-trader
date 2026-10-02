@@ -1,10 +1,10 @@
-2026-10-02 18:17:15,609 INFO [daytrade] no action needed
-2026-10-02 18:17:20,695 INFO [crypto2] no action needed
-2026-10-02 18:17:21,912 INFO [mm] no action needed
-2026-10-02 18:17:21,918 INFO [crypto] no action needed
-2026-10-02 18:17:22,084 INFO [primary] no action needed
-2026-10-02 18:17:22,336 INFO [research] no action needed
-2026-10-02 18:17:22,370 ERROR report generation failed: Traceback (most recent call last):
+2026-10-02 22:29:06,644 INFO [daytrade] SELL NKE @ 33.86 (CLOSE_EXIT); closed 2026-10-02: equity $98.51 (1 trades)
+2026-10-02 22:29:11,159 INFO [crypto2] no action needed
+2026-10-02 22:29:11,815 INFO [mm] no action needed
+2026-10-02 22:29:11,832 INFO [crypto] no action needed
+2026-10-02 22:29:14,550 INFO [primary] closed 2026-10-02; decided for 2026-10-05: 0 orders (MOO), regime ON
+2026-10-02 22:30:36,384 INFO [research] closed 2026-10-02; decided for 2026-10-05: 0 orders (MOO), regime ON
+2026-10-02 22:30:36,416 ERROR report generation failed: Traceback (most recent call last):
   File "/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py", line 131, in run_cycle
     made = maybe_generate_reports(exp, primary, md, now)
   File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 368, in maybe_generate_reports
