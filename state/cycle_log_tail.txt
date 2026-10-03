@@ -1,10 +1,10 @@
-2026-10-03 01:54:45,500 INFO [daytrade] no action needed
-2026-10-03 01:54:50,097 INFO [crypto2] no action needed
-2026-10-03 01:54:50,266 INFO [mm] no action needed
-2026-10-03 01:54:50,272 INFO [crypto] no action needed
-2026-10-03 01:54:50,276 INFO [primary] no action needed
-2026-10-03 01:54:50,280 INFO [research] no action needed
-2026-10-03 01:54:50,314 ERROR report generation failed: Traceback (most recent call last):
+2026-10-03 07:07:07,665 INFO [daytrade] no action needed
+2026-10-03 07:07:12,205 INFO [crypto2] no action needed
+2026-10-03 07:07:13,490 INFO [mm] no action needed
+2026-10-03 07:07:13,496 INFO [crypto] no action needed
+2026-10-03 07:07:13,501 INFO [primary] no action needed
+2026-10-03 07:07:13,508 INFO [research] no action needed
+2026-10-03 07:07:13,542 ERROR report generation failed: Traceback (most recent call last):
   File "/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py", line 131, in run_cycle
     made = maybe_generate_reports(exp, primary, md, now)
   File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 368, in maybe_generate_reports
@@ -16,3 +16,4 @@
                                                        ~^^^^^^^^^^^
 KeyError: 'etf_bps'
 
+2026-10-03 07:07:13,565 INFO daily reports generated: ['daily_2026-10-02']
