@@ -483,6 +483,18 @@ INSERT INTO "data_issues" VALUES(40,'2026-10-04T06:22:46Z','20261004T062241Z-day
                                                        ~^^^^^^^^^^^
 KeyError: ''etf_bps''
 ');
+INSERT INTO "data_issues" VALUES(41,'2026-10-04T12:52:44Z','20261004T125238Z-daytrade','ERROR','reporting',NULL,'Traceback (most recent call last):
+  File "/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py", line 131, in run_cycle
+    made = maybe_generate_reports(exp, primary, md, now)
+  File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 368, in maybe_generate_reports
+    out = generate(exp, n, md, now, registry)
+  File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 331, in generate
+    r = build(exp, n, date_n, as_of, prev_as_of, md, now)
+  File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 200, in build
+    f"Costs per side as adverse price adjustment: SPY {c[''etf_bps'']} bp; stocks {c[''stock_bps_adv_ge_1b'']}/{c[''stock_bps_adv_ge_200m'']}/"
+                                                       ~^^^^^^^^^^^
+KeyError: ''etf_bps''
+');
 CREATE TABLE decisions (
   decision_id INTEGER PRIMARY KEY AUTOINCREMENT, decision_key TEXT NOT NULL UNIQUE, run_id TEXT,
   created_at TEXT NOT NULL, data_through TEXT NOT NULL, session TEXT NOT NULL, ticker TEXT NOT NULL,
@@ -2341,6 +2353,7 @@ INSERT INTO "runs" VALUES('20261003T201259Z-daytrade','2026-10-03T20:12:59Z','20
 INSERT INTO "runs" VALUES('20261003T232034Z-daytrade','2026-10-03T23:20:34Z','2026-10-03T23:20:34Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261004T000421Z-daytrade','2026-10-04T00:04:21Z','2026-10-04T00:04:21Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261004T062241Z-daytrade','2026-10-04T06:22:41Z','2026-10-04T06:22:41Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261004T125238Z-daytrade','2026-10-04T12:52:38Z','2026-10-04T12:52:38Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -2355,7 +2368,7 @@ INSERT INTO "snapshots" VALUES('2026-10-01','2026-10-01T22:56:55Z','20261001T225
 INSERT INTO "snapshots" VALUES('2026-10-02','2026-10-02T22:29:04Z','20261002T222904Z-daytrade',9.85135982069187292e+01,9.85135982069187292e+01,0.0,9.95227248496713485e+01,100.0,100.0,1.48640179308127118e-02,'1 trades','{"peak": 100.0, "drawdown": 0.014864017930812712}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','98.51359820691873','2026-10-02T22:29:05Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-04T06:22:41Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-04T12:52:38Z');
 INSERT INTO "state" VALUES('benchmark','{"ticker": "SPY", "qty": 0.12931074652496097, "entry_price": 773.3309310119628, "entry_session": "2026-09-24", "div_cash": 0.0, "note": "SPY bought at this book''s first official open"}','2026-09-24T13:41:55Z');
 INSERT INTO "state" VALUES('dt:2026-09-24','{"session": "2026-09-24", "cash_at_open": 100.0, "cash": 99.26933944886812, "buys_used": 99.99961934344063, "candidates": [{"ticker": "MGM", "rank": 1, "rvol": 21.665102416132918, "first_open": 33.869998931884766, "first_high": 34.400001525878906, "first_low": 33.70000076293945, "first_close": 33.959999084472656, "first_volume": 1366548.0, "atr": 0.9157153538295201, "adv_usd": 97171124.11148071, "trigger": 34.410001525878904, "stop_distance": 0.09157153538295201}, {"ticker": "VRSK", "rank": 2, "rvol": 9.3766491740529, "first_open": 173.08999633789062, "first_high": 175.0850067138672, "first_low": 172.5399932861328, "first_close": 174.42999267578125, "first_volume": 240067.0, "atr": 6.4203066144670755, "adv_usd": 226074714.41281128, "trigger": 175.09500671386718, "stop_distance": 0.6420306614467076}, {"ticker": "P", "rank": 3, "rvol": 8.792346651660102, "first_open": 114.6500015258789, "first_high": 124.21499633789062, "first_low": 113.51000213623047, "first_close": 124.21499633789062, "first_volume": 1292328.0, "atr": 5.603572300502232, "adv_usd": 709739235.0971832, "trigger": 124.22499633789063, "stop_distance": 0.5603572300502232}, {"ticker": "YUM", "rank": 7, "rvol": 3.6607414905209232, "first_open": 139.6199951171875, "first_high": 140.50999450683594, "first_low": 139.5, "first_close": 140.38999938964844, "first_volume": 202530.0, "atr": 4.106001717703683, "adv_usd": 324060996.03189087, "trigger": 140.51999450683593, "stop_distance": 0.41060017177036834}, {"ticker": "CSX", "rank": 11, "rvol": 2.338988061646436, "first_open": 47.029998779296875, "first_high": 47.279998779296875, "first_low": 47.029998779296875, "first_close": 47.27000045776367, "first_volume": 1042082.0, "atr": 0.9978564126150948, "adv_usd": 504540176.8184662, "trigger": 47.28999877929687, "stop_distance": 0.09978564126150949}, {"ticker": "MCD", "rank": 12, "rvol": 2.3310717232951443, "first_open": 239.0500030517578, "first_high": 242.5500030517578, "first_low": 238.8800048828125, "first_close": 242.31500244140625, "first_volume": 811515.0, "atr": 4.812144688197544, "adv_usd": 1420195208.4167938, "trigger": 242.5600030517578, "stop_distance": 0.48121446881975444}, {"ticker": "CRM", "rank": 13, "rvol": 2.313325733077231, "first_open": 240.99000549316406, "first_high": 242.00999450683594, "first_low": 240.5050048828125, "first_close": 241.5500030517578, "first_volume": 1676235.0, "atr": 8.862851824079241, "adv_usd": 4195717092.700521, "trigger": 242.01999450683593, "stop_distance": 0.8862851824079242}, {"ticker": "ABNB", "rank": 14, "rvol": 2.303956545901988, "first_open": 150.6999969482422, "first_high": 153.30999755859375, "first_low": 150.6999969482422, "first_close": 152.66510009765625, "first_volume": 416347.0, "atr": 5.345854622977121, "adv_usd": 848049603.744297, "trigger": 153.31999755859374, "stop_distance": 0.5345854622977121}, {"ticker": "META", "rank": 17, "rvol": 2.070189850658249, "first_open": 756.8300170898438, "first_high": 760.7799072265625, "first_low": 747.6900024414062, "first_close": 759.8599853515625, "first_volume": 4461209.0, "atr": 27.506434849330358, "adv_usd": 14529697643.857721, "trigger": 760.7899072265625, "stop_distance": 2.750643484933036}, {"ticker": "CRH", "rank": 18, "rvol": 2.0680303391229, "first_open": 84.84500122070312, "first_high": 85.14920043945312, "first_low": 84.37999725341797, "first_close": 84.8550033569336, "first_volume": 427874.0, "atr": 2.4857145036969865, "adv_usd": 421497473.90022814, "trigger": 85.15920043945313, "stop_distance": 0.24857145036969866}, {"ticker": "RCL", "rank": 20, "rvol": 1.9448168732171265, "first_open": 233.75, "first_high": 237.0, "first_low": 232.0, "first_close": 234.89999389648438, "first_volume": 244853.0, "atr": 8.897142682756696, "adv_usd": 661616873.5859954, "trigger": 237.01, "stop_distance": 0.8897142682756697}], "pending": [], "positions": {}, "traded": ["P", "CSX", "META", "ABNB", "RCL"], "processed_through": "2026-09-24T15:59:00-04:00", "closed": true}','2026-09-24T20:38:14Z');
 INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-02T22:29:04Z", "marks": {}}','2026-10-02T22:29:05Z');
@@ -2396,5 +2409,5 @@ INSERT INTO "sqlite_sequence" VALUES('decisions',134);
 INSERT INTO "sqlite_sequence" VALUES('news',1235);
 INSERT INTO "sqlite_sequence" VALUES('fills',28);
 INSERT INTO "sqlite_sequence" VALUES('strategy_changes',2);
-INSERT INTO "sqlite_sequence" VALUES('data_issues',40);
+INSERT INTO "sqlite_sequence" VALUES('data_issues',41);
 COMMIT;
