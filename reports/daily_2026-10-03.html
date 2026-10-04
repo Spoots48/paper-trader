@@ -1,0 +1,64 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Daily report 2026-10-03</title><style>
+:root{--bg:#f7f7f5;--card:#fff;--ink:#1d1d1f;--muted:#6e6e73;--line:#e3e3e0;--accent:#2f6f4f}
+@media (prefers-color-scheme:dark){:root{--bg:#161617;--card:#1f1f21;--ink:#f2f2f2;--muted:#a1a1a6;--line:#333336;--accent:#7cc4a0}}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}
+main{max-width:1000px;margin:0 auto;padding:28px 16px 64px}
+h1{font-size:26px;margin:0 0 6px}h2{font-size:19px;margin:34px 0 10px;border-top:1px solid var(--line);padding-top:22px}h3{font-size:15px;margin:22px 0 8px}
+p,li{color:var(--ink)}.meta{color:var(--muted)}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}th{color:var(--muted);font-weight:600}
+tr:last-child td{border-bottom:0}a{color:var(--accent)}code{font-size:12px}
+</style></head><body><main>
+<h1>Daily report — Saturday 2026-10-03</h1><p class='meta'>Day 11 of 30 · generated 2026-10-04T06:22:41Z · paper trading only</p>
+<p>All bots together went from $568.46 to $568.57 today (+$0.11). Biggest gain: Market maker v2 (+$0.11). The stock market was closed.</p>
+<div class="tw"><table><thead><tr><th>Bot</th><th>End of day</th><th>Today</th><th>Since start</th><th>Trades</th><th>Won / lost</th><th>Status</th></tr></thead><tbody><tr><td>Day trading</td><td>$98.51</td><td>+$0.00</td><td>−$1.49</td><td>0</td><td>—</td><td>market closed</td></tr><tr><td>Crypto odds bot v2</td><td>$100.00</td><td>+$0.00</td><td>+$0.00</td><td>0</td><td>—</td><td>trading</td></tr><tr><td>Market maker v2</td><td>$95.82</td><td>+$0.11</td><td>−$4.18</td><td>4</td><td>1 / 1</td><td>trading</td></tr><tr><td>Crypto odds bot v1 (retired)</td><td>$74.22</td><td>+$0.00</td><td>−$25.78</td><td>0</td><td>—</td><td>retired (only settles old bets)</td></tr><tr><td>Primary</td><td>$99.53</td><td>+$0.00</td><td>−$0.47</td><td>0</td><td>—</td><td>market closed</td></tr><tr><td>Research</td><td>$100.48</td><td>+$0.00</td><td>+$0.48</td><td>0</td><td>—</td><td>market closed</td></tr></tbody></table></div>
+<h2>Day trading — market closed</h2>
+<ul>
+<li>No trades today.</li>
+<li>Problem logged (error): Traceback (most recent call last):</li>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_reports(exp, primary,</p>
+<ul>
+<li>Problem logged (error): Traceback (most recent call last):</li>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_reports(exp, primary,</p>
+<ul>
+<li>Problem logged (error): Traceback (most recent call last):</li>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_reports(exp, primary,</p>
+<ul>
+<li>Problem logged (error): Traceback (most recent call last):</li>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_reports(exp, primary,</p>
+<h2>Crypto odds bot v2 — trading</h2>
+<ul>
+<li>No trades today.</li>
+</ul>
+<h2>Market maker v2 — trading</h2>
+<ul>
+<li>20:09 <strong>BUY ETH 15m 20:00 Up</strong> at 0.54: our standing bid was filled</li>
+<li>20:09 <strong>BUY ETH 15m 20:00 Down</strong> at 0.44: our standing bid was filled</li>
+<li>20:15 <strong>SELL ETH 15m 20:00 Up</strong> at 1.00: bet won → +$2.44</li>
+<li>20:15 <strong>SELL ETH 15m 20:00 Down</strong> at 0.00: bet lost → −$2.34</li>
+<li>Best: ETH 15m 20:00 Up +$2.44; worst: ETH 15m 20:00 Down −$2.34.</li>
+</ul>
+<h2>Crypto odds bot v1 (retired) — retired (only settles old bets)</h2>
+<ul>
+<li>No trades today.</li>
+</ul>
+<h2>Primary — market closed</h2>
+<ul>
+<li>No trades today.</li>
+</ul>
+<h2>Research — market closed</h2>
+<ul>
+<li>No trades today.</li>
+</ul>
+<p class='meta'>One day tells you almost nothing about whether a strategy works; luck dominates over a single day. Paper trading only: no real money. Balances are the saved end-of-day values; crypto bots are valued just after midnight ET.</p>
+</main></body></html>
