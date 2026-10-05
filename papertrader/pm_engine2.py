@@ -29,7 +29,21 @@ class PMEngine2(PMEngine):
         price = float(tick['price'])
         if not math.isfinite(price) or price <= 0:
             raise ValueError('invalid underlying trade price')
+        self._shadow_crosscheck(symbol, candles)
         return {"candles": candles, "s_now": price, "tick_time": float(tick['time'])/1000}
+
+    def _shadow_crosscheck(self, symbol: str, candles: dict) -> None:
+        """Observation only (papertrader/crosscheck.py): never alters inputs, decisions or the cycle result."""
+        try:
+            from .crosscheck import check
+            r = check(symbol, candles, self.get)
+            if r is None:
+                return
+            self.L.set_state(f"crosscheck_{symbol}", {"at": self.now.isoformat(), **r})
+            if r["ok"] is False:
+                self.L.issue("WARN", "crosscheck", f"{symbol} Binance vs Coinbase candles disagree: {r}")
+        except Exception:
+            pass
 
     def risk_gate(self, positions: dict, cash: float) -> str | None:
         """Checked every run (v1 only checked once a day, which is why its loss limit never fired)."""
