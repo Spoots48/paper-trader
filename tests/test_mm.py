@@ -99,3 +99,10 @@ def test_passive_quotes_round_down_to_tick_never_up():
     for side,mid in [('Up',.47),('Down',.505)]:
         assert q[side]<=mid-.005+1e-9
         assert abs(q[side]/.01-round(q[side]/.01))<1e-9
+
+
+def test_zero_max_open_markets_pauses_new_quotes():
+    from papertrader.mm import plan_quotes
+    cfg = {"sizing": {"per_pair_fraction": 0.06, "max_open_markets": 0, "max_reserved_fraction": 0.1,
+                      "max_open_exposure": 0.1, "max_market_loss_fraction": 0.03}}
+    assert plan_quotes("new-slug", {"Up": 0.49, "Down": 0.49}, {}, [], 100.0, 100.0, 0.0, cfg) == {}

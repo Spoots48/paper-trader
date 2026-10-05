@@ -1,0 +1,31 @@
+2306 markets; 2 assets
+
+=== assumed queue ahead = 0 shares ===
+t+ 60s all markets                 quotes= 2274 filled=2274 pairs=1577 one-sided= 697 P(win|one)=21.1% EV/filled=-0.663 (se 0.054) total=-1507.5 pair-EV=+0.089 one-EV=-2.364
+t+ 60s balanced only |mid-.5|<=.10 quotes= 1412 filled=1412 pairs= 964 one-sided= 448 P(win|one)=21.7% EV/filled=-0.745 (se 0.072) total=-1052.0 pair-EV=+0.095 one-EV=-2.553
+t+180s all markets                 quotes= 2282 filled=2282 pairs=1564 one-sided= 718 P(win|one)=17.7% EV/filled=-0.670 (se 0.050) total=-1529.2 pair-EV=+0.128 one-EV=-2.409
+t+180s balanced only |mid-.5|<=.10 quotes=  744 filled= 744 pairs= 514 one-sided= 230 P(win|one)=18.3% EV/filled=-0.822 (se 0.097) total=-611.2 pair-EV=+0.128 one-EV=-2.943
+t+300s all markets                 quotes= 2285 filled=2285 pairs=1546 one-sided= 739 P(win|one)=14.1% EV/filled=-0.654 (se 0.047) total=-1494.6 pair-EV=+0.127 one-EV=-2.289
+t+300s balanced only |mid-.5|<=.10 quotes=  538 filled= 538 pairs= 371 one-sided= 167 P(win|one)=16.8% EV/filled=-0.912 (se 0.114) total=-490.9 pair-EV=+0.125 one-EV=-3.217
+t+180 all, FIRST half              quotes= 1145 filled=1145 pairs= 771 one-sided= 374 P(win|one)=17.9% EV/filled=-0.637 (se 0.071) total=-729.4 pair-EV=+0.129 one-EV=-2.216
+t+180 all, SECOND half             quotes= 1137 filled=1137 pairs= 793 one-sided= 344 P(win|one)=17.4% EV/filled=-0.703 (se 0.072) total=-799.7 pair-EV=+0.127 one-EV=-2.618
+
+=== assumed queue ahead = 50 shares ===
+t+ 60s all markets                 quotes= 2274 filled=2274 pairs=1500 one-sided= 774 P(win|one)=20.8% EV/filled=-0.746 (se 0.057) total=-1695.3 pair-EV=+0.116 one-EV=-2.415
+t+ 60s balanced only |mid-.5|<=.10 quotes= 1412 filled=1412 pairs= 914 one-sided= 498 P(win|one)=21.5% EV/filled=-0.836 (se 0.075) total=-1179.8 pair-EV=+0.121 one-EV=-2.592
+t+180s all markets                 quotes= 2282 filled=2282 pairs=1501 one-sided= 781 P(win|one)=17.9% EV/filled=-0.714 (se 0.052) total=-1629.5 pair-EV=+0.138 one-EV=-2.351
+t+180s balanced only |mid-.5|<=.10 quotes=  744 filled= 744 pairs= 496 one-sided= 248 P(win|one)=19.4% EV/filled=-0.841 (se 0.100) total=-625.9 pair-EV=+0.159 one-EV=-2.842
+t+300s all markets                 quotes= 2285 filled=2285 pairs=1465 one-sided= 820 P(win|one)=14.3% EV/filled=-0.737 (se 0.049) total=-1684.4 pair-EV=+0.130 one-EV=-2.287
+t+300s balanced only |mid-.5|<=.10 quotes=  538 filled= 538 pairs= 360 one-sided= 178 P(win|one)=16.9% EV/filled=-0.985 (se 0.117) total=-529.7 pair-EV=+0.113 one-EV=-3.206
+t+180 all, FIRST half              quotes= 1145 filled=1145 pairs= 742 one-sided= 403 P(win|one)=18.1% EV/filled=-0.682 (se 0.073) total=-781.0 pair-EV=+0.125 one-EV=-2.169
+t+180 all, SECOND half             quotes= 1137 filled=1137 pairs= 759 one-sided= 378 P(win|one)=17.7% EV/filled=-0.746 (se 0.075) total=-848.4 pair-EV=+0.149 one-EV=-2.544
+
+t+60 delay 10s ALL             n=2274 P(first-fill leg wins)=43.3% hold EV/sh=-0.030±0.010 | buy-opposite n=2274 EV/sh=-0.020±0.010 avg px 0.57
+t+60 delay 10s 1st half        n=1138 P(first-fill leg wins)=43.3% hold EV/sh=-0.034±0.014 | buy-opposite n=1138 EV/sh=-0.020±0.014 avg px 0.57
+t+60 delay 10s 2nd half        n=1136 P(first-fill leg wins)=43.2% hold EV/sh=-0.026±0.014 | buy-opposite n=1136 EV/sh=-0.021±0.014 avg px 0.57
+t+180 delay 10s ALL            n=2282 P(first-fill leg wins)=40.2% hold EV/sh=-0.042±0.009 | buy-opposite n=2282 EV/sh=-0.007±0.009 avg px 0.59
+t+180 delay 10s 1st half       n=1145 P(first-fill leg wins)=39.9% hold EV/sh=-0.030±0.013 | buy-opposite n=1145 EV/sh=-0.018±0.013 avg px 0.60
+t+180 delay 10s 2nd half       n=1137 P(first-fill leg wins)=40.5% hold EV/sh=-0.054±0.013 | buy-opposite n=1137 EV/sh=+0.005±0.013 avg px 0.58
+t+300 delay 10s ALL            n=2287 P(first-fill leg wins)=38.2% hold EV/sh=-0.038±0.009 | buy-opposite n=2287 EV/sh=-0.009±0.009 avg px 0.61
+t+300 delay 10s 1st half       n=1148 P(first-fill leg wins)=39.4% hold EV/sh=-0.022±0.013 | buy-opposite n=1148 EV/sh=-0.024±0.013 avg px 0.62
+t+300 delay 10s 2nd half       n=1139 P(first-fill leg wins)=37.0% hold EV/sh=-0.054±0.013 | buy-opposite n=1139 EV/sh=+0.006±0.012 avg px 0.61
