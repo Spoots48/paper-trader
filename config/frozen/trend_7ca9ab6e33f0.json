@@ -1,0 +1,56 @@
+{
+  "strategy_id": "diversified-trend (Faber-style ensemble)",
+  "version": "trend-1.0.0",
+  "book_type": "trend",
+  "description": "Risk-controlled diversified trend book. At each month-end hold 1/5 of capital in each of SPY, EFA, IEF, GLD, VNQ for every one of the 8-, 10- and 12-month simple moving averages its last close is above (a fraction of the three); unallocated capital is held in SHY (short-term Treasuries). Backtest 2007-2026 with 10bp per side: 5.3% a year, vol 7.8%, Sharpe 0.70, max drawdown -14.5% versus SPY buy and hold 11.0%, 0.63, -55%. It reduces risk; it is expected to lag SPY in strong bull markets. No profit claim. See research/review_2026_10_05/TREND_RESEARCH.md.",
+  "portfolio": {
+    "starting_cash": 100.0,
+    "residual_etf": "SPY",
+    "cash_buffer": 0.01,
+    "min_order_usd": 1.0,
+    "fractional_shares": true,
+    "fractional_decimals": 6,
+    "leverage": false,
+    "short_selling": false,
+    "options": false
+  },
+  "trend": {
+    "assets": [
+      "SPY",
+      "EFA",
+      "IEF",
+      "GLD",
+      "VNQ"
+    ],
+    "cash_asset": "SHY",
+    "sma_months": [
+      8,
+      10,
+      12
+    ],
+    "rebalance": "first decision, then each month-end",
+    "rebalance_band": 0.03
+  },
+  "risk": {
+    "drawdown_pause": 0.1,
+    "pause_sessions": 5,
+    "drawdown_halt": 0.15,
+    "halt_sessions": 21,
+    "note": "Drawdown measured on end-of-day equity vs running peak. Pause blocks new single-stock entries; halt liquidates everything and blocks all buys (for the live 30-day experiment this effectively means cash until the end)."
+  },
+  "costs": {
+    "commission_usd": 0.0,
+    "etf_bps": 2.0,
+    "stock_bps_adv_ge_1b": 5.0,
+    "stock_bps_adv_ge_200m": 10.0,
+    "stock_bps_other": 20.0,
+    "open_auction_extra_bps": 5.0,
+    "stop_fill_extra_bps": 15.0,
+    "sec_fee_bps_on_sells": 0.3,
+    "note": "Per-side cost applied as an adverse price adjustment (buys fill higher, sells lower). Covers half-spread plus slippage; deliberately conservative for liquid large caps."
+  },
+  "data": {
+    "mkt_order_latest_et": "15:30",
+    "max_signal_data_age_sessions": 0
+  }
+}

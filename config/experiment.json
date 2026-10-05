@@ -59,6 +59,14 @@
       "subtitle": "Pre-registered v1: news-confirmed earnings gaps + momentum (failed backtest; forward test)",
       "strategy": "config/strategy_v1.json",
       "ledger": "data/ledger_research.sqlite"
+    },
+    {
+      "id": "trend",
+      "name": "Diversified trend",
+      "subtitle": "Month-end trend ensemble across five asset-class ETFs; the rest in short-term Treasuries",
+      "strategy": "config/strategy_trend_v1.json",
+      "ledger": "data/ledger_trend.sqlite",
+      "start_date": "2026-10-05"
     }
   ],
   "notifications": {
