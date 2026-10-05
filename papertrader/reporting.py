@@ -192,8 +192,7 @@ def build(exp: dict, n: int, date_n: dt.date, as_of: dt.date, prev_as_of: dt.dat
                    f"{b['audit'].get('strategy_file_matches_frozen')}.")
         for i in iss[:12]:
             ops.append(f"    - {i['occurred_at']} [{i['severity']}] {i['component']}{' ' + i['ticker'] if i['ticker'] else ''}: {i['message'][:160]}")
-    cfg = load_json(ROOT / exp["books"][0]["strategy"])
-    c = cfg["costs"]
+    c = _stock_costs(exp)
     assumptions = [
         "Paper trading only; no brokerage account, no real orders, no money.",
         f"Start ${cash0:.0f} per book, fractional shares (6 decimals), no leverage, shorts or options.",
@@ -347,6 +346,23 @@ def generate(exp: dict, n: int, md: MarketData, now: dt.datetime, registry: Ledg
                              meta["late_by_hours"]))
         registry.event("report", {"key": f"day{n:02d}", "as_of": as_of.isoformat()})
     return {"stem": stem, "html": html_path, "meta": meta, "report": r}
+
+
+_COST_KEYS = ("etf_bps", "stock_bps_adv_ge_1b", "stock_bps_adv_ge_200m", "stock_bps_other", "open_auction_extra_bps",
+              "stop_fill_extra_bps", "sec_fee_bps_on_sells")
+
+
+def _stock_costs(exp: dict) -> dict:
+    """Cost assumptions quoted in the report: the first book whose strategy defines the full set (the first book is the
+    day trader, whose cost model has no ETF or open-auction terms)."""
+    for b in exp["books"]:
+        try:
+            c = load_json(ROOT / b["strategy"]).get("costs") or {}
+        except (OSError, ValueError):
+            continue
+        if all(k in c for k in _COST_KEYS):
+            return c
+    raise KeyError("no book strategy defines the full cost set " + ", ".join(_COST_KEYS))
 
 
 def maybe_generate_reports(exp: dict, registry: Ledger, md: MarketData, now: dt.datetime) -> list[str]:
