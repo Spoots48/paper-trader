@@ -49,3 +49,9 @@ Evidence: Independent adaptations of Jesse completed-candle handling, OctoBot fr
 mm-2.0.0 -> mm-2.1.0. Bids stay at least 0.5c below their own midpoint (rounded down to tick, pair cost still capped at 98c), same input-quality gate as crypto2, and a 60-minute new-market cooldown after two net-losing settled markets in 240 minutes (existing inventory may still be completed within risk limits). Exposure limits unchanged.
 
 Evidence: Adapted from Hummingbot spread-vs-reference/tick-rounding, Freqtrade StoplossGuard (net per market, not per leg) and OctoBot freshness (research/upstream_2026_09_28/PLAN.md). 99 unit tests pass. No profitability evidence; forward paper results only.
+
+## 2026-10-05T08:00:58Z — mm: mm-2.1.0 → mm-2.2.0
+
+Pause new market-maker quotes (max_open_markets=0); existing positions still settle. Risk-reducing; no other parameter changed.
+
+Evidence: research/review_2026_10_05/mm_replay_output.txt: replay of the quoting rule on 2,306 settled 15m BTC/ETH markets measured about -0.7 per 10-share market (-13 s.e., both halves, both queue assumptions); the live book lost about -0.53 per market over 14 markets. Replay fill model is optimistic and ignores rebates (~0.4 total live), so it measures adverse selection, not tradable P&L.
