@@ -709,6 +709,7 @@ INSERT INTO "runs" VALUES('20261005T073421Z-crypto','2026-10-05T07:34:28Z','2026
 INSERT INTO "runs" VALUES('20261005T073938Z-crypto','2026-10-05T07:39:43Z','2026-10-05T07:39:43Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261005T080015Z-crypto','2026-10-05T08:00:20Z','2026-10-05T08:00:20Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261005T080230Z-crypto','2026-10-05T08:02:37Z','2026-10-05T08:02:37Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261005T082237Z-crypto','2026-10-05T08:22:43Z','2026-10-05T08:22:43Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -726,9 +727,9 @@ INSERT INTO "snapshots" VALUES('2026-10-03','2026-10-04T06:22:46Z','20261004T062
 INSERT INTO "snapshots" VALUES('2026-10-04','2026-10-05T06:15:24Z','20261005T061519Z-crypto',74.22458862,74.22458862,0.0,NULL,100.0,100.0,2.57754113799999906e-01,'0 open bets','{"peak": 100.0, "drawdown": 0.2577541137999999}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','74.22458862','2026-09-25T20:10:36Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-05T08:02:37Z');
-INSERT INTO "state" VALUES('pm_positions','{}','2026-10-05T08:02:37Z');
-INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-05T08:02:37Z", "marks": {}}','2026-10-05T08:02:37Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-05T08:22:43Z');
+INSERT INTO "state" VALUES('pm_positions','{}','2026-10-05T08:22:43Z');
+INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-05T08:22:43Z", "marks": {}}','2026-10-05T08:22:43Z');
 INSERT INTO "state" VALUES('risk','{"peak": 100.0, "drawdown": 0.2577541137999999}','2026-10-05T06:15:24Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,

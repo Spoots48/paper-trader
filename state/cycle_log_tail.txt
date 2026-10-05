@@ -1,6 +1,7 @@
-2026-10-05 08:02:30,704 INFO [daytrade] no action needed
-2026-10-05 08:02:35,815 INFO [crypto2] no action needed
-2026-10-05 08:02:37,026 INFO [mm] no action needed
-2026-10-05 08:02:37,032 INFO [crypto] no action needed
-2026-10-05 08:02:37,036 INFO [primary] no action needed
-2026-10-05 08:02:37,040 INFO [research] no action needed
+2026-10-05 08:22:37,331 INFO [daytrade] no action needed
+2026-10-05 08:22:42,435 INFO [crypto2] no action needed
+2026-10-05 08:22:43,534 INFO [mm] no action needed
+2026-10-05 08:22:43,538 INFO [crypto] no action needed
+2026-10-05 08:22:43,542 INFO [primary] no action needed
+2026-10-05 08:22:43,546 INFO [research] no action needed
+2026-10-05 08:22:47,367 INFO [trend] closed 2026-09-23; closed 2026-09-24; closed 2026-09-25; closed 2026-09-28; closed 2026-09-29; closed 2026-09-30; closed 2026-10-01; closed 2026-10-02; missed decision window for 2026-09-23; missed decision window for 2026-09-24; missed decision window for 2026-09-25; missed decision window for 2026-09-28; missed decision window for 2026-09-29; missed decision window for 2026-09-30; missed decision window for 2026-10-01; missed decision window for 2026-10-02; decided for 2026-10-05: 3 orders (MOO), rebalance=True
