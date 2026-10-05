@@ -1,7 +1,7 @@
-2026-10-05 08:25:13,890 INFO [daytrade] no action needed
-2026-10-05 08:25:19,757 INFO [crypto2] no action needed
-2026-10-05 08:25:20,736 INFO [mm] no action needed
-2026-10-05 08:25:20,742 INFO [crypto] no action needed
-2026-10-05 08:25:20,747 INFO [primary] no action needed
-2026-10-05 08:25:20,751 INFO [research] no action needed
-2026-10-05 08:25:21,185 INFO [trend] decided for 2026-10-05: 3 orders (MOO), rebalance=True
+2026-10-05 08:46:04,341 INFO [daytrade] no action needed
+2026-10-05 08:46:09,530 INFO [crypto2] no action needed
+2026-10-05 08:46:10,240 INFO [mm] no action needed
+2026-10-05 08:46:10,246 INFO [crypto] no action needed
+2026-10-05 08:46:10,251 INFO [primary] no action needed
+2026-10-05 08:46:10,256 INFO [research] no action needed
+2026-10-05 08:46:10,261 INFO [trend] no action needed
