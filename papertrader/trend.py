@@ -69,6 +69,9 @@ def rebalance_orders(*, equity: float, cash: float, qty: dict, prices: dict, wei
 class TrendEngine(Engine):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # the experiment-wide start date is not this book's: it starts when its own ledger was frozen
+        e = self.L.experiment()
+        self.start = dt.date.fromisoformat(e["start_date"])
         t = self.cfg["trend"]
         self.assets, self.cash_asset, self.months = list(t["assets"]), t["cash_asset"], list(t["sma_months"])
         # these are all index ETFs: use the ETF cost line, not the single-stock liquidity tiers

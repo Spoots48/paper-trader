@@ -60,3 +60,20 @@ def test_inside_band_no_trades():
 def test_never_spends_more_than_available():
     o = _kw(equity=100.0, cash=10.0, qty={"A": 9.0}, weights={"A": 0.2})
     assert sum(x.get("notional", 0) for x in o if x["side"] == "BUY") <= 10.0 + 0.998 * sum(x["value"] for x in o if x["side"] == "SELL")
+
+
+def test_engine_uses_its_own_ledgers_start_date_not_the_experiments(tmp_path):
+    import datetime as dt
+
+    from papertrader.config import UNIVERSE_PATH, load_json, sha256_file, ROOT
+    from papertrader.ledger import Ledger
+    from papertrader.trend import TrendEngine
+
+    cfg_path = ROOT / "config" / "strategy_trend_v1.json"
+    cfg = load_json(cfg_path)
+    exp = {"name": "x", "start_date": "2026-09-23", "end_date": "2026-10-22", "starting_cash": 100.0, "report_days": [7]}
+    book = {"id": "trend", "name": "t", "subtitle": "s", "strategy": "config/strategy_trend_v1.json", "ledger": "x", "start_date": "2026-10-05"}
+    L = Ledger(tmp_path / "l.sqlite")
+    L.freeze({**exp, "start_date": "2026-10-05"}, book, cfg["version"], sha256_file(cfg_path), sha256_file(UNIVERSE_PATH))
+    eng = TrendEngine(L, None, cfg, {**exp, "book": "trend"}, dt.datetime(2026, 10, 5, 8, tzinfo=dt.timezone.utc))
+    assert eng.start == dt.date(2026, 10, 5)
