@@ -1,18 +1,7 @@
-2026-10-05 07:30:45,356 INFO [daytrade] no action needed
-2026-10-05 07:30:50,126 INFO [crypto2] no action needed
-2026-10-05 07:30:51,898 INFO [mm] FILL ETH 15m 02:15 Down 5.74 @ 0.50; LOST ETH 15m 02:15 Down -2.87
-2026-10-05 07:30:51,903 INFO [crypto] no action needed
-2026-10-05 07:30:51,907 INFO [primary] no action needed
-2026-10-05 07:30:51,911 INFO [research] no action needed
-2026-10-05 07:30:51,948 ERROR report generation failed: Traceback (most recent call last):
-  File "/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py", line 131, in run_cycle
-    made = maybe_generate_reports(exp, primary, md, now)
-  File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 368, in maybe_generate_reports
-    out = generate(exp, n, md, now, registry)
-  File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 331, in generate
-    r = build(exp, n, date_n, as_of, prev_as_of, md, now)
-  File "/home/runner/work/paper-trader/paper-trader/papertrader/reporting.py", line 200, in build
-    f"Costs per side as adverse price adjustment: SPY {c['etf_bps']} bp; stocks {c['stock_bps_adv_ge_1b']}/{c['stock_bps_adv_ge_200m']}/"
-                                                       ~^^^^^^^^^^^
-KeyError: 'etf_bps'
-
+2026-10-05 07:34:22,005 INFO [daytrade] no action needed
+2026-10-05 07:34:27,320 INFO [crypto2] no action needed
+2026-10-05 07:34:28,046 INFO [mm] no action needed
+2026-10-05 07:34:28,051 INFO [crypto] no action needed
+2026-10-05 07:34:28,056 INFO [primary] no action needed
+2026-10-05 07:34:28,060 INFO [research] no action needed
+2026-10-05 07:34:28,102 INFO reports generated: ['day07_2026-09-29']
