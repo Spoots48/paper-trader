@@ -79,6 +79,7 @@ INSERT INTO "runs" VALUES('20261005T094822Z-trend','2026-10-05T09:48:29Z','2026-
 INSERT INTO "runs" VALUES('20261005T100902Z-trend','2026-10-05T10:09:09Z','2026-10-05T10:09:09Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261005T102935Z-trend','2026-10-05T10:29:41Z','2026-10-05T10:29:41Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261005T105106Z-trend','2026-10-05T10:51:13Z','2026-10-05T10:51:13Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261005T111119Z-trend','2026-10-05T11:11:25Z','2026-10-05T11:11:25Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -86,7 +87,7 @@ CREATE TABLE snapshots (
 );
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','100.0','2026-10-05T08:23:55Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-05T10:51:13Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-05T11:11:25Z');
 INSERT INTO "state" VALUES('last_regime','"TREND"','2026-10-05T08:25:21Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
