@@ -1,0 +1,66 @@
+data 2003-01-02 -> 2026-10-02 | all-asset history from 2006-02-06
+
+== FULL ==
+SPY buy & hold                           CAGR  11.0% vol 19.6% Sharpe 0.63 maxDD -55.2% turnover/yr  0.1x
+60/40 SPY/IEF                            CAGR   8.4% vol 11.3% Sharpe 0.77 maxDD -31.4% turnover/yr  0.1x
+Faber 5-asset 10m SMA (SPY EFA IEF GLD VNQ) CAGR   4.9% vol  8.0% Sharpe 0.63 maxDD -17.8% turnover/yr  3.4x
+Faber 5-asset 8m SMA                     CAGR   5.7% vol  7.9% Sharpe 0.74 maxDD -18.6% turnover/yr  3.6x
+Faber 5-asset 12m SMA                    CAGR   5.4% vol  8.0% Sharpe 0.69 maxDD -12.9% turnover/yr  3.2x
+SPY 10m SMA trend                        CAGR   8.9% vol 12.6% Sharpe 0.74 maxDD -29.6% turnover/yr  3.2x
+Dual momentum 12m (SPY/EFA/IEF)          CAGR   5.5% vol 15.9% Sharpe 0.42 maxDD -40.2% turnover/yr  4.0x
+Dual momentum 9m                         CAGR   4.3% vol 15.2% Sharpe 0.35 maxDD -33.7% turnover/yr  5.3x
+Sector momentum top3/6m + 10m SMA        CAGR   7.2% vol 15.9% Sharpe 0.51 maxDD -25.6% turnover/yr  7.8x
+Sector momentum top3/12m + 10m SMA       CAGR   9.0% vol 15.4% Sharpe 0.64 maxDD -24.1% turnover/yr  6.5x
+
+== FIRST HALF (to 2016) ==
+SPY buy & hold                           CAGR   6.9% vol 20.9% Sharpe 0.42 maxDD -55.2%
+60/40 SPY/IEF                            CAGR   7.0% vol 11.6% Sharpe 0.65 maxDD -31.4%
+Faber 5-asset 10m SMA (SPY EFA IEF GLD VNQ) CAGR   4.3% vol  8.7% Sharpe 0.53 maxDD -17.8%
+Faber 5-asset 8m SMA                     CAGR   4.9% vol  8.5% Sharpe 0.61 maxDD -18.6%
+Faber 5-asset 12m SMA                    CAGR   4.2% vol  8.4% Sharpe 0.53 maxDD -12.9%
+SPY 10m SMA trend                        CAGR   9.1% vol 12.5% Sharpe 0.76 maxDD -17.3%
+Dual momentum 12m (SPY/EFA/IEF)          CAGR   5.2% vol 14.9% Sharpe 0.42 maxDD -25.8%
+Dual momentum 9m                         CAGR   3.6% vol 14.5% Sharpe 0.32 maxDD -27.8%
+Sector momentum top3/6m + 10m SMA        CAGR   6.0% vol 15.4% Sharpe 0.45 maxDD -25.6%
+Sector momentum top3/12m + 10m SMA       CAGR   6.0% vol 14.9% Sharpe 0.47 maxDD -21.0%
+
+== SECOND HALF (2017+) ==
+SPY buy & hold                           CAGR  15.3% vol 18.1% Sharpe 0.87 maxDD -33.7%
+60/40 SPY/IEF                            CAGR   9.7% vol 10.9% Sharpe 0.91 maxDD -21.0%
+Faber 5-asset 10m SMA (SPY EFA IEF GLD VNQ) CAGR   5.4% vol  7.3% Sharpe 0.75 maxDD -15.9%
+Faber 5-asset 8m SMA                     CAGR   6.4% vol  7.2% Sharpe 0.90 maxDD -16.9%
+Faber 5-asset 12m SMA                    CAGR   6.5% vol  7.6% Sharpe 0.87 maxDD  -9.6%
+SPY 10m SMA trend                        CAGR   8.6% vol 12.7% Sharpe 0.71 maxDD -29.6%
+Dual momentum 12m (SPY/EFA/IEF)          CAGR   5.7% vol 16.9% Sharpe 0.41 maxDD -40.2%
+Dual momentum 9m                         CAGR   5.0% vol 15.9% Sharpe 0.38 maxDD -33.7%
+Sector momentum top3/6m + 10m SMA        CAGR   8.3% vol 16.4% Sharpe 0.57 maxDD -24.5%
+Sector momentum top3/12m + 10m SMA       CAGR  12.1% vol 16.0% Sharpe 0.79 maxDD -24.1%
+
+######## ensemble rule actually deployed
+
+== FULL ==
+SPY buy & hold                           CAGR  11.0% vol 19.6% Sharpe 0.63 maxDD -55.2% turnover/yr  0.1x
+60/40 SPY/IEF                            CAGR   8.4% vol 11.3% Sharpe 0.77 maxDD -31.4% turnover/yr  0.1x
+Faber ensemble 8/10/12m (5 assets)       CAGR   5.3% vol  7.8% Sharpe 0.70 maxDD -14.5% turnover/yr  3.4x
+
+== FIRST HALF (to 2016) ==
+SPY buy & hold                           CAGR   6.9% vol 20.9% Sharpe 0.42 maxDD -55.2%
+60/40 SPY/IEF                            CAGR   7.0% vol 11.6% Sharpe 0.65 maxDD -31.4%
+Faber ensemble 8/10/12m (5 assets)       CAGR   4.5% vol  8.3% Sharpe 0.57 maxDD -14.5%
+
+== SECOND HALF (2017+) ==
+SPY buy & hold                           CAGR  15.3% vol 18.1% Sharpe 0.87 maxDD -33.7%
+60/40 SPY/IEF                            CAGR   9.7% vol 10.9% Sharpe 0.91 maxDD -21.0%
+Faber ensemble 8/10/12m (5 assets)       CAGR   6.1% vol  7.3% Sharpe 0.85 maxDD -13.9%
+
+== 2022 only ==
+SPY buy & hold                           CAGR -18.8% vol 24.3% Sharpe -0.74 maxDD -24.5%
+60/40 SPY/IEF                            CAGR -16.5% vol 15.9% Sharpe -1.06 maxDD -20.7%
+Faber ensemble 8/10/12m (5 assets)       CAGR -11.7% vol  5.5% Sharpe -2.23 maxDD -12.1%
+
+== 2008 only ==
+SPY buy & hold                           CAGR -36.2% vol 41.4% Sharpe -0.88 maxDD -47.1%
+60/40 SPY/IEF                            CAGR -16.5% vol 23.2% Sharpe -0.66 maxDD -28.0%
+Faber ensemble 8/10/12m (5 assets)       CAGR  -4.9% vol  7.0% Sharpe -0.69 maxDD -14.5%
+
+current target weights (as of 2026-10-02 ): {'SPY': np.float64(0.2), 'EFA': np.float64(0.2)} cash 0.6
