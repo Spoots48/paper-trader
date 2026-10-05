@@ -55,3 +55,8 @@ Evidence: Adapted from Hummingbot spread-vs-reference/tick-rounding, Freqtrade S
 Pause new market-maker quotes (max_open_markets=0); existing positions still settle. Risk-reducing; no other parameter changed.
 
 Evidence: research/review_2026_10_05/mm_replay_output.txt: replay of the quoting rule on 2,306 settled 15m BTC/ETH markets measured about -0.7 per 10-share market (-13 s.e., both halves, both queue assumptions); the live book lost about -0.53 per market over 14 markets. Replay fill model is optimistic and ignores rebates (~0.4 total live), so it measures adverse selection, not tradable P&L.
+
+## 2026-10-05 trend book ledger re-created before any trade
+The new `trend` book (trend-1.0.0) counted from the experiment's 2026-09-23 start instead of its own 2026-10-05 start, producing 8 flat
+pre-start snapshots and 8 spurious missed-window rows in its brand-new ledger. It had no fills. The engine was fixed (start date now read
+from the book's own ledger) and the empty ledger was re-frozen with the identical strategy file. No other book was touched.
