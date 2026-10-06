@@ -1,0 +1,95 @@
+{
+ "kind": "daily",
+ "date": "2026-10-05",
+ "day": 13,
+ "weekday": "Monday",
+ "generated_at": "2026-10-06T09:26:27Z",
+ "summary": "All bots together went from $668.57 to $666.57 today (\u2212$2.00). Biggest gain: Primary (+$0.66). Biggest loss: Market maker v2 (\u2212$2.87). The S&P 500 (SPY) moved +0.67%.",
+ "rows": [
+  {
+   "id": "daytrade",
+   "name": "Day trading",
+   "status": "trading",
+   "value": 98.51359820691873,
+   "change": 0.0,
+   "since_start": -1.4864017930812707,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto2",
+   "name": "Crypto odds bot v2",
+   "status": "trading",
+   "value": 100.0,
+   "change": 0.0,
+   "since_start": 0.0,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "mm",
+   "name": "Market maker v2",
+   "status": "trading",
+   "value": 92.94952568400001,
+   "change": -2.8700000000000045,
+   "since_start": -7.050474315999992,
+   "trades": 2,
+   "wins": 0,
+   "losses": 1
+  },
+  {
+   "id": "crypto",
+   "name": "Crypto odds bot v1 (retired)",
+   "status": "retired (only settles old bets)",
+   "value": 74.22458862,
+   "change": 0.0,
+   "since_start": -25.775411379999994,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "primary",
+   "name": "Primary",
+   "status": "trading",
+   "value": 100.18997018413339,
+   "change": 0.6576978693847622,
+   "since_start": 0.1899701841333865,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "research",
+   "name": "Research",
+   "status": "trading",
+   "value": 100.57337037984075,
+   "change": 0.09376112345886156,
+   "since_start": 0.5733703798407532,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "trend",
+   "name": "Diversified trend",
+   "status": "trading",
+   "value": 100.11499476664042,
+   "change": 0.11499476664042163,
+   "since_start": 0.11499476664042163,
+   "trades": 3,
+   "wins": 0,
+   "losses": 0
+  }
+ ],
+ "spy": {
+  "value": 100.19384793983596,
+  "change_pct": 0.00674341554834168
+ },
+ "missing": [],
+ "total_before": 668.5695940820493,
+ "total_end": 666.5660478415333,
+ "late_by_hours": 4.4
+}
