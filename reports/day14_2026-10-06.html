@@ -1,0 +1,260 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Day 14 report</title><style>
+:root{--bg:#f7f7f5;--card:#fff;--ink:#1d1d1f;--muted:#6e6e73;--line:#e3e3e0;--accent:#2f6f4f}
+@media (prefers-color-scheme:dark){:root{--bg:#161617;--card:#1f1f21;--ink:#f2f2f2;--muted:#a1a1a6;--line:#333336;--accent:#7cc4a0}}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}
+main{max-width:1000px;margin:0 auto;padding:28px 16px 64px}
+h1{font-size:26px;margin:0 0 6px}h2{font-size:19px;margin:34px 0 10px;border-top:1px solid var(--line);padding-top:22px}h3{font-size:15px;margin:22px 0 8px}
+p,li{color:var(--ink)}.meta{color:var(--muted)}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}th{color:var(--muted);font-weight:600}
+tr:last-child td{border-bottom:0}a{color:var(--accent)}code{font-size:12px}
+</style></head><body><main>
+<h1>Week 2 report — Day 14 of 30</h1><p class='meta'>As of the close on <strong>2026-10-06</strong> (report date 2026-10-06). Period starts after 2026-09-29. Generated 2026-10-06T22:57:28Z. Paper trading only.</p>
+<h2>Results</h2>
+<div class="tw"><table><thead><tr><th></th><th>Value</th><th>This period</th><th>Cumulative</th><th>Max drawdown</th><th>As of</th></tr></thead><tbody><tr><td>Day trading (since 2026-09-24)</td><td>$98.51</td><td>−$0.35 (−0.35%)</td><td>−$1.49 (−1.49%)</td><td>1.63%</td><td>2026-10-06</td></tr><tr><td>Crypto odds bot v2 (since 2026-09-25)</td><td>$100.00</td><td>+$0.00 (+0.00%)</td><td>+$0.00 (+0.00%)</td><td>0.00%</td><td>2026-10-05</td></tr><tr><td>Market maker v2 (since 2026-09-25)</td><td>$92.95</td><td>−$8.77 (−8.62%)</td><td>−$7.05 (−7.05%)</td><td>9.93%</td><td>2026-10-05</td></tr><tr><td>Crypto odds bot v1 (retired) (since 2026-09-25)</td><td>$74.22</td><td>+$0.00 (+0.00%)</td><td>−$25.78 (−25.78%)</td><td>25.78%</td><td>2026-10-05</td></tr><tr><td>Primary</td><td>$100.73</td><td>+$1.89 (+1.91%)</td><td>+$0.73 (+0.73%)</td><td>1.36%</td><td>2026-10-06</td></tr><tr><td>Research</td><td>$103.16</td><td>+$4.63 (+4.70%)</td><td>+$3.16 (+3.16%)</td><td>1.94%</td><td>2026-10-06</td></tr><tr><td>Diversified trend (since 2026-10-05)</td><td>$100.30</td><td>+$0.30 (+0.30%)</td><td>+$0.30 (+0.30%)</td><td>0.00%</td><td>2026-10-06</td></tr><tr><td>SPY buy &amp; hold</td><td>$100.74</td><td>+$1.93 (+1.95%)</td><td>+$0.74 (+0.74%)</td><td>—</td><td>2026-10-06</td></tr><tr><td>Cash (do nothing)</td><td>$100.00</td><td>+$0.00 (+0.00%)</td><td>+$0.00 (+0.00%)</td><td>0.00%</td><td>2026-10-06</td></tr></tbody></table></div>
+<h2>Day trading book — Earnings-catalyst intraday breakouts; 0.25% modeled risk per trade, 1% session loss budget, flat by close</h2>
+<h3>Open positions (at the as-of close)</h3>
+<p>None. Cash: $98.51.</p>
+<h3>Executions this period</h3>
+<div class="tw"><table><thead><tr><th>Session</th><th>Side</th><th>Ticker</th><th>Sleeve</th><th>Qty</th><th>Fill</th><th>Cost</th><th>Realized</th><th>Reason</th><th>Price source</th></tr></thead><tbody><tr><td>2026-09-30</td><td>BUY</td><td>JBL</td><td>daytrade</td><td>0.0135</td><td>$321.98</td><td>15.0 bp</td><td></td><td>ORB_BREAKOUT</td><td>yahoo_1m_bar</td></tr><tr><td>2026-09-30</td><td>SELL</td><td>JBL</td><td>daytrade</td><td>0.0135</td><td>$303.72</td><td>25.3 bp</td><td>−$0.25</td><td>STOP</td><td>yahoo_1m_bar</td></tr><tr><td>2026-10-01</td><td>BUY</td><td>ACN</td><td>daytrade</td><td>0.0244</td><td>$224.24</td><td>15.0 bp</td><td></td><td>ORB_BREAKOUT</td><td>yahoo_1m_bar</td></tr><tr><td>2026-10-01</td><td>SELL</td><td>ACN</td><td>daytrade</td><td>0.0244</td><td>$214.12</td><td>25.3 bp</td><td>−$0.25</td><td>STOP</td><td>yahoo_1m_bar</td></tr><tr><td>2026-10-02</td><td>BUY</td><td>NKE</td><td>daytrade</td><td>0.1986</td><td>$33.13</td><td>10.0 bp</td><td></td><td>ORB_BREAKOUT</td><td>yahoo_1m_bar</td></tr><tr><td>2026-10-02</td><td>SELL</td><td>NKE</td><td>daytrade</td><td>0.1986</td><td>$33.86</td><td>8.3 bp</td><td>+$0.14</td><td>CLOSE_EXIT</td><td>yahoo_1m_bar</td></tr></tbody></table></div>
+<p>Modeled trading costs: $0.05 this period, $0.80 cumulative. Closed single-stock trades to date: 14 (3 winners). Regime at last decision: n/a. Drawdown controls: pause until —, halt until —.</p>
+<h3>Major decisions (with evidence)</h3>
+<ul>
+<li><strong>2026-09-30 BUY JBL</strong> (daytrade, ORB_BREAKOUT; decided 2026-09-30T14:15:33Z, data through 2026-09-30T09:35:00-04:00): broke above first 5-min high 321.49 (rel. volume 14.3x, rank 1); stop 304.49 = low of the first 5 minutes</li>
+<li><strong>2026-09-30 SELL JBL</strong> (daytrade, STOP; decided 2026-09-30T14:15:33Z, data through 2026-09-30T09:59:00-04:00): low 304.02 hit stop 304.49</li>
+<li><strong>2026-10-01 BUY ACN</strong> (daytrade, ORB_BREAKOUT; decided 2026-10-01T15:41:37Z, data through 2026-10-01T09:35:00-04:00): broke above first 5-min high 223.89 (rel. volume 19.2x, rank 3); stop 214.66 = low of the first 5 minutes</li>
+<li><strong>2026-10-01 SELL ACN</strong> (daytrade, STOP; decided 2026-10-01T15:41:37Z, data through 2026-10-01T11:39:00-04:00): low 214.50 hit stop 214.66</li>
+<li><strong>2026-10-02 BUY NKE</strong> (daytrade, ORB_BREAKOUT; decided 2026-10-02T14:09:54Z, data through 2026-10-02T09:35:00-04:00): broke above first 5-min high 33.09 (rel. volume 10.7x, rank 3); stop 31.96 = low of the first 5 minutes</li>
+<li><strong>2026-10-02 SELL NKE</strong> (daytrade, CLOSE_EXIT; decided 2026-10-02T22:29:04Z, data through 2026-10-02T15:59:00-04:00): day trade: sold at the close (processed 150 min after the bar: cloud run was late)</li>
+</ul>
+<h3>What worked, what failed</h3>
+<ul>
+<li>Best closed trade: NKE +$0.14 (CLOSE_EXIT); worst: JBL −$0.25 (STOP).</li>
+<li>Realized P&amp;L by sleeve: daytrade −$1.49.</li>
+<li>Stop-outs: 11 (ACN, JBL, JBL, FSLR, PCAR, COST, RCL, ABNB, P, CSX, META).</li>
+<li>Versus SPY buy &amp; hold: −$2.23 (behind).</li>
+<li><strong>Evidence for rule changes:</strong> 14 closed single-stock trades so far. That is far too few to separate skill from luck (roughly 30+ independent trades would be needed even to detect a large edge), so no rule change is supported. Observations are logged for separate testing only.</li>
+</ul>
+<h2>Crypto odds bot v2 book — Market-anchored BTC/ETH odds with persistent daily loss stops and a protected profit budget (paper)</h2>
+<h3>Open positions (at the as-of close)</h3>
+<p>None. Cash: $100.00.</p>
+<h3>Executions this period</h3>
+<p>No executions this period.</p>
+<p>Modeled trading costs: $0.00 this period, $0.00 cumulative. Closed single-stock trades to date: 0 (0 winners). Regime at last decision: n/a. Drawdown controls: pause until —, halt until —.</p>
+<h3>Major decisions (with evidence)</h3>
+<p>No buy/sell decisions this period.</p>
+<h3>What worked, what failed</h3>
+<ul>
+<li>Versus SPY buy &amp; hold: −$0.74 (behind).</li>
+<li><strong>Evidence for rule changes:</strong> 0 closed single-stock trades so far. That is far too few to separate skill from luck (roughly 30+ independent trades would be needed even to detect a large edge), so no rule change is supported. Observations are logged for separate testing only.</li>
+</ul>
+<h2>Market maker v2 book — One market at a time; capped one-sided loss, inventory-aware paired quotes, estimated rebates excluded from cash (paper)</h2>
+<h3>Open positions (at the as-of close)</h3>
+<p>None. Cash: $92.95.</p>
+<h3>Executions this period</h3>
+<div class="tw"><table><thead><tr><th>Session</th><th>Side</th><th>Ticker</th><th>Sleeve</th><th>Qty</th><th>Fill</th><th>Cost</th><th>Realized</th><th>Reason</th><th>Price source</th></tr></thead><tbody><tr><td>2026-09-30</td><td>BUY</td><td>ETH 15m 14:15 Up</td><td>predmarket</td><td>5.9800</td><td>$0.51</td><td>0.0 bp</td><td></td><td>MM_FILL</td><td>polymarket_trade_tape</td></tr><tr><td>2026-09-30</td><td>SELL</td><td>ETH 15m 14:15 Up</td><td>predmarket</td><td>5.9800</td><td>$0.00</td><td>0.0 bp</td><td>−$3.05</td><td>PM_LOSS</td><td>polymarket_resolution</td></tr><tr><td>2026-10-01</td><td>BUY</td><td>ETH 15m 14:45 Up</td><td>predmarket</td><td>5.2800</td><td>$0.56</td><td>0.0 bp</td><td></td><td>MM_FILL</td><td>polymarket_trade_tape</td></tr><tr><td>2026-10-01</td><td>SELL</td><td>ETH 15m 14:45 Up</td><td>predmarket</td><td>5.2800</td><td>$0.00</td><td>0.0 bp</td><td>−$2.96</td><td>PM_LOSS</td><td>polymarket_resolution</td></tr><tr><td>2026-10-04</td><td>BUY</td><td>ETH 15m 20:00 Up</td><td>predmarket</td><td>5.3100</td><td>$0.54</td><td>0.0 bp</td><td></td><td>MM_FILL</td><td>polymarket_trade_tape</td></tr><tr><td>2026-10-04</td><td>BUY</td><td>ETH 15m 20:00 Down</td><td>predmarket</td><td>5.3100</td><td>$0.44</td><td>0.0 bp</td><td></td><td>MM_FILL</td><td>polymarket_trade_tape</td></tr><tr><td>2026-10-04</td><td>SELL</td><td>ETH 15m 20:00 Up</td><td>predmarket</td><td>5.3100</td><td>$1.00</td><td>0.0 bp</td><td>+$2.44</td><td>PM_WIN</td><td>polymarket_resolution</td></tr><tr><td>2026-10-04</td><td>SELL</td><td>ETH 15m 20:00 Down</td><td>predmarket</td><td>5.3100</td><td>$0.00</td><td>0.0 bp</td><td>−$2.34</td><td>PM_LOSS</td><td>polymarket_resolution</td></tr><tr><td>2026-10-05</td><td>BUY</td><td>ETH 15m 02:15 Down</td><td>predmarket</td><td>5.7400</td><td>$0.50</td><td>0.0 bp</td><td></td><td>MM_FILL</td><td>polymarket_trade_tape</td></tr><tr><td>2026-10-05</td><td>SELL</td><td>ETH 15m 02:15 Down</td><td>predmarket</td><td>5.7400</td><td>$0.00</td><td>0.0 bp</td><td>−$2.87</td><td>PM_LOSS</td><td>polymarket_resolution</td></tr></tbody></table></div>
+<p>Modeled trading costs: $0.00 this period, $0.00 cumulative. Closed single-stock trades to date: 22 (9 winners). Regime at last decision: n/a. Drawdown controls: pause until —, halt until —.</p>
+<h3>Major decisions (with evidence)</h3>
+<ul>
+<li><strong>2026-09-30 BUY ETH 15m 14:15 Up</strong> (predmarket, MM_FILL; decided 2026-09-30T22:31:13Z, data through 2026-09-30T22:31:13Z): Ethereum Up or Down - September 30, 2:15PM-2:30PM ET: our bid for Up at 0.51 was filled by sellers (5.98 of 5.98 shares; 90 were queued ahead of us); est. rebate $0.0209</li>
+<li><strong>2026-10-01 BUY ETH 15m 14:45 Up</strong> (predmarket, MM_FILL; decided 2026-10-01T22:57:02Z, data through 2026-10-01T22:57:02Z): Ethereum Up or Down - October 1, 2:45PM-3:00PM ET: our bid for Up at 0.56 was filled by sellers (5.28 of 5.28 shares; 90 were queued ahead of us); est. rebate $0.0182</li>
+<li><strong>2026-10-04 BUY ETH 15m 20:00 Up</strong> (predmarket, MM_FILL; decided 2026-10-04T06:22:45Z, data through 2026-10-04T06:22:45Z): Ethereum Up or Down - October 3, 8:00PM-8:15PM ET: our bid for Up at 0.54 was filled by sellers (5.31 of 5.31 shares; 43 were queued ahead of us); est. rebate $0.0185</li>
+<li><strong>2026-10-04 BUY ETH 15m 20:00 Down</strong> (predmarket, MM_FILL; decided 2026-10-04T06:22:45Z, data through 2026-10-04T06:22:45Z): Ethereum Up or Down - October 3, 8:00PM-8:15PM ET: our bid for Down at 0.44 was filled by sellers (5.31 of 5.31 shares; 117 were queued ahead of us); est. rebate $0.0183</li>
+<li><strong>2026-10-05 BUY ETH 15m 02:15 Down</strong> (predmarket, MM_FILL; decided 2026-10-05T07:30:50Z, data through 2026-10-05T07:30:50Z): Ethereum Up or Down - October 5, 2:15AM-2:30AM ET: our bid for Down at 0.50 was filled by sellers (5.74 of 5.74 shares; 30 were queued ahead of us); est. rebate $0.0201</li>
+</ul>
+<h3>What worked, what failed</h3>
+<ul>
+<li>Best closed trade: BTC 1h 01:00 Down +$5.31 (PM_WIN); worst: BTC 1h 01:00 Up −$5.11 (PM_LOSS).</li>
+<li>Realized P&amp;L by sleeve: predmarket −$7.47.</li>
+<li>Versus SPY buy &amp; hold: −$7.80 (behind).</li>
+<li><strong>Evidence for rule changes:</strong> 22 closed single-stock trades so far. That is far too few to separate skill from luck (roughly 30+ independent trades would be needed even to detect a large edge), so no rule change is supported. Observations are logged for separate testing only.</li>
+</ul>
+<h2>Crypto odds bot v1 (retired) book — Polymarket crypto Up/Down odds vs live prices (paper)</h2>
+<h3>Open positions (at the as-of close)</h3>
+<p>None. Cash: $74.22.</p>
+<h3>Executions this period</h3>
+<p>No executions this period.</p>
+<p>Modeled trading costs: $0.00 this period, $6.59 cumulative. Closed single-stock trades to date: 43 (27 winners). Regime at last decision: n/a. Drawdown controls: pause until —, halt until —.</p>
+<h3>Major decisions (with evidence)</h3>
+<p>No buy/sell decisions this period.</p>
+<h3>What worked, what failed</h3>
+<ul>
+<li>Best closed trade: SOL 15m 10:00 Down +$64.11 (PM_WIN); worst: ETH 1h 10:00 Down −$17.05 (PM_LOSS).</li>
+<li>Realized P&amp;L by sleeve: predmarket −$25.78.</li>
+<li>Versus SPY buy &amp; hold: −$26.52 (behind).</li>
+<li><strong>Evidence for rule changes:</strong> 43 closed single-stock trades so far. Enough trades for a rough look, but still one market regime; any change must be backtested separately and logged, never applied retroactively.</li>
+</ul>
+<h2>Primary book — Regime-gated SPY (only rules that passed the pre-registered backtest)</h2>
+<h3>Open positions (at the as-of close)</h3>
+<div class="tw"><table><thead><tr><th>Ticker</th><th>Sleeve</th><th>Qty</th><th>Avg cost</th><th>Close</th><th>Value</th><th>Unrealized</th><th>Stop</th><th>Entered</th></tr></thead><tbody><tr><td>SPY</td><td>residual</td><td>0.1267</td><td>$773.33</td><td>$779.09</td><td>$98.73</td><td>+$0.73</td><td>—</td><td>2026-09-23</td></tr></tbody></table></div>
+<h3>Executions this period</h3>
+<div class="tw"><table><thead><tr><th>Session</th><th>Side</th><th>Ticker</th><th>Sleeve</th><th>Qty</th><th>Fill</th><th>Cost</th><th>Realized</th><th>Reason</th><th>Price source</th></tr></thead><tbody><tr><td>2026-10-06</td><td>SELL</td><td>SPY</td><td>residual</td><td>0.0000</td><td>$777.58</td><td>7.3 bp</td><td>+$0.00</td><td>FUNDING</td><td>yahoo_daily_open</td></tr></tbody></table></div>
+<p>Modeled trading costs: $0.00 this period, $0.07 cumulative. Closed single-stock trades to date: 0 (0 winners). Regime at last decision: ON. Drawdown controls: pause until —, halt until —.</p>
+<h3>Major decisions (with evidence)</h3>
+<ul>
+<li><strong>2026-10-06 SELL SPY</strong> (residual, FUNDING; decided 2026-10-05T22:06:17Z, data through 2026-10-05): sell $0.00 of SPY to fund new positions</li>
+<li><strong>2026-10-07 SELL SPY</strong> (residual, FUNDING; decided 2026-10-06T22:57:28Z, data through 2026-10-06): sell $0.01 of SPY to fund new positions</li>
+</ul>
+<h3>What worked, what failed</h3>
+<ul>
+<li>Versus SPY buy &amp; hold: −$0.02 (behind).</li>
+<li><strong>Evidence for rule changes:</strong> 0 closed single-stock trades so far. That is far too few to separate skill from luck (roughly 30+ independent trades would be needed even to detect a large edge), so no rule change is supported. Observations are logged for separate testing only.</li>
+</ul>
+<h2>Research book — Pre-registered v1: news-confirmed earnings gaps + momentum (failed backtest; forward test)</h2>
+<h3>Open positions (at the as-of close)</h3>
+<div class="tw"><table><thead><tr><th>Ticker</th><th>Sleeve</th><th>Qty</th><th>Avg cost</th><th>Close</th><th>Value</th><th>Unrealized</th><th>Stop</th><th>Entered</th></tr></thead><tbody><tr><td>CCL</td><td>catalyst</td><td>0.7749</td><td>$25.43</td><td>$26.58</td><td>$20.60</td><td>+$0.89</td><td>$24.04</td><td>2026-09-30</td></tr><tr><td>DELL</td><td>momentum</td><td>0.0357</td><td>$559.56</td><td>$574.00</td><td>$20.52</td><td>+$0.52</td><td>$516.73</td><td>2026-09-23</td></tr><tr><td>FTNT</td><td>momentum</td><td>0.1132</td><td>$176.61</td><td>$191.27</td><td>$21.66</td><td>+$1.66</td><td>$169.32</td><td>2026-09-23</td></tr><tr><td>SPY</td><td>residual</td><td>0.0490</td><td>$773.33</td><td>$779.09</td><td>$38.17</td><td>+$0.28</td><td>—</td><td>2026-09-23</td></tr></tbody></table></div>
+<h3>Executions this period</h3>
+<div class="tw"><table><thead><tr><th>Session</th><th>Side</th><th>Ticker</th><th>Sleeve</th><th>Qty</th><th>Fill</th><th>Cost</th><th>Realized</th><th>Reason</th><th>Price source</th></tr></thead><tbody><tr><td>2026-09-30</td><td>SELL</td><td>SPY</td><td>residual</td><td>0.0260</td><td>$765.89</td><td>7.3 bp</td><td>−$0.19</td><td>FUNDING</td><td>yahoo_daily_open</td></tr><tr><td>2026-09-30</td><td>BUY</td><td>CCL</td><td>catalyst</td><td>0.7749</td><td>$25.43</td><td>15.0 bp</td><td></td><td>EARNINGS_GAP</td><td>yahoo_daily_open</td></tr></tbody></table></div>
+<p>Modeled trading costs: $0.04 this period, $0.13 cumulative. Closed single-stock trades to date: 0 (0 winners). Regime at last decision: ON. Drawdown controls: pause until —, halt until —.</p>
+<h3>Major decisions (with evidence)</h3>
+<ul>
+<li><strong>2026-09-30 BUY CCL</strong> (catalyst, EARNINGS_GAP; decided 2026-09-29T22:40:20Z, data through 2026-09-29): earnings reaction +13.4% (+13.6% vs SPY), volume 3.2x, close location 0.86; news: 64 earnings headlines (e.g. &quot;Carnival Stock: Cruise Operator Reports Revenue Record - Barron&#x27;s&quot; — Barron&#x27;s, published 2026-09-29T18:45:00Z); tone +42/-1</li>
+<ul>
+<li>&quot;Carnival Stock: Cruise Operator Reports Revenue Record - Barron&#x27;s&quot; — Barron&#x27;s; published 2026-09-29T18:45:00Z; retrieved 2026-09-29T22:41:32Z; <a href="https://news.google.com/rss/articles/CBMie0FVX3lxTE5feDlCN2l6WW9sMExIMVVpSHlSeTNONVJRekRjc2hmS25xYnZJdFdfRU44Q3czcGtCc084elc0SEo0cmNFVExnWnQ1TFF6bmxadEIwdmJrbFpKSUxCd19md0NiLTdCcURvUmV1eXBfQVNNNjdaYjNlU09iTQ?oc=5" target="_blank" rel="noopener">source</a></li>
+<li>&quot;Carnival Stock Jumps 12% After Cruise Giant Posts Record Revenue - Forbes&quot; — Forbes; published 2026-09-29T16:41:33Z; retrieved 2026-09-29T22:41:32Z; <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxNdVZYUHQ0bXpsdTdvc2ZmeEwxSkE0Yng3U2FBRVNzbjZKVHh5VDNFMWIteG5LbEZwWGVMeTl4VTQtRVFsOTVJX0JuUkdtYXVyU3JTZXhFd0QwWmJXTENiMHY3WVFzZk56clpUcnhFQlh6bDlkdWtIaTIzN0VVZHd6T2xxUlZkd2FfbFEwYzFjbnBsNnVfS1RrRVd3UmZzeG5hMzJNOTUtTTJwX0hLZVZOc3hCWTFrVExx?oc=5" target="_blank" rel="noopener">source</a></li>
+<li>&quot;Carnival Says Strong Demand More Than Offset Higher Fuel Costs - WSJ&quot; — WSJ; published 2026-09-29T18:04:00Z; retrieved 2026-09-29T22:41:32Z; <a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxNeFdHaHdfZEdJeUhYajk0N1Bnb1pfQ2lkQWJsc29CMG1NQ29vZHVoTVV2YVhaaW5aZHhIRDUyaGpkZENWb01jby0wUENXYkk2SDVlVzByQjFVUUhNMVNlSTU3MWpzYnpfd19ZMmlCOGZTTzlJVGpLNUR3WUdIWVRqUmd1WVU1MGRqQlFKb0JfQWh1OEo4ckZGVVVsNXgzTUFGU2pXS3R5U3o?oc=5" target="_blank" rel="noopener">source</a></li>
+<li>&quot;Why Carnival Stock Popped Today - The Motley Fool&quot; — The Motley Fool; published 2026-09-29T15:53:00Z; retrieved 2026-09-29T22:41:32Z; <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE8tVU1UZDl3NW51RjI5RE5oaExfekFReGh1V0M5UnlVUGdMSTlIeE00ZFBIeWhBYmtpbVFMeUF4aGRhemo3UkZiSEFYcHR3RE5WU2hOdjVnd0x5dko5S1RpSnphTnpkaXowU1VOZFdWTFlhV1c0a1plNDNhMVRSRG8?oc=5" target="_blank" rel="noopener">source</a></li>
+</ul>
+<li><strong>2026-09-30 SELL SPY</strong> (residual, FUNDING; decided 2026-09-29T22:40:20Z, data through 2026-09-29): sell $19.87 of SPY to fund new positions</li>
+</ul>
+<h3>What worked, what failed</h3>
+<ul>
+<li>Versus SPY buy &amp; hold: +$2.41 (ahead).</li>
+<li><strong>Evidence for rule changes:</strong> 0 closed single-stock trades so far. That is far too few to separate skill from luck (roughly 30+ independent trades would be needed even to detect a large edge), so no rule change is supported. Observations are logged for separate testing only.</li>
+</ul>
+<h2>Diversified trend book — Month-end trend ensemble across five asset-class ETFs; the rest in short-term Treasuries</h2>
+<h3>Open positions (at the as-of close)</h3>
+<div class="tw"><table><thead><tr><th>Ticker</th><th>Sleeve</th><th>Qty</th><th>Avg cost</th><th>Close</th><th>Value</th><th>Unrealized</th><th>Stop</th><th>Entered</th></tr></thead><tbody><tr><td>EFA</td><td>residual</td><td>0.1898</td><td>$103.78</td><td>$104.22</td><td>$19.78</td><td>+$0.08</td><td>—</td><td>2026-10-05</td></tr><tr><td>SHY</td><td>residual</td><td>0.7286</td><td>$81.12</td><td>$81.13</td><td>$59.11</td><td>+$0.01</td><td>—</td><td>2026-10-05</td></tr><tr><td>SPY</td><td>residual</td><td>0.0255</td><td>$771.12</td><td>$779.09</td><td>$19.90</td><td>+$0.20</td><td>—</td><td>2026-10-05</td></tr></tbody></table></div>
+<h3>Executions this period</h3>
+<div class="tw"><table><thead><tr><th>Session</th><th>Side</th><th>Ticker</th><th>Sleeve</th><th>Qty</th><th>Fill</th><th>Cost</th><th>Realized</th><th>Reason</th><th>Price source</th></tr></thead><tbody><tr><td>2026-10-05</td><td>BUY</td><td>EFA</td><td>residual</td><td>0.1898</td><td>$103.78</td><td>7.0 bp</td><td></td><td>TREND_BUY</td><td>yahoo_daily_open</td></tr><tr><td>2026-10-05</td><td>BUY</td><td>SHY</td><td>residual</td><td>0.7286</td><td>$81.12</td><td>7.0 bp</td><td></td><td>TREND_BUY</td><td>yahoo_daily_open</td></tr><tr><td>2026-10-05</td><td>BUY</td><td>SPY</td><td>residual</td><td>0.0255</td><td>$771.12</td><td>7.0 bp</td><td></td><td>TREND_BUY</td><td>yahoo_daily_open</td></tr></tbody></table></div>
+<p>Modeled trading costs: $0.07 this period, $0.07 cumulative. Closed single-stock trades to date: 0 (0 winners). Regime at last decision: TREND. Drawdown controls: pause until —, halt until —.</p>
+<h3>Major decisions (with evidence)</h3>
+<ul>
+<li><strong>2026-10-05 BUY EFA</strong> (trend, TREND_BUY; decided 2026-10-05T08:25:13Z, data through 2026-10-02): month-end trend rebalance; EFA: above [8, 10, 12]-month averages</li>
+<li><strong>2026-10-05 BUY SHY</strong> (trend, TREND_BUY; decided 2026-10-05T08:25:13Z, data through 2026-10-02): month-end trend rebalance; SHY: unallocated capital held in short-term Treasuries</li>
+<li><strong>2026-10-05 BUY SPY</strong> (trend, TREND_BUY; decided 2026-10-05T08:25:13Z, data through 2026-10-02): month-end trend rebalance; SPY: above [8, 10, 12]-month averages</li>
+</ul>
+<h3>What worked, what failed</h3>
+<ul>
+<li>Versus SPY buy &amp; hold: −$0.45 (behind).</li>
+<li><strong>Evidence for rule changes:</strong> 0 closed single-stock trades so far. That is far too few to separate skill from luck (roughly 30+ independent trades would be needed even to detect a large edge), so no rule change is supported. Observations are logged for separate testing only.</li>
+</ul>
+<h2>Data, operations and outages</h2>
+<ul>
+<li>Day trading: 130 runs this period (0 with errors); 43 data/system issues logged; 0 snapshots used derived or stale prices; audit chain: 263 events verified (OK); strategy file matches frozen hash: True.</li>
+<ul>
+<li>2026-10-05T07:30:51Z [ERROR] reporting: Traceback (most recent call last):</li>
+</ul>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_r</p>
+<ul>
+<ul>
+<li>2026-10-05T06:15:24Z [ERROR] reporting: Traceback (most recent call last):</li>
+</ul>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_r</p>
+<ul>
+<ul>
+<li>2026-10-05T00:11:32Z [ERROR] reporting: Traceback (most recent call last):</li>
+</ul>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_r</p>
+<ul>
+<ul>
+<li>2026-10-04T21:57:25Z [ERROR] reporting: Traceback (most recent call last):</li>
+</ul>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_r</p>
+<ul>
+<ul>
+<li>2026-10-04T17:51:44Z [ERROR] reporting: Traceback (most recent call last):</li>
+</ul>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_r</p>
+<ul>
+<ul>
+<li>2026-10-04T12:52:44Z [ERROR] reporting: Traceback (most recent call last):</li>
+</ul>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_r</p>
+<ul>
+<ul>
+<li>2026-10-04T06:22:46Z [ERROR] reporting: Traceback (most recent call last):</li>
+</ul>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_r</p>
+<ul>
+<ul>
+<li>2026-10-04T00:04:27Z [ERROR] reporting: Traceback (most recent call last):</li>
+</ul>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_r</p>
+<ul>
+<ul>
+<li>2026-10-03T23:20:41Z [ERROR] reporting: Traceback (most recent call last):</li>
+</ul>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_r</p>
+<ul>
+<ul>
+<li>2026-10-03T20:13:05Z [ERROR] reporting: Traceback (most recent call last):</li>
+</ul>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_r</p>
+<ul>
+<ul>
+<li>2026-10-03T17:38:16Z [ERROR] reporting: Traceback (most recent call last):</li>
+</ul>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_r</p>
+<ul>
+<ul>
+<li>2026-10-03T12:45:21Z [ERROR] reporting: Traceback (most recent call last):</li>
+</ul>
+</ul>
+<p>  File &quot;/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py&quot;, line 131, in run_cycle</p>
+<p>    made = maybe_generate_r</p>
+<ul>
+<li>Crypto odds bot v2: 130 runs this period (0 with errors); 1 data/system issues logged; 0 snapshots used derived or stale prices; audit chain: 1021 events verified (OK); strategy file matches frozen hash: True.</li>
+<ul>
+<li>2026-10-03T01:54:47Z [WARN] predmarket: order book unavailable for btc-updown-4h-1790985600: order book is missing a current source timestamp</li>
+</ul>
+<li>Market maker v2: 130 runs this period (0 with errors); 0 data/system issues logged; 0 snapshots used derived or stale prices; audit chain: 627 events verified (OK); strategy file matches frozen hash: True.</li>
+<li>Crypto odds bot v1 (retired): 130 runs this period (0 with errors); 0 data/system issues logged; 0 snapshots used derived or stale prices; audit chain: 290 events verified (OK); strategy file matches frozen hash: True.</li>
+<li>Primary: 130 runs this period (0 with errors); 0 data/system issues logged; 0 snapshots used derived or stale prices; audit chain: 33 events verified (OK); strategy file matches frozen hash: True.</li>
+<li>Research: 130 runs this period (0 with errors); 1 data/system issues logged; 0 snapshots used derived or stale prices; audit chain: 48 events verified (OK); strategy file matches frozen hash: True.</li>
+<ul>
+<li>2026-10-01T22:58:06Z [WARN] earnings BLK: announcement time unknown for BLK on 2026-10-13; event ignored</li>
+</ul>
+<li>Diversified trend: 82 runs this period (0 with errors); 0 data/system issues logged; 0 snapshots used derived or stale prices; audit chain: 19 events verified (OK); strategy file matches frozen hash: True.</li>
+</ul>
+<h2>Execution assumptions</h2>
+<ul>
+<li>Paper trading only; no brokerage account, no real orders, no money.</li>
+<li>Start $100 per book, fractional shares (6 decimals), no leverage, shorts or options.</li>
+<li>Costs per side as adverse price adjustment: SPY 2.0 bp; stocks 5.0/10.0/20.0 bp by liquidity; +5.0 bp at the open; +15.0 bp on stop fills; +0.3 bp SEC fee on sells; $0 commission.</li>
+<li>Orders decided before the open fill at the official open; orders decided intraday fill at the open of the next 5-minute bar after the decision; stops are standing orders filled at the stop (or the bar open if it gaps through).</li>
+<li>Prices: Yahoo Finance (free, unofficial). When the official daily close is missing 30 min after the close, the bar is rebuilt from 5-minute bars and flagged.</li>
+<li>News (research book only): Yahoo Finance ticker news + Google News RSS, keyword classification, used only to confirm or veto.</li>
+<li>Dividends credited on the ex-date; settlement timing and taxes ignored.</li>
+</ul>
+<h2>Limitations</h2>
+<ul>
+<li>One month (~21 sessions) is far too short to establish an edge: in the backtest the month-to-month spread of excess returns vs SPY was about ±3.5–4.4 percentage points (1 s.d.).</li>
+<li>The strategies were designed and frozen on 2026-09-22; the backtest showed the catalyst and momentum sleeves failing the pre-registered in-sample test (see research/PREREGISTRATION.md).</li>
+<li>Free data can be delayed, revised or missing; the Mac must be on and online for decisions.</li>
+<li>Not investment advice; the author is not a licensed advisor.</li>
+</ul>
+</main></body></html>
