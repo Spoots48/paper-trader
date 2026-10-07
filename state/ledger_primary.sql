@@ -349,6 +349,7 @@ INSERT INTO "runs" VALUES('20261006T165850Z-primary','2026-10-06T16:58:54Z','202
 INSERT INTO "runs" VALUES('20261006T185128Z-primary','2026-10-06T18:51:34Z','2026-10-06T18:51:35Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261006T225728Z-primary','2026-10-06T22:57:35Z','2026-10-06T22:57:38Z','OK','github-actions','closed 2026-10-06; decided for 2026-10-07: 1 orders (MOO), regime ON',NULL);
 INSERT INTO "runs" VALUES('20261006T234249Z-primary','2026-10-06T23:42:54Z','2026-10-06T23:42:54Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261007T000539Z-primary','2026-10-07T00:05:46Z','2026-10-07T00:05:46Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -366,7 +367,7 @@ INSERT INTO "snapshots" VALUES('2026-10-05','2026-10-05T22:06:17Z','20261005T220
 INSERT INTO "snapshots" VALUES('2026-10-06','2026-10-06T22:57:28Z','20261006T225728Z-primary',1.00729354554393054e+02,2.00384544129491493e+00,9.87255091130981412e+01,1.00744712982832552e+02,100.0,1.00729354554393054e+02,0.0,'ON','{"peak": 100.72935455439305, "pause_until": null, "halt_until": null, "drawdown": 0.0}','{"marks": {"SPY": 779.0900268554688}, "flags": {}}','{"SPY": {"qty": 0.126719, "avg_cost": 773.3309310119628, "sleeve": "residual", "stop": null, "entry_session": "2026-09-23", "max_hold_until": null}}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','2.003845441294915','2026-10-06T22:57:37Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-06T23:42:54Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-07T00:05:46Z');
 INSERT INTO "state" VALUES('last_regime','"ON"','2026-10-06T22:57:38Z');
 INSERT INTO "state" VALUES('benchmark','{"ticker": "SPY", "qty": 0.12931074652496097, "entry_price": 773.3309310119628, "entry_session": "2026-09-23", "div_cash": 0.0, "note": "SPY bought at the first session''s official open with the same cost model"}','2026-09-23T17:50:09Z');
 INSERT INTO "state" VALUES('open_done:2026-09-23','true','2026-09-23T17:50:09Z');
