@@ -77,3 +77,31 @@ def test_engine_uses_its_own_ledgers_start_date_not_the_experiments(tmp_path):
     L.freeze({**exp, "start_date": "2026-10-05"}, book, cfg["version"], sha256_file(cfg_path), sha256_file(UNIVERSE_PATH))
     eng = TrendEngine(L, None, cfg, {**exp, "book": "trend"}, dt.datetime(2026, 10, 5, 8, tzinfo=dt.timezone.utc))
     assert eng.start == dt.date(2026, 10, 5)
+
+
+def test_session_windows_and_exactly_one_unit():
+    idx = pd.date_range("2025-01-01", periods=260, freq="B")
+    c = pd.DataFrame({"A": np.linspace(100, 160, 260), "B": np.linspace(160, 100, 260)}, index=idx)
+    w, d = trend_weights(c, ASSETS, sessions=[50, 100, 200])
+    assert w == {"A": 0.5} and d["A"]["above_sma_sessions"] == [50, 100, 200] and d["B"]["above_sma_sessions"] == []
+    with pytest.raises(ValueError):
+        trend_weights(c, ASSETS)
+    with pytest.raises(ValueError):
+        trend_weights(c, ASSETS, months=[8], sessions=[50])
+    with pytest.raises(ValueError):
+        trend_weights(c.iloc[:150], ASSETS, sessions=[50, 100, 200])
+
+
+def test_rebalance_schedule_weekly_monthly_and_first():
+    import datetime as dt
+
+    from papertrader.trend import is_rebalance_day
+    fri, mon = dt.date(2026, 10, 2), dt.date(2026, 10, 5)
+    wed, thu = dt.date(2026, 10, 7), dt.date(2026, 10, 8)
+    assert is_rebalance_day(mon, fri, "week-end", False)
+    assert not is_rebalance_day(thu, wed, "week-end", False)
+    assert is_rebalance_day(dt.date(2026, 10, 1), dt.date(2026, 9, 30), "month-end", False)
+    assert not is_rebalance_day(thu, wed, "month-end", False)
+    assert is_rebalance_day(thu, wed, "week-end", True)
+    with pytest.raises(ValueError):
+        is_rebalance_day(thu, wed, "daily", False)

@@ -342,9 +342,10 @@ const BOT = {
   crypto2: {name: 'Crypto odds bot v2', tag: 'New', blurb: 'Small bets on Polymarket Bitcoin/Ethereum up-or-down markets, only when live Binance prices and the market odds together point to an edge bigger than the fees.'},
   mm: {name: 'Market maker', tag: 'Paused', blurb: 'Posts its own buy offers on both "Up" and "Down" so the pair costs under $1; if both get filled it pockets the difference plus fee rebates. Risk: only one side fills. PAUSED on Oct 5: a 2,300-market replay showed it loses on average.'},
   trend: {name: 'Diversified trend', tag: 'New', blurb: 'Slow and cautious: each month it holds the asset classes (US stocks, foreign stocks, bonds, gold, real estate) that are trending up and parks the rest in short-term Treasuries. Meant to cut big drawdowns, not to beat the market in a hot year.'},
+  ctrend: {name: 'Crypto trend (high risk)', tag: 'New', blurb: 'The harsh one: each week it puts everything into Bitcoin and Ether funds while they are trending up and into Treasuries when they are not. No leverage. Expect big swings (a 40% drop is possible), in both directions.'},
   crypto: {name: 'Crypto odds bot v1', tag: 'Retired', retired: true, blurb: 'Lost 33% on day one: its math priced the wrong kind of bet. Stopped; record kept.'},
 };
-const TAG = {daytrade: 'DT', mm: 'MM', crypto2: 'P2', crypto: 'P1', primary: 'IX', research: 'SW', trend: 'TR'};
+const TAG = {daytrade: 'DT', mm: 'MM', crypto2: 'P2', crypto: 'P1', primary: 'IX', research: 'SW', trend: 'TR', ctrend: 'CT'};
 const botName = id => (BOT[id] || {}).name || id;
 const co = t => { const n = (S.state.names || {})[t]; return n ? `${esc(n)} <span class="mut">(${esc(t)})</span>` : esc(t); };
 const coTxt = t => { const n = (S.state.names || {})[t]; return n ? `${n} (${t})` : t; };

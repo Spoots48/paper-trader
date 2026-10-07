@@ -17,21 +17,38 @@ import datetime as dt
 TRADING_DAYS_PER_MONTH = 21
 
 
-def trend_weights(closes: pd.DataFrame, assets: list[str], months: list[int]) -> tuple[dict, dict]:
-    """Return ({asset: weight}, {asset: detail}). Raises if any asset lacks the history for the longest average."""
-    need = max(months) * TRADING_DAYS_PER_MONTH
+def trend_weights(closes: pd.DataFrame, assets: list[str], months: list[int] | None = None,
+                  sessions: list[int] | None = None) -> tuple[dict, dict]:
+    """Return ({asset: weight}, {asset: detail}). Windows are given in months (21 sessions each) or directly in sessions.
+    Raises if any asset lacks the history for the longest average."""
+    if (months is None) == (sessions is None):
+        raise ValueError("give exactly one of months or sessions")
+    windows = {m: m * TRADING_DAYS_PER_MONTH for m in months} if months is not None else {n: n for n in sessions}
+    key = "above_sma_months" if months is not None else "above_sma_sessions"
+    need = max(windows.values())
     weights, detail = {}, {}
     for a in assets:
         s = closes[a].dropna()
         if len(s) < need:
             raise ValueError(f"{a}: {len(s)} closes, need {need}")
         last = float(s.iloc[-1])
-        votes = {m: last > float(s.iloc[-m * TRADING_DAYS_PER_MONTH:].mean()) for m in months}
-        frac = sum(votes.values()) / len(months)
-        detail[a] = {"close": last, "above_sma_months": [m for m, v in votes.items() if v], "weight_fraction": frac}
+        votes = {label: last > float(s.iloc[-n:].mean()) for label, n in windows.items()}
+        frac = sum(votes.values()) / len(windows)
+        detail[a] = {"close": last, key: [m for m, v in votes.items() if v], "weight_fraction": frac}
         if frac > 0:
             weights[a] = frac / len(assets)
     return weights, detail
+
+
+def is_rebalance_day(T: dt.date, D: dt.date, every: str, first: bool) -> bool:
+    """D is the last completed session, T the next one. 'month-end': D closes its month; 'week-end': D closes its ISO week."""
+    if first:
+        return True
+    if every == "week-end":
+        return T.isocalendar()[:2] != D.isocalendar()[:2]
+    if every == "month-end":
+        return T.month != D.month
+    raise ValueError(f"unknown rebalance rule {every!r}")
 
 
 def rebalance_orders(*, equity: float, cash: float, qty: dict, prices: dict, weights: dict, cash_asset: str,
@@ -73,7 +90,10 @@ class TrendEngine(Engine):
         e = self.L.experiment()
         self.start = dt.date.fromisoformat(e["start_date"])
         t = self.cfg["trend"]
-        self.assets, self.cash_asset, self.months = list(t["assets"]), t["cash_asset"], list(t["sma_months"])
+        self.assets, self.cash_asset = list(t["assets"]), t["cash_asset"]
+        self.months = list(t["sma_months"]) if "sma_months" in t else None
+        self.sessions = list(t["sma_sessions"]) if "sma_sessions" in t else None
+        self.every = t.get("rebalance_every", "month-end")
         # these are all index ETFs: use the ETF cost line, not the single-stock liquidity tiers
         self.broker.costs = CostModel(self.cfg["costs"], set(self.assets) | {self.cash_asset, self.residual})
 
@@ -106,7 +126,7 @@ class TrendEngine(Engine):
                                        "AND final IN (1,2) GROUP BY ticker)" % ",".join("?" * len(universe)), universe).fetchone()["n"]
             have = self.md.db.execute("SELECT COUNT(DISTINCT ticker) AS n FROM daily_bars WHERE ticker IN (%s)" % ",".join("?" * len(universe)),
                                       universe).fetchone()["n"]
-            seed_needed = have < len(universe) or (depth or 0) < max(self.months) * TRADING_DAYS_PER_MONTH + 10
+            seed_needed = have < len(universe) or (depth or 0) < (max(self.months) * TRADING_DAYS_PER_MONTH if self.months else max(self.sessions)) + 10
             st = self.md.update_daily(universe, now, period="3y" if seed_needed else "10d")
             if st["failed"]:
                 self.L.issue("ERROR", "marketdata", f"trend universe refresh failed for {st['failed']}; decision postponed")
@@ -134,11 +154,11 @@ class TrendEngine(Engine):
         equity = pf.equity({t: px.get(t, p.entry_price) for t, p in pf.positions.items()})
         first = self.L.db.execute("SELECT 1 FROM decisions WHERE decision_key LIKE 'decide:%' AND reason_code='DECIDED' "
                                   "AND action='INFO' AND metrics LIKE '%\"rebalance\": true%'").fetchone() is None
-        month_end = T.month != D.month
+        due = is_rebalance_day(T, D, self.every, first)
         risk_state = self.L.get_state("risk", {})
         halted = bool(risk_state.get("halt_until") and T.isoformat() <= risk_state["halt_until"])
         self.L.set_state("last_regime", "TREND")
-        orders, decisions, rebalance = [], [], first or month_end
+        orders, decisions, rebalance = [], [], due
         detail: dict = {}
         if halted:
             rebalance = True
@@ -148,23 +168,26 @@ class TrendEngine(Engine):
                                     priority=10))
                 decisions.append(Decision(t, "trend", "SELL", "DD_HALT", "drawdown halt active: all cash"))
         elif rebalance:
-            weights, detail = trend_weights(closes, self.assets, self.months)
+            weights, detail = trend_weights(closes, self.assets, self.months, self.sessions)
             spec = rebalance_orders(equity=equity, cash=pf.cash, qty={t: p.qty for t, p in pf.positions.items()}, prices=px,
                                     weights=weights, cash_asset=self.cash_asset, buffer=self.cfg["portfolio"]["cash_buffer"],
                                     min_order=self.cfg["portfolio"]["min_order_usd"], band_fraction=self.cfg["trend"]["rebalance_band"])
             for s in spec:
-                why = (f"{s['ticker']}: above {detail[s['ticker']]['above_sma_months']}-month averages" if s["ticker"] in detail
+                d = detail.get(s["ticker"], {})
+                above = d.get("above_sma_months", d.get("above_sma_sessions"))
+                unit = "month" if "above_sma_months" in d else "session"
+                why = (f"{s['ticker']}: above {above}-{unit} averages" if s["ticker"] in detail
                        else f"{s['ticker']}: unallocated capital held in short-term Treasuries")
                 o = Order(key=f"{T}:trend:{s['ticker']}:{s['side']}:{s['code']}", ticker=s["ticker"], side=s["side"], order_type=order_type,
                           session=T.isoformat(), created_at=iso(now), sleeve="residual", reason_code=s["code"],
-                          reason=f"month-end trend rebalance; {why}", notional=s.get("notional"), qty=s.get("qty"),
+                          reason=f"{self.every} trend rebalance; {why}", notional=s.get("notional"), qty=s.get("qty"),
                           priority=10 if s["side"] == "SELL" else 50)
                 orders.append(o)
                 decisions.append(Decision(s["ticker"], "trend", s["side"], s["code"], o.reason, {"value": s["value"], **detail.get(s["ticker"], {})}))
         summary = Decision("*", "system", "INFO", "DECIDED",
                            f"{len(orders)} orders ({order_type}) for {T}; rebalance={rebalance}; trend weights "
                            + (", ".join(f"{k} {v['weight_fraction'] / len(self.assets):.0%}" for k, v in detail.items() if v["weight_fraction"] > 0) or "none")
-                           if rebalance else f"{len(orders)} orders ({order_type}) for {T}; rebalance=False (monthly)",
+                           if rebalance else f"{len(orders)} orders ({order_type}) for {T}; rebalance=False ({self.every.replace('-end', 'ly')})",
                            {"rebalance": rebalance, "order_type": order_type, "data_through": D.isoformat(), "detail": detail, "halted": halted})
         with self.L.tx():
             for i, d in enumerate(decisions):
