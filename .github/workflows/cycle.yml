@@ -87,4 +87,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if python -m papertrader.session chain; then gh workflow run cycle.yml; else echo "outside the window; cron takes over"; fi
+          if python -m papertrader.session chain; then gh workflow run cycle.yml || echo "could not start the next run; cron takes over"; else echo "outside the window; cron takes over"; fi

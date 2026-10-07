@@ -67,6 +67,14 @@
       "strategy": "config/strategy_trend_v1.json",
       "ledger": "data/ledger_trend.sqlite",
       "start_date": "2026-10-05"
+    },
+    {
+      "id": "ctrend",
+      "name": "Crypto trend (high risk)",
+      "subtitle": "Weekly trend ensemble in Bitcoin and Ether ETFs, unleveraged; Treasuries when not trending",
+      "strategy": "config/strategy_crypto_trend_v1.json",
+      "ledger": "data/ledger_ctrend.sqlite",
+      "start_date": "2026-10-07"
     }
   ],
   "notifications": {

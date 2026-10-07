@@ -1,0 +1,53 @@
+{
+  "strategy_id": "crypto-trend (all-in BTC/ETH ETF trend)",
+  "version": "crypto-trend-1.0.0",
+  "book_type": "trend",
+  "description": "HIGH-RISK paper book requested as a harsher crypto strategy. Each week-end hold 50% of capital in IBIT and 50% in ETHA, scaled by how many of the 50/100/200-session simple moving averages each ETF's last close is above; unallocated capital is held in SHY. Unleveraged. Backtest on BTC-USD/ETH-USD sampled on NYSE sessions, 7 bp per side: 2018-2026 CAGR 36% vs 29% buy-and-hold, vol 46%, max drawdown -60% vs -88%; out of sample 2022-2026 +10.9% vs +1.5%, max drawdown -39% vs -69%. Expect swings of roughly +/-9% in 15 days and drawdowns of 40% or more; no profit claim. Leverage and the 15-minute binary markets were tested and rejected (research/review_2026_10_05/).",
+  "portfolio": {
+    "starting_cash": 100.0,
+    "residual_etf": "SPY",
+    "cash_buffer": 0.01,
+    "min_order_usd": 1.0,
+    "fractional_shares": true,
+    "fractional_decimals": 6,
+    "leverage": false,
+    "short_selling": false,
+    "options": false
+  },
+  "trend": {
+    "assets": [
+      "IBIT",
+      "ETHA"
+    ],
+    "cash_asset": "SHY",
+    "sma_sessions": [
+      50,
+      100,
+      200
+    ],
+    "rebalance_every": "week-end",
+    "rebalance_band": 0.03
+  },
+  "risk": {
+    "drawdown_pause": 0.3,
+    "pause_sessions": 5,
+    "drawdown_halt": 0.4,
+    "halt_sessions": 21,
+    "note": "Disaster brake only; the trend rule is the real exit."
+  },
+  "costs": {
+    "commission_usd": 0.0,
+    "etf_bps": 2.0,
+    "stock_bps_adv_ge_1b": 5.0,
+    "stock_bps_adv_ge_200m": 10.0,
+    "stock_bps_other": 20.0,
+    "open_auction_extra_bps": 5.0,
+    "stop_fill_extra_bps": 15.0,
+    "sec_fee_bps_on_sells": 0.3,
+    "note": "Per-side cost applied as an adverse price adjustment (buys fill higher, sells lower). Covers half-spread plus slippage; deliberately conservative for liquid large caps."
+  },
+  "data": {
+    "mkt_order_latest_et": "15:30",
+    "max_signal_data_age_sessions": 0
+  }
+}
