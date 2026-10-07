@@ -105,3 +105,56 @@ def test_rebalance_schedule_weekly_monthly_and_first():
     assert is_rebalance_day(thu, wed, "week-end", True)
     with pytest.raises(ValueError):
         is_rebalance_day(thu, wed, "daily", False)
+
+
+class _FakeMD:
+    """Minimal market-cache stand-in: tickers in `have` already have `depth` bars; records update_daily calls."""
+
+    def __init__(self, have, depth, flags=()):
+        import sqlite3
+        self.db = sqlite3.connect(":memory:")
+        self.db.row_factory = sqlite3.Row
+        self.db.execute("CREATE TABLE daily_bars (ticker TEXT, session TEXT, final INTEGER)")
+        for t in have:
+            for i in range(depth):
+                self.db.execute("INSERT INTO daily_bars VALUES (?,?,1)", (t, str(i)))
+        self.flags, self.calls = set(flags), []
+
+    def kv_get(self, k):
+        return k in self.flags
+
+    def kv_set(self, k, v):
+        self.flags.add(k)
+
+    def update_daily(self, universe, now, period="10d"):
+        self.calls.append((tuple(universe), period))
+        return {"failed": []}
+
+
+def _engine(md, sessions=(50, 100, 200)):
+    import datetime as dt
+
+    from papertrader.trend import TrendEngine
+    eng = TrendEngine.__new__(TrendEngine)
+    eng.md, eng.months, eng.sessions = md, None, list(sessions)
+    eng.L = type("L", (), {"issue": lambda *a, **k: None})()
+    return eng
+
+
+def test_refresh_downloads_deep_history_even_if_another_book_set_a_flag():
+    import datetime as dt
+    D, now = dt.date(2026, 10, 6), dt.datetime(2026, 10, 7, 15, tzinfo=dt.timezone.utc)
+    uni = ["ETHA", "IBIT", "SHY", "SPY"]
+    md = _FakeMD(have=["SPY", "SHY"], depth=300, flags={"refreshed:2026-10-06:trend"})  # the other book's marker
+    assert _engine(md)._refresh(uni, D, now)
+    assert md.calls == [(tuple(uni), "3y")]
+
+
+def test_refresh_is_skipped_only_when_history_is_deep_and_this_universe_was_refreshed():
+    import datetime as dt
+    D, now = dt.date(2026, 10, 6), dt.datetime(2026, 10, 7, 15, tzinfo=dt.timezone.utc)
+    uni = ["ETHA", "IBIT", "SHY", "SPY"]
+    md = _FakeMD(have=uni, depth=300, flags={f"refreshed:2026-10-06:trend:{'-'.join(uni)}"})
+    assert _engine(md)._refresh(uni, D, now) and md.calls == []
+    md2 = _FakeMD(have=uni, depth=300)
+    assert _engine(md2)._refresh(uni, D, now) and md2.calls == [(tuple(uni), "10d")]

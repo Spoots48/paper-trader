@@ -100,6 +100,25 @@ class TrendEngine(Engine):
     def _universe(self) -> list[str]:
         return sorted(set(self.assets) | {self.cash_asset, self.residual})
 
+    def _refresh(self, universe: list[str], D: dt.date, now: dt.datetime) -> bool:
+        """Refresh daily bars; download deep history whenever any ticker lacks it. The 'refreshed' marker lives in the shared market
+        cache, so it is keyed by this book's universe: another book refreshing different tickers must not make us skip."""
+        flag = f"refreshed:{D.isoformat()}:trend:{'-'.join(universe)}"
+        marks = ",".join("?" * len(universe))
+        depth = self.md.db.execute("SELECT MIN(n) AS n FROM (SELECT COUNT(*) AS n FROM daily_bars WHERE ticker IN (%s) "
+                                   "AND final IN (1,2) GROUP BY ticker)" % marks, universe).fetchone()["n"]
+        have = self.md.db.execute("SELECT COUNT(DISTINCT ticker) AS n FROM daily_bars WHERE ticker IN (%s)" % marks, universe).fetchone()["n"]
+        need = (max(self.months) * TRADING_DAYS_PER_MONTH if self.months else max(self.sessions)) + 10
+        seed_needed = have < len(universe) or (depth or 0) < need
+        if not seed_needed and self.md.kv_get(flag):
+            return True
+        st = self.md.update_daily(universe, now, period="3y" if seed_needed else "10d")
+        if st["failed"]:
+            self.L.issue("ERROR", "marketdata", f"trend universe refresh failed for {st['failed']}; decision postponed")
+            return False
+        self.md.kv_set(flag, iso(now))
+        return True
+
     def maybe_decide(self, last_done: dt.date, lcs: dt.date) -> None:
         from .strategy import Decision
         now = self.now
@@ -120,18 +139,8 @@ class TrendEngine(Engine):
         D = lcs
         order_type = "MOO" if now < session_open(T) else "MKT"
         universe = self._universe()
-        flag = f"refreshed:{D.isoformat()}:trend"
-        if not self.md.kv_get(flag):
-            depth = self.md.db.execute("SELECT MIN(n) AS n FROM (SELECT COUNT(*) AS n FROM daily_bars WHERE ticker IN (%s) "
-                                       "AND final IN (1,2) GROUP BY ticker)" % ",".join("?" * len(universe)), universe).fetchone()["n"]
-            have = self.md.db.execute("SELECT COUNT(DISTINCT ticker) AS n FROM daily_bars WHERE ticker IN (%s)" % ",".join("?" * len(universe)),
-                                      universe).fetchone()["n"]
-            seed_needed = have < len(universe) or (depth or 0) < (max(self.months) * TRADING_DAYS_PER_MONTH if self.months else max(self.sessions)) + 10
-            st = self.md.update_daily(universe, now, period="3y" if seed_needed else "10d")
-            if st["failed"]:
-                self.L.issue("ERROR", "marketdata", f"trend universe refresh failed for {st['failed']}; decision postponed")
-                return
-            self.md.kv_set(flag, iso(now))
+        if not self._refresh(universe, D, now):
+            return
         missing = [t for t in universe if self.md.bar_quality(t, D) not in (1, 2)]
         if missing:
             if now < session_close(D) + DERIVE_AFTER:
