@@ -1,0 +1,95 @@
+{
+ "kind": "daily",
+ "date": "2026-10-06",
+ "day": 14,
+ "weekday": "Tuesday",
+ "generated_at": "2026-10-07T07:43:56Z",
+ "summary": "All bots together went from $666.57 to $669.87 today (+$3.30). Biggest gain: Research (+$2.58). The S&P 500 (SPY) moved +0.55%.",
+ "rows": [
+  {
+   "id": "daytrade",
+   "name": "Day trading",
+   "status": "trading",
+   "value": 98.51359820691873,
+   "change": 0.0,
+   "since_start": -1.4864017930812707,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto2",
+   "name": "Crypto odds bot v2",
+   "status": "trading",
+   "value": 100.0,
+   "change": 0.0,
+   "since_start": 0.0,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "mm",
+   "name": "Market maker v2",
+   "status": "trading",
+   "value": 92.94952568400001,
+   "change": 0.0,
+   "since_start": -7.050474315999992,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto",
+   "name": "Crypto odds bot v1 (retired)",
+   "status": "retired (only settles old bets)",
+   "value": 74.22458862,
+   "change": 0.0,
+   "since_start": -25.775411379999994,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "primary",
+   "name": "Primary",
+   "status": "trading",
+   "value": 100.72935455439305,
+   "change": 0.5393843702596683,
+   "since_start": 0.7293545543930549,
+   "trades": 1,
+   "wins": 1,
+   "losses": 0
+  },
+  {
+   "id": "research",
+   "name": "Research",
+   "status": "trading",
+   "value": 103.15703426929082,
+   "change": 2.583663889450065,
+   "since_start": 3.1570342692908184,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "trend",
+   "name": "Diversified trend",
+   "status": "trading",
+   "value": 100.29632493424296,
+   "change": 0.18133016760253895,
+   "since_start": 0.2963249342429606,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  }
+ ],
+ "spy": {
+  "value": 100.74471298283255,
+  "change_pct": 0.005497992684414754
+ },
+ "missing": [],
+ "total_before": 666.5660478415333,
+ "total_end": 669.8704262688456,
+ "late_by_hours": 2.7
+}

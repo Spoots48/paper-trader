@@ -369,6 +369,7 @@ INSERT INTO "events" VALUES(287,'2026-10-03T07:07:13Z','20261003T070707Z-crypto'
 INSERT INTO "events" VALUES(288,'2026-10-04T06:22:46Z','20261004T062241Z-crypto','snapshot','{"cash": 74.22458862, "drawdown": 0.2577541137999999, "equity": 74.22458862, "session": "2026-10-03", "spy_bh_equity": null}','f0c8985ecb1309cd7e5f1f0d6a0302dae04cdff87341f67a30d7eda30c639b22','c38b0fd620e464f5916da5c64afa41e76051559baa0a923bcea56e3873cb1415');
 INSERT INTO "events" VALUES(289,'2026-10-05T06:15:24Z','20261005T061519Z-crypto','snapshot','{"cash": 74.22458862, "drawdown": 0.2577541137999999, "equity": 74.22458862, "session": "2026-10-04", "spy_bh_equity": null}','c38b0fd620e464f5916da5c64afa41e76051559baa0a923bcea56e3873cb1415','0f9ffa86f5adc37c2eb2b7d8aaed684f1414d8a9430ce6b3856f7ddd7d019c3e');
 INSERT INTO "events" VALUES(290,'2026-10-06T09:26:33Z','20261006T092627Z-crypto','snapshot','{"cash": 74.22458862, "drawdown": 0.2577541137999999, "equity": 74.22458862, "session": "2026-10-05", "spy_bh_equity": null}','0f9ffa86f5adc37c2eb2b7d8aaed684f1414d8a9430ce6b3856f7ddd7d019c3e','7de753f862a5f07709ef53298123fb019297321f86b77501d9fe3e742f20e0a9');
+INSERT INTO "events" VALUES(291,'2026-10-07T07:44:01Z','20261007T074356Z-crypto','snapshot','{"cash": 74.22458862, "drawdown": 0.2577541137999999, "equity": 74.22458862, "session": "2026-10-06", "spy_bh_equity": null}','7de753f862a5f07709ef53298123fb019297321f86b77501d9fe3e742f20e0a9','fe9efcd95da32dcc1dca424b5f40bc9185f5a47822eeead30f5312afbf430f92');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -798,6 +799,7 @@ INSERT INTO "runs" VALUES('20261007T000539Z-crypto','2026-10-07T00:05:46Z','2026
 INSERT INTO "runs" VALUES('20261007T003908Z-crypto','2026-10-07T00:39:13Z','2026-10-07T00:39:13Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261007T010211Z-crypto','2026-10-07T01:02:17Z','2026-10-07T01:02:17Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261007T022147Z-crypto','2026-10-07T02:21:55Z','2026-10-07T02:21:55Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261007T074356Z-crypto','2026-10-07T07:44:01Z','2026-10-07T07:44:01Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -814,12 +816,13 @@ INSERT INTO "snapshots" VALUES('2026-10-02','2026-10-03T07:07:13Z','20261003T070
 INSERT INTO "snapshots" VALUES('2026-10-03','2026-10-04T06:22:46Z','20261004T062241Z-crypto',74.22458862,74.22458862,0.0,NULL,100.0,100.0,2.57754113799999906e-01,'0 open bets','{"peak": 100.0, "drawdown": 0.2577541137999999}','{"marks": {}, "flags": {}}','{}');
 INSERT INTO "snapshots" VALUES('2026-10-04','2026-10-05T06:15:24Z','20261005T061519Z-crypto',74.22458862,74.22458862,0.0,NULL,100.0,100.0,2.57754113799999906e-01,'0 open bets','{"peak": 100.0, "drawdown": 0.2577541137999999}','{"marks": {}, "flags": {}}','{}');
 INSERT INTO "snapshots" VALUES('2026-10-05','2026-10-06T09:26:33Z','20261006T092627Z-crypto',74.22458862,74.22458862,0.0,NULL,100.0,100.0,2.57754113799999906e-01,'0 open bets','{"peak": 100.0, "drawdown": 0.2577541137999999}','{"marks": {}, "flags": {}}','{}');
+INSERT INTO "snapshots" VALUES('2026-10-06','2026-10-07T07:44:01Z','20261007T074356Z-crypto',74.22458862,74.22458862,0.0,NULL,100.0,100.0,2.57754113799999906e-01,'0 open bets','{"peak": 100.0, "drawdown": 0.2577541137999999}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','74.22458862','2026-09-25T20:10:36Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-07T02:21:55Z');
-INSERT INTO "state" VALUES('pm_positions','{}','2026-10-07T02:21:55Z');
-INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-07T02:21:55Z", "marks": {}}','2026-10-07T02:21:55Z');
-INSERT INTO "state" VALUES('risk','{"peak": 100.0, "drawdown": 0.2577541137999999}','2026-10-06T09:26:33Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-07T07:44:01Z');
+INSERT INTO "state" VALUES('pm_positions','{}','2026-10-07T07:44:01Z');
+INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-07T07:44:01Z", "marks": {}}','2026-10-07T07:44:01Z');
+INSERT INTO "state" VALUES('risk','{"peak": 100.0, "drawdown": 0.2577541137999999}','2026-10-07T07:44:01Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
@@ -843,7 +846,7 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',290);
+INSERT INTO "sqlite_sequence" VALUES('events',291);
 INSERT INTO "sqlite_sequence" VALUES('decisions',63);
 INSERT INTO "sqlite_sequence" VALUES('fills',86);
 COMMIT;
