@@ -1,20 +1,40 @@
-2026-10-07 15:27:45,512 INFO [daytrade] no action needed
-2026-10-07 15:27:50,949 INFO [crypto2] no action needed
-2026-10-07 15:27:52,129 INFO [mm] no action needed
-2026-10-07 15:27:52,135 INFO [crypto] no action needed
-2026-10-07 15:27:52,491 INFO [primary] no action needed
-2026-10-07 15:27:53,172 INFO [research] no action needed
-2026-10-07 15:27:53,487 INFO [trend] no action needed
-2026-10-07 15:27:54,584 ERROR [ctrend] cycle error: Traceback (most recent call last):
-  File "/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py", line 111, in run_cycle
-    summary = TrendEngine(L, md, cfg, {**exp, "book": book["id"]}, now).step()
-  File "/home/runner/work/paper-trader/paper-trader/papertrader/engine.py", line 101, in step
-    self.maybe_decide(last_done, lcs)
-    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "/home/runner/work/paper-trader/paper-trader/papertrader/trend.py", line 171, in maybe_decide
-    weights, detail = trend_weights(closes, self.assets, self.months, self.sessions)
-                      ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/paper-trader/paper-trader/papertrader/trend.py", line 33, in trend_weights
-    raise ValueError(f"{a}: {len(s)} closes, need {need}")
-ValueError: IBIT: 1 closes, need 200
-
+2026-10-07 15:31:13,384 INFO [daytrade] no action needed
+2026-10-07 15:31:19,051 INFO [crypto2] no action needed
+2026-10-07 15:31:19,983 INFO [mm] no action needed
+2026-10-07 15:31:19,990 INFO [crypto] no action needed
+2026-10-07 15:31:20,294 INFO [primary] no action needed
+2026-10-07 15:31:20,659 INFO [research] no action needed
+2026-10-07 15:31:21,105 INFO [trend] no action needed
+2026-10-07 15:31:23,009 INFO [ctrend] decided for 2026-10-07: 2 orders (MKT), rebalance=True
+2026-10-07 15:36:13,004 INFO [daytrade] no action needed
+2026-10-07 15:36:18,790 INFO [crypto2] no action needed
+2026-10-07 15:36:19,723 INFO [mm] no action needed
+2026-10-07 15:36:19,729 INFO [crypto] no action needed
+2026-10-07 15:36:19,850 INFO [primary] no action needed
+2026-10-07 15:36:20,100 INFO [research] no action needed
+2026-10-07 15:36:20,303 INFO [trend] no action needed
+2026-10-07 15:36:20,545 INFO [ctrend] no action needed
+2026-10-07 15:41:12,884 INFO [daytrade] no action needed
+2026-10-07 15:41:18,538 INFO [crypto2] no action needed
+2026-10-07 15:41:18,810 INFO [mm] no action needed
+2026-10-07 15:41:18,816 INFO [crypto] no action needed
+2026-10-07 15:41:19,095 INFO [primary] no action needed
+2026-10-07 15:41:19,389 INFO [research] no action needed
+2026-10-07 15:41:19,675 INFO [trend] no action needed
+2026-10-07 15:41:19,903 INFO [ctrend] FILL BUY ETHA 0.8493 @ 57.99 (TREND_BUY); FILL BUY IBIT 1.0456 @ 47.10 (TREND_BUY)
+2026-10-07 15:46:12,806 INFO [daytrade] no action needed
+2026-10-07 15:46:18,307 INFO [crypto2] no action needed
+2026-10-07 15:46:19,289 INFO [mm] no action needed
+2026-10-07 15:46:19,296 INFO [crypto] no action needed
+2026-10-07 15:46:19,476 INFO [primary] no action needed
+2026-10-07 15:46:19,710 INFO [research] no action needed
+2026-10-07 15:46:19,902 INFO [trend] no action needed
+2026-10-07 15:46:20,048 INFO [ctrend] no action needed
+2026-10-07 15:51:12,988 INFO [daytrade] no action needed
+2026-10-07 15:51:18,600 INFO [crypto2] no action needed
+2026-10-07 15:51:19,521 INFO [mm] no action needed
+2026-10-07 15:51:19,528 INFO [crypto] no action needed
+2026-10-07 15:51:19,701 INFO [primary] no action needed
+2026-10-07 15:51:19,941 INFO [research] no action needed
+2026-10-07 15:51:20,193 INFO [trend] no action needed
+2026-10-07 15:51:20,434 INFO [ctrend] no action needed
