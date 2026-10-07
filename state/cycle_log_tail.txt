@@ -1,35 +1,20 @@
-2026-10-07 15:05:27,123 INFO [daytrade] no action needed
-2026-10-07 15:05:32,858 INFO [crypto2] no action needed
-2026-10-07 15:05:34,783 INFO [mm] no action needed
-2026-10-07 15:05:34,789 INFO [crypto] no action needed
-2026-10-07 15:05:34,956 INFO [primary] no action needed
-2026-10-07 15:05:35,243 INFO [research] no action needed
-2026-10-07 15:05:35,458 INFO [trend] no action needed
-2026-10-07 15:10:26,918 INFO [daytrade] no action needed
-2026-10-07 15:10:33,113 INFO [crypto2] no action needed
-2026-10-07 15:10:34,255 INFO [mm] no action needed
-2026-10-07 15:10:34,261 INFO [crypto] no action needed
-2026-10-07 15:10:34,369 INFO [primary] no action needed
-2026-10-07 15:10:34,565 INFO [research] no action needed
-2026-10-07 15:10:34,753 INFO [trend] no action needed
-2026-10-07 15:15:26,922 INFO [daytrade] no action needed
-2026-10-07 15:15:31,440 INFO [crypto2] no action needed
-2026-10-07 15:15:33,350 INFO [mm] no action needed
-2026-10-07 15:15:33,356 INFO [crypto] no action needed
-2026-10-07 15:15:33,462 INFO [primary] no action needed
-2026-10-07 15:15:33,666 INFO [research] no action needed
-2026-10-07 15:15:33,900 INFO [trend] no action needed
-2026-10-07 15:20:26,923 INFO [daytrade] no action needed
-2026-10-07 15:20:33,102 INFO [crypto2] no action needed
-2026-10-07 15:20:34,978 INFO [mm] no action needed
-2026-10-07 15:20:34,984 INFO [crypto] no action needed
-2026-10-07 15:20:35,078 INFO [primary] no action needed
-2026-10-07 15:20:35,286 INFO [research] no action needed
-2026-10-07 15:20:35,460 INFO [trend] no action needed
-2026-10-07 15:25:26,995 INFO [daytrade] no action needed
-2026-10-07 15:25:32,741 INFO [crypto2] no action needed
-2026-10-07 15:25:33,795 INFO [mm] no action needed
-2026-10-07 15:25:33,800 INFO [crypto] no action needed
-2026-10-07 15:25:33,899 INFO [primary] no action needed
-2026-10-07 15:25:34,107 INFO [research] no action needed
-2026-10-07 15:25:34,283 INFO [trend] no action needed
+2026-10-07 15:27:45,512 INFO [daytrade] no action needed
+2026-10-07 15:27:50,949 INFO [crypto2] no action needed
+2026-10-07 15:27:52,129 INFO [mm] no action needed
+2026-10-07 15:27:52,135 INFO [crypto] no action needed
+2026-10-07 15:27:52,491 INFO [primary] no action needed
+2026-10-07 15:27:53,172 INFO [research] no action needed
+2026-10-07 15:27:53,487 INFO [trend] no action needed
+2026-10-07 15:27:54,584 ERROR [ctrend] cycle error: Traceback (most recent call last):
+  File "/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py", line 111, in run_cycle
+    summary = TrendEngine(L, md, cfg, {**exp, "book": book["id"]}, now).step()
+  File "/home/runner/work/paper-trader/paper-trader/papertrader/engine.py", line 101, in step
+    self.maybe_decide(last_done, lcs)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/runner/work/paper-trader/paper-trader/papertrader/trend.py", line 171, in maybe_decide
+    weights, detail = trend_weights(closes, self.assets, self.months, self.sessions)
+                      ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/paper-trader/paper-trader/papertrader/trend.py", line 33, in trend_weights
+    raise ValueError(f"{a}: {len(s)} closes, need {need}")
+ValueError: IBIT: 1 closes, need 200
+

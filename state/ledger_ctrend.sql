@@ -3,6 +3,8 @@ CREATE TABLE data_issues (
   id INTEGER PRIMARY KEY AUTOINCREMENT, occurred_at TEXT NOT NULL, run_id TEXT, severity TEXT NOT NULL,
   component TEXT NOT NULL, ticker TEXT, message TEXT NOT NULL
 );
+INSERT INTO "data_issues" VALUES(1,'2026-10-07T15:27:54Z','20261007T152744Z-ctrend','INFO','marketdata',NULL,'official close missing for 2026-10-06; derived daily bars from 5m data for 2 tickers');
+INSERT INTO "data_issues" VALUES(2,'2026-10-07T15:27:54Z','20261007T152744Z-ctrend','ERROR','engine',NULL,'ValueError: IBIT: 1 closes, need 200');
 CREATE TABLE decisions (
   decision_id INTEGER PRIMARY KEY AUTOINCREMENT, decision_key TEXT NOT NULL UNIQUE, run_id TEXT,
   created_at TEXT NOT NULL, data_through TEXT NOT NULL, session TEXT NOT NULL, ticker TEXT NOT NULL,
@@ -17,6 +19,7 @@ CREATE TABLE events (
   payload TEXT NOT NULL, prev_hash TEXT NOT NULL, hash TEXT NOT NULL
 );
 INSERT INTO "events" VALUES(1,'2026-10-07T15:25:55Z',NULL,'freeze','{"book": "ctrend", "end": "2026-10-22", "start": "2026-10-07", "strategy_sha256": "77c7659af254c4ab2c15f7087c0e0d7d2b3a5b80057cfcb6d2ff691c25b6a5a8", "universe_sha256": "172ba39de91f49af21ee2539df0b42cd5d6aa9c7afbd426114cb33bba2c27afa", "version": "crypto-trend-1.0.0"}','GENESIS','98a6033c3e6bfc6a83aab86ca91e02502ca5d3599d1880e9eb14a0a262c44ed1');
+INSERT INTO "events" VALUES(2,'2026-10-07T15:27:53Z','20261007T152744Z-ctrend','benchmark_init','{"entry_price": 776.3130585449218, "qty": 0.12881401246480959}','98a6033c3e6bfc6a83aab86ca91e02502ca5d3599d1880e9eb14a0a262c44ed1','17b0d4205f691d11cb561fc33a86e99b04c72a8d18d07330bca290fae2019970');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -57,13 +60,31 @@ CREATE TABLE runs (
   run_id TEXT PRIMARY KEY, started_at TEXT NOT NULL, finished_at TEXT, status TEXT NOT NULL,
   trigger TEXT, summary TEXT, error TEXT
 );
+INSERT INTO "runs" VALUES('20261007T152744Z-ctrend','2026-10-07T15:27:53Z','2026-10-07T15:27:54Z','ERROR','github-actions','','Traceback (most recent call last):
+  File "/home/runner/work/paper-trader/paper-trader/papertrader/cycle.py", line 111, in run_cycle
+    summary = TrendEngine(L, md, cfg, {**exp, "book": book["id"]}, now).step()
+  File "/home/runner/work/paper-trader/paper-trader/papertrader/engine.py", line 101, in step
+    self.maybe_decide(last_done, lcs)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/runner/work/paper-trader/paper-trader/papertrader/trend.py", line 171, in maybe_decide
+    weights, detail = trend_weights(closes, self.assets, self.months, self.sessions)
+                      ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/paper-trader/paper-trader/papertrader/trend.py", line 33, in trend_weights
+    raise ValueError(f"{a}: {len(s)} closes, need {need}")
+ValueError: IBIT: 1 closes, need 200
+');
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
   peak REAL NOT NULL, drawdown REAL NOT NULL, regime TEXT, risk_state TEXT, marks TEXT, holdings TEXT
 );
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
-INSERT INTO "state" VALUES('cash','100.0','2026-10-07T15:25:55Z');
+INSERT INTO "state" VALUES('cash','100.0','2026-10-07T15:27:53Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-07T15:27:53Z');
+INSERT INTO "state" VALUES('benchmark','{"ticker": "SPY", "qty": 0.12881401246480959, "entry_price": 776.3130585449218, "entry_session": "2026-10-07", "div_cash": 0.0, "note": "SPY bought at the first session''s official open with the same cost model"}','2026-10-07T15:27:53Z');
+INSERT INTO "state" VALUES('open_done:2026-10-07','true','2026-10-07T15:27:53Z');
+INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-07T15:27:44Z", "marks": {}}','2026-10-07T15:27:53Z');
+INSERT INTO "state" VALUES('last_regime','"TREND"','2026-10-07T15:27:54Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
@@ -87,5 +108,6 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',1);
+INSERT INTO "sqlite_sequence" VALUES('events',2);
+INSERT INTO "sqlite_sequence" VALUES('data_issues',2);
 COMMIT;
