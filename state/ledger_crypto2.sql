@@ -1296,6 +1296,7 @@ INSERT INTO "decisions" VALUES(1283,'quality:eth-updown-15m-1791426600:2026-10-0
 INSERT INTO "decisions" VALUES(1284,'quality:ethereum-up-or-down-october-7-2026-10pm-et:2026-10-08T02:41:53Z','20261008T024148Z-crypto2','2026-10-08T02:41:53Z','2026-10-08T02:41:53Z','2026-10-07','ethereum-up-or-down-october-7-2026-10pm-et','predmarket','INFO','INPUT_QUALITY','input timestamps agree','{"checks": [{"name": "book:21499765991088931148823467466713797221335009805968886371922850792717766234476", "ok": true, "age_seconds": 0.38157105445861816, "reason": "fresh"}, {"name": "book:56844965232338024005225137258442792151183425634202496495551294423977451725039", "ok": true, "age_seconds": 0.12457108497619629, "reason": "fresh"}, {"name": "underlying_trade", "ok": true, "age_seconds": 1.5425710678100586, "reason": "fresh"}, {"name": "snapshot_skew", "ok": true, "skew_seconds": 1.4179999828338623, "reason": "maximum separation between input timestamps"}]}','[]');
 INSERT INTO "decisions" VALUES(1285,'quality:eth-updown-4h-1791417600:2026-10-08T02:41:53Z','20261008T024148Z-crypto2','2026-10-08T02:41:53Z','2026-10-08T02:41:53Z','2026-10-07','eth-updown-4h-1791417600','predmarket','INFO','INPUT_QUALITY','input timestamps agree','{"checks": [{"name": "book:67510982813529075052700611466607645954822834807864847586346391307954292562474", "ok": true, "age_seconds": 0.6798388957977295, "reason": "fresh"}, {"name": "book:107344165015412458752663158289876765395272509147948125555439236565227653514442", "ok": true, "age_seconds": 0.07383894920349121, "reason": "fresh"}, {"name": "underlying_trade", "ok": true, "age_seconds": 1.898838996887207, "reason": "fresh"}, {"name": "snapshot_skew", "ok": true, "skew_seconds": 1.8250000476837158, "reason": "maximum separation between input timestamps"}]}','[]');
 INSERT INTO "decisions" VALUES(1286,'pm:scan:2026-10-08T02:41:53Z','20261008T024148Z-crypto2','2026-10-08T02:41:53Z','2026-10-08T02:41:53Z','2026-10-07','*','predmarket','INFO','PM_SCAN','scanned 6 live markets; 0 bet(s).','{"scanned": [{"market": "btc-updown-15m-1791426600", "mid_up": 0.805, "model_up": 0, "result": "outside entry timing (79% of window elapsed)"}, {"market": "bitcoin-up-or-down-october-7-2026-10pm-et", "mid_up": 0.775, "model_up": 0.658, "result": "no side priced between the allowed 30c-75c"}, {"market": "btc-updown-4h-1791417600", "mid_up": 0.255, "model_up": 0.379, "result": "no side priced between the allowed 30c-75c"}, {"market": "eth-updown-15m-1791426600", "mid_up": 0.959, "model_up": 0, "result": "outside entry timing (79% of window elapsed)"}, {"market": "ethereum-up-or-down-october-7-2026-10pm-et", "mid_up": 0.795, "model_up": 0.693, "result": "no side priced between the allowed 30c-75c"}, {"market": "eth-updown-4h-1791417600", "mid_up": 0.77, "model_up": 0.701, "result": "no side priced between the allowed 30c-75c"}]}','[]');
+INSERT INTO "decisions" VALUES(1287,'pm:scan:2026-10-08T07:59:25Z','20261008T075925Z-crypto2','2026-10-08T07:59:25Z','2026-10-08T07:59:25Z','2026-10-08','*','predmarket','INFO','PM_SCAN','scanned 0 live markets; 0 bet(s).','{"scanned": []}','[]');
 CREATE TABLE dividends (
   ticker TEXT NOT NULL, ex_date TEXT NOT NULL, per_share REAL NOT NULL, qty REAL NOT NULL,
   amount REAL NOT NULL, recorded_at TEXT NOT NULL, PRIMARY KEY (ticker, ex_date)
@@ -2605,6 +2606,8 @@ INSERT INTO "events" VALUES(1298,'2026-10-08T02:41:52Z','20261008T024148Z-crypto
 INSERT INTO "events" VALUES(1299,'2026-10-08T02:41:53Z','20261008T024148Z-crypto2','decision','{"action": "INFO", "code": "INPUT_QUALITY", "key": "quality:ethereum-up-or-down-october-7-2026-10pm-et:2026-10-08T02:41:53Z", "reason": "input timestamps agree", "ticker": "ethereum-up-or-down-october-7-2026-10pm-et"}','ecfaca2d59771d9a7608ca8d69fad262ed635847f471353b894d0c6bf7b50efd','b9a4ccda2f692da963c48c017dc7c4108b42598ffad5507cacf64e7a47fba7d2');
 INSERT INTO "events" VALUES(1300,'2026-10-08T02:41:53Z','20261008T024148Z-crypto2','decision','{"action": "INFO", "code": "INPUT_QUALITY", "key": "quality:eth-updown-4h-1791417600:2026-10-08T02:41:53Z", "reason": "input timestamps agree", "ticker": "eth-updown-4h-1791417600"}','b9a4ccda2f692da963c48c017dc7c4108b42598ffad5507cacf64e7a47fba7d2','3739c702139ece64db38c87eacb04447654ed08527bed25981350e13aeb01c79');
 INSERT INTO "events" VALUES(1301,'2026-10-08T02:41:53Z','20261008T024148Z-crypto2','decision','{"action": "INFO", "code": "PM_SCAN", "key": "pm:scan:2026-10-08T02:41:53Z", "reason": "scanned 6 live markets; 0 bet(s).", "ticker": "*"}','3739c702139ece64db38c87eacb04447654ed08527bed25981350e13aeb01c79','8f23ba8a65d8f3deba8dc65494e2a77adced75a01e1f227a81e6b7dfdd955b15');
+INSERT INTO "events" VALUES(1302,'2026-10-08T07:59:28Z','20261008T075925Z-crypto2','decision','{"action": "INFO", "code": "PM_SCAN", "key": "pm:scan:2026-10-08T07:59:25Z", "reason": "scanned 0 live markets; 0 bet(s).", "ticker": "*"}','8f23ba8a65d8f3deba8dc65494e2a77adced75a01e1f227a81e6b7dfdd955b15','ddf2daedd8db96fb504039948b3b1ec8c2f6049dd1360fe6a4e276a2865af0bb');
+INSERT INTO "events" VALUES(1303,'2026-10-08T07:59:28Z','20261008T075925Z-crypto2','snapshot','{"cash": 100.0, "drawdown": 0.0, "equity": 100.0, "session": "2026-10-07", "spy_bh_equity": null}','ddf2daedd8db96fb504039948b3b1ec8c2f6049dd1360fe6a4e276a2865af0bb','5af001d0586d0d7d6ccf6bd279452c8bdd4d33fce66d673b7c6ebd14751a2bcd');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -2880,6 +2883,7 @@ INSERT INTO "runs" VALUES('20261008T002423Z-crypto2','2026-10-08T00:24:23Z','202
 INSERT INTO "runs" VALUES('20261008T010021Z-crypto2','2026-10-08T01:00:21Z','2026-10-08T01:00:25Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261008T011955Z-crypto2','2026-10-08T01:19:55Z','2026-10-08T01:20:00Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261008T024148Z-crypto2','2026-10-08T02:41:48Z','2026-10-08T02:41:53Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261008T075925Z-crypto2','2026-10-08T07:59:25Z','2026-10-08T07:59:28Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -2897,16 +2901,17 @@ INSERT INTO "snapshots" VALUES('2026-10-03','2026-10-04T06:22:45Z','20261004T062
 INSERT INTO "snapshots" VALUES('2026-10-04','2026-10-05T06:15:23Z','20261005T061519Z-crypto2',100.0,100.0,0.0,NULL,100.0,100.0,0.0,'0 open bets','{"peak": 100.0, "drawdown": 0.0}','{"marks": {}, "flags": {}}','{}');
 INSERT INTO "snapshots" VALUES('2026-10-05','2026-10-06T09:26:32Z','20261006T092627Z-crypto2',100.0,100.0,0.0,NULL,100.0,100.0,0.0,'0 open bets','{"peak": 100.0, "drawdown": 0.0}','{"marks": {}, "flags": {}}','{}');
 INSERT INTO "snapshots" VALUES('2026-10-06','2026-10-07T07:44:01Z','20261007T074356Z-crypto2',100.0,100.0,0.0,NULL,100.0,100.0,0.0,'0 open bets','{"peak": 100.0, "drawdown": 0.0}','{"marks": {}, "flags": {}}','{}');
+INSERT INTO "snapshots" VALUES('2026-10-07','2026-10-08T07:59:25Z','20261008T075925Z-crypto2',100.0,100.0,0.0,NULL,100.0,100.0,0.0,'0 open bets','{"peak": 100.0, "drawdown": 0.0}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','100.0','2026-09-25T20:09:49Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-08T02:41:48Z');
-INSERT INTO "state" VALUES('risk','{"peak": 100.0, "drawdown": 0.0}','2026-10-08T02:41:48Z');
-INSERT INTO "state" VALUES('pm_day','{"date": "2026-10-07", "start_equity": 100.0, "peak": 100.0, "protected_floor": 97.0}','2026-10-08T02:41:48Z');
-INSERT INTO "state" VALUES('pm_positions','{}','2026-10-08T02:41:53Z');
-INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-08T02:41:53Z", "marks": {}}','2026-10-08T02:41:53Z');
-INSERT INTO "state" VALUES('entry_cooldown','null','2026-10-08T02:41:48Z');
-INSERT INTO "state" VALUES('crosscheck_BTCUSDT','{"at": "2026-10-08T02:41:48.335396+00:00", "n": 297, "median_bp": 5.36, "max_bp": 7.63, "ok": true}','2026-10-08T02:41:49Z');
-INSERT INTO "state" VALUES('crosscheck_ETHUSDT','{"at": "2026-10-08T02:41:50.899961+00:00", "n": 296, "median_bp": 5.3, "max_bp": 8.24, "ok": true}','2026-10-08T02:41:52Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-08T07:59:25Z');
+INSERT INTO "state" VALUES('risk','{"peak": 100.0, "drawdown": 0.0}','2026-10-08T07:59:28Z');
+INSERT INTO "state" VALUES('pm_day','{"date": "2026-10-08", "start_equity": 100.0, "peak": 100.0, "protected_floor": 97.0}','2026-10-08T07:59:25Z');
+INSERT INTO "state" VALUES('pm_positions','{}','2026-10-08T07:59:28Z');
+INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-08T07:59:25Z", "marks": {}}','2026-10-08T07:59:28Z');
+INSERT INTO "state" VALUES('entry_cooldown','null','2026-10-08T07:59:25Z');
+INSERT INTO "state" VALUES('crosscheck_BTCUSDT','{"at": "2026-10-08T07:59:25.577650+00:00", "n": 299, "median_bp": 7.28, "max_bp": 8.95, "ok": true}','2026-10-08T07:59:26Z');
+INSERT INTO "state" VALUES('crosscheck_ETHUSDT','{"at": "2026-10-08T07:59:25.577650+00:00", "n": 298, "median_bp": 7.01, "max_bp": 10.95, "ok": true}','2026-10-08T07:59:28Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
@@ -2932,8 +2937,8 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',1301);
-INSERT INTO "sqlite_sequence" VALUES('decisions',1286);
+INSERT INTO "sqlite_sequence" VALUES('events',1303);
+INSERT INTO "sqlite_sequence" VALUES('decisions',1287);
 INSERT INTO "sqlite_sequence" VALUES('strategy_changes',2);
 INSERT INTO "sqlite_sequence" VALUES('data_issues',2);
 COMMIT;

@@ -1,0 +1,106 @@
+{
+ "kind": "daily",
+ "date": "2026-10-07",
+ "day": 15,
+ "weekday": "Wednesday",
+ "generated_at": "2026-10-08T07:59:25Z",
+ "summary": "All bots together went from $769.87 to $769.12 today (\u2212$0.75). Biggest gain: Crypto trend (high risk) (+$0.20). Biggest loss: Research (\u2212$0.47). The S&P 500 (SPY) moved \u22120.24%.",
+ "rows": [
+  {
+   "id": "daytrade",
+   "name": "Day trading",
+   "status": "trading",
+   "value": 98.51359820691873,
+   "change": 0.0,
+   "since_start": -1.4864017930812707,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto2",
+   "name": "Crypto odds bot v2",
+   "status": "trading",
+   "value": 100.0,
+   "change": 0.0,
+   "since_start": 0.0,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "mm",
+   "name": "Market maker v2",
+   "status": "trading",
+   "value": 92.94952568400001,
+   "change": 0.0,
+   "since_start": -7.050474315999992,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto",
+   "name": "Crypto odds bot v1 (retired)",
+   "status": "retired (only settles old bets)",
+   "value": 74.22458862,
+   "change": 0.0,
+   "since_start": -25.775411379999994,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "primary",
+   "name": "Primary",
+   "status": "trading",
+   "value": 100.49229677734152,
+   "change": -0.23705777705153253,
+   "since_start": 0.49229677734152233,
+   "trades": 1,
+   "wins": 1,
+   "losses": 0
+  },
+  {
+   "id": "research",
+   "name": "Research",
+   "status": "trading",
+   "value": 102.68411400485601,
+   "change": -0.47292026443480495,
+   "since_start": 2.6841140048560135,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "trend",
+   "name": "Diversified trend",
+   "status": "trading",
+   "value": 100.05780288775705,
+   "change": -0.2385220464859117,
+   "since_start": 0.05780288775704889,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "ctrend",
+   "name": "Crypto trend (high risk)",
+   "status": "trading",
+   "value": 100.201609896319,
+   "change": 0.20160989631899895,
+   "since_start": 0.20160989631899895,
+   "trades": 2,
+   "wins": 0,
+   "losses": 0
+  }
+ ],
+ "spy": {
+  "value": 100.50289462572938,
+  "change_pct": -0.0024003081645026514
+ },
+ "missing": [],
+ "total_before": 769.8704262688456,
+ "total_end": 769.1235360771924,
+ "late_by_hours": 3.0
+}
