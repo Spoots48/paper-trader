@@ -1,0 +1,106 @@
+{
+ "kind": "daily",
+ "date": "2026-10-08",
+ "day": 16,
+ "weekday": "Thursday",
+ "generated_at": "2026-10-09T08:01:12Z",
+ "summary": "All bots together went from $769.12 to $765.59 today (\u2212$3.54). Biggest gain: Day trading (+$0.40). Biggest loss: Crypto trend (high risk) (\u2212$3.03). The S&P 500 (SPY) moved \u22120.42%.",
+ "rows": [
+  {
+   "id": "daytrade",
+   "name": "Day trading",
+   "status": "trading",
+   "value": 98.91121459181755,
+   "change": 0.397616384898825,
+   "since_start": -1.0887854081824457,
+   "trades": 2,
+   "wins": 1,
+   "losses": 0
+  },
+  {
+   "id": "crypto2",
+   "name": "Crypto odds bot v2",
+   "status": "trading",
+   "value": 100.0,
+   "change": 0.0,
+   "since_start": 0.0,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "mm",
+   "name": "Market maker v2",
+   "status": "trading",
+   "value": 92.94952568400001,
+   "change": 0.0,
+   "since_start": -7.050474315999992,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto",
+   "name": "Crypto odds bot v1 (retired)",
+   "status": "retired (only settles old bets)",
+   "value": 74.22458862,
+   "change": 0.0,
+   "since_start": -25.775411379999994,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "primary",
+   "name": "Primary",
+   "status": "trading",
+   "value": 100.07544011138694,
+   "change": -0.41685666595458315,
+   "since_start": 0.07544011138693918,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "research",
+   "name": "Research",
+   "status": "trading",
+   "value": 102.32941311442937,
+   "change": -0.354700890426642,
+   "since_start": 2.3294131144293715,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "trend",
+   "name": "Diversified trend",
+   "status": "trading",
+   "value": 99.92695838762737,
+   "change": -0.13084450012968318,
+   "since_start": -0.07304161237263429,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "ctrend",
+   "name": "Crypto trend (high risk)",
+   "status": "trading",
+   "value": 97.16999554245623,
+   "change": -3.0316143538627642,
+   "since_start": -2.8300044575437653,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  }
+ ],
+ "spy": {
+  "value": 100.07746511096285,
+  "change_pct": -0.004233007580038639
+ },
+ "missing": [],
+ "total_before": 769.1235360771924,
+ "total_end": 765.5871360517175,
+ "late_by_hours": 3.0
+}
