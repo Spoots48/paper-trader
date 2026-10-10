@@ -1,8 +1,8 @@
-2026-10-09 22:57:21,316 INFO [daytrade] SELL DAL @ 82.04 (CLOSE_EXIT); closed 2026-10-09: equity $99.00 (1 trades)
-2026-10-09 22:57:26,439 INFO [crypto2] no action needed
-2026-10-09 22:57:26,639 INFO [mm] no action needed
-2026-10-09 22:57:26,643 INFO [crypto] no action needed
-2026-10-09 22:57:29,472 INFO [primary] closed 2026-10-09; decided for 2026-10-12: 0 orders (MOO), regime ON
-2026-10-09 22:58:38,265 INFO [research] closed 2026-10-09; decided for 2026-10-12: 0 orders (MOO), regime ON
-2026-10-09 22:58:41,442 INFO [trend] closed 2026-10-09; decided for 2026-10-12: 0 orders (MOO), rebalance=False
-2026-10-09 22:58:44,391 INFO [ctrend] closed 2026-10-09; decided for 2026-10-12: 0 orders (MOO), rebalance=True
+2026-10-10 00:00:48,603 INFO [daytrade] no action needed
+2026-10-10 00:00:51,827 INFO [crypto2] no action needed
+2026-10-10 00:00:53,195 INFO [mm] no action needed
+2026-10-10 00:00:53,200 INFO [crypto] no action needed
+2026-10-10 00:00:53,208 INFO [primary] no action needed
+2026-10-10 00:00:53,212 INFO [research] no action needed
+2026-10-10 00:00:53,216 INFO [trend] no action needed
+2026-10-10 00:00:53,220 INFO [ctrend] no action needed
