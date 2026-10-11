@@ -50,6 +50,16 @@ jobs:
           # Inside the weekday morning window this loops every 5 min for ~20 min (papertrader/session.py); otherwise one cycle.
           python -m papertrader.session loop
           ls reports/day*.json 2>/dev/null | sort > /tmp/reports_after || true
+      # Shadow mode: Jev judges headlines already stored in the ledgers and writes state/jev_reviews.jsonl. Nothing reads it when trading.
+      # continue-on-error: no key, quota or network trouble must never fail a trading run.
+      - name: Jev news review (shadow only)
+        if: always() && steps.cycle.conclusion != 'skipped'
+        continue-on-error: true
+        env:
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+        run: |
+          pip install -q typesafe-sdk || exit 0
+          python -m papertrader.jev_news
       # Only after the cycle step ran: a failed test/restore/verify must never dump absent or unverified ledgers over state/.
       - name: Save ledgers to state/
         if: always() && steps.cycle.conclusion != 'skipped'
