@@ -31,6 +31,9 @@ jobs:
           python-version: "3.13"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: Install Jev SDK (optional; used by the speed trader and the news reviewer)
+        continue-on-error: true
+        run: pip install -q typesafe-sdk
       - name: Test before trading
         run: python -m pytest -q
       - name: Restore market-data cache
@@ -45,6 +48,8 @@ jobs:
         run: python run.py verify
       - name: Run one cycle
         id: cycle
+        env:
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
         run: |
           ls reports/day*.json 2>/dev/null | sort > /tmp/reports_before || true
           # Inside the weekday morning window this loops every 5 min for ~20 min (papertrader/session.py); otherwise one cycle.
