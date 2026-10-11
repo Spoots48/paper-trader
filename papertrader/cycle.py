@@ -151,6 +151,13 @@ def run_cycle(trigger: str = "manual", max_seconds: int = 1500) -> dict:
             except Exception:
                 results["daily_reports"] = "ERROR daily report generation failed"
                 log.error("daily report failed: " + traceback.format_exc())
+            try:  # diagnostic only; a failure here must never fail the cycle
+                from .daily_review import maybe_generate_review
+                made = maybe_generate_review(exp, now)
+                if made:
+                    log.info(f"after-close review written: {made}")
+            except Exception:
+                log.error("after-close review failed: " + traceback.format_exc())
         for L in ledgers.values():
             L.close()
         status = "error" if any(str(v).startswith("ERROR") for v in results.values()) else "ok"
