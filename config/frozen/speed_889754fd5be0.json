@@ -1,0 +1,80 @@
+{
+  "strategy_id": "jev-speed-trader (paper)",
+  "version": "speed-1.0.0",
+  "book_type": "speed",
+  "description": "Paper speed trader requested by the user: many short trades on 20 liquid stocks, with Jev (TypeSafe System One) as the only entry decision-maker and fixed exits. Each completed 1-minute bar, a cheap prefilter picks momentum/volume candidates and Jev returns the probability that price reaches +0.30% before -0.25% within 8 minutes; entries need p >= 0.65 and fill two bars later. No rule-based fallback: without Jev the book does not trade. Proceeds are reusable immediately (a real account under $25,000 could not do this: pattern-day-trader rule), so the result cannot transfer to real money. Costs are the realistic floor for mega-caps (about 3 bp per side entry, 3 bp exit, 5 bp stops), far below the day trader's. Break-even needs roughly a 58% hit rate. Expect it to lose if Jev has no edge; every Jev probability is logged to state/speed_calls.jsonl for a calibration check. No profit claim.",
+  "portfolio": {
+    "starting_cash": 100.0,
+    "max_positions": 4,
+    "position_usd": 15.0,
+    "min_order_usd": 1.0,
+    "fractional_decimals": 6,
+    "leverage": false,
+    "short_selling": false,
+    "account": "paper; proceeds reusable immediately",
+    "flat_by_close": true
+  },
+  "universe": {
+    "tickers": [
+      "SPY",
+      "QQQ",
+      "AAPL",
+      "MSFT",
+      "NVDA",
+      "AMD",
+      "TSLA",
+      "META",
+      "AMZN",
+      "GOOGL",
+      "AVGO",
+      "NFLX",
+      "PLTR",
+      "MU",
+      "JPM",
+      "BAC",
+      "INTC",
+      "COIN",
+      "UBER",
+      "ORCL"
+    ],
+    "note": "all average more than $1 billion traded per day, which is why the mega-cap cost tier is used"
+  },
+  "speed": {
+    "take_profit_pct": 0.3,
+    "stop_pct": 0.25,
+    "max_hold_minutes": 8,
+    "buy_threshold": 0.65,
+    "entry_delay_bars": 1,
+    "no_entries_last_minutes": 15,
+    "daily_loss_limit": 0.03,
+    "max_trades_per_day": 400,
+    "max_jev_calls_per_day": 600,
+    "max_jev_calls_per_run": 120,
+    "max_jev_calls_per_minute": 4,
+    "prefilter": {
+      "min_5m_return": 0.0012,
+      "min_volume_ratio": 2.0
+    }
+  },
+  "costs": {
+    "commission_usd": 0.0,
+    "stock_bps_adv_ge_1b": 2.0,
+    "stock_bps_adv_ge_200m": 5.0,
+    "stock_bps_other": 10.0,
+    "entry_stop_extra_bps": 1.0,
+    "stop_exit_extra_bps": 3.0,
+    "close_exit_extra_bps": 1.0,
+    "sec_fee_bps_on_sells": 0.3
+  },
+  "risk": {
+    "drawdown_pause": 0.1,
+    "pause_sessions": 2,
+    "drawdown_halt": 0.25,
+    "halt_sessions": 21,
+    "note": "Disaster brake; the per-day loss limit and fixed exits are the working controls."
+  },
+  "data": {
+    "mkt_order_latest_et": "15:30",
+    "max_signal_data_age_sessions": 0
+  }
+}

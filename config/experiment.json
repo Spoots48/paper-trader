@@ -75,6 +75,14 @@
       "strategy": "config/strategy_crypto_trend_v1.json",
       "ledger": "data/ledger_ctrend.sqlite",
       "start_date": "2026-10-07"
+    },
+    {
+      "id": "speed",
+      "name": "Speed trader (Jev)",
+      "subtitle": "Many quick trades on 20 liquid stocks; Jev decides every entry; paper only",
+      "strategy": "config/strategy_speed_v1.json",
+      "ledger": "data/ledger_speed.sqlite",
+      "start_date": "2026-10-12"
     }
   ],
   "notifications": {
