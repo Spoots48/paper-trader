@@ -790,6 +790,9 @@ INSERT INTO "decisions" VALUES(779,'mm:quote:2026-10-11T00:29:49Z','20261011T002
 INSERT INTO "decisions" VALUES(780,'quality:bitcoin-up-or-down-october-11-2026-2am-et:2026-10-11T06:26:59Z','20261011T062652Z-mm','2026-10-11T06:26:59Z','2026-10-11T06:26:59Z','2026-10-11','bitcoin-up-or-down-october-11-2026-2am-et','predmarket','INFO','INPUT_QUALITY','input timestamps agree','{"checks": [{"name": "book:5193150434880043787297964772554947150417214908509908831776993589102844633177", "ok": true, "age_seconds": 0.293255090713501, "reason": "fresh"}, {"name": "book:4173251676888581247697796714360445001885983031119209584568899822445266899717", "ok": true, "age_seconds": 0.293255090713501, "reason": "fresh"}, {"name": "snapshot_skew", "ok": true, "skew_seconds": 0.0, "reason": "maximum separation between input timestamps"}]}','[]');
 INSERT INTO "decisions" VALUES(781,'quality:ethereum-up-or-down-october-11-2026-2am-et:2026-10-11T06:27:00Z','20261011T062652Z-mm','2026-10-11T06:27:00Z','2026-10-11T06:27:00Z','2026-10-11','ethereum-up-or-down-october-11-2026-2am-et','predmarket','INFO','INPUT_QUALITY','input timestamps agree','{"checks": [{"name": "book:92920387526376002655022189021114477133446224241418470539243696612392035680416", "ok": true, "age_seconds": 0.2926039695739746, "reason": "fresh"}, {"name": "book:51143324496625032605892232014844731625693112768196513931971964736331605796039", "ok": true, "age_seconds": 0.10160398483276367, "reason": "fresh"}, {"name": "snapshot_skew", "ok": true, "skew_seconds": 0.19099998474121094, "reason": "maximum separation between input timestamps"}]}','[]');
 INSERT INTO "decisions" VALUES(782,'mm:quote:2026-10-11T06:27:00Z','20261011T062652Z-mm','2026-10-11T06:27:00Z','2026-10-11T06:27:00Z','2026-10-11','*','predmarket','INFO','MM_QUOTES','quoted 0 market(s): btc-updown-15m-1791699300: 80% elapsed, not quoting; bitcoin-up-or-down-october-11-2026-2am-et: best bids 0.41+0.58 leave no room under $1; eth-updown-15m-1791699300: 80% elapsed, not quoting; ethereum-up-or-down-october-11-2026-2am-et: best bids 0.34+0.65 leave no room under $1','{"notes": ["btc-updown-15m-1791699300: 80% elapsed, not quoting", "bitcoin-up-or-down-october-11-2026-2am-et: best bids 0.41+0.58 leave no room under $1", "eth-updown-15m-1791699300: 80% elapsed, not quoting", "ethereum-up-or-down-october-11-2026-2am-et: best bids 0.34+0.65 leave no room under $1"]}','[]');
+INSERT INTO "decisions" VALUES(783,'quality:btc-updown-15m-1791725400:2026-10-11T13:32:09Z','20261011T133204Z-mm','2026-10-11T13:32:09Z','2026-10-11T13:32:09Z','2026-10-11','btc-updown-15m-1791725400','predmarket','INFO','INPUT_QUALITY','input timestamps agree','{"checks": [{"name": "book:109593564402997653559366960807481732480192037414520798919733563953145781775221", "ok": true, "age_seconds": 0.20532703399658203, "reason": "fresh"}, {"name": "book:57215338255691962908850586363890336296010044423090568627608515463475230878772", "ok": true, "age_seconds": 0.08632707595825195, "reason": "fresh"}, {"name": "snapshot_skew", "ok": true, "skew_seconds": 0.11899995803833008, "reason": "maximum separation between input timestamps"}]}','[]');
+INSERT INTO "decisions" VALUES(784,'quality:eth-updown-15m-1791725400:2026-10-11T13:32:09Z','20261011T133204Z-mm','2026-10-11T13:32:09Z','2026-10-11T13:32:09Z','2026-10-11','eth-updown-15m-1791725400','predmarket','INFO','INPUT_QUALITY','input timestamps agree','{"checks": [{"name": "book:89306304612211862621352904519696588331319417962301048908052593295070339151338", "ok": true, "age_seconds": 0.1796889305114746, "reason": "fresh"}, {"name": "book:28797431123892105576716860719427778873886003566018870754779499234864933107102", "ok": true, "age_seconds": 0.06968903541564941, "reason": "fresh"}, {"name": "snapshot_skew", "ok": true, "skew_seconds": 0.1099998950958252, "reason": "maximum separation between input timestamps"}]}','[]');
+INSERT INTO "decisions" VALUES(785,'mm:quote:2026-10-11T13:32:09Z','20261011T133204Z-mm','2026-10-11T13:32:09Z','2026-10-11T13:32:09Z','2026-10-11','*','predmarket','INFO','MM_QUOTES','quoted 0 market(s): btc-updown-15m-1791725400: best bids 0.55+0.44 leave no room under $1; bitcoin-up-or-down-october-11-2026-9am-et: 54% elapsed, not quoting; eth-updown-15m-1791725400: best bids 0.53+0.46 leave no room under $1; ethereum-up-or-down-october-11-2026-9am-et: 54% elapsed, not quoting','{"notes": ["btc-updown-15m-1791725400: best bids 0.55+0.44 leave no room under $1", "bitcoin-up-or-down-october-11-2026-9am-et: 54% elapsed, not quoting", "eth-updown-15m-1791725400: best bids 0.53+0.46 leave no room under $1", "ethereum-up-or-down-october-11-2026-9am-et: 54% elapsed, not quoting"]}','[]');
 CREATE TABLE dividends (
   ticker TEXT NOT NULL, ex_date TEXT NOT NULL, per_share REAL NOT NULL, qty REAL NOT NULL,
   amount REAL NOT NULL, recorded_at TEXT NOT NULL, PRIMARY KEY (ticker, ex_date)
@@ -1737,6 +1740,9 @@ INSERT INTO "events" VALUES(921,'2026-10-11T06:26:59Z','20261011T062652Z-mm','de
 INSERT INTO "events" VALUES(922,'2026-10-11T06:27:00Z','20261011T062652Z-mm','decision','{"action": "INFO", "code": "INPUT_QUALITY", "key": "quality:ethereum-up-or-down-october-11-2026-2am-et:2026-10-11T06:27:00Z", "reason": "input timestamps agree", "ticker": "ethereum-up-or-down-october-11-2026-2am-et"}','dee71c168b540d43225eabeb0cc3b9f1dbdf3de76932f93dd4205d54c3280e78','f90e3316f344edb72787efbea739c6671a1d5f774c595ff121b75ebed04db6e3');
 INSERT INTO "events" VALUES(923,'2026-10-11T06:27:00Z','20261011T062652Z-mm','decision','{"action": "INFO", "code": "MM_QUOTES", "key": "mm:quote:2026-10-11T06:27:00Z", "reason": "quoted 0 market(s): btc-updown-15m-1791699300: 80% elapsed, not quoting; bitcoin-up-or-down-october-11-2026-2am-et: best bids 0.41+0.58 leave no room under $1; eth-updown-15m-1791699300: 80% elapsed, not quoting; ethereum-up-or-down-october-11-2026-2am-et: best bids 0.34+0.65 leave no room under $1", "ticker": "*"}','f90e3316f344edb72787efbea739c6671a1d5f774c595ff121b75ebed04db6e3','333a217bf24ee0f5b04479262809c3d33c59bf85a8e93f871623a7eb2aa657b0');
 INSERT INTO "events" VALUES(924,'2026-10-11T06:27:00Z','20261011T062652Z-mm','snapshot','{"cash": 92.94952568400001, "drawdown": 0.09519912847269452, "equity": 92.94952568400001, "session": "2026-10-10", "spy_bh_equity": null}','333a217bf24ee0f5b04479262809c3d33c59bf85a8e93f871623a7eb2aa657b0','e4d556a8d6cb173c52d1c0d23768e383044c2e6ec245559c9a1d87f22811c3da');
+INSERT INTO "events" VALUES(925,'2026-10-11T13:32:09Z','20261011T133204Z-mm','decision','{"action": "INFO", "code": "INPUT_QUALITY", "key": "quality:btc-updown-15m-1791725400:2026-10-11T13:32:09Z", "reason": "input timestamps agree", "ticker": "btc-updown-15m-1791725400"}','e4d556a8d6cb173c52d1c0d23768e383044c2e6ec245559c9a1d87f22811c3da','aa61451bb9d45a1e799e661297f4e3ddab58e1304e379449051d2a5b24ff1e00');
+INSERT INTO "events" VALUES(926,'2026-10-11T13:32:09Z','20261011T133204Z-mm','decision','{"action": "INFO", "code": "INPUT_QUALITY", "key": "quality:eth-updown-15m-1791725400:2026-10-11T13:32:09Z", "reason": "input timestamps agree", "ticker": "eth-updown-15m-1791725400"}','aa61451bb9d45a1e799e661297f4e3ddab58e1304e379449051d2a5b24ff1e00','81c85bf99d360fe333b49c4c511782ba0ee0c1c719f54164f91a98fc64e08d41');
+INSERT INTO "events" VALUES(927,'2026-10-11T13:32:09Z','20261011T133204Z-mm','decision','{"action": "INFO", "code": "MM_QUOTES", "key": "mm:quote:2026-10-11T13:32:09Z", "reason": "quoted 0 market(s): btc-updown-15m-1791725400: best bids 0.55+0.44 leave no room under $1; bitcoin-up-or-down-october-11-2026-9am-et: 54% elapsed, not quoting; eth-updown-15m-1791725400: best bids 0.53+0.46 leave no room under $1; ethereum-up-or-down-october-11-2026-9am-et: 54% elapsed, not quoting", "ticker": "*"}','81c85bf99d360fe333b49c4c511782ba0ee0c1c719f54164f91a98fc64e08d41','36ab15e004d64e7b4ac9f97ee9ee91e4a096180a3c8fec995b6f823d1bce8bc6');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -2163,6 +2169,7 @@ INSERT INTO "runs" VALUES('20261010T215936Z-mm','2026-10-10T21:59:39Z','2026-10-
 INSERT INTO "runs" VALUES('20261010T232652Z-mm','2026-10-10T23:26:57Z','2026-10-10T23:26:58Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261011T002944Z-mm','2026-10-11T00:29:48Z','2026-10-11T00:29:49Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261011T062652Z-mm','2026-10-11T06:26:59Z','2026-10-11T06:27:00Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261011T133204Z-mm','2026-10-11T13:32:09Z','2026-10-11T13:32:09Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -2186,14 +2193,14 @@ INSERT INTO "snapshots" VALUES('2026-10-09','2026-10-10T07:45:32Z','20261010T074
 INSERT INTO "snapshots" VALUES('2026-10-10','2026-10-11T06:27:00Z','20261011T062652Z-mm',9.29495256840000081e+01,9.29495256840000081e+01,0.0,NULL,100.0,1.0272926188400001e+02,9.51991284726945163e-02,'0 open bets','{"peak": 102.72926188400001, "drawdown": 0.09519912847269452}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','92.94952568400001','2026-10-05T07:30:50Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-11T06:26:59Z');
-INSERT INTO "state" VALUES('mm_orders','[]','2026-10-11T06:26:59Z');
-INSERT INTO "state" VALUES('risk','{"peak": 102.72926188400001, "drawdown": 0.09519912847269452}','2026-10-11T06:27:00Z');
-INSERT INTO "state" VALUES('pm_day','{"date": "2026-10-11", "start_equity": 92.94952568400001, "peak": 92.94952568400001, "protected_floor": 92.45633569560002}','2026-10-11T06:26:59Z');
-INSERT INTO "state" VALUES('pm_positions','{}','2026-10-11T06:27:00Z');
-INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-11T06:27:00Z", "marks": {}}','2026-10-11T06:27:00Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-11T13:32:09Z');
+INSERT INTO "state" VALUES('mm_orders','[]','2026-10-11T13:32:09Z');
+INSERT INTO "state" VALUES('risk','{"peak": 102.72926188400001, "drawdown": 0.09519912847269452}','2026-10-11T13:32:09Z');
+INSERT INTO "state" VALUES('pm_day','{"date": "2026-10-11", "start_equity": 92.94952568400001, "peak": 92.94952568400001, "protected_floor": 92.45633569560002}','2026-10-11T13:32:09Z');
+INSERT INTO "state" VALUES('pm_positions','{}','2026-10-11T13:32:09Z');
+INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-11T13:32:09Z", "marks": {}}','2026-10-11T13:32:09Z');
 INSERT INTO "state" VALUES('mm_reserved','4.440892098500626e-16','2026-10-05T07:30:50Z');
-INSERT INTO "state" VALUES('entry_cooldown','null','2026-10-11T06:26:59Z');
+INSERT INTO "state" VALUES('entry_cooldown','null','2026-10-11T13:32:09Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
@@ -2220,8 +2227,8 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',924);
-INSERT INTO "sqlite_sequence" VALUES('decisions',782);
+INSERT INTO "sqlite_sequence" VALUES('events',927);
+INSERT INTO "sqlite_sequence" VALUES('decisions',785);
 INSERT INTO "sqlite_sequence" VALUES('fills',44);
 INSERT INTO "sqlite_sequence" VALUES('strategy_changes',3);
 COMMIT;
