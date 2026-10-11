@@ -1,0 +1,103 @@
+{
+ "kind": "daily",
+ "date": "2026-10-10",
+ "day": 18,
+ "weekday": "Saturday",
+ "generated_at": "2026-10-11T06:26:52Z",
+ "summary": "All bots together went from $768.51 to $768.51 today (+$0.00). The stock market was closed.",
+ "rows": [
+  {
+   "id": "daytrade",
+   "name": "Day trading",
+   "status": "market closed",
+   "value": 98.99835121103499,
+   "change": 0.0,
+   "since_start": -1.0016487889650136,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto2",
+   "name": "Crypto odds bot v2",
+   "status": "trading",
+   "value": 100.0,
+   "change": 0.0,
+   "since_start": 0.0,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "mm",
+   "name": "Market maker v2",
+   "status": "trading",
+   "value": 92.94952568400001,
+   "change": 0.0,
+   "since_start": -7.050474315999992,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto",
+   "name": "Crypto odds bot v1 (retired)",
+   "status": "retired (only settles old bets)",
+   "value": 74.22458862,
+   "change": 0.0,
+   "since_start": -25.775411379999994,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "primary",
+   "name": "Primary",
+   "status": "market closed",
+   "value": 100.66335316741721,
+   "change": 0.0,
+   "since_start": 0.6633531674172133,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "research",
+   "name": "Research",
+   "status": "market closed",
+   "value": 103.77844085600653,
+   "change": 0.0,
+   "since_start": 3.778440856006526,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "trend",
+   "name": "Diversified trend",
+   "status": "market closed",
+   "value": 100.17838265083384,
+   "change": 0.0,
+   "since_start": 0.1783826508338393,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "ctrend",
+   "name": "Crypto trend (high risk)",
+   "status": "market closed",
+   "value": 97.71951566728076,
+   "change": 0.0,
+   "since_start": -2.28048433271924,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  }
+ ],
+ "spy": null,
+ "missing": [],
+ "total_before": 768.5121578565734,
+ "total_end": 768.5121578565734,
+ "late_by_hours": 1.4
+}

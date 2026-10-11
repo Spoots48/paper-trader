@@ -1,8 +1,9 @@
-2026-10-11 00:29:44,577 INFO [daytrade] no action needed
-2026-10-11 00:29:48,691 INFO [crypto2] no action needed
-2026-10-11 00:29:49,570 INFO [mm] no action needed
-2026-10-11 00:29:49,575 INFO [crypto] no action needed
-2026-10-11 00:29:49,581 INFO [primary] no action needed
-2026-10-11 00:29:49,586 INFO [research] no action needed
-2026-10-11 00:29:49,590 INFO [trend] no action needed
-2026-10-11 00:29:49,594 INFO [ctrend] no action needed
+2026-10-11 06:26:52,887 INFO [daytrade] no action needed
+2026-10-11 06:26:59,059 INFO [crypto2] no action needed
+2026-10-11 06:27:00,107 INFO [mm] no action needed
+2026-10-11 06:27:00,115 INFO [crypto] no action needed
+2026-10-11 06:27:00,120 INFO [primary] no action needed
+2026-10-11 06:27:00,124 INFO [research] no action needed
+2026-10-11 06:27:00,129 INFO [trend] no action needed
+2026-10-11 06:27:00,133 INFO [ctrend] no action needed
+2026-10-11 06:27:00,168 INFO daily reports generated: ['daily_2026-10-10']
