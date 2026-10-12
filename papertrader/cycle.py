@@ -109,6 +109,9 @@ def run_cycle(trigger: str = "manual", max_seconds: int = 1500) -> dict:
                 elif cfg.get("book_type") == "trend":
                     from .trend import TrendEngine
                     summary = TrendEngine(L, md, cfg, {**exp, "book": book["id"]}, now).step()
+                elif cfg.get("book_type") == "meme":
+                    from .meme_engine import MemeEngine
+                    summary = MemeEngine(L, md, cfg, {**exp, "book": book["id"]}, now).step()
                 elif cfg.get("book_type") == "speed":
                     from .speed_engine import SpeedEngine
                     summary = SpeedEngine(L, md, cfg, {**exp, "book": book["id"]}, now, root=ROOT).step()

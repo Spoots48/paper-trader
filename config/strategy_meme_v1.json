@@ -1,0 +1,16 @@
+{
+  "strategy_id": "attention-momentum-memecoins (paper)",
+  "version": "meme-1.0.0",
+  "book_type": "meme",
+  "description": "Paper memecoin book requested by the user ('based off Twitter posts'). Reading X costs money (about $0.005 per post), so it does not read tweets: its attention inputs are free and public (GeckoTerminal trending pools, DexScreener boosted tokens and profiles that carry an X link, the pool's own trade counts) and a RugCheck safety screen. Rules: Solana pools with real liquidity and volume, aged 4 h to 7 days, that are trending or have an X link, entered on confirmed momentum (1h +8..+60%, not fading in the last 5 minutes, buys outnumber sells), then fixed exits (stop, take-profit, trailing stop, time stop, liquidity-collapse). Fills are modeled pessimistically: swap fee, latency/MEV allowance and price impact on entry; wider slippage on stops; exits happen at the price seen on the next run, not at the trigger price; a token whose pool cannot be found for 3 runs is written off at zero. Forward test only: there is no historical memecoin tape to test on, so there is no evidence this works. Most memecoin traders lose money. No profit claim.",
+  "screen": {"chain": "solana", "min_liquidity_usd": 60000, "min_volume_h24_usd": 150000, "min_age_hours": 4, "max_age_hours": 168,
+             "min_txns_h1": 150, "max_trending_rank": 20, "max_rug_score": 30},
+  "entry": {"min_h1_change_pct": 8, "max_h1_change_pct": 60, "min_m5_change_pct": -2, "min_h6_change_pct": 0, "max_h24_change_pct": 800,
+            "min_buy_sell_ratio": 1.2},
+  "exit": {"stop_pct": 18, "take_profit_pct": 45, "trail_after_pct": 20, "trail_pct": 12, "max_hold_hours": 18,
+           "min_liquidity_usd": 15000, "liquidity_collapse_frac": 0.4, "write_off_after_missing_runs": 3},
+  "friction": {"fee": 0.01, "entry_latency": 0.03, "exit_latency": 0.02, "stop_extra": 0.03},
+  "portfolio": {"position_usd": 5.0, "max_positions": 6, "max_entries_per_day": 8, "cooldown_hours_per_token": 12, "daily_loss_limit": 0.10,
+                "drawdown_halt": 0.30},
+  "data": {"max_candidates_per_run": 40, "rugcheck": true}
+}

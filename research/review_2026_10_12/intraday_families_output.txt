@@ -1,0 +1,44 @@
+cost/side=3.0bp  test days=44 (2026-08-10..2026-10-09) split at 2026-09-10  variants=41
+variant                                                         n net bp/trade  t(day)  1st half  2nd half  pass
+('ORB', 1, 'range', 'all', 'both')                            964         -4.2   -0.93      -0.2      -8.2  -
+('ORB', 1, 'range', 'all', 'long')                            445         -4.2   -0.31       5.8     -13.8  -
+('ORB', 1, 'range', 'rvol1.5', 'both')                        119         14.7    0.28      22.4       9.8  -
+('ORB', 1, 'range', 'rvol1.5', 'long')                         52         45.0    1.22      74.9      32.9  -
+('ORB', 1, 'atr10', 'all', 'both')                            965         -8.2   -2.92      -9.5      -6.9  -
+('ORB', 1, 'atr10', 'all', 'long')                            445        -11.0   -3.10      -9.9     -12.2  -
+('ORB', 1, 'atr10', 'rvol1.5', 'both')                        119        -22.4   -4.95     -21.4     -23.0  -
+('ORB', 1, 'atr10', 'rvol1.5', 'long')                         52        -19.9   -1.74     -10.8     -23.6  -
+('ORB', 3, 'range', 'all', 'both')                            965         -4.4   -1.07      -0.5      -8.2  -
+('ORB', 3, 'range', 'all', 'long')                            459         -5.5   -0.38       0.6     -11.9  -
+('ORB', 3, 'range', 'rvol1.5', 'both')                        103         12.5   -0.03      -3.5      22.3  -
+('ORB', 3, 'range', 'rvol1.5', 'long')                         54         32.1    0.32      18.8      38.2  -
+('ORB', 3, 'atr10', 'all', 'both')                            965         -6.8   -2.37      -4.4      -9.2  -
+('ORB', 3, 'atr10', 'all', 'long')                            459         -8.0   -1.13      -5.3     -10.9  -
+('ORB', 3, 'atr10', 'rvol1.5', 'both')                        103        -12.7   -2.18      -8.6     -15.2  -
+('ORB', 3, 'atr10', 'rvol1.5', 'long')                         54         -6.9   -0.99      -1.0      -9.6  -
+('ORB', 6, 'range', 'all', 'both')                            965         -7.9   -2.58      -4.1     -11.6  -
+('ORB', 6, 'range', 'all', 'long')                            448         -9.4   -0.80      -1.6     -17.4  -
+('ORB', 6, 'range', 'rvol1.5', 'both')                         92         -0.7   -0.65      -8.4       3.2  -
+('ORB', 6, 'range', 'rvol1.5', 'long')                         43         18.3   -0.03      -7.0      29.3  -
+('ORB', 6, 'atr10', 'all', 'both')                            965        -12.4   -6.52     -11.1     -13.7  -
+('ORB', 6, 'atr10', 'all', 'long')                            448        -13.4   -3.84     -11.2     -15.6  -
+('ORB', 6, 'atr10', 'rvol1.5', 'both')                         92        -21.5   -6.00     -28.4     -18.0  -
+('ORB', 6, 'atr10', 'rvol1.5', 'long')                         43        -23.0   -1.97     -38.6     -16.2  -
+('vwap_revert', 2.0, 6)                                      2262         -4.9   -6.65      -3.3      -6.5  -
+('vwap_follow', 2.0, 6)                                      2262         -7.1  -10.41      -8.7      -5.5  -
+('vwap_revert', 2.0, 12)                                     1695         -5.2   -4.24      -2.9      -7.6  -
+('vwap_follow', 2.0, 12)                                     1695         -6.8   -5.78      -9.1      -4.4  -
+('vwap_revert', 3.0, 6)                                      1385         -3.1   -2.43      -1.1      -5.0  -
+('vwap_follow', 3.0, 6)                                      1385         -8.9   -9.19     -10.9      -7.0  -
+('vwap_revert', 3.0, 12)                                      979         -2.4   -1.19       0.7      -5.6  -
+('vwap_follow', 3.0, 12)                                      979         -9.6   -6.07     -12.7      -6.4  -
+('spike_follow', 3.0, 6)                                   too few trades (27)
+('spike_revert', 3.0, 6)                                   too few trades (27)
+('spike_follow', 3.0, 12)                                  too few trades (21)
+('spike_revert', 3.0, 12)                                  too few trades (21)
+('spike_follow', 5.0, 6)                                   too few trades (10)
+('spike_revert', 5.0, 6)                                   too few trades (10)
+('spike_follow', 5.0, 12)                                  too few trades (9)
+('spike_revert', 5.0, 12)                                  too few trades (9)
+('first_last', 'SPY/QQQ/IWM/DIA')                             174         -5.9   -3.83      -4.3      -7.5  -
+variants passing the pre-declared bar: 0

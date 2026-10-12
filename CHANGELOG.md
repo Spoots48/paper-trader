@@ -60,3 +60,7 @@ Evidence: research/review_2026_10_05/mm_replay_output.txt: replay of the quoting
 The new `trend` book (trend-1.0.0) counted from the experiment's 2026-09-23 start instead of its own 2026-10-05 start, producing 8 flat
 pre-start snapshots and 8 spurious missed-window rows in its brand-new ledger. It had no fills. The engine was fixed (start date now read
 from the book's own ledger) and the empty ledger was re-frozen with the identical strategy file. No other book was touched.
+
+## 2026-10-12 new book: meme (meme-1.0.0), starts 2026-10-13
+Paper memecoin book requested by the user. X/Twitter reads are pay-per-post (about $0.005), so the zero-cost rule rules them out; attention inputs are free public data (GeckoTerminal trending, DexScreener boosts/profiles with an X link) plus a RugCheck screen. Forward test only: there is no historical memecoin tape, so there is no evidence it works and most memecoin traders lose. Fills are modeled pessimistically (fee + latency/MEV + price impact, wider on stops, exits at the next run's price, missing pools written off at zero). No existing book changed.
+Evidence: research/review_2026_10_12/RESEARCH.md. 156 unit tests pass.

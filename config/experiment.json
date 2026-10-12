@@ -83,6 +83,14 @@
       "strategy": "config/strategy_speed_v1.json",
       "ledger": "data/ledger_speed.sqlite",
       "start_date": "2026-10-12"
+    },
+    {
+      "id": "meme",
+      "name": "Memecoin trader (high risk)",
+      "subtitle": "Solana memecoins on free attention signals; pessimistic fills; paper only",
+      "strategy": "config/strategy_meme_v1.json",
+      "ledger": "data/ledger_meme.sqlite",
+      "start_date": "2026-10-13"
     }
   ],
   "notifications": {

@@ -344,9 +344,10 @@ const BOT = {
   trend: {name: 'Diversified trend', tag: 'New', blurb: 'Slow and cautious: each month it holds the asset classes (US stocks, foreign stocks, bonds, gold, real estate) that are trending up and parks the rest in short-term Treasuries. Meant to cut big drawdowns, not to beat the market in a hot year.'},
   ctrend: {name: 'Crypto trend (high risk)', tag: 'New', blurb: 'The harsh one: each week it puts everything into Bitcoin and Ether funds while they are trending up and into Treasuries when they are not. No leverage. Expect big swings (a 40% drop is possible), in both directions.'},
   speed: {name: 'Speed trader (Jev)', tag: 'New', blurb: 'Makes lots of quick one-to-eight-minute trades on big stocks, with Jev deciding every buy. Paper only. Costs add up fast, so it only wins if Jev is right far more often than not.'},
+  meme: {name: 'Memecoin trader (high risk)', tag: 'New', blurb: 'Buys Solana memecoins that are trending with real liquidity and rising momentum, and passes a rug-check, then sells on fixed stops and targets. It does not read X/Twitter posts (that costs money); it uses free trending and profile data instead. Fills are modeled worse than real, because real memecoin trading is worse. Most memecoin traders lose money; expect this to.'},
   crypto: {name: 'Crypto odds bot v1', tag: 'Retired', retired: true, blurb: 'Lost 33% on day one: its math priced the wrong kind of bet. Stopped; record kept.'},
 };
-const TAG = {daytrade: 'DT', mm: 'MM', crypto2: 'P2', crypto: 'P1', primary: 'IX', research: 'SW', trend: 'TR', ctrend: 'CT', speed: 'SP'};
+const TAG = {daytrade: 'DT', mm: 'MM', crypto2: 'P2', crypto: 'P1', primary: 'IX', research: 'SW', trend: 'TR', ctrend: 'CT', speed: 'SP', meme: 'MC'};
 const botName = id => (BOT[id] || {}).name || id;
 const co = t => { const n = (S.state.names || {})[t]; return n ? `${esc(n)} <span class="mut">(${esc(t)})</span>` : esc(t); };
 const coTxt = t => { const n = (S.state.names || {})[t]; return n ? `${n} (${t})` : t; };
