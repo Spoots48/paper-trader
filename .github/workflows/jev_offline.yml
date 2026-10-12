@@ -1,0 +1,36 @@
+name: jev-offline-calibration
+# One-off, manual only (workflow_dispatch). Asks Jev the speed trader's exact question about PAST minutes whose outcomes are known,
+# so its probabilities can be scored today instead of after days of live calls. Paper research; costs a fraction of a cent per call.
+# See tools/jev_offline_calibration.py for the pre-declared sample and pass/fail rule. Output is uploaded as an artifact.
+on:
+  workflow_dispatch:
+    inputs:
+      max_calls:
+        description: "hard cap on Jev calls"
+        default: "1190"
+concurrency:
+  group: jev-offline
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  ask:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: pip install -q typesafe-sdk
+      - name: Ask Jev about the pre-built sample
+        env:
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+        run: python tools/jev_offline_calibration.py ask --states research/review_2026_10_12/jev_offline_states.jsonl --out jev_offline_answers.jsonl --max-calls "${{ inputs.max_calls }}" --workers 4
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jev-offline-answers
+          path: jev_offline_answers.jsonl
