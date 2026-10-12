@@ -64,3 +64,9 @@ from the book's own ledger) and the empty ledger was re-frozen with the identica
 ## 2026-10-12 new book: meme (meme-1.0.0), starts 2026-10-13
 Paper memecoin book requested by the user. X/Twitter reads are pay-per-post (about $0.005), so the zero-cost rule rules them out; attention inputs are free public data (GeckoTerminal trending, DexScreener boosts/profiles with an X link) plus a RugCheck screen. Forward test only: there is no historical memecoin tape, so there is no evidence it works and most memecoin traders lose. Fills are modeled pessimistically (fee + latency/MEV + price impact, wider on stops, exits at the next run's price, missing pools written off at zero). No existing book changed.
 Evidence: research/review_2026_10_12/RESEARCH.md. 156 unit tests pass.
+
+## 2026-10-12T18:04:10Z — speed: speed-1.0.0 → speed-1.1.0
+
+Retire the speed book: switch Jev calls off (caps 0); the book stays flat. Jev showed no skill on this book's exact question.
+
+Evidence: research/review_2026_10_12/jev_offline_output.txt: 1,190 past-minute states, 7 sessions, AUC 0.491 (95% CI 0.468-0.515), p>=0.50 hit 14.2% vs 15.0% base, no call reached 0.65; rule written before the run. Live Oct 12: 274 calls, corr -0.10.

@@ -17,6 +17,7 @@ CREATE TABLE events (
   payload TEXT NOT NULL, prev_hash TEXT NOT NULL, hash TEXT NOT NULL
 );
 INSERT INTO "events" VALUES(1,'2026-10-11T23:42:41Z',NULL,'freeze','{"book": "speed", "end": "2026-10-22", "start": "2026-10-12", "strategy_sha256": "889754fd5be0a3250a777c1abe8c2a7b14a3689fc30365e2be766a28993df488", "universe_sha256": "172ba39de91f49af21ee2539df0b42cd5d6aa9c7afbd426114cb33bba2c27afa", "version": "speed-1.0.0"}','GENESIS','1e13d4391b42112a33284334e77b9852c9c23449cefc1bf53c6f70472efd9cd6');
+INSERT INTO "events" VALUES(2,'2026-10-12T18:04:10Z',NULL,'strategy_change','{"book": "speed", "description": "Retire the speed book: switch Jev calls off (caps 0); the book stays flat. Jev showed no skill on this book''s exact question.", "to_sha256": "8a0d081b0128ac8cac564ad06320fc0739e129c2bb1fb12cb1381776755fa825"}','1e13d4391b42112a33284334e77b9852c9c23449cefc1bf53c6f70472efd9cd6','7f373cebc9daf3174d01ff2609b0e86e7af26469bf1458102ed736fdd0f45075');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -96,7 +97,7 @@ CREATE TABLE snapshots (
 );
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','100.0','2026-10-12T17:49:46Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-12T17:49:40Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-12T18:04:10Z');
 INSERT INTO "state" VALUES('benchmark','{"ticker": "SPY", "qty": 0.12831614217938572, "entry_price": 779.3251753173828, "entry_session": "2026-10-12", "div_cash": 0.0, "note": "SPY bought at this book''s first official open"}','2026-10-12T16:06:17Z');
 INSERT INTO "state" VALUES('dt:2026-10-12','{"session": "2026-10-12", "cash_at_open": 100.0, "cash": 100.0, "buys_used": 0.0, "candidates": [], "pending": [], "positions": {}, "traded": [], "processed_through": "2026-10-12T13:48:00-04:00", "closed": false, "entry_signals": {}}','2026-10-12T17:49:46Z');
 INSERT INTO "state" VALUES('sp:2026-10-12','{"pending": [], "calls": 274, "trades": 0, "held": {}}','2026-10-12T17:49:46Z');
@@ -104,6 +105,7 @@ CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
 );
+INSERT INTO "strategy_changes" VALUES(1,'2026-10-12T18:04:10Z','speed-1.0.0','speed-1.1.0','889754fd5be0a3250a777c1abe8c2a7b14a3689fc30365e2be766a28993df488','8a0d081b0128ac8cac564ad06320fc0739e129c2bb1fb12cb1381776755fa825','next decision','Retire the speed book: switch Jev calls off (caps 0); the book stays flat. Jev showed no skill on this book''s exact question.','research/review_2026_10_12/jev_offline_output.txt: 1,190 past-minute states, 7 sessions, AUC 0.491 (95% CI 0.468-0.515), p>=0.50 hit 14.2% vs 15.0% base, no call reached 0.65; rule written before the run. Live Oct 12: 274 calls, corr -0.10.');
 CREATE TRIGGER fills_no_update BEFORE UPDATE ON fills BEGIN SELECT RAISE(ABORT, 'fills is append-only'); END;
 CREATE TRIGGER fills_no_delete BEFORE DELETE ON fills BEGIN SELECT RAISE(ABORT, 'fills is append-only'); END;
 CREATE TRIGGER snapshots_no_update BEFORE UPDATE ON snapshots BEGIN SELECT RAISE(ABORT, 'snapshots is append-only'); END;
@@ -123,5 +125,6 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',1);
+INSERT INTO "sqlite_sequence" VALUES('events',2);
+INSERT INTO "sqlite_sequence" VALUES('strategy_changes',1);
 COMMIT;

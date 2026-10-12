@@ -78,11 +78,13 @@
     },
     {
       "id": "speed",
-      "name": "Speed trader (Jev)",
+      "name": "Speed trader (Jev, retired)",
       "subtitle": "Many quick trades on 20 liquid stocks; Jev decides every entry; paper only",
       "strategy": "config/strategy_speed_v1.json",
       "ledger": "data/ledger_speed.sqlite",
-      "start_date": "2026-10-12"
+      "start_date": "2026-10-12",
+      "retired": true,
+      "retired_reason": "2026-10-12: Jev's probabilities showed no skill on this book's question (offline AUC 0.491 on 1,190 past minutes); Jev calls switched off, book stays flat. Record kept."
     },
     {
       "id": "meme",

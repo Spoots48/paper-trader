@@ -1,8 +1,8 @@
 {
   "strategy_id": "jev-speed-trader (paper)",
-  "version": "speed-1.0.0",
+  "version": "speed-1.1.0",
   "book_type": "speed",
-  "description": "Paper speed trader requested by the user: many short trades on 20 liquid stocks, with Jev (TypeSafe System One) as the only entry decision-maker and fixed exits. Each completed 1-minute bar, a cheap prefilter picks momentum/volume candidates and Jev returns the probability that price reaches +0.30% before -0.25% within 8 minutes; entries need p >= 0.65 and fill two bars later. No rule-based fallback: without Jev the book does not trade. Proceeds are reusable immediately (a real account under $25,000 could not do this: pattern-day-trader rule), so the result cannot transfer to real money. Costs are the realistic floor for mega-caps (about 3 bp per side entry, 3 bp exit, 5 bp stops), far below the day trader's. Break-even needs roughly a 58% hit rate. Expect it to lose if Jev has no edge; every Jev probability is logged to state/speed_calls.jsonl for a calibration check. No profit claim.",
+  "description": "RETIRED 2026-10-12 (speed-1.1.0): Jev's probabilities showed no skill on this book's exact question, so Jev calls are switched off and the book stays flat. Offline calibration on 1,190 past-minute states from 7 sessions: AUC 0.491 (95% session-bootstrap 0.468-0.515), p>=0.50 calls hit the target 14.2% vs a 15.0% base rate, every probability bucket lost about 6-8 bp per trade after costs, and no call reached the 0.65 buy threshold. Rule written before the run: keep only if the p>=0.50 calls hit at least twice the base rate AND AUC >= 0.55 with the bootstrap interval above 0.50. Original description follows. Paper speed trader requested by the user: many short trades on 20 liquid stocks, with Jev (TypeSafe System One) as the only entry decision-maker and fixed exits. Each completed 1-minute bar, a cheap prefilter picks momentum/volume candidates and Jev returns the probability that price reaches +0.30% before -0.25% within 8 minutes; entries need p >= 0.65 and fill two bars later. No rule-based fallback: without Jev the book does not trade. Proceeds are reusable immediately (a real account under $25,000 could not do this: pattern-day-trader rule), so the result cannot transfer to real money. Costs are the realistic floor for mega-caps (about 3 bp per side entry, 3 bp exit, 5 bp stops), far below the day trader's. Break-even needs roughly a 58% hit rate. Expect it to lose if Jev has no edge; every Jev probability is logged to state/speed_calls.jsonl for a calibration check. No profit claim.",
   "portfolio": {
     "starting_cash": 100.0,
     "max_positions": 4,
@@ -48,9 +48,9 @@
     "no_entries_last_minutes": 15,
     "daily_loss_limit": 0.03,
     "max_trades_per_day": 400,
-    "max_jev_calls_per_day": 600,
-    "max_jev_calls_per_run": 120,
-    "max_jev_calls_per_minute": 4,
+    "max_jev_calls_per_day": 0,
+    "max_jev_calls_per_run": 0,
+    "max_jev_calls_per_minute": 0,
     "prefilter": {
       "min_5m_return": 0.0012,
       "min_volume_ratio": 2.0

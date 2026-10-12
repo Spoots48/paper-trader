@@ -47,6 +47,8 @@ def _bars(n=390, step=0.0003):
 def _engine(tmp_path, monkeypatch, p=0.9, client=FakeClient, **speed):
     cfg = load_json(ROOT / "config" / "strategy_speed_v1.json")
     cfg["universe"]["tickers"] = ["AAA"]
+    # the live config is retired (Jev caps 0); the engine mechanics are tested with the original caps
+    cfg["speed"].update({"max_jev_calls_per_day": 600, "max_jev_calls_per_run": 120, "max_jev_calls_per_minute": 4})
     cfg["speed"].update(speed)
     exp = {"name": "x", "start_date": "2026-10-07", "end_date": "2026-10-22", "starting_cash": 100.0, "report_days": [7]}
     book = {"id": "speed", "name": "s", "subtitle": "s", "strategy": "config/strategy_speed_v1.json", "ledger": "x", "start_date": "2026-10-07"}
