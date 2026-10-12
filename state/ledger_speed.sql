@@ -84,17 +84,20 @@ INSERT INTO "runs" VALUES('20261012T163145Z-speed','2026-10-12T16:31:52Z','2026-
 INSERT INTO "runs" VALUES('20261012T163645Z-speed','2026-10-12T16:36:53Z','2026-10-12T16:36:54Z','OK','github-actions','2026-10-12: 0 buys, 0 sells this run; 166 Jev calls today, 0 trades today',NULL);
 INSERT INTO "runs" VALUES('20261012T164145Z-speed','2026-10-12T16:41:52Z','2026-10-12T16:41:54Z','OK','github-actions','2026-10-12: 0 buys, 0 sells this run; 172 Jev calls today, 0 trades today',NULL);
 INSERT INTO "runs" VALUES('20261012T164645Z-speed','2026-10-12T16:46:52Z','2026-10-12T16:46:53Z','OK','github-actions','2026-10-12: 0 buys, 0 sells this run; 176 Jev calls today, 0 trades today',NULL);
+INSERT INTO "runs" VALUES('20261012T164821Z-speed','2026-10-12T16:48:30Z','2026-10-12T16:48:33Z','OK','github-actions','2026-10-12: 0 buys, 0 sells this run; 178 Jev calls today, 0 trades today',NULL);
+INSERT INTO "runs" VALUES('20261012T165321Z-speed','2026-10-12T16:53:29Z','2026-10-12T16:53:31Z','OK','github-actions','2026-10-12: 0 buys, 0 sells this run; 184 Jev calls today, 0 trades today',NULL);
+INSERT INTO "runs" VALUES('20261012T165821Z-speed','2026-10-12T16:58:27Z','2026-10-12T16:58:30Z','OK','github-actions','2026-10-12: 0 buys, 0 sells this run; 193 Jev calls today, 0 trades today',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
   peak REAL NOT NULL, drawdown REAL NOT NULL, regime TEXT, risk_state TEXT, marks TEXT, holdings TEXT
 );
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
-INSERT INTO "state" VALUES('cash','100.0','2026-10-12T16:46:53Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-12T16:46:52Z');
+INSERT INTO "state" VALUES('cash','100.0','2026-10-12T16:58:30Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-12T16:58:27Z');
 INSERT INTO "state" VALUES('benchmark','{"ticker": "SPY", "qty": 0.12831614217938572, "entry_price": 779.3251753173828, "entry_session": "2026-10-12", "div_cash": 0.0, "note": "SPY bought at this book''s first official open"}','2026-10-12T16:06:17Z');
-INSERT INTO "state" VALUES('dt:2026-10-12','{"session": "2026-10-12", "cash_at_open": 100.0, "cash": 100.0, "buys_used": 0.0, "candidates": [], "pending": [], "positions": {}, "traded": [], "processed_through": "2026-10-12T12:45:00-04:00", "closed": false, "entry_signals": {}}','2026-10-12T16:46:53Z');
-INSERT INTO "state" VALUES('sp:2026-10-12','{"pending": [], "calls": 176, "trades": 0, "held": {}}','2026-10-12T16:46:53Z');
+INSERT INTO "state" VALUES('dt:2026-10-12','{"session": "2026-10-12", "cash_at_open": 100.0, "cash": 100.0, "buys_used": 0.0, "candidates": [], "pending": [], "positions": {}, "traded": [], "processed_through": "2026-10-12T12:57:00-04:00", "closed": false, "entry_signals": {}}','2026-10-12T16:58:30Z');
+INSERT INTO "state" VALUES('sp:2026-10-12','{"pending": [], "calls": 193, "trades": 0, "held": {}}','2026-10-12T16:58:30Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT

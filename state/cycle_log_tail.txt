@@ -1,45 +1,27 @@
-2026-10-12 16:26:45,357 INFO [daytrade] no action needed
-2026-10-12 16:26:50,393 INFO [crypto2] no action needed
-2026-10-12 16:26:51,223 INFO [mm] no action needed
-2026-10-12 16:26:51,228 INFO [crypto] no action needed
-2026-10-12 16:26:51,709 INFO [primary] no action needed
-2026-10-12 16:26:51,984 INFO [research] no action needed
-2026-10-12 16:26:52,192 INFO [trend] no action needed
-2026-10-12 16:26:52,422 INFO [ctrend] no action needed
-2026-10-12 16:26:53,911 INFO [speed] 2026-10-12: 0 buys, 0 sells this run; 156 Jev calls today, 0 trades today
-2026-10-12 16:31:45,367 INFO [daytrade] no action needed
-2026-10-12 16:31:51,172 INFO [crypto2] no action needed
-2026-10-12 16:31:52,070 INFO [mm] no action needed
-2026-10-12 16:31:52,077 INFO [crypto] no action needed
-2026-10-12 16:31:52,249 INFO [primary] no action needed
-2026-10-12 16:31:52,410 INFO [research] no action needed
-2026-10-12 16:31:52,644 INFO [trend] no action needed
-2026-10-12 16:31:52,909 INFO [ctrend] no action needed
-2026-10-12 16:31:54,768 INFO [speed] 2026-10-12: 0 buys, 0 sells this run; 161 Jev calls today, 0 trades today
-2026-10-12 16:36:45,547 INFO [daytrade] no action needed
-2026-10-12 16:36:50,957 INFO [crypto2] no action needed
-2026-10-12 16:36:51,624 INFO [mm] no action needed
-2026-10-12 16:36:51,789 INFO [crypto] no action needed
-2026-10-12 16:36:52,023 INFO [primary] no action needed
-2026-10-12 16:36:52,438 INFO [research] no action needed
-2026-10-12 16:36:52,594 INFO [trend] no action needed
-2026-10-12 16:36:53,119 INFO [ctrend] no action needed
-2026-10-12 16:36:54,815 INFO [speed] 2026-10-12: 0 buys, 0 sells this run; 166 Jev calls today, 0 trades today
-2026-10-12 16:41:45,347 INFO [daytrade] no action needed
-2026-10-12 16:41:51,011 INFO [crypto2] no action needed
-2026-10-12 16:41:51,173 INFO [mm] no action needed
-2026-10-12 16:41:51,178 INFO [crypto] no action needed
-2026-10-12 16:41:51,893 INFO [primary] no action needed
-2026-10-12 16:41:52,089 INFO [research] no action needed
-2026-10-12 16:41:52,264 INFO [trend] no action needed
-2026-10-12 16:41:52,551 INFO [ctrend] no action needed
-2026-10-12 16:41:54,291 INFO [speed] 2026-10-12: 0 buys, 0 sells this run; 172 Jev calls today, 0 trades today
-2026-10-12 16:46:45,380 INFO [daytrade] no action needed
-2026-10-12 16:46:50,330 INFO [crypto2] no action needed
-2026-10-12 16:46:51,104 INFO [mm] no action needed
-2026-10-12 16:46:51,110 INFO [crypto] no action needed
-2026-10-12 16:46:51,731 INFO [primary] no action needed
-2026-10-12 16:46:51,889 INFO [research] no action needed
-2026-10-12 16:46:52,137 INFO [trend] no action needed
-2026-10-12 16:46:52,265 INFO [ctrend] no action needed
-2026-10-12 16:46:53,896 INFO [speed] 2026-10-12: 0 buys, 0 sells this run; 176 Jev calls today, 0 trades today
+2026-10-12 16:48:21,648 INFO [daytrade] no action needed
+2026-10-12 16:48:27,550 INFO [crypto2] no action needed
+2026-10-12 16:48:28,910 INFO [mm] no action needed
+2026-10-12 16:48:28,917 INFO [crypto] no action needed
+2026-10-12 16:48:29,621 INFO [primary] no action needed
+2026-10-12 16:48:30,004 INFO [research] no action needed
+2026-10-12 16:48:30,314 INFO [trend] no action needed
+2026-10-12 16:48:30,650 INFO [ctrend] no action needed
+2026-10-12 16:48:33,086 INFO [speed] 2026-10-12: 0 buys, 0 sells this run; 178 Jev calls today, 0 trades today
+2026-10-12 16:53:21,619 INFO [daytrade] no action needed
+2026-10-12 16:53:27,597 INFO [crypto2] no action needed
+2026-10-12 16:53:28,020 INFO [mm] no action needed
+2026-10-12 16:53:28,028 INFO [crypto] no action needed
+2026-10-12 16:53:28,412 INFO [primary] no action needed
+2026-10-12 16:53:28,699 INFO [research] no action needed
+2026-10-12 16:53:28,925 INFO [trend] no action needed
+2026-10-12 16:53:29,173 INFO [ctrend] no action needed
+2026-10-12 16:53:31,451 INFO [speed] 2026-10-12: 0 buys, 0 sells this run; 184 Jev calls today, 0 trades today
+2026-10-12 16:58:21,616 INFO [daytrade] no action needed
+2026-10-12 16:58:25,789 INFO [crypto2] no action needed
+2026-10-12 16:58:26,195 INFO [mm] no action needed
+2026-10-12 16:58:26,203 INFO [crypto] no action needed
+2026-10-12 16:58:26,616 INFO [primary] no action needed
+2026-10-12 16:58:26,871 INFO [research] no action needed
+2026-10-12 16:58:27,151 INFO [trend] no action needed
+2026-10-12 16:58:27,357 INFO [ctrend] no action needed
+2026-10-12 16:58:30,010 INFO [speed] 2026-10-12: 0 buys, 0 sells this run; 193 Jev calls today, 0 trades today
