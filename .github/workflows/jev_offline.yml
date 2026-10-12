@@ -6,8 +6,11 @@ on:
   workflow_dispatch:
     inputs:
       max_calls:
-        description: "hard cap on Jev calls"
+        description: "hard cap on Jev calls for the speed-trader sample (0 skips it)"
         default: "1190"
+      news_eval:
+        description: "also score the news reviewer on the 48 labeled headlines (about 200 calls)"
+        default: "false"
 concurrency:
   group: jev-offline
   cancel-in-progress: false
@@ -29,8 +32,15 @@ jobs:
         env:
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
         run: python tools/jev_offline_calibration.py ask --states research/review_2026_10_12/jev_offline_states.jsonl --out jev_offline_answers.jsonl --max-calls "${{ inputs.max_calls }}" --workers 4
+      - name: Score the news reviewer on the 48 labeled headlines
+        if: inputs.news_eval == 'true'
+        env:
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+        run: python tools/jev_news_eval.py ask --out jev_news_eval_answers.jsonl
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: jev-offline-answers
-          path: jev_offline_answers.jsonl
+          path: |
+            jev_offline_answers.jsonl
+            jev_news_eval_answers.jsonl
