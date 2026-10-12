@@ -1,10 +1,11 @@
-2026-10-12 18:07:19,708 INFO [daytrade] no action needed
-2026-10-12 18:07:25,110 INFO [crypto2] no action needed
-2026-10-12 18:07:27,244 INFO [mm] no action needed
-2026-10-12 18:07:27,249 INFO [crypto] no action needed
-2026-10-12 18:07:28,202 INFO [primary] no action needed
-2026-10-12 18:07:28,861 INFO [research] no action needed
-2026-10-12 18:07:29,372 INFO [trend] no action needed
-2026-10-12 18:07:29,666 INFO [ctrend] no action needed
-2026-10-12 18:07:31,872 INFO [speed] 2026-10-12: 0 buys, 0 sells this run; 274 Jev calls today, 0 trades today
-2026-10-12 18:07:31,876 INFO [meme] starts 2026-10-13
+2026-10-12 21:34:12,755 INFO [daytrade] closed 2026-10-12: equity $99.00 (0 trades)
+2026-10-12 21:34:18,429 INFO [crypto2] no action needed
+2026-10-12 21:34:19,376 INFO [mm] no action needed
+2026-10-12 21:34:19,381 INFO [crypto] no action needed
+2026-10-12 21:34:22,596 INFO [primary] closed 2026-10-12; decided for 2026-10-13: 0 orders (MOO), regime ON
+2026-10-12 21:36:07,598 INFO [research] closed 2026-10-12; decided for 2026-10-13: 0 orders (MOO), regime ON
+2026-10-12 21:36:11,236 INFO [trend] closed 2026-10-12; decided for 2026-10-13: 0 orders (MOO), rebalance=False
+2026-10-12 21:36:14,508 INFO [ctrend] closed 2026-10-12; decided for 2026-10-13: 0 orders (MOO), rebalance=False
+2026-10-12 21:36:17,724 INFO [speed] closed 2026-10-12: equity $100.00 (0 trades); 2026-10-12: 0 buys, 0 sells this run; 274 Jev calls today, 0 trades today
+2026-10-12 21:36:17,728 INFO [meme] starts 2026-10-13
+2026-10-12 21:36:19,203 INFO after-close review written: review_2026-10-12
