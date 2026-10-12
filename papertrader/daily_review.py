@@ -85,7 +85,7 @@ def review_book(book: dict, day: dt.date) -> dict:
     return out
 
 
-def render(day: dt.date, books: list[dict]) -> str:
+def render(day: dt.date, books: list[dict], extra: list[str] | None = None) -> str:
     lines = [f"# After-close review: {day.isoformat()}", "",
              "Diagnostic only. No strategy was changed. A change needs a logged `run.py log-change` backed by a history test with an out-of-sample split.", "",
              "| Book | Equity | Today | SPY today | Fills | Flags |", "|---|---|---|---|---|---|"]
@@ -109,6 +109,7 @@ def render(day: dt.date, books: list[dict]) -> str:
         lines += [f"- WHAT LOOKS WRONG: {f}" for f in b["flags"]] or []
         lines += [f"- NOTE: {n}" for n in b["notes"]]
         lines.append(f"- Evidence gate: {b.get('gate', 'n/a')}")
+    lines += extra or []
     return "\n".join(lines) + "\n"
 
 
@@ -125,5 +126,20 @@ def maybe_generate_review(exp: dict, now: dt.datetime, out_dir: Path = REPORTS_D
         return None
     books = [review_book(b, day) for b in exp["books"] if dt.date.fromisoformat(b.get("start_date", exp["start_date"])) <= day]
     out_dir.mkdir(parents=True, exist_ok=True)
-    path.write_text(render(day, books))
+    path.write_text(render(day, books, _jev_section(exp, day)))
     return path.stem
+
+
+def _jev_section(exp: dict, day: dt.date) -> list[str]:
+    """Jev calibration lines for the speed book, or nothing. Never raises: a data hiccup must not cost the day's review."""
+    try:
+        import json
+        from . import jev_calibration as jc
+        book = next((b for b in exp["books"] if b["id"] == "speed"), None)
+        if book is None:
+            return []
+        cfg = json.loads((ROOT / book["strategy"]).read_text())["speed"]
+        today = jc.run_for_day(day, cfg["take_profit_pct"], cfg["stop_pct"], cfg["max_hold_minutes"])
+        return jc.render(today, jc.totals())
+    except Exception as e:  # noqa: BLE001
+        return ["", f"## Jev's speed-trader probabilities vs what happened", f"Not scored today: {type(e).__name__}: {str(e)[:120]}"]
