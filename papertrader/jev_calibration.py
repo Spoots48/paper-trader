@@ -88,6 +88,23 @@ def correlation(s: dict) -> float | None:
     return (s["sum_po"] / n - (s["sum_p"] / n) * (s["sum_o"] / n)) / math.sqrt(var_p * var_o)
 
 
+MIN_CALLS_FOR_DECISION = 600
+MIN_TOP_BUCKET_CALLS = 30
+
+
+def decision(cum: dict) -> str:
+    """The pre-registered rule (research/review_2026_10_12/RESEARCH.md): keep the speed book only if Jev's p >= 0.50 calls (at least
+    MIN_TOP_BUCKET_CALLS of them) hit at least twice the base rate; judged once MIN_CALLS_FOR_DECISION calls are scored."""
+    if cum["n"] < MIN_CALLS_FOR_DECISION:
+        return f"COLLECTING: {cum['n']} of {MIN_CALLS_FOR_DECISION} scored calls needed before the pre-registered keep/retire rule is applied."
+    n, h = cum["buckets"].get("0.50-1.00", [0, 0])
+    base = cum["base_hits"] / cum["base_n"] if cum["base_n"] else 0.0
+    if n >= MIN_TOP_BUCKET_CALLS and h / n >= 2 * base:
+        return f"KEEP: the p >= 0.50 calls hit {h / n:.1%} ({n} calls) against a {base:.1%} base rate."
+    return (f"RETIRE: the p >= 0.50 calls hit {h}/{n} against a {base:.1%} base rate (rule: at least {MIN_TOP_BUCKET_CALLS} calls and twice the base rate). "
+            "Stop Jev calls for this book with a logged change; do not lower the 0.65 threshold to force trades.")
+
+
 def record(root: Path, session: str, summary: dict) -> None:
     path = root / STORE
     rows = [r for r in _read(path) if r.get("session") != session]
@@ -153,6 +170,7 @@ def render(today: dict | None, cum: dict) -> list[str]:
         lines.append(f"- p in {name}: {n} calls, {rate(h, n)} reached the target first")
     if today and today.get("n"):
         lines.append(f"Today alone: {today['n']} calls, mean p {today['sum_p'] / today['n']:.1%}, reached target first {rate(today['sum_o'], today['n'])}.")
+    lines.append(f"Pre-registered rule: {decision(cum)}")
     lines.append("Reading it: a useful signal needs high-p calls to hit more often than low-p calls, well above the base rate, and needs enough calls to "
                  "tell skill from luck (hundreds, over several days). Until then the rules stay frozen and the threshold is not touched.")
     return lines

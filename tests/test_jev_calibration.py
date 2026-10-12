@@ -62,3 +62,14 @@ def test_run_for_day_uses_logged_calls_only_for_that_session(tmp_path):
     out = jc.run_for_day(dt.date(2026, 10, 12), 0.30, 0.25, 2, root=tmp_path, bars=bars)
     assert out["n"] == 1 and out["sum_o"] == 1
     assert jc.run_for_day(dt.date(2026, 10, 11), 0.30, 0.25, 2, root=tmp_path, bars=bars) is None
+
+
+def test_pre_registered_decision_rule():
+    few = {"n": 100, "base_n": 1000, "base_hits": 80, "buckets": {}}
+    assert jc.decision(few).startswith("COLLECTING")
+    nothing = {"n": 700, "base_n": 5000, "base_hits": 400, "buckets": {"0.50-1.00": [60, 0]}}
+    assert jc.decision(nothing).startswith("RETIRE")
+    sparse = {"n": 700, "base_n": 5000, "base_hits": 400, "buckets": {"0.50-1.00": [10, 5]}}
+    assert jc.decision(sparse).startswith("RETIRE")           # too few high-p calls to claim skill
+    skill = {"n": 700, "base_n": 5000, "base_hits": 400, "buckets": {"0.50-1.00": [60, 15]}}
+    assert jc.decision(skill).startswith("KEEP")
