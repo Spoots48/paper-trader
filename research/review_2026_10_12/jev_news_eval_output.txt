@@ -1,0 +1,13 @@
+headlines scored: 48 of 48
+material_adverse (12 adverse vs 36 not): AUC of Jev's score 0.970
+  flag when score >= 0.3: caught 12/12, false alarms 6/36
+  flag when score >= 0.5: caught 12/12, false alarms 4/36
+  flag when score >= 0.7: caught 12/12, false alarms 4/36
+tone (always answers): 44/48 = 91.7%
+Laya on the same set: material_adverse caught 9/12 with 9/36 false alarms when forced (answered confidently on only 13/48 event labels, abstain 73%); tone forced 83.3%, confident-only 90.3% on 31/48
+missed adverse (score < 0.5):
+false alarms (score >= 0.5): 
+  - [earnings_update] Nova Health misses revenue estimates and cuts full-year outlook 
+  - [earnings_update] Quantum Freight beats on earnings but lowers next-quarter guidance 
+  - [earnings_update] Silver Apparel swings to quarterly loss as margins compress 
+  - [promotional_or_opinion] Shareholder alert: Pomerantz investigating claims on behalf of Able Corp investors

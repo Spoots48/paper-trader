@@ -29,3 +29,20 @@ Requested by the user: look at more GitHub repos and strategies, apply them to e
 2. **Speed book: left frozen, collecting calibration only.** With the 0.65 threshold unreachable it cannot lose money while it collects Jev's calibration data. Pre-registered decision: after the 2026-10-14 close (about 750 scored calls), retire the speed book (stop Jev calls) unless Jev's p >= 0.50 bucket has at least 30 calls and hits at least twice the base rate. Do NOT lower the threshold to force trades: the highest bucket hit 0 of 45.
 3. **New `meme` book (meme-1.0.0), starts 2026-10-13.** Forward test only, no historical tape. Honest expectations: few entries (the liquidity/age/rug screen rejects most tokens), and most memecoin strategies lose after real frictions. Fills are deliberately worse than reality would be on average.
 4. **Eight sessions remain** (experiment ends 2026-10-22). No new rule can produce meaningful evidence in that time. If the user wants real evidence, the experiment would have to run for months with slow, low-turnover rules (trend books), not days of fast ones.
+
+## 5. Same-day follow-up: Jev checked offline, and what it is and is not good at
+
+Source for the cost question: the user's console screenshot (paper-trader key, last 24 h: 345 requests, 226,697 tokens, spend $0.0089, balance $25.00). That matches the repo's own logs (274 speed calls + 76 news reviews = 350) and is about $0.000026 per call, so cost is not a constraint.
+
+**Speed-trader question, asked offline** (`tools/jev_offline_calibration.py`, output `jev_offline_output.txt`; sample, labels and the keep/retire rule were fixed before any Jev answer to it existed): 1,190 past-minute states from 7 complete sessions (Oct 1-9), same prompt, same top-4-by-relative-volume selection as the live book, 0 errors.
+- AUC of Jev's p for "target first": **0.491**, 95% session-bootstrap interval 0.468-0.515 (no ranking skill).
+- p >= 0.50 calls: 374, target hit **14.2%** vs a **15.0%** base rate. Every probability bucket loses about 6-8 bp per trade after assumed costs; the top fifth of p loses 6.0 bp per trade (se 1.1).
+- No call reached the live 0.65 buy threshold (maximum p 0.62).
+- By the pre-registered rule: **RETIRE**. The live data agrees (Oct 12: 274 calls, correlation -0.10, p >= 0.50 hit 0 of 45).
+- The retirement change is prepared but NOT yet applied: `strategy_speed_v1.1.0.candidate.json` (Jev call caps set to 0, version speed-1.1.0). It must go in as a logged change (`run.py log-change`) committed together with the speed ledger dump while no cloud run is mid-flight, otherwise the cloud's integrity check or its commit step can collide. Until then the book is harmless: it cannot trade at 0.65 and costs about 1.5 cents a day.
+
+**News reviewer, scored on the 48 hand-labeled synthetic headlines Laya was scored on** (`tools/jev_news_eval.py`, output `jev_news_eval_output.txt`; classification only, not a trading test):
+- Material-adverse: AUC **0.970**; at score >= 0.5 it caught **12/12** adverse headlines with 4/36 false alarms (Laya: 9/12 with 9/36 when forced; it answered confidently on only 13/48 event labels). Three of Jev's four "false alarms" are guidance cuts or earnings misses, which its own instructions treat as material negatives but the label set files under "earnings_update".
+- Tone: 44/48 = **91.7%** (Laya 83.3% forced, 90.3% on the 31 it was confident about).
+
+**What this says.** Jev reads text well and cannot time price paths from 20 numbers: that is the difference between a language model and a trading signal. The speed book asked it the second kind of question. Using Jev for headlines (an adverse-news veto or a catalyst check on the swing and day-trading books) is plausible, but nothing has shown it adds return: there is no free timestamped news history to test on, so the only evidence available is forward evidence from the shadow reviewer (state/jev_reviews.jsonl), compared with what prices did next. It stays shadow-only until then.
