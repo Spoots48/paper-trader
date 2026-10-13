@@ -1,10 +1,10 @@
-2026-10-13 23:44:04,475 INFO [daytrade] no action needed
-2026-10-13 23:44:09,086 INFO [crypto2] no action needed
-2026-10-13 23:44:09,484 INFO [mm] no action needed
-2026-10-13 23:44:09,532 INFO [crypto] no action needed
-2026-10-13 23:44:09,681 INFO [primary] no action needed
-2026-10-13 23:44:09,686 INFO [research] no action needed
-2026-10-13 23:44:09,690 INFO [trend] no action needed
-2026-10-13 23:44:09,694 INFO [ctrend] no action needed
-2026-10-13 23:44:09,699 INFO [speed] no action needed
-2026-10-13 23:44:10,505 INFO [meme] bought CRAWLER $5.00
+2026-10-13 23:51:08,617 INFO [daytrade] no action needed
+2026-10-13 23:51:13,986 INFO [crypto2] no action needed
+2026-10-13 23:51:14,991 INFO [mm] no action needed
+2026-10-13 23:51:14,999 INFO [crypto] no action needed
+2026-10-13 23:51:15,003 INFO [primary] no action needed
+2026-10-13 23:51:15,007 INFO [research] no action needed
+2026-10-13 23:51:15,011 INFO [trend] no action needed
+2026-10-13 23:51:15,015 INFO [ctrend] no action needed
+2026-10-13 23:51:15,020 INFO [speed] no action needed
+2026-10-13 23:51:15,529 INFO [meme] candidates screened out: liquidity x13, age x10, 1h x2, 24h x1
