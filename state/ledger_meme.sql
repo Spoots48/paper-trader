@@ -61,6 +61,7 @@ INSERT INTO "runs" VALUES('20261012T174933Z-meme','2026-10-12T17:49:46Z','2026-1
 INSERT INTO "runs" VALUES('20261012T180719Z-meme','2026-10-12T18:07:31Z','2026-10-12T18:07:31Z','OK','github-actions','starts 2026-10-13',NULL);
 INSERT INTO "runs" VALUES('20261012T213411Z-meme','2026-10-12T21:36:17Z','2026-10-12T21:36:17Z','OK','github-actions','starts 2026-10-13',NULL);
 INSERT INTO "runs" VALUES('20261013T020022Z-meme','2026-10-13T02:00:27Z','2026-10-13T02:00:27Z','OK','github-actions','starts 2026-10-13',NULL);
+INSERT INTO "runs" VALUES('20261013T021408Z-meme','2026-10-13T02:14:14Z','2026-10-13T02:14:14Z','OK','github-actions','starts 2026-10-13',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -68,7 +69,7 @@ CREATE TABLE snapshots (
 );
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','100.0','2026-10-12T17:46:32Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-13T02:00:27Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-13T02:14:14Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
