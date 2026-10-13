@@ -67,6 +67,7 @@ INSERT INTO "runs" VALUES('20261013T024332Z-meme','2026-10-13T02:43:37Z','2026-1
 INSERT INTO "runs" VALUES('20261013T033510Z-meme','2026-10-13T03:35:16Z','2026-10-13T03:35:16Z','OK','github-actions','starts 2026-10-13',NULL);
 INSERT INTO "runs" VALUES('20261013T094554Z-meme','2026-10-13T09:45:59Z','2026-10-13T09:46:00Z','OK','github-actions','candidates screened out: liquidity x11, age x9, 1h x5, 24h x4',NULL);
 INSERT INTO "runs" VALUES('20261013T174833Z-meme','2026-10-13T17:49:45Z','2026-10-13T17:49:46Z','OK','github-actions','candidates screened out: liquidity x11, age x10, 1h x6, 24h x3',NULL);
+INSERT INTO "runs" VALUES('20261013T194605Z-meme','2026-10-13T19:46:17Z','2026-10-13T19:46:17Z','OK','github-actions','candidates screened out: liquidity x11, age x9, 1h x5, 24h x2',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -74,10 +75,10 @@ CREATE TABLE snapshots (
 );
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','100.0','2026-10-12T17:46:32Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-13T17:49:45Z');
-INSERT INTO "state" VALUES('meme_positions','{}','2026-10-13T17:49:46Z');
-INSERT INTO "state" VALUES('risk','{"peak": 100.0}','2026-10-13T17:49:46Z');
-INSERT INTO "state" VALUES('meme_day','{"date": "2026-10-13", "entries": 0, "realized": 0.0}','2026-10-13T17:49:46Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-13T19:46:17Z');
+INSERT INTO "state" VALUES('meme_positions','{}','2026-10-13T19:46:17Z');
+INSERT INTO "state" VALUES('risk','{"peak": 100.0}','2026-10-13T19:46:17Z');
+INSERT INTO "state" VALUES('meme_day','{"date": "2026-10-13", "entries": 0, "realized": 0.0}','2026-10-13T19:46:17Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT

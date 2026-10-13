@@ -1,10 +1,10 @@
-2026-10-13 17:49:34,200 INFO [daytrade] 2026-10-13: 3 candidates (WFC, JPM, C)
-2026-10-13 17:49:39,803 INFO [crypto2] no action needed
-2026-10-13 17:49:40,766 INFO [mm] no action needed
-2026-10-13 17:49:40,772 INFO [crypto] no action needed
-2026-10-13 17:49:41,376 INFO [primary] no action needed
-2026-10-13 17:49:41,935 INFO [research] no action needed
-2026-10-13 17:49:42,777 INFO [trend] no action needed
-2026-10-13 17:49:43,472 INFO [ctrend] no action needed
-2026-10-13 17:49:45,416 INFO [speed] 2026-10-13: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
-2026-10-13 17:49:46,139 INFO [meme] candidates screened out: liquidity x11, age x10, 1h x6, 24h x3
+2026-10-13 19:46:06,315 INFO [daytrade] no action needed
+2026-10-13 19:46:11,512 INFO [crypto2] no action needed
+2026-10-13 19:46:12,282 INFO [mm] no action needed
+2026-10-13 19:46:12,287 INFO [crypto] no action needed
+2026-10-13 19:46:12,852 INFO [primary] no action needed
+2026-10-13 19:46:13,196 INFO [research] no action needed
+2026-10-13 19:46:13,568 INFO [trend] no action needed
+2026-10-13 19:46:13,834 INFO [ctrend] no action needed
+2026-10-13 19:46:17,003 INFO [speed] 2026-10-13: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-13 19:46:17,710 INFO [meme] candidates screened out: liquidity x11, age x9, 1h x5, 24h x2
