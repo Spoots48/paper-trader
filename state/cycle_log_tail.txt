@@ -1,10 +1,10 @@
-2026-10-14 00:37:00,755 INFO [daytrade] no action needed
-2026-10-14 00:37:05,994 INFO [crypto2] no action needed
-2026-10-14 00:37:06,794 INFO [mm] no action needed
-2026-10-14 00:37:06,800 INFO [crypto] no action needed
-2026-10-14 00:37:06,804 INFO [primary] no action needed
-2026-10-14 00:37:06,808 INFO [research] no action needed
-2026-10-14 00:37:06,813 INFO [trend] no action needed
-2026-10-14 00:37:06,817 INFO [ctrend] no action needed
-2026-10-14 00:37:06,822 INFO [speed] no action needed
-2026-10-14 00:37:07,546 INFO [meme] candidates screened out: liquidity x13, age x11, 1h x2, buys x2
+2026-10-14 01:55:55,343 INFO [daytrade] no action needed
+2026-10-14 01:56:00,114 INFO [crypto2] no action needed
+2026-10-14 01:56:00,314 INFO [mm] no action needed
+2026-10-14 01:56:00,319 INFO [crypto] no action needed
+2026-10-14 01:56:00,324 INFO [primary] no action needed
+2026-10-14 01:56:00,328 INFO [research] no action needed
+2026-10-14 01:56:00,332 INFO [trend] no action needed
+2026-10-14 01:56:00,337 INFO [ctrend] no action needed
+2026-10-14 01:56:00,342 INFO [speed] no action needed
+2026-10-14 01:56:00,937 INFO [meme] sold CRAWLER (STOP) -2.42; candidates screened out: age x14, liquidity x11, 1h x2, buys x1
