@@ -27,6 +27,7 @@ INSERT INTO "decisions" VALUES(16,'decide:2026-10-09','20261008T234842Z-primary'
 INSERT INTO "decisions" VALUES(17,'decide:2026-10-12','20261009T225719Z-primary','2026-10-09T22:57:19Z','2026-10-09','2026-10-12','*','system','INFO','DECIDED','0 orders (MOO) for 2026-10-12; regime ON; SPY 778.57 vs 200d 722.93; VIX 14.84000015258789; 0 earnings reactions on 2026-10-09; rebalance=True','{"regime": "ON", "spy_close": 778.5700073242188, "spy_sma200": 722.9283996582031, "vix": 14.84000015258789, "order_type": "MOO", "data_through": "2026-10-09", "stock_bars_missing": 0, "risk": {"drawdown": 0.0006552348842878697, "halted": false, "paused": false}, "earnings_events_loaded": 0, "earnings_dates_failed": []}','[]');
 INSERT INTO "decisions" VALUES(18,'decide:2026-10-13','20261012T213411Z-primary','2026-10-12T21:34:11Z','2026-10-12','2026-10-13','*','system','INFO','DECIDED','0 orders (MOO) for 2026-10-13; regime ON; SPY 778.10 vs 200d 723.38; VIX 15.210000038146973; 0 earnings reactions on 2026-10-12; rebalance=False','{"regime": "ON", "spy_close": 778.0999755859375, "spy_sma200": 723.3790994262695, "vix": 15.210000038146973, "order_type": "MOO", "data_through": "2026-10-12", "stock_bars_missing": 0, "risk": {"drawdown": 0.0012464763517070487, "halted": false, "paused": false}, "earnings_events_loaded": 0, "earnings_dates_failed": []}','[]');
 INSERT INTO "decisions" VALUES(19,'decide:2026-10-14','20261013T232833Z-primary','2026-10-13T23:28:33Z','2026-10-13','2026-10-14','*','system','INFO','DECIDED','0 orders (MOO) for 2026-10-14; regime ON; SPY 778.01 vs 200d 723.82; VIX 15.270000457763672; 0 earnings reactions on 2026-10-13; rebalance=False','{"regime": "ON", "spy_close": 778.010009765625, "spy_sma200": 723.8172494506836, "vix": 15.270000457763672, "order_type": "MOO", "data_through": "2026-10-13", "stock_bars_missing": 0, "risk": {"drawdown": 0.001359642164325825, "halted": false, "paused": false}, "earnings_events_loaded": 0, "earnings_dates_failed": []}','[]');
+INSERT INTO "decisions" VALUES(20,'decide:2026-10-15','20261014T211810Z-primary','2026-10-14T21:18:10Z','2026-10-14','2026-10-15','*','system','INFO','DECIDED','0 orders (MOO) for 2026-10-15; regime ON; SPY 769.60 vs 200d 724.21; VIX 16.8700008392334; 0 earnings reactions on 2026-10-14; rebalance=False','{"regime": "ON", "spy_close": 769.5999755859375, "spy_sma200": 724.2136993408203, "vix": 16.8700008392334, "order_type": "MOO", "data_through": "2026-10-14", "stock_bars_missing": 0, "risk": {"drawdown": 0.011938419179737814, "halted": false, "paused": false}, "earnings_events_loaded": 0, "earnings_dates_failed": []}','[]');
 CREATE TABLE dividends (
   ticker TEXT NOT NULL, ex_date TEXT NOT NULL, per_share REAL NOT NULL, qty REAL NOT NULL,
   amount REAL NOT NULL, recorded_at TEXT NOT NULL, PRIMARY KEY (ticker, ex_date)
@@ -80,6 +81,8 @@ INSERT INTO "events" VALUES(42,'2026-10-12T21:34:20Z','20261012T213411Z-primary'
 INSERT INTO "events" VALUES(43,'2026-10-12T21:34:22Z','20261012T213411Z-primary','decision','{"action": "INFO", "code": "DECIDED", "key": "decide:2026-10-13", "reason": "0 orders (MOO) for 2026-10-13; regime ON; SPY 778.10 vs 200d 723.38; VIX 15.210000038146973; 0 earnings reactions on 2026-10-12; rebalance=False", "ticker": "*"}','e256cc1f938b0ba647cac33846c848b995fba1e5eab5819a6a17ac2a2955ea95','bb5a337016429d8daf9cdf703aac2b794590c0e89bc8d75447125620f5668dd2');
 INSERT INTO "events" VALUES(44,'2026-10-13T23:28:42Z','20261013T232833Z-primary','snapshot','{"cash": 2.0146403894020604, "drawdown": 0.001359642164325825, "equity": 100.59239867675558, "session": "2026-10-13", "spy_bh_equity": 100.60505516668515}','bb5a337016429d8daf9cdf703aac2b794590c0e89bc8d75447125620f5668dd2','0f036b2f0c1d35342c4c19e17a8876b2bb6b03ea177482b0a879e84bf2055f10');
 INSERT INTO "events" VALUES(45,'2026-10-13T23:28:44Z','20261013T232833Z-primary','decision','{"action": "INFO", "code": "DECIDED", "key": "decide:2026-10-14", "reason": "0 orders (MOO) for 2026-10-14; regime ON; SPY 778.01 vs 200d 723.82; VIX 15.270000457763672; 0 earnings reactions on 2026-10-13; rebalance=False", "ticker": "*"}','0f036b2f0c1d35342c4c19e17a8876b2bb6b03ea177482b0a879e84bf2055f10','bd49044e290bdd7bcd7bd75a0684e8a42e9a34642a2cb2c7ad90ddd70335584d');
+INSERT INTO "events" VALUES(46,'2026-10-14T21:18:19Z','20261014T211810Z-primary','snapshot','{"cash": 2.0146403894020604, "drawdown": 0.011938419179737814, "equity": 99.52680529601828, "session": "2026-10-14", "spy_bh_equity": 99.51754736860931}','bd49044e290bdd7bcd7bd75a0684e8a42e9a34642a2cb2c7ad90ddd70335584d','704d65c41dcc3632a97ba17581af246eb540d4a3faf353cde7f9e7c128168c9b');
+INSERT INTO "events" VALUES(47,'2026-10-14T21:18:21Z','20261014T211810Z-primary','decision','{"action": "INFO", "code": "DECIDED", "key": "decide:2026-10-15", "reason": "0 orders (MOO) for 2026-10-15; regime ON; SPY 769.60 vs 200d 724.21; VIX 16.8700008392334; 0 earnings reactions on 2026-10-14; rebalance=False", "ticker": "*"}','704d65c41dcc3632a97ba17581af246eb540d4a3faf353cde7f9e7c128168c9b','2223e8a8706c50efcbbb872a09752242f5e747a1e395786f0f1e9baef2b32dfe');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -117,7 +120,7 @@ CREATE TABLE positions (
   entry_session TEXT NOT NULL, entry_price REAL NOT NULL, initial_stop REAL, trail_pct REAL,
   high_water REAL NOT NULL, max_hold_until TEXT, stop_checked_through TEXT, meta TEXT
 );
-INSERT INTO "positions" VALUES('SPY',0.126705,7.73330931011962775e+02,'residual','2026-09-23',7.73330931011962775e+02,NULL,NULL,7.816199951171875e+02,NULL,'2026-10-14T13:40:00-04:00','{}');
+INSERT INTO "positions" VALUES('SPY',0.126705,7.73330931011962775e+02,'residual','2026-09-23',7.73330931011962775e+02,NULL,NULL,7.816199951171875e+02,NULL,'2026-10-14T16:00:00-04:00','{}');
 CREATE TABLE reports (
   report_key TEXT PRIMARY KEY, day_number INTEGER NOT NULL, report_date TEXT NOT NULL,
   as_of_session TEXT NOT NULL, generated_at TEXT NOT NULL, path_md TEXT NOT NULL, path_html TEXT NOT NULL,
@@ -546,6 +549,7 @@ INSERT INTO "runs" VALUES('20261014T165322Z-primary','2026-10-14T16:53:28Z','202
 INSERT INTO "runs" VALUES('20261014T165457Z-primary','2026-10-14T16:55:05Z','2026-10-14T16:55:05Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261014T165957Z-primary','2026-10-14T17:00:04Z','2026-10-14T17:00:04Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261014T174737Z-primary','2026-10-14T17:47:44Z','2026-10-14T17:47:45Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261014T211810Z-primary','2026-10-14T21:18:18Z','2026-10-14T21:18:21Z','OK','github-actions','closed 2026-10-14; decided for 2026-10-15: 0 orders (MOO), regime ON',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -566,15 +570,16 @@ INSERT INTO "snapshots" VALUES('2026-10-08','2026-10-08T23:48:42Z','20261008T234
 INSERT INTO "snapshots" VALUES('2026-10-09','2026-10-09T22:57:19Z','20261009T225719Z-primary',1.00663353167417213e+02,2.01464038940206036e+00,9.86487127780151524e+01,1.0067746886903906e+02,100.0,1.00729354554393054e+02,6.55234884287869689e-04,'ON','{"peak": 100.72935455439305, "pause_until": null, "halt_until": null, "drawdown": 0.0006552348842878697}','{"marks": {"SPY": 778.5700073242188}, "flags": {}}','{"SPY": {"qty": 0.126705, "avg_cost": 773.3309310119628, "sleeve": "residual", "stop": null, "entry_session": "2026-09-23", "max_hold_until": null}}');
 INSERT INTO "snapshots" VALUES('2026-10-12','2026-10-12T21:34:11Z','20261012T213411Z-primary',1.00603797796018284e+02,2.01464038940206036e+00,9.85891574066162235e+01,1.00616688714071486e+02,100.0,1.00729354554393054e+02,1.24647635170704873e-03,'ON','{"peak": 100.72935455439305, "pause_until": null, "halt_until": null, "drawdown": 0.0012464763517070487}','{"marks": {"SPY": 778.0999755859375}, "flags": {}}','{"SPY": {"qty": 0.126705, "avg_cost": 773.3309310119628, "sleeve": "residual", "stop": null, "entry_session": "2026-09-23", "max_hold_until": null}}');
 INSERT INTO "snapshots" VALUES('2026-10-13','2026-10-13T23:28:33Z','20261013T232833Z-primary',1.00592398676755578e+02,2.01464038940206036e+00,9.8577758287353518e+01,1.00605055166685147e+02,100.0,1.00729354554393054e+02,1.35964216432582496e-03,'ON','{"peak": 100.72935455439305, "pause_until": null, "halt_until": null, "drawdown": 0.001359642164325825}','{"marks": {"SPY": 778.010009765625}, "flags": {}}','{"SPY": {"qty": 0.126705, "avg_cost": 773.3309310119628, "sleeve": "residual", "stop": null, "entry_session": "2026-09-23", "max_hold_until": null}}');
+INSERT INTO "snapshots" VALUES('2026-10-14','2026-10-14T21:18:10Z','20261014T211810Z-primary',9.95268052960182814e+01,2.01464038940206036e+00,9.75121649066162206e+01,9.95175473686093141e+01,100.0,1.00729354554393054e+02,1.19384191797378136e-02,'ON','{"peak": 100.72935455439305, "pause_until": null, "halt_until": null, "drawdown": 0.011938419179737814}','{"marks": {"SPY": 769.5999755859375}, "flags": {}}','{"SPY": {"qty": 0.126705, "avg_cost": 773.3309310119628, "sleeve": "residual", "stop": null, "entry_session": "2026-09-23", "max_hold_until": null}}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
-INSERT INTO "state" VALUES('cash','2.0146403894020604','2026-10-14T17:47:45Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-14T17:47:44Z');
-INSERT INTO "state" VALUES('last_regime','"ON"','2026-10-13T23:28:44Z');
+INSERT INTO "state" VALUES('cash','2.0146403894020604','2026-10-14T21:18:19Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-14T21:18:18Z');
+INSERT INTO "state" VALUES('last_regime','"ON"','2026-10-14T21:18:21Z');
 INSERT INTO "state" VALUES('benchmark','{"ticker": "SPY", "qty": 0.12931074652496097, "entry_price": 773.3309310119628, "entry_session": "2026-09-23", "div_cash": 0.0, "note": "SPY bought at the first session''s official open with the same cost model"}','2026-09-23T17:50:09Z');
 INSERT INTO "state" VALUES('open_done:2026-09-23','true','2026-09-23T17:50:09Z');
 INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-14T17:47:37Z", "marks": {"SPY": [768.27001953125, "2026-10-14T13:40:00-04:00"]}}','2026-10-14T17:47:45Z');
-INSERT INTO "state" VALUES('risk','{"peak": 100.72935455439305, "pause_until": null, "halt_until": null, "drawdown": 0.001359642164325825}','2026-10-13T23:28:42Z');
-INSERT INTO "state" VALUES('last_closed_session','"2026-10-13"','2026-10-13T23:28:42Z');
+INSERT INTO "state" VALUES('risk','{"peak": 100.72935455439305, "pause_until": null, "halt_until": null, "drawdown": 0.011938419179737814}','2026-10-14T21:18:19Z');
+INSERT INTO "state" VALUES('last_closed_session','"2026-10-14"','2026-10-14T21:18:19Z');
 INSERT INTO "state" VALUES('open_done:2026-09-24','true','2026-09-24T13:42:01Z');
 INSERT INTO "state" VALUES('open_done:2026-09-25','true','2026-09-25T13:38:34Z');
 INSERT INTO "state" VALUES('open_done:2026-09-28','true','2026-09-28T13:50:24Z');
@@ -613,7 +618,7 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',45);
-INSERT INTO "sqlite_sequence" VALUES('decisions',19);
+INSERT INTO "sqlite_sequence" VALUES('events',47);
+INSERT INTO "sqlite_sequence" VALUES('decisions',20);
 INSERT INTO "sqlite_sequence" VALUES('fills',3);
 COMMIT;
