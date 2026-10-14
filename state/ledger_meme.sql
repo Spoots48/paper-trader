@@ -23,6 +23,9 @@ INSERT INTO "events" VALUES(4,'2026-10-13T23:44:10Z','20261013T234404Z-meme','or
 INSERT INTO "events" VALUES(5,'2026-10-14T01:56:00Z','20261014T015555Z-meme','fill','{"fill_price": 0.012219790671110741, "key": "meme:CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump:2026-10-13T23:44:04Z:SELL", "price_time": "2026-10-14T01:55:55Z", "qty": 211.13698921580735, "ref_price": 0.013, "side": "SELL", "source": "dexscreener_pair_price", "ticker": "CRAWLER CQCD\u2026pump"}','102e6c3634e53b065cd6671b7f24a3d01f5d7b6106640c44403e3c12a6a66a7a','6d1b734177b6439c8ba3e787118477d6ff54b101ae19d160c4af26bda5d5d80b');
 INSERT INTO "events" VALUES(6,'2026-10-14T01:56:00Z','20261014T015555Z-meme','order_status','{"key": "meme:CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump:2026-10-13T23:44:04Z:SELL", "reason": "STOP", "status": "FILLED"}','6d1b734177b6439c8ba3e787118477d6ff54b101ae19d160c4af26bda5d5d80b','1f12a84de76d3dbe8adf0b8952832565c8cd88afe4009c9175402ed59dfc0ee5');
 INSERT INTO "events" VALUES(7,'2026-10-14T05:22:11Z','20261014T052204Z-meme','snapshot','{"cash": 97.58004981114573, "drawdown": 0.02499081389729818, "equity": 97.58004981114573, "session": "2026-10-13", "spy_bh_equity": null}','1f12a84de76d3dbe8adf0b8952832565c8cd88afe4009c9175402ed59dfc0ee5','96faf7098e6796a93520fa1aeeda73f44581fd4348b201a3b955001b13110687');
+INSERT INTO "events" VALUES(8,'2026-10-14T15:50:37Z','20261014T155025Z-meme','order','{"key": "meme:7jNwX4Me9zGEjmWY7zARDG2LYjVs1WXD6DZ1JvSfpump:2026-10-14T15:50:25Z:BUY", "notional": 5.0, "qty": null, "reason": "momentum with attention: 1h +9%, 5m +2.4%, buys 4489 vs sells 1929, liquidity $74,994, 24h volume $2,830,077, X link on profile; modeled friction 4.0%", "session": "2026-10-14", "side": "BUY", "ticker": "HUMPH 7jNw\u2026pump", "type": "PAPER_MARKET"}','96faf7098e6796a93520fa1aeeda73f44581fd4348b201a3b955001b13110687','12170508d480b47421d233b68836379a8562df038deba24a77683a862c3dad27');
+INSERT INTO "events" VALUES(9,'2026-10-14T15:50:37Z','20261014T155025Z-meme','fill','{"fill_price": 0.0006314649529486154, "key": "meme:7jNwX4Me9zGEjmWY7zARDG2LYjVs1WXD6DZ1JvSfpump:2026-10-14T15:50:25Z:BUY", "price_time": "2026-10-14T15:50:25Z", "qty": 7918.095813002101, "ref_price": 0.0006071, "side": "BUY", "source": "dexscreener_pair_price", "ticker": "HUMPH 7jNw\u2026pump"}','12170508d480b47421d233b68836379a8562df038deba24a77683a862c3dad27','fde3b0e23379b495b7d3c60eaf718d905387c2d84f3317a42226cdec4bee660f');
+INSERT INTO "events" VALUES(10,'2026-10-14T15:50:37Z','20261014T155025Z-meme','order_status','{"key": "meme:7jNwX4Me9zGEjmWY7zARDG2LYjVs1WXD6DZ1JvSfpump:2026-10-14T15:50:25Z:BUY", "reason": "bought 7918.1", "status": "FILLED"}','fde3b0e23379b495b7d3c60eaf718d905387c2d84f3317a42226cdec4bee660f','c82d2091311fa5d9df9a5c3c721bcee8ba11fc13d98083578efd3adef0b531bb');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -39,6 +42,7 @@ CREATE TABLE fills (
 );
 INSERT INTO "fills" VALUES(1,'meme:CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump:2026-10-13T23:44:04Z:BUY','20261013T234404Z-meme','2026-10-13T23:44:10Z','2026-10-13','CRAWLER CQCD…pump','BUY',2.11136989215807346e+02,0.02277,2.36813076598785809e-02,400.2,0.192410755556067,'2026-10-13T23:44:04Z','dexscreener_pair_price','meme','MEME_ENTRY','momentum with attention: 1h +11%, 5m +1.7%, buys 6696 vs sells 4054, liquidity $448,529, 24h volume $7,450,906, trending #8; modeled friction 4.0%',NULL);
 INSERT INTO "fills" VALUES(2,'meme:CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump:2026-10-13T23:44:04Z:SELL','20261014T015555Z-meme','2026-10-14T01:56:00Z','2026-10-13','CRAWLER CQCD…pump','SELL',2.11136989215807346e+02,0.013,1.22197906711107411e-02,600.2,1.64731048659763679e-01,'2026-10-14T01:55:55Z','dexscreener_pair_price','meme','STOP','STOP: price 0.013 vs entry 0.02277 (-42.9%); liquidity $340,920',-2.41995018885426826e+00);
+INSERT INTO "fills" VALUES(3,'meme:7jNwX4Me9zGEjmWY7zARDG2LYjVs1WXD6DZ1JvSfpump:2026-10-14T15:50:25Z:BUY','20261014T155025Z-meme','2026-10-14T15:50:37Z','2026-10-14','HUMPH 7jNw…pump','BUY',7.91809581300210084e+03,0.0006071,6.31464952948615401e-04,401.3,1.92924031926425404e-01,'2026-10-14T15:50:25Z','dexscreener_pair_price','meme','MEME_ENTRY','momentum with attention: 1h +9%, 5m +2.4%, buys 4489 vs sells 1929, liquidity $74,994, 24h volume $2,830,077, X link on profile; modeled friction 4.0%',NULL);
 CREATE TABLE news (
   news_id INTEGER PRIMARY KEY AUTOINCREMENT, uid TEXT NOT NULL UNIQUE, ticker TEXT NOT NULL,
   source TEXT NOT NULL, provider TEXT, title TEXT NOT NULL, url TEXT, published_at TEXT,
@@ -53,6 +57,7 @@ CREATE TABLE orders (
 );
 INSERT INTO "orders" VALUES('meme:CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump:2026-10-13T23:44:04Z:BUY','2026-10-13T23:44:04Z','20261013T234404Z-meme','CRAWLER CQCD…pump','BUY','PAPER_MARKET','2026-10-13','meme',5.0,NULL,50,'MEME_ENTRY','momentum with attention: 1h +11%, 5m +1.7%, buys 6696 vs sells 4054, liquidity $448,529, 24h volume $7,450,906, trending #8; modeled friction 4.0%','{}','{"token": "CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump", "pair": "AnrCHvfJUzMtos8DGjpT2XKurVPPYAVLDturASNwXcd4"}','FILLED','bought 211.137','2026-10-13T23:44:10Z');
 INSERT INTO "orders" VALUES('meme:CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump:2026-10-13T23:44:04Z:SELL','2026-10-14T01:55:55Z','20261014T015555Z-meme','CRAWLER CQCD…pump','SELL','STOP','2026-10-13','meme',NULL,NULL,NULL,'STOP','STOP: price 0.013 vs entry 0.02277 (-42.9%); liquidity $340,920',NULL,NULL,'FILLED','STOP','2026-10-14T01:56:00Z');
+INSERT INTO "orders" VALUES('meme:7jNwX4Me9zGEjmWY7zARDG2LYjVs1WXD6DZ1JvSfpump:2026-10-14T15:50:25Z:BUY','2026-10-14T15:50:25Z','20261014T155025Z-meme','HUMPH 7jNw…pump','BUY','PAPER_MARKET','2026-10-14','meme',5.0,NULL,50,'MEME_ENTRY','momentum with attention: 1h +9%, 5m +2.4%, buys 4489 vs sells 1929, liquidity $74,994, 24h volume $2,830,077, X link on profile; modeled friction 4.0%','{}','{"token": "7jNwX4Me9zGEjmWY7zARDG2LYjVs1WXD6DZ1JvSfpump", "pair": "9pQRnaHbKjD61KyS2K4FEnLCpvAi5hu5jbMbEsunHLJz"}','FILLED','bought 7918.1','2026-10-14T15:50:37Z');
 CREATE TABLE positions (
   ticker TEXT PRIMARY KEY, qty REAL NOT NULL, avg_cost REAL NOT NULL, sleeve TEXT NOT NULL,
   entry_session TEXT NOT NULL, entry_price REAL NOT NULL, initial_stop REAL, trail_pct REAL,
@@ -91,6 +96,11 @@ INSERT INTO "runs" VALUES('20261014T153347Z-meme','2026-10-14T15:33:58Z','2026-1
 INSERT INTO "runs" VALUES('20261014T153847Z-meme','2026-10-14T15:39:01Z','2026-10-14T15:39:02Z','OK','github-actions','candidates screened out: age x16, liquidity x9, 1h x3, too x1',NULL);
 INSERT INTO "runs" VALUES('20261014T154347Z-meme','2026-10-14T15:43:55Z','2026-10-14T15:43:56Z','OK','github-actions','candidates screened out: age x16, liquidity x8, 1h x3, too x1',NULL);
 INSERT INTO "runs" VALUES('20261014T154847Z-meme','2026-10-14T15:48:57Z','2026-10-14T15:48:58Z','OK','github-actions','candidates screened out: age x13, liquidity x7, 1h x4, too x1',NULL);
+INSERT INTO "runs" VALUES('20261014T155025Z-meme','2026-10-14T15:50:35Z','2026-10-14T15:50:37Z','OK','github-actions','bought HUMPH $5.00',NULL);
+INSERT INTO "runs" VALUES('20261014T155525Z-meme','2026-10-14T15:55:35Z','2026-10-14T15:55:36Z','OK','github-actions','candidates screened out: age x15, liquidity x7, 1h x2, 5m x1',NULL);
+INSERT INTO "runs" VALUES('20261014T160025Z-meme','2026-10-14T16:00:34Z','2026-10-14T16:00:34Z','OK','github-actions','candidates screened out: age x14, liquidity x7, 1h x3, 24h x2',NULL);
+INSERT INTO "runs" VALUES('20261014T160525Z-meme','2026-10-14T16:05:36Z','2026-10-14T16:05:36Z','OK','github-actions','candidates screened out: liquidity x11, age x9, 1h x4, too x3',NULL);
+INSERT INTO "runs" VALUES('20261014T161025Z-meme','2026-10-14T16:10:34Z','2026-10-14T16:10:35Z','OK','github-actions','candidates screened out: age x11, liquidity x8, 24h x3, 1h x2',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -98,12 +108,12 @@ CREATE TABLE snapshots (
 );
 INSERT INTO "snapshots" VALUES('2026-10-13','2026-10-14T05:22:04Z','20261014T052204Z-meme',9.75800498111457273e+01,9.75800498111457273e+01,0.0,NULL,100.0,1.00081159441370857e+02,2.49908138972981808e-02,'0 open memecoin positions','{"peak": 100.08115944137086, "drawdown": 0.02499081389729818}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
-INSERT INTO "state" VALUES('cash','97.58004981114573','2026-10-14T01:56:00Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-14T15:48:57Z');
-INSERT INTO "state" VALUES('meme_positions','{}','2026-10-14T15:48:58Z');
-INSERT INTO "state" VALUES('risk','{"peak": 100.08115944137086, "drawdown": 0.02499081389729818}','2026-10-14T15:48:58Z');
-INSERT INTO "state" VALUES('meme_day','{"date": "2026-10-14", "entries": 0, "realized": 0.0}','2026-10-14T15:48:58Z');
-INSERT INTO "state" VALUES('meme_rug','{"CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump": {"at": "2026-10-13T23:44:04Z", "summary": {"score": 1, "score_normalised": 1, "risks": [], "lpLockedPct": 99.99133929455358}}}','2026-10-13T23:44:10Z');
+INSERT INTO "state" VALUES('cash','92.58004981114573','2026-10-14T15:50:37Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-14T16:10:34Z');
+INSERT INTO "state" VALUES('meme_positions','{"7jNwX4Me9zGEjmWY7zARDG2LYjVs1WXD6DZ1JvSfpump": {"symbol": "HUMPH", "label": "HUMPH 7jNw\u2026pump", "qty": 7918.095813002101, "cost": 5.0, "entry_price": 0.0006071, "peak": 0.0006161, "mark": 0.0006161, "entered_at": "2026-10-14T15:50:25Z", "entry_liq": 74994.18, "liq": 75517.09, "pair": "9pQRnaHbKjD61KyS2K4FEnLCpvAi5hu5jbMbEsunHLJz", "missing": 0}}','2026-10-14T16:10:35Z');
+INSERT INTO "state" VALUES('risk','{"peak": 100.08115944137086, "drawdown": 0.02499081389729818}','2026-10-14T16:10:35Z');
+INSERT INTO "state" VALUES('meme_day','{"date": "2026-10-14", "entries": 1, "realized": 0.0}','2026-10-14T16:10:35Z');
+INSERT INTO "state" VALUES('meme_rug','{"CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump": {"at": "2026-10-13T23:44:04Z", "summary": {"score": 1, "score_normalised": 1, "risks": [], "lpLockedPct": 99.99133929455358}}, "7jNwX4Me9zGEjmWY7zARDG2LYjVs1WXD6DZ1JvSfpump": {"at": "2026-10-14T15:50:25Z", "summary": {"score": 1, "score_normalised": 1, "risks": [], "lpLockedPct": 99.99993554061957}}}','2026-10-14T15:50:37Z');
 INSERT INTO "state" VALUES('meme_seen','{"CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump": "2026-10-14T01:55:55Z"}','2026-10-14T01:56:00Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
@@ -128,6 +138,6 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',7);
-INSERT INTO "sqlite_sequence" VALUES('fills',2);
+INSERT INTO "sqlite_sequence" VALUES('events',10);
+INSERT INTO "sqlite_sequence" VALUES('fills',3);
 COMMIT;
