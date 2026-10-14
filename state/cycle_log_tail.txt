@@ -1,11 +1,10 @@
-2026-10-14 21:18:11,940 INFO [daytrade] SELL MS @ 181.46 (CLOSE_EXIT); SELL FAST @ 51.94 (CLOSE_EXIT); SELL STT @ 166.76 (CLOSE_EXIT); closed 2026-10-14: equity $99.22 (3 trades)
-2026-10-14 21:18:17,234 INFO [crypto2] no action needed
-2026-10-14 21:18:18,651 INFO [mm] no action needed
-2026-10-14 21:18:18,656 INFO [crypto] no action needed
-2026-10-14 21:18:21,496 INFO [primary] closed 2026-10-14; decided for 2026-10-15: 0 orders (MOO), regime ON
-2026-10-14 21:20:03,672 INFO [research] closed 2026-10-14; decided for 2026-10-15: 1 orders (MOO), regime ON
-2026-10-14 21:20:06,848 INFO [trend] closed 2026-10-14; decided for 2026-10-15: 0 orders (MOO), rebalance=False
-2026-10-14 21:20:09,716 INFO [ctrend] closed 2026-10-14; decided for 2026-10-15: 0 orders (MOO), rebalance=False
-2026-10-14 21:20:13,254 INFO [speed] closed 2026-10-14: equity $100.00 (0 trades); 2026-10-14: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
-2026-10-14 21:20:13,916 INFO [meme] candidates screened out: liquidity x13, age x12, 1h x2, too x1
-2026-10-14 21:20:13,926 INFO after-close review written: review_2026-10-14
+2026-10-14 23:11:10,465 INFO [daytrade] no action needed
+2026-10-14 23:11:16,007 INFO [crypto2] no action needed
+2026-10-14 23:11:16,981 INFO [mm] no action needed
+2026-10-14 23:11:17,028 INFO [crypto] no action needed
+2026-10-14 23:11:17,044 INFO [primary] no action needed
+2026-10-14 23:11:17,106 INFO [research] no action needed
+2026-10-14 23:11:17,137 INFO [trend] no action needed
+2026-10-14 23:11:17,153 INFO [ctrend] no action needed
+2026-10-14 23:11:17,168 INFO [speed] no action needed
+2026-10-14 23:11:18,463 INFO [meme] candidates screened out: age x12, liquidity x10, 1h x2, too x1
