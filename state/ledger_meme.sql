@@ -86,6 +86,11 @@ INSERT INTO "runs" VALUES('20261014T003700Z-meme','2026-10-14T00:37:06Z','2026-1
 INSERT INTO "runs" VALUES('20261014T015555Z-meme','2026-10-14T01:56:00Z','2026-10-14T01:56:00Z','OK','github-actions','sold CRAWLER (STOP) -2.42; candidates screened out: age x14, liquidity x11, 1h x2, buys x1',NULL);
 INSERT INTO "runs" VALUES('20261014T052204Z-meme','2026-10-14T05:22:11Z','2026-10-14T05:22:11Z','OK','github-actions','candidates screened out: age x10, liquidity x10, 1h x2, too x1',NULL);
 INSERT INTO "runs" VALUES('20261014T103616Z-meme','2026-10-14T10:36:23Z','2026-10-14T10:36:24Z','OK','github-actions','candidates screened out: age x9, liquidity x9, too x3, 1h x1',NULL);
+INSERT INTO "runs" VALUES('20261014T152847Z-meme','2026-10-14T15:30:01Z','2026-10-14T15:30:02Z','OK','github-actions','candidates screened out: age x14, liquidity x6, 1h x3, 24h x3',NULL);
+INSERT INTO "runs" VALUES('20261014T153347Z-meme','2026-10-14T15:33:58Z','2026-10-14T15:33:59Z','OK','github-actions','candidates screened out: age x14, liquidity x6, 1h x4, 24h x2',NULL);
+INSERT INTO "runs" VALUES('20261014T153847Z-meme','2026-10-14T15:39:01Z','2026-10-14T15:39:02Z','OK','github-actions','candidates screened out: age x16, liquidity x9, 1h x3, too x1',NULL);
+INSERT INTO "runs" VALUES('20261014T154347Z-meme','2026-10-14T15:43:55Z','2026-10-14T15:43:56Z','OK','github-actions','candidates screened out: age x16, liquidity x8, 1h x3, too x1',NULL);
+INSERT INTO "runs" VALUES('20261014T154847Z-meme','2026-10-14T15:48:57Z','2026-10-14T15:48:58Z','OK','github-actions','candidates screened out: age x13, liquidity x7, 1h x4, too x1',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -94,10 +99,10 @@ CREATE TABLE snapshots (
 INSERT INTO "snapshots" VALUES('2026-10-13','2026-10-14T05:22:04Z','20261014T052204Z-meme',9.75800498111457273e+01,9.75800498111457273e+01,0.0,NULL,100.0,1.00081159441370857e+02,2.49908138972981808e-02,'0 open memecoin positions','{"peak": 100.08115944137086, "drawdown": 0.02499081389729818}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','97.58004981114573','2026-10-14T01:56:00Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-14T10:36:23Z');
-INSERT INTO "state" VALUES('meme_positions','{}','2026-10-14T10:36:24Z');
-INSERT INTO "state" VALUES('risk','{"peak": 100.08115944137086, "drawdown": 0.02499081389729818}','2026-10-14T10:36:24Z');
-INSERT INTO "state" VALUES('meme_day','{"date": "2026-10-14", "entries": 0, "realized": 0.0}','2026-10-14T10:36:24Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-14T15:48:57Z');
+INSERT INTO "state" VALUES('meme_positions','{}','2026-10-14T15:48:58Z');
+INSERT INTO "state" VALUES('risk','{"peak": 100.08115944137086, "drawdown": 0.02499081389729818}','2026-10-14T15:48:58Z');
+INSERT INTO "state" VALUES('meme_day','{"date": "2026-10-14", "entries": 0, "realized": 0.0}','2026-10-14T15:48:58Z');
 INSERT INTO "state" VALUES('meme_rug','{"CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump": {"at": "2026-10-13T23:44:04Z", "summary": {"score": 1, "score_normalised": 1, "risks": [], "lpLockedPct": 99.99133929455358}}}','2026-10-13T23:44:10Z');
 INSERT INTO "state" VALUES('meme_seen','{"CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump": "2026-10-14T01:55:55Z"}','2026-10-14T01:56:00Z');
 CREATE TABLE strategy_changes (

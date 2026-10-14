@@ -1,10 +1,50 @@
-2026-10-14 10:36:16,986 INFO [daytrade] no action needed
-2026-10-14 10:36:22,705 INFO [crypto2] no action needed
-2026-10-14 10:36:23,696 INFO [mm] no action needed
-2026-10-14 10:36:23,703 INFO [crypto] no action needed
-2026-10-14 10:36:23,709 INFO [primary] no action needed
-2026-10-14 10:36:23,714 INFO [research] no action needed
-2026-10-14 10:36:23,720 INFO [trend] no action needed
-2026-10-14 10:36:23,725 INFO [ctrend] no action needed
-2026-10-14 10:36:23,730 INFO [speed] no action needed
-2026-10-14 10:36:24,356 INFO [meme] candidates screened out: age x9, liquidity x9, too x3, 1h x1
+2026-10-14 15:29:51,176 INFO [daytrade] 2026-10-14: 4 candidates (STT, FAST, MS, BAC); BUY MS @ 183.06 (ORB_BREAKOUT); BUY FAST @ 49.82 (ORB_BREAKOUT)
+2026-10-14 15:29:56,146 INFO [crypto2] no action needed
+2026-10-14 15:29:57,404 INFO [mm] no action needed
+2026-10-14 15:29:57,409 INFO [crypto] no action needed
+2026-10-14 15:29:57,921 INFO [primary] no action needed
+2026-10-14 15:29:58,589 INFO [research] FILL SELL DELL 0.0357 @ 522.59 (STOP)
+2026-10-14 15:29:59,216 INFO [trend] no action needed
+2026-10-14 15:29:59,789 INFO [ctrend] no action needed
+2026-10-14 15:30:01,653 INFO [speed] 2026-10-14: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-14 15:30:02,497 INFO [meme] candidates screened out: age x14, liquidity x6, 1h x3, 24h x3
+2026-10-14 15:33:48,077 INFO [daytrade] no action needed
+2026-10-14 15:33:54,088 INFO [crypto2] no action needed
+2026-10-14 15:33:55,338 INFO [mm] no action needed
+2026-10-14 15:33:55,344 INFO [crypto] no action needed
+2026-10-14 15:33:55,715 INFO [primary] no action needed
+2026-10-14 15:33:56,049 INFO [research] no action needed
+2026-10-14 15:33:56,390 INFO [trend] no action needed
+2026-10-14 15:33:56,798 INFO [ctrend] no action needed
+2026-10-14 15:33:58,634 INFO [speed] 2026-10-14: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-14 15:33:59,430 INFO [meme] candidates screened out: age x14, liquidity x6, 1h x4, 24h x2
+2026-10-14 15:38:52,105 INFO [daytrade] BUY STT @ 164.16 (ORB_BREAKOUT)
+2026-10-14 15:38:58,571 INFO [crypto2] no action needed
+2026-10-14 15:38:58,974 INFO [mm] no action needed
+2026-10-14 15:38:58,980 INFO [crypto] no action needed
+2026-10-14 15:38:59,189 INFO [primary] no action needed
+2026-10-14 15:38:59,447 INFO [research] no action needed
+2026-10-14 15:38:59,802 INFO [trend] no action needed
+2026-10-14 15:39:00,087 INFO [ctrend] no action needed
+2026-10-14 15:39:01,491 INFO [speed] 2026-10-14: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-14 15:39:02,456 INFO [meme] candidates screened out: age x16, liquidity x9, 1h x3, too x1
+2026-10-14 15:43:47,908 INFO [daytrade] no action needed
+2026-10-14 15:43:52,914 INFO [crypto2] no action needed
+2026-10-14 15:43:53,305 INFO [mm] no action needed
+2026-10-14 15:43:53,310 INFO [crypto] no action needed
+2026-10-14 15:43:53,516 INFO [primary] no action needed
+2026-10-14 15:43:53,769 INFO [research] no action needed
+2026-10-14 15:43:54,009 INFO [trend] no action needed
+2026-10-14 15:43:54,266 INFO [ctrend] no action needed
+2026-10-14 15:43:55,538 INFO [speed] 2026-10-14: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-14 15:43:56,335 INFO [meme] candidates screened out: age x16, liquidity x8, 1h x3, too x1
+2026-10-14 15:48:47,943 INFO [daytrade] no action needed
+2026-10-14 15:48:53,894 INFO [crypto2] no action needed
+2026-10-14 15:48:55,114 INFO [mm] no action needed
+2026-10-14 15:48:55,119 INFO [crypto] no action needed
+2026-10-14 15:48:55,314 INFO [primary] no action needed
+2026-10-14 15:48:55,560 INFO [research] no action needed
+2026-10-14 15:48:55,818 INFO [trend] no action needed
+2026-10-14 15:48:56,080 INFO [ctrend] no action needed
+2026-10-14 15:48:57,400 INFO [speed] 2026-10-14: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-14 15:48:58,511 INFO [meme] candidates screened out: age x13, liquidity x7, 1h x4, too x1
