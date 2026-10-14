@@ -76,6 +76,7 @@ INSERT INTO "runs" VALUES('20261013T194605Z-meme','2026-10-13T19:46:17Z','2026-1
 INSERT INTO "runs" VALUES('20261013T232833Z-meme','2026-10-13T23:30:26Z','2026-10-13T23:30:27Z','OK','github-actions','candidates screened out: age x11, liquidity x11, 1h x5, 24h x1',NULL);
 INSERT INTO "runs" VALUES('20261013T234404Z-meme','2026-10-13T23:44:09Z','2026-10-13T23:44:10Z','OK','github-actions','bought CRAWLER $5.00',NULL);
 INSERT INTO "runs" VALUES('20261013T235108Z-meme','2026-10-13T23:51:15Z','2026-10-13T23:51:15Z','OK','github-actions','candidates screened out: liquidity x13, age x10, 1h x2, 24h x1',NULL);
+INSERT INTO "runs" VALUES('20261014T001753Z-meme','2026-10-14T00:17:59Z','2026-10-14T00:18:00Z','OK','github-actions','candidates screened out: liquidity x14, age x8, buys x2, 1h x2',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -83,10 +84,10 @@ CREATE TABLE snapshots (
 );
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','95.0','2026-10-13T23:44:10Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-13T23:51:15Z');
-INSERT INTO "state" VALUES('meme_positions','{"CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump": {"symbol": "CRAWLER", "label": "CRAWLER CQCD\u2026pump", "qty": 211.13698921580735, "cost": 5.0, "entry_price": 0.02277, "peak": 0.02345, "mark": 0.02345, "entered_at": "2026-10-13T23:44:04Z", "entry_liq": 448528.65, "liq": 455094.48, "pair": "AnrCHvfJUzMtos8DGjpT2XKurVPPYAVLDturASNwXcd4", "missing": 0}}','2026-10-13T23:51:15Z');
-INSERT INTO "state" VALUES('risk','{"peak": 100.0}','2026-10-13T23:51:15Z');
-INSERT INTO "state" VALUES('meme_day','{"date": "2026-10-13", "entries": 1, "realized": 0.0}','2026-10-13T23:51:15Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-14T00:17:59Z');
+INSERT INTO "state" VALUES('meme_positions','{"CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump": {"symbol": "CRAWLER", "label": "CRAWLER CQCD\u2026pump", "qty": 211.13698921580735, "cost": 5.0, "entry_price": 0.02277, "peak": 0.02481, "mark": 0.02481, "entered_at": "2026-10-13T23:44:04Z", "entry_liq": 448528.65, "liq": 469410.92, "pair": "AnrCHvfJUzMtos8DGjpT2XKurVPPYAVLDturASNwXcd4", "missing": 0}}','2026-10-14T00:18:00Z');
+INSERT INTO "state" VALUES('risk','{"peak": 100.08115944137086}','2026-10-14T00:18:00Z');
+INSERT INTO "state" VALUES('meme_day','{"date": "2026-10-13", "entries": 1, "realized": 0.0}','2026-10-14T00:18:00Z');
 INSERT INTO "state" VALUES('meme_rug','{"CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump": {"at": "2026-10-13T23:44:04Z", "summary": {"score": 1, "score_normalised": 1, "risks": [], "lpLockedPct": 99.99133929455358}}}','2026-10-13T23:44:10Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
