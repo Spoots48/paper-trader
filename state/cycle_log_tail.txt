@@ -1,10 +1,11 @@
-2026-10-15 20:33:53,300 INFO [daytrade] SELL USB @ 57.32 (CLOSE_EXIT); closed 2026-10-15: equity $99.36 (1 trades)
-2026-10-15 20:33:58,576 INFO [crypto2] no action needed
-2026-10-15 20:33:59,687 INFO [mm] no action needed
-2026-10-15 20:33:59,691 INFO [crypto] no action needed
-2026-10-15 20:34:02,847 INFO [primary] closed 2026-10-15; decided for 2026-10-16: 0 orders (MOO), regime ON
-2026-10-15 20:35:55,176 INFO [research] closed 2026-10-15; decided for 2026-10-16: 1 orders (MOO), regime ON
-2026-10-15 20:35:58,676 INFO [trend] closed 2026-10-15; decided for 2026-10-16: 0 orders (MOO), rebalance=False
-2026-10-15 20:36:01,820 INFO [ctrend] closed 2026-10-15; decided for 2026-10-16: 0 orders (MOO), rebalance=False
-2026-10-15 20:36:05,482 INFO [speed] closed 2026-10-15: equity $100.00 (0 trades); 2026-10-15: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
-2026-10-15 20:36:06,618 INFO [meme] bought FTR $5.00
+2026-10-15 23:02:28,153 INFO [daytrade] no action needed
+2026-10-15 23:02:33,368 INFO [crypto2] no action needed
+2026-10-15 23:02:34,772 INFO [mm] no action needed
+2026-10-15 23:02:34,777 INFO [crypto] no action needed
+2026-10-15 23:02:34,782 INFO [primary] no action needed
+2026-10-15 23:02:34,788 INFO [research] no action needed
+2026-10-15 23:02:34,793 INFO [trend] no action needed
+2026-10-15 23:02:34,798 INFO [ctrend] no action needed
+2026-10-15 23:02:34,803 INFO [speed] no action needed
+2026-10-15 23:02:35,388 INFO [meme] sold DOPE (TRAIL) -0.08; sold FTR (STOP) -1.42; candidates screened out: liquidity x17, age x11, 5m x1
+2026-10-15 23:02:35,398 INFO after-close review written: review_2026-10-15
