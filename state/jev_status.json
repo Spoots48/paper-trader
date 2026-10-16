@@ -1,11 +1,10 @@
 {
  "role": "advisory only: never gates, sizes or places orders",
  "schema": "jev-news-1",
- "at": "2026-10-16T16:25:31+00:00",
- "state": "done",
- "candidates": 389,
- "pending": 12,
+ "at": "2026-10-16T16:47:01+00:00",
+ "state": "idle",
+ "candidates": 387,
+ "pending": 0,
  "budget": 25,
- "reviewed_today": 106,
- "reviewed_now": 12
+ "reviewed_today": 118
 }
