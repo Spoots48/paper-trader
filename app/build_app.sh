@@ -1,24 +1,27 @@
 #!/bin/bash
 # Builds "Paper Trader.app" with the Xcode Command Line Tools (no Xcode, no Apple ID, free)
-# and installs it to installed/ on the external drive (~/Applications/Paper Trader.app is a symlink to it).
+# and installs it to installed/ on the external drive, or to $PT_APP_DEST (for example PT_APP_DEST=/Applications).
+# The app serves the runtime on the external drive (Info.plist key PTProjectPath), so the drive must be mounted when it runs.
 # Module caches, temp files and build output all stay on the external drive. Usage: bash app/build_app.sh
 set -euo pipefail
 PROJ="$(cd "$(dirname "$0")/.." && pwd)"
 HOME_DIR="/Volumes/X10 Pro/Paper Trading Sim"
 [ -d "$HOME_DIR/installed" ] || { echo "external drive not mounted: $HOME_DIR" >&2; exit 1; }
-export TMPDIR="$HOME_DIR/.cache/tmp"
-export CLANG_MODULE_CACHE_PATH="$HOME_DIR/.cache/swift-modules"
+# PT_CACHE: where compiler caches/temp files go (default: on the external drive). PT_APP_DEST: folder to install the app into.
+CACHE="${PT_CACHE:-$HOME_DIR/.cache}"
+export TMPDIR="$CACHE/tmp"
+export CLANG_MODULE_CACHE_PATH="$CACHE/swift-modules"
 mkdir -p "$TMPDIR" "$CLANG_MODULE_CACHE_PATH"
 RUNTIME_PATH="$HOME_DIR/installed/runtime"
 BUILD="$PROJ/app/build"
 APP="$BUILD/Paper Trader.app"
-DEST="$HOME_DIR/installed/Paper Trader.app"
+DEST="${PT_APP_DEST:-$HOME_DIR/installed}/Paper Trader.app"
 rm -rf "$BUILD"; mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources" "$BUILD/icon.iconset"
 
-swiftc -O -o "$APP/Contents/MacOS/PaperTrader" "$PROJ/app/PaperTrader.swift" -module-cache-path "$CLANG_MODULE_CACHE_PATH" -framework Cocoa -framework WebKit
+swiftc -O -target arm64-apple-macos13.0 -o "$APP/Contents/MacOS/PaperTrader" "$PROJ/app/PaperTrader.swift" -module-cache-path "$CLANG_MODULE_CACHE_PATH" -framework Cocoa -framework WebKit
 
 # icon
-swiftc -O -o "$BUILD/make_icon" "$PROJ/app/make_icon.swift" -module-cache-path "$CLANG_MODULE_CACHE_PATH" -framework Cocoa
+swiftc -O -target arm64-apple-macos13.0 -o "$BUILD/make_icon" "$PROJ/app/make_icon.swift" -module-cache-path "$CLANG_MODULE_CACHE_PATH" -framework Cocoa
 "$BUILD/make_icon" "$BUILD/icon_1024.png"
 for s in 16 32 128 256 512; do
   sips -z $s $s "$BUILD/icon_1024.png" --out "$BUILD/icon.iconset/icon_${s}x${s}.png" >/dev/null
