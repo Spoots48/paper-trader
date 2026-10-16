@@ -236,6 +236,7 @@ INSERT INTO "runs" VALUES('20261016T165827Z-meme','2026-10-16T16:58:33Z','2026-1
 INSERT INTO "runs" VALUES('20261016T171056Z-meme','2026-10-16T17:11:05Z','2026-10-16T17:11:06Z','OK','github-actions','candidates screened out: liquidity x17, age x5, 1h x2, 24h x2',NULL);
 INSERT INTO "runs" VALUES('20261016T192136Z-meme','2026-10-16T19:21:47Z','2026-10-16T19:21:48Z','OK','github-actions','candidates screened out: age x12, liquidity x11, 1h x3',NULL);
 INSERT INTO "runs" VALUES('20261016T195856Z-meme','2026-10-16T19:59:03Z','2026-10-16T19:59:03Z','OK','github-actions','candidates screened out: liquidity x13, age x11, 1h x3',NULL);
+INSERT INTO "runs" VALUES('20261016T224818Z-meme','2026-10-16T22:50:19Z','2026-10-16T22:50:20Z','OK','github-actions','candidates screened out: liquidity x12, age x11, 6h x1, 1h x1',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -246,10 +247,10 @@ INSERT INTO "snapshots" VALUES('2026-10-14','2026-10-15T05:09:06Z','20261015T050
 INSERT INTO "snapshots" VALUES('2026-10-15','2026-10-16T04:59:19Z','20261016T045919Z-meme',9.46763905416902105e+01,8.99477830200541177e+01,4.72860752163609276e+00,NULL,100.0,1.00081159441370857e+02,5.40038597659017183e-02,'1 open memecoin positions','{"peak": 100.08115944137086, "drawdown": 0.05400385976590172}','{"marks": {"VEIL HgTG\u2026pump": 0.004485}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','94.53783081613847','2026-10-16T16:53:37Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-16T19:59:03Z');
-INSERT INTO "state" VALUES('meme_positions','{}','2026-10-16T19:59:03Z');
-INSERT INTO "state" VALUES('risk','{"peak": 100.08115944137086, "drawdown": 0.05400385976590172}','2026-10-16T19:59:03Z');
-INSERT INTO "state" VALUES('meme_day','{"date": "2026-10-16", "entries": 1, "realized": -0.40995220391564846}','2026-10-16T19:59:03Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-16T22:50:19Z');
+INSERT INTO "state" VALUES('meme_positions','{}','2026-10-16T22:50:20Z');
+INSERT INTO "state" VALUES('risk','{"peak": 100.08115944137086, "drawdown": 0.05400385976590172}','2026-10-16T22:50:20Z');
+INSERT INTO "state" VALUES('meme_day','{"date": "2026-10-16", "entries": 1, "realized": -0.40995220391564846}','2026-10-16T22:50:20Z');
 INSERT INTO "state" VALUES('meme_rug','{"CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump": {"at": "2026-10-13T23:44:04Z", "summary": {"score": 1, "score_normalised": 1, "risks": [], "lpLockedPct": 99.99133929455358}}, "7jNwX4Me9zGEjmWY7zARDG2LYjVs1WXD6DZ1JvSfpump": {"at": "2026-10-14T15:50:25Z", "summary": {"score": 1, "score_normalised": 1, "risks": [], "lpLockedPct": 99.99993554061957}}, "7fumw7GYTHZJJxkKJ8sSh1CqTdHmB234vX3xsKjepump": {"at": "2026-10-15T15:40:26Z", "summary": {"score": 2301, "score_normalised": 30, "risks": [{"name": "High holder correlation", "value": "(13)", "description": "The top users hold similar supply amounts", "score": 2300, "level": "warn"}], "lpLockedPct": 100}}, "33jENUQnjoitkMFpvNJcSHyLAHFWJuHwT6E3E8CNpump": {"at": "2026-10-15T16:18:51Z", "summary": {"score": 1, "score_normalised": 1, "risks": [], "lpLockedPct": 30.9627108403888}}, "HgTGdc29D5bDMrDvsCLnorxz899VyDj7ZN7FPa6vpump": {"at": "2026-10-15T16:46:59Z", "summary": {"score": 1, "score_normalised": 1, "risks": [], "lpLockedPct": 47.76101669316543}}, "DFMt2FyLpB6ekPNAzVErLXgpSnJ9CRf1VnxBAkTLpump": {"at": "2026-10-15T20:33:51Z", "summary": {"score": 1, "score_normalised": 1, "risks": [], "lpLockedPct": 45.677477154392236}}, "9g4Pib6AM3oVdP9YA7ZcssAXAuhoUzkjR8w27doYpump": {"at": "2026-10-16T15:00:42Z", "summary": {"score": 1, "score_normalised": 1, "risks": [], "lpLockedPct": 61.46212799368021}}}','2026-10-16T15:01:50Z');
 INSERT INTO "state" VALUES('meme_seen','{"CQCDTp8rsFV3PhaPeYjcCW5LdGTxi6jFx7eC3UXnpump": "2026-10-14T01:55:55Z", "7jNwX4Me9zGEjmWY7zARDG2LYjVs1WXD6DZ1JvSfpump": "2026-10-14T17:47:37Z", "7fumw7GYTHZJJxkKJ8sSh1CqTdHmB234vX3xsKjepump": "2026-10-15T16:46:59Z", "33jENUQnjoitkMFpvNJcSHyLAHFWJuHwT6E3E8CNpump": "2026-10-15T23:02:28Z", "DFMt2FyLpB6ekPNAzVErLXgpSnJ9CRf1VnxBAkTLpump": "2026-10-15T23:02:28Z", "HgTGdc29D5bDMrDvsCLnorxz899VyDj7ZN7FPa6vpump": "2026-10-16T15:00:42Z", "9g4Pib6AM3oVdP9YA7ZcssAXAuhoUzkjR8w27doYpump": "2026-10-16T16:53:27Z"}','2026-10-16T16:53:37Z');
 CREATE TABLE strategy_changes (

@@ -1,10 +1,11 @@
-2026-10-16 19:58:57,221 INFO [daytrade] no action needed
-2026-10-16 19:59:00,035 INFO [crypto2] no action needed
-2026-10-16 19:59:00,235 INFO [mm] no action needed
-2026-10-16 19:59:00,240 INFO [crypto] no action needed
-2026-10-16 19:59:00,450 INFO [primary] no action needed
-2026-10-16 19:59:00,695 INFO [research] no action needed
-2026-10-16 19:59:00,986 INFO [trend] no action needed
-2026-10-16 19:59:01,202 INFO [ctrend] no action needed
-2026-10-16 19:59:03,099 INFO [speed] 2026-10-16: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
-2026-10-16 19:59:03,738 INFO [meme] candidates screened out: liquidity x13, age x11, 1h x3
+2026-10-16 22:48:20,240 INFO [daytrade] SELL TRV @ 388.63 (CLOSE_EXIT); closed 2026-10-16: equity $99.33 (2 trades)
+2026-10-16 22:48:25,337 INFO [crypto2] no action needed
+2026-10-16 22:48:26,033 INFO [mm] no action needed
+2026-10-16 22:48:26,038 INFO [crypto] no action needed
+2026-10-16 22:48:28,856 INFO [primary] closed 2026-10-16; decided for 2026-10-19: 0 orders (MOO), regime ON
+2026-10-16 22:50:10,797 INFO [research] closed 2026-10-16; decided for 2026-10-19: 3 orders (MOO), regime ON
+2026-10-16 22:50:13,931 INFO [trend] closed 2026-10-16; decided for 2026-10-19: 0 orders (MOO), rebalance=False
+2026-10-16 22:50:16,867 INFO [ctrend] closed 2026-10-16; decided for 2026-10-19: 2 orders (MOO), rebalance=True
+2026-10-16 22:50:19,372 INFO [speed] closed 2026-10-16: equity $100.00 (0 trades); 2026-10-16: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-16 22:50:20,042 INFO [meme] candidates screened out: liquidity x12, age x11, 6h x1, 1h x1
+2026-10-16 22:50:20,052 INFO after-close review written: review_2026-10-16
