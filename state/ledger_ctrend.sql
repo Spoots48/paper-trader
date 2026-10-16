@@ -88,8 +88,8 @@ CREATE TABLE positions (
   entry_session TEXT NOT NULL, entry_price REAL NOT NULL, initial_stop REAL, trail_pct REAL,
   high_water REAL NOT NULL, max_hold_until TEXT, stop_checked_through TEXT, meta TEXT
 );
-INSERT INTO "positions" VALUES('ETHA',0.849289,5.79925951927185039e+01,'residual','2026-10-07',5.79925951927185039e+01,NULL,NULL,5.83050003051757812e+01,NULL,'2026-10-16T11:15:00-04:00','{"entry_time": "2026-10-07T11:35:00-04:00"}');
-INSERT INTO "positions" VALUES('IBIT',1.045602,4.71044202209472615e+01,'residual','2026-10-07',4.71044202209472615e+01,NULL,NULL,4.74352989196777343e+01,NULL,'2026-10-16T11:15:00-04:00','{"entry_time": "2026-10-07T11:35:00-04:00"}');
+INSERT INTO "positions" VALUES('ETHA',0.849289,5.79925951927185039e+01,'residual','2026-10-07',5.79925951927185039e+01,NULL,NULL,5.83050003051757812e+01,NULL,'2026-10-16T11:35:00-04:00','{"entry_time": "2026-10-07T11:35:00-04:00"}');
+INSERT INTO "positions" VALUES('IBIT',1.045602,4.71044202209472615e+01,'residual','2026-10-07',4.71044202209472615e+01,NULL,NULL,4.74352989196777343e+01,NULL,'2026-10-16T11:35:00-04:00','{"entry_time": "2026-10-07T11:35:00-04:00"}');
 CREATE TABLE reports (
   report_key TEXT PRIMARY KEY, day_number INTEGER NOT NULL, report_date TEXT NOT NULL,
   as_of_session TEXT NOT NULL, generated_at TEXT NOT NULL, path_md TEXT NOT NULL, path_html TEXT NOT NULL,
@@ -315,6 +315,11 @@ INSERT INTO "runs" VALUES('20261016T150542Z-ctrend','2026-10-16T15:05:49Z','2026
 INSERT INTO "runs" VALUES('20261016T151042Z-ctrend','2026-10-16T15:10:49Z','2026-10-16T15:10:49Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261016T151542Z-ctrend','2026-10-16T15:15:49Z','2026-10-16T15:15:49Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261016T152042Z-ctrend','2026-10-16T15:20:50Z','2026-10-16T15:20:50Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261016T152216Z-ctrend','2026-10-16T15:22:24Z','2026-10-16T15:22:25Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261016T152716Z-ctrend','2026-10-16T15:27:24Z','2026-10-16T15:27:24Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261016T153216Z-ctrend','2026-10-16T15:32:23Z','2026-10-16T15:32:23Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261016T153716Z-ctrend','2026-10-16T15:37:24Z','2026-10-16T15:37:24Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261016T154216Z-ctrend','2026-10-16T15:42:23Z','2026-10-16T15:42:23Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -328,11 +333,11 @@ INSERT INTO "snapshots" VALUES('2026-10-13','2026-10-13T23:28:33Z','20261013T232
 INSERT INTO "snapshots" VALUES('2026-10-14','2026-10-14T21:18:10Z','20261014T211810Z-ctrend',9.64611617561517675e+01,1.49505082950840062e+00,9.49661109266433669e+01,9.91352608480441119e+01,100.0,100.201609896319,3.73292219959097115e-02,'TREND','{"peak": 100.201609896319, "pause_until": null, "halt_until": null, "drawdown": 0.03732922199590971}','{"marks": {"ETHA": 54.88999938964844, "IBIT": 46.2400016784668}, "flags": {}}','{"ETHA": {"qty": 0.849289, "avg_cost": 57.992595192718504, "sleeve": "residual", "stop": null, "entry_session": "2026-10-07", "max_hold_until": null}, "IBIT": {"qty": 1.045602, "avg_cost": 47.10442022094726, "sleeve": "residual", "stop": null, "entry_session": "2026-10-07", "max_hold_until": null}}');
 INSERT INTO "snapshots" VALUES('2026-10-15','2026-10-15T20:33:51Z','20261015T203351Z-ctrend',9.72687515294633868e+01,1.49505082950840062e+00,9.57737006999549862e+01,9.94173638498293712e+01,100.0,100.201609896319,2.92695733121485224e-02,'TREND','{"peak": 100.201609896319, "pause_until": null, "halt_until": null, "drawdown": 0.029269573312148522}','{"marks": {"ETHA": 55.40999984741211, "IBIT": 46.59000015258789}, "flags": {}}','{"ETHA": {"qty": 0.849289, "avg_cost": 57.992595192718504, "sleeve": "residual", "stop": null, "entry_session": "2026-10-07", "max_hold_until": null}, "IBIT": {"qty": 1.045602, "avg_cost": 47.10442022094726, "sleeve": "residual", "stop": null, "entry_session": "2026-10-07", "max_hold_until": null}}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
-INSERT INTO "state" VALUES('cash','1.4950508295084006','2026-10-16T15:20:50Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-16T15:20:50Z');
+INSERT INTO "state" VALUES('cash','1.4950508295084006','2026-10-16T15:42:23Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-16T15:42:23Z');
 INSERT INTO "state" VALUES('benchmark','{"ticker": "SPY", "qty": 0.12881401246480959, "entry_price": 776.3130585449218, "entry_session": "2026-10-07", "div_cash": 0.0, "note": "SPY bought at the first session''s official open with the same cost model"}','2026-10-07T15:27:53Z');
 INSERT INTO "state" VALUES('open_done:2026-10-07','true','2026-10-07T15:27:53Z');
-INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-16T15:20:42Z", "marks": {"ETHA": [55.20000076293945, "2026-10-16T11:15:00-04:00"], "IBIT": [46.165401458740234, "2026-10-16T11:15:00-04:00"]}}','2026-10-16T15:20:50Z');
+INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-16T15:42:16Z", "marks": {"IBIT": [46.17509841918945, "2026-10-16T11:35:00-04:00"], "ETHA": [55.255001068115234, "2026-10-16T11:35:00-04:00"]}}','2026-10-16T15:42:23Z');
 INSERT INTO "state" VALUES('last_regime','"TREND"','2026-10-15T20:36:01Z');
 INSERT INTO "state" VALUES('risk','{"peak": 100.201609896319, "pause_until": null, "halt_until": null, "drawdown": 0.029269573312148522}','2026-10-15T20:36:00Z');
 INSERT INTO "state" VALUES('last_closed_session','"2026-10-15"','2026-10-15T20:36:00Z');
