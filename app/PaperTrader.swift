@@ -7,7 +7,7 @@ import WebKit
 let port = 8765
 let baseURL = URL(string: "http://127.0.0.1:\(port)/")!
 
-// Project logs live next to the installed runtime on the external drive (installed/logs), never in ~/Library.
+// Logs and caches live next to the runtime folder (created on first launch).
 func logsURL() -> URL {
     URL(fileURLWithPath: projectPath()).deletingLastPathComponent().appendingPathComponent("logs")
 }
@@ -66,7 +66,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
                 let proj = projectPath()
                 let py = proj + "/.venv/bin/python"
                 guard FileManager.default.isExecutableFile(atPath: py) else {
-                    self.fail("Can't find the project at\n\(proj)\n\nIs the external drive connected? Connect it and reopen Paper Trader.")
+                    self.fail("Can't find the project at\n\(proj)\n\nReinstall it with app/build_app.sh.")
                     return
                 }
                 let p = Process()
@@ -74,14 +74,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
                 p.arguments = [proj + "/run.py", "serve", "--port", "\(port)"]
                 p.currentDirectoryURL = URL(fileURLWithPath: proj)
                 let logDir = logsURL()
-                guard FileManager.default.fileExists(atPath: logDir.path) else {
-                    self.fail("Can't find the project log folder at\n\(logDir.path)\n\nIs the external drive connected?")
+                let cache = URL(fileURLWithPath: proj).deletingLastPathComponent().appendingPathComponent("cache").path
+                do {
+                    try FileManager.default.createDirectory(at: logDir, withIntermediateDirectories: true)
+                    try FileManager.default.createDirectory(atPath: cache + "/tmp", withIntermediateDirectories: true)
+                } catch {
+                    self.fail("Can't create the log/cache folders next to\n\(proj)\n\n\(error.localizedDescription)")
                     return
                 }
-                let home = URL(fileURLWithPath: proj).deletingLastPathComponent().deletingLastPathComponent().path
                 var env = ProcessInfo.processInfo.environment
-                env["TMPDIR"] = home + "/.cache/tmp"; env["HF_HOME"] = home + "/.cache/huggingface"
-                env["TORCH_HOME"] = home + "/.cache/torch"; env["PYTHONDONTWRITEBYTECODE"] = "1"
+                env["TMPDIR"] = cache + "/tmp"; env["HF_HOME"] = cache + "/huggingface"
+                env["TORCH_HOME"] = cache + "/torch"; env["PYTHONDONTWRITEBYTECODE"] = "1"
                 p.environment = env
                 let logURL = logDir.appendingPathComponent("app-server.log")
                 if !FileManager.default.fileExists(atPath: logURL.path) { FileManager.default.createFile(atPath: logURL.path, contents: nil) }
@@ -99,7 +102,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         ping { up in
             DispatchQueue.main.async {
                 if up { self.load() }
-                else if attempts <= 0 { self.fail("The control server didn't start. See installed/logs/app-server.log on the external drive.") }
+                else if attempts <= 0 { self.fail("The control server didn't start. See app-server.log in the logs folder next to the runtime folder.") }
                 else { DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { self.waitForServer(attempts: attempts - 1) } }
             }
         }

@@ -48,10 +48,11 @@ def ensure_dirs() -> None:
     for d in (DATA_DIR, HISTORY_DIR, REPORTS_DIR, DASHBOARD_DIR, LOG_DIR, RESEARCH_DIR):
         d.mkdir(parents=True, exist_ok=True)
 
-# The installed (live) runtime, its logs and every cache live on the external drive; nothing project-related is kept on the internal disk.
+# The live runtime used to sit on the external drive. That drive began zeroing files on 2026-10-16, so the live copy now runs from the internal disk:
+# a copy is "live" when it holds a .live-copy marker file (untracked, created on setup), or sits at the old external path, or none exists.
 EXTERNAL_HOME = Path("/Volumes/X10 Pro/Paper Trading Sim")
 LIVE_RUNTIME = EXTERNAL_HOME / "installed" / "runtime"
 
 
 def is_live_copy() -> bool:
-    return ROOT.resolve() == LIVE_RUNTIME.resolve() or not LIVE_RUNTIME.exists()
+    return (ROOT / ".live-copy").exists() or ROOT.resolve() == LIVE_RUNTIME.resolve() or not LIVE_RUNTIME.exists()

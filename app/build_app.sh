@@ -6,13 +6,13 @@
 set -euo pipefail
 PROJ="$(cd "$(dirname "$0")/.." && pwd)"
 HOME_DIR="/Volumes/X10 Pro/Paper Trading Sim"
-[ -d "$HOME_DIR/installed" ] || { echo "external drive not mounted: $HOME_DIR" >&2; exit 1; }
+[ -n "${PT_RUNTIME:-}" ] || [ -d "$HOME_DIR/installed" ] || { echo "external drive not mounted: $HOME_DIR" >&2; exit 1; }
 # PT_CACHE: where compiler caches/temp files go (default: on the external drive). PT_APP_DEST: folder to install the app into.
 CACHE="${PT_CACHE:-$HOME_DIR/.cache}"
 export TMPDIR="$CACHE/tmp"
 export CLANG_MODULE_CACHE_PATH="$CACHE/swift-modules"
 mkdir -p "$TMPDIR" "$CLANG_MODULE_CACHE_PATH"
-RUNTIME_PATH="$HOME_DIR/installed/runtime"
+RUNTIME_PATH="${PT_RUNTIME:-$HOME_DIR/installed/runtime}"   # PT_RUNTIME: runtime folder the app serves (now on the internal disk)
 BUILD="$PROJ/app/build"
 APP="$BUILD/Paper Trader.app"
 DEST="${PT_APP_DEST:-$HOME_DIR/installed}/Paper Trader.app"
@@ -52,9 +52,9 @@ cat > "$APP/Contents/Info.plist" <<PL
 PL
 codesign --force --deep -s - "$APP" >/dev/null
 if [ -d "$DEST" ]; then
-  mkdir -p "$HOME_DIR/installed/backups"
-  rm -rf "$HOME_DIR/installed/backups/Paper Trader.app.prev"
-  mv "$DEST" "$HOME_DIR/installed/backups/Paper Trader.app.prev"
+  mkdir -p "$CACHE/backups"
+  rm -rf "$CACHE/backups/Paper Trader.app.prev"
+  mv "$DEST" "$CACHE/backups/Paper Trader.app.prev"
 fi
 cp -R "$APP" "$DEST"
 echo "installed: $DEST"
