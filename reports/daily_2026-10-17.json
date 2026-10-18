@@ -1,0 +1,125 @@
+{
+ "kind": "daily",
+ "date": "2026-10-17",
+ "day": 25,
+ "weekday": "Saturday",
+ "generated_at": "2026-10-18T06:35:18Z",
+ "summary": "All bots together went from $951.96 to $951.96 today (+$0.00). The stock market was closed.",
+ "rows": [
+  {
+   "id": "daytrade",
+   "name": "Day trading",
+   "status": "market closed",
+   "value": 99.32727379604016,
+   "change": 0.0,
+   "since_start": -0.6727262039598401,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto2",
+   "name": "Crypto odds bot v2",
+   "status": "trading",
+   "value": 100.0,
+   "change": 0.0,
+   "since_start": 0.0,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "mm",
+   "name": "Market maker v2",
+   "status": "trading",
+   "value": 92.94952568400001,
+   "change": 0.0,
+   "since_start": -7.050474315999992,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto",
+   "name": "Crypto odds bot v1 (retired)",
+   "status": "retired (only settles old bets)",
+   "value": 74.22458862,
+   "change": 0.0,
+   "since_start": -25.775411379999994,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "primary",
+   "name": "Primary",
+   "status": "market closed",
+   "value": 98.72223163940207,
+   "change": 0.0,
+   "since_start": -1.277768360597932,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "research",
+   "name": "Research",
+   "status": "market closed",
+   "value": 97.86414740361022,
+   "change": 0.0,
+   "since_start": -2.135852596389782,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "trend",
+   "name": "Diversified trend",
+   "status": "market closed",
+   "value": 99.93204297164223,
+   "change": 0.0,
+   "since_start": -0.06795702835776751,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "ctrend",
+   "name": "Crypto trend (high risk)",
+   "status": "market closed",
+   "value": 96.04432668946704,
+   "change": 0.0,
+   "since_start": -3.9556733105329585,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "speed",
+   "name": "Speed trader (Jev, retired)",
+   "status": "retired (only settles old bets)",
+   "value": 100.0,
+   "change": 0.0,
+   "since_start": 0.0,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "meme",
+   "name": "Memecoin trader (high risk)",
+   "status": "market closed",
+   "value": 92.89800336014609,
+   "change": 0.0,
+   "since_start": -7.101996639853908,
+   "trades": 1,
+   "wins": 0,
+   "losses": 1
+  }
+ ],
+ "spy": null,
+ "missing": [],
+ "total_before": 951.9621401643078,
+ "total_end": 951.9621401643078,
+ "late_by_hours": 1.6
+}
