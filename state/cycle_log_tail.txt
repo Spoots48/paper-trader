@@ -1,10 +1,10 @@
-2026-10-18 19:42:24,625 INFO [daytrade] no action needed
-2026-10-18 19:42:29,775 INFO [crypto2] no action needed
-2026-10-18 19:42:30,022 INFO [mm] no action needed
-2026-10-18 19:42:30,027 INFO [crypto] no action needed
-2026-10-18 19:42:30,030 INFO [primary] no action needed
-2026-10-18 19:42:30,034 INFO [research] no action needed
-2026-10-18 19:42:30,038 INFO [trend] no action needed
-2026-10-18 19:42:30,041 INFO [ctrend] no action needed
-2026-10-18 19:42:30,045 INFO [speed] no action needed
-2026-10-18 19:42:31,134 INFO [meme] bought VEIL $5.00
+2026-10-18 21:56:23,406 INFO [daytrade] no action needed
+2026-10-18 21:56:28,545 INFO [crypto2] no action needed
+2026-10-18 21:56:28,745 INFO [mm] no action needed
+2026-10-18 21:56:28,855 INFO [crypto] no action needed
+2026-10-18 21:56:28,979 INFO [primary] no action needed
+2026-10-18 21:56:29,046 INFO [research] no action needed
+2026-10-18 21:56:29,050 INFO [trend] no action needed
+2026-10-18 21:56:29,055 INFO [ctrend] no action needed
+2026-10-18 21:56:29,059 INFO [speed] no action needed
+2026-10-18 21:56:29,489 INFO [meme] sold VEIL (STOP) -1.55; candidates screened out: liquidity x14, age x14, 1h x4, 24h x1
