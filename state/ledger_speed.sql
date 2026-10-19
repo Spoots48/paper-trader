@@ -23,6 +23,7 @@ INSERT INTO "events" VALUES(4,'2026-10-13T23:30:26Z','20261013T232833Z-speed','s
 INSERT INTO "events" VALUES(5,'2026-10-14T21:20:13Z','20261014T211810Z-speed','snapshot','{"cash": 100.0, "drawdown": 0.0, "equity": 100.0, "session": "2026-10-14", "spy_bh_equity": 98.75209988853693}','aa88d4e51a7e879455c19e5082c943ca1321610ce5da3f3e6f0ed3ae1759c420','1ba3a1e91b0fe1e21f1c97ee4241d41105050f5a092edd234c2a54a74d292e4b');
 INSERT INTO "events" VALUES(6,'2026-10-15T20:36:05Z','20261015T203351Z-speed','snapshot','{"cash": 100.0, "drawdown": 0.0, "equity": 100.0, "session": "2026-10-15", "spy_bh_equity": 99.03311255318162}','1ba3a1e91b0fe1e21f1c97ee4241d41105050f5a092edd234c2a54a74d292e4b','5f0fdd9831546b88e27122678e79b295cab8f937bd028e58bb2d3422424802ee');
 INSERT INTO "events" VALUES(7,'2026-10-16T22:50:19Z','20261016T224818Z-speed','snapshot','{"cash": 100.0, "drawdown": 0.0, "equity": 100.0, "session": "2026-10-16", "spy_bh_equity": 97.93729551841615}','5f0fdd9831546b88e27122678e79b295cab8f937bd028e58bb2d3422424802ee','798bb796a16b789e53170a6a119a82a0692a5215e4ab404ddeb3629b4df87390');
+INSERT INTO "events" VALUES(8,'2026-10-19T22:57:10Z','20261019T225519Z-speed','snapshot','{"cash": 100.0, "drawdown": 0.0, "equity": 100.0, "session": "2026-10-19", "spy_bh_equity": 98.35175415148092}','798bb796a16b789e53170a6a119a82a0692a5215e4ab404ddeb3629b4df87390','34eed2e9e0716f02a549caf24a84e9b275c5b182b3ab3788c2d948490d14f00d');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -259,6 +260,7 @@ INSERT INTO "runs" VALUES('20261019T164623Z-speed','2026-10-19T16:46:33Z','2026-
 INSERT INTO "runs" VALUES('20261019T165123Z-speed','2026-10-19T16:51:32Z','2026-10-19T16:51:33Z','OK','github-actions','2026-10-19: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today',NULL);
 INSERT INTO "runs" VALUES('20261019T165623Z-speed','2026-10-19T16:56:31Z','2026-10-19T16:56:32Z','OK','github-actions','2026-10-19: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today',NULL);
 INSERT INTO "runs" VALUES('20261019T190122Z-speed','2026-10-19T19:01:31Z','2026-10-19T19:01:33Z','OK','github-actions','2026-10-19: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today',NULL);
+INSERT INTO "runs" VALUES('20261019T225519Z-speed','2026-10-19T22:57:08Z','2026-10-19T22:57:10Z','OK','github-actions','closed 2026-10-19: equity $100.00 (0 trades); 2026-10-19: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -269,13 +271,14 @@ INSERT INTO "snapshots" VALUES('2026-10-13','2026-10-13T23:28:33Z','20261013T232
 INSERT INTO "snapshots" VALUES('2026-10-14','2026-10-14T21:18:10Z','20261014T211810Z-speed',100.0,100.0,0.0,9.87520998885369323e+01,100.0,100.0,0.0,'0 trades','{"peak": 100.0, "drawdown": 0.0}','{"marks": {}, "flags": {}}','{}');
 INSERT INTO "snapshots" VALUES('2026-10-15','2026-10-15T20:33:51Z','20261015T203351Z-speed',100.0,100.0,0.0,9.90331125531816241e+01,100.0,100.0,0.0,'0 trades','{"peak": 100.0, "drawdown": 0.0}','{"marks": {}, "flags": {}}','{}');
 INSERT INTO "snapshots" VALUES('2026-10-16','2026-10-16T22:48:18Z','20261016T224818Z-speed',100.0,100.0,0.0,9.79372955184161497e+01,100.0,100.0,0.0,'0 trades','{"peak": 100.0, "drawdown": 0.0}','{"marks": {}, "flags": {}}','{}');
+INSERT INTO "snapshots" VALUES('2026-10-19','2026-10-19T22:55:19Z','20261019T225519Z-speed',100.0,100.0,0.0,9.83517541514809181e+01,100.0,100.0,0.0,'0 trades','{"peak": 100.0, "drawdown": 0.0}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
-INSERT INTO "state" VALUES('cash','100.0','2026-10-19T19:01:33Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-19T19:01:31Z');
+INSERT INTO "state" VALUES('cash','100.0','2026-10-19T22:57:09Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-19T22:57:08Z');
 INSERT INTO "state" VALUES('benchmark','{"ticker": "SPY", "qty": 0.12831614217938572, "entry_price": 779.3251753173828, "entry_session": "2026-10-12", "div_cash": 0.0, "note": "SPY bought at this book''s first official open"}','2026-10-12T16:06:17Z');
 INSERT INTO "state" VALUES('dt:2026-10-12','{"session": "2026-10-12", "cash_at_open": 100.0, "cash": 100.0, "buys_used": 0.0, "candidates": [], "pending": [], "positions": {}, "traded": [], "processed_through": "2026-10-12T15:59:00-04:00", "closed": true, "entry_signals": {}}','2026-10-12T21:36:16Z');
 INSERT INTO "state" VALUES('sp:2026-10-12','{"pending": [], "calls": 274, "trades": 0, "held": {}}','2026-10-12T21:36:16Z');
-INSERT INTO "state" VALUES('risk','{"peak": 100.0, "drawdown": 0.0}','2026-10-16T22:50:19Z');
+INSERT INTO "state" VALUES('risk','{"peak": 100.0, "drawdown": 0.0}','2026-10-19T22:57:10Z');
 INSERT INTO "state" VALUES('dt:2026-10-13','{"session": "2026-10-13", "cash_at_open": 100.0, "cash": 100.0, "buys_used": 0.0, "candidates": [], "pending": [], "positions": {}, "traded": [], "processed_through": "2026-10-13T15:59:00-04:00", "closed": true, "entry_signals": {}}','2026-10-13T23:30:25Z');
 INSERT INTO "state" VALUES('sp:2026-10-13','{"pending": [], "calls": 0, "trades": 0, "held": {}}','2026-10-13T23:30:25Z');
 INSERT INTO "state" VALUES('dt:2026-10-14','{"session": "2026-10-14", "cash_at_open": 100.0, "cash": 100.0, "buys_used": 0.0, "candidates": [], "pending": [], "positions": {}, "traded": [], "processed_through": "2026-10-14T15:59:00-04:00", "closed": true, "entry_signals": {}}','2026-10-14T21:20:12Z');
@@ -284,8 +287,8 @@ INSERT INTO "state" VALUES('dt:2026-10-15','{"session": "2026-10-15", "cash_at_o
 INSERT INTO "state" VALUES('sp:2026-10-15','{"pending": [], "calls": 0, "trades": 0, "held": {}}','2026-10-15T20:36:04Z');
 INSERT INTO "state" VALUES('dt:2026-10-16','{"session": "2026-10-16", "cash_at_open": 100.0, "cash": 100.0, "buys_used": 0.0, "candidates": [], "pending": [], "positions": {}, "traded": [], "processed_through": "2026-10-16T15:59:00-04:00", "closed": true, "entry_signals": {}}','2026-10-16T22:50:18Z');
 INSERT INTO "state" VALUES('sp:2026-10-16','{"pending": [], "calls": 0, "trades": 0, "held": {}}','2026-10-16T22:50:18Z');
-INSERT INTO "state" VALUES('dt:2026-10-19','{"session": "2026-10-19", "cash_at_open": 100.0, "cash": 100.0, "buys_used": 0.0, "candidates": [], "pending": [], "positions": {}, "traded": [], "processed_through": "2026-10-19T15:00:00-04:00", "closed": false, "entry_signals": {}}','2026-10-19T19:01:33Z');
-INSERT INTO "state" VALUES('sp:2026-10-19','{"pending": [], "calls": 0, "trades": 0, "held": {}}','2026-10-19T19:01:33Z');
+INSERT INTO "state" VALUES('dt:2026-10-19','{"session": "2026-10-19", "cash_at_open": 100.0, "cash": 100.0, "buys_used": 0.0, "candidates": [], "pending": [], "positions": {}, "traded": [], "processed_through": "2026-10-19T15:59:00-04:00", "closed": true, "entry_signals": {}}','2026-10-19T22:57:09Z');
+INSERT INTO "state" VALUES('sp:2026-10-19','{"pending": [], "calls": 0, "trades": 0, "held": {}}','2026-10-19T22:57:09Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
@@ -310,6 +313,6 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',7);
+INSERT INTO "sqlite_sequence" VALUES('events',8);
 INSERT INTO "sqlite_sequence" VALUES('strategy_changes',1);
 COMMIT;
