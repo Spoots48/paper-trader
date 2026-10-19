@@ -62,6 +62,10 @@ INSERT INTO "events" VALUES(28,'2026-10-16T22:50:16Z','20261016T224818Z-ctrend',
 INSERT INTO "events" VALUES(29,'2026-10-16T22:50:16Z','20261016T224818Z-ctrend','order','{"key": "2026-10-19:trend:ETHA:SELL:TREND_TRIM", "notional": null, "qty": 0.2678428656491991, "reason": "week-end trend rebalance; ETHA: above [100, 200]-session averages", "session": "2026-10-19", "side": "SELL", "ticker": "ETHA", "type": "MOO"}','e40754eb1b39bfd88b6144ece569eec9d20da57e8e0a7801beaadaafa214a3c4','a52c70b5abd3e11f7d4d063652aa0a436994e9dfcc0a1be6b17551a5522263b1');
 INSERT INTO "events" VALUES(30,'2026-10-16T22:50:16Z','20261016T224818Z-ctrend','order','{"key": "2026-10-19:trend:SHY:BUY:TREND_BUY", "notional": 15.02999388381591, "qty": null, "reason": "week-end trend rebalance; SHY: unallocated capital held in short-term Treasuries", "session": "2026-10-19", "side": "BUY", "ticker": "SHY", "type": "MOO"}','a52c70b5abd3e11f7d4d063652aa0a436994e9dfcc0a1be6b17551a5522263b1','390bcae61d7be0a91a3261397d78d88ac1fe6ee86b3bfc02192faa986275bef7');
 INSERT INTO "events" VALUES(31,'2026-10-16T22:50:16Z','20261016T224818Z-ctrend','decision','{"action": "INFO", "code": "DECIDED", "key": "decide:2026-10-19", "reason": "2 orders (MOO) for 2026-10-19; rebalance=True; trend weights IBIT 50%, ETHA 33%", "ticker": "*"}','390bcae61d7be0a91a3261397d78d88ac1fe6ee86b3bfc02192faa986275bef7','61974cc53d37fd3b76bdeaed0207ee2f9a17765c05ee8f4c4f9eb7c4e0e2b35a');
+INSERT INTO "events" VALUES(32,'2026-10-19T14:59:53Z','20261019T145852Z-ctrend','fill','{"fill_price": 54.7100325, "key": "2026-10-19:trend:ETHA:SELL:TREND_TRIM", "price_time": "2026-10-19T09:30:00-04:00 (official open)", "qty": 0.2678428656491991, "ref_price": 54.75, "side": "SELL", "source": "yahoo_daily_open", "ticker": "ETHA"}','61974cc53d37fd3b76bdeaed0207ee2f9a17765c05ee8f4c4f9eb7c4e0e2b35a','d7378f877933550e55798de58a44f8a531556e4d0ecebc0035f3a306a6727c7e');
+INSERT INTO "events" VALUES(33,'2026-10-19T14:59:53Z','20261019T145852Z-ctrend','order_status','{"key": "2026-10-19:trend:ETHA:SELL:TREND_TRIM", "reason": "SELL 0.267843 ETHA @ 54.7100", "status": "FILLED"}','d7378f877933550e55798de58a44f8a531556e4d0ecebc0035f3a306a6727c7e','f65b1d7866a6b9de8373cb137f03375bb69bde2635f86013239ccba2add0b345');
+INSERT INTO "events" VALUES(34,'2026-10-19T14:59:53Z','20261019T145852Z-ctrend','fill','{"fill_price": 81.39693433532715, "key": "2026-10-19:trend:SHY:BUY:TREND_BUY", "price_time": "2026-10-19T09:30:00-04:00 (official open)", "qty": 0.18465, "ref_price": 81.33999633789062, "side": "BUY", "source": "yahoo_daily_open", "ticker": "SHY"}','f65b1d7866a6b9de8373cb137f03375bb69bde2635f86013239ccba2add0b345','97013b0b52e60bc67366e633db13d3ba66cd02c169a159e68511d2eaad872e41');
+INSERT INTO "events" VALUES(35,'2026-10-19T14:59:53Z','20261019T145852Z-ctrend','order_status','{"key": "2026-10-19:trend:SHY:BUY:TREND_BUY", "reason": "BUY 0.184650 SHY @ 81.3969", "status": "FILLED"}','97013b0b52e60bc67366e633db13d3ba66cd02c169a159e68511d2eaad872e41','ab6a9c565230518e7a39d2d4837c3a1f6b046b300009c85467a2c76dc0920a40');
 CREATE TABLE experiment (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   frozen_at TEXT NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
@@ -78,6 +82,8 @@ CREATE TABLE fills (
 );
 INSERT INTO "fills" VALUES(1,'2026-10-07:trend:ETHA:BUY:TREND_BUY','20261007T154112Z-ctrend','2026-10-07T15:41:19Z','2026-10-07','ETHA','BUY',0.849289,5.79809989929199218e+01,5.79925951927185039e+01,2.0,9.84852493073796152e-03,'2026-10-07T11:35:00-04:00','yahoo_5m_bar_open','residual','TREND_BUY','week-end trend rebalance; ETHA: above [50, 100, 200]-session averages',NULL);
 INSERT INTO "fills" VALUES(2,'2026-10-07:trend:IBIT:BUY:TREND_BUY','20261007T154112Z-ctrend','2026-10-07T15:41:19Z','2026-10-07','IBIT','BUY',1.045602,4.7095001220703125e+01,4.71044202209472615e+01,2.0,0.00984852549326967,'2026-10-07T11:35:00-04:00','yahoo_5m_bar_open','residual','TREND_BUY','week-end trend rebalance; IBIT: above [50, 100, 200]-session averages',NULL);
+INSERT INTO "fills" VALUES(3,'2026-10-19:trend:ETHA:SELL:TREND_TRIM','20261019T145852Z-ctrend','2026-10-19T14:59:53Z','2026-10-19','ETHA','SELL',2.67842865649199124e-01,54.75,54.7100325,7.3,1.07050097328351811e-02,'2026-10-19T09:30:00-04:00 (official open)','yahoo_daily_open','residual','TREND_TRIM','week-end trend rebalance; ETHA: above [100, 200]-session averages',-8.79210998290876344e-01);
+INSERT INTO "fills" VALUES(4,'2026-10-19:trend:SHY:BUY:TREND_BUY','20261019T145852Z-ctrend','2026-10-19T14:59:53Z','2026-10-19','SHY','BUY',0.18465,8.1339996337890625e+01,8.13969343353271455e+01,7.0,1.0513601226653511e-02,'2026-10-19T09:30:00-04:00 (official open)','yahoo_daily_open','residual','TREND_BUY','week-end trend rebalance; SHY: unallocated capital held in short-term Treasuries',NULL);
 CREATE TABLE news (
   news_id INTEGER PRIMARY KEY AUTOINCREMENT, uid TEXT NOT NULL UNIQUE, ticker TEXT NOT NULL,
   source TEXT NOT NULL, provider TEXT, title TEXT NOT NULL, url TEXT, published_at TEXT,
@@ -92,15 +98,16 @@ CREATE TABLE orders (
 );
 INSERT INTO "orders" VALUES('2026-10-07:trend:ETHA:BUY:TREND_BUY','2026-10-07T15:31:12Z','20261007T153112Z-ctrend','ETHA','BUY','MKT','2026-10-07','residual',49.2525,NULL,50,'TREND_BUY','week-end trend rebalance; ETHA: above [50, 100, 200]-session averages','{}','{}','FILLED','BUY 0.849289 ETHA @ 57.9926','2026-10-07T15:41:19Z');
 INSERT INTO "orders" VALUES('2026-10-07:trend:IBIT:BUY:TREND_BUY','2026-10-07T15:31:12Z','20261007T153112Z-ctrend','IBIT','BUY','MKT','2026-10-07','residual',49.2525,NULL,50,'TREND_BUY','week-end trend rebalance; IBIT: above [50, 100, 200]-session averages','{}','{}','FILLED','BUY 1.045602 IBIT @ 47.1044','2026-10-07T15:41:19Z');
-INSERT INTO "orders" VALUES('2026-10-19:trend:ETHA:SELL:TREND_TRIM','2026-10-16T22:48:18Z','20261016T224818Z-ctrend','ETHA','SELL','MOO','2026-10-19','residual',NULL,2.67842865649199124e-01,10,'TREND_TRIM','week-end trend rebalance; ETHA: above [100, 200]-session averages','{}','{}','OPEN',NULL,'2026-10-16T22:50:16Z');
-INSERT INTO "orders" VALUES('2026-10-19:trend:SHY:BUY:TREND_BUY','2026-10-16T22:48:18Z','20261016T224818Z-ctrend','SHY','BUY','MOO','2026-10-19','residual',1.50299938838159103e+01,NULL,50,'TREND_BUY','week-end trend rebalance; SHY: unallocated capital held in short-term Treasuries','{}','{}','OPEN',NULL,'2026-10-16T22:50:16Z');
+INSERT INTO "orders" VALUES('2026-10-19:trend:ETHA:SELL:TREND_TRIM','2026-10-16T22:48:18Z','20261016T224818Z-ctrend','ETHA','SELL','MOO','2026-10-19','residual',NULL,2.67842865649199124e-01,10,'TREND_TRIM','week-end trend rebalance; ETHA: above [100, 200]-session averages','{}','{}','FILLED','SELL 0.267843 ETHA @ 54.7100','2026-10-19T14:59:53Z');
+INSERT INTO "orders" VALUES('2026-10-19:trend:SHY:BUY:TREND_BUY','2026-10-16T22:48:18Z','20261016T224818Z-ctrend','SHY','BUY','MOO','2026-10-19','residual',1.50299938838159103e+01,NULL,50,'TREND_BUY','week-end trend rebalance; SHY: unallocated capital held in short-term Treasuries','{}','{}','FILLED','BUY 0.184650 SHY @ 81.3969','2026-10-19T14:59:53Z');
 CREATE TABLE positions (
   ticker TEXT PRIMARY KEY, qty REAL NOT NULL, avg_cost REAL NOT NULL, sleeve TEXT NOT NULL,
   entry_session TEXT NOT NULL, entry_price REAL NOT NULL, initial_stop REAL, trail_pct REAL,
   high_water REAL NOT NULL, max_hold_until TEXT, stop_checked_through TEXT, meta TEXT
 );
-INSERT INTO "positions" VALUES('ETHA',0.849289,5.79925951927185039e+01,'residual','2026-10-07',5.79925951927185039e+01,NULL,NULL,5.83050003051757812e+01,NULL,'2026-10-16T16:00:00-04:00','{"entry_time": "2026-10-07T11:35:00-04:00"}');
-INSERT INTO "positions" VALUES('IBIT',1.045602,4.71044202209472615e+01,'residual','2026-10-07',4.71044202209472615e+01,NULL,NULL,4.74352989196777343e+01,NULL,'2026-10-16T16:00:00-04:00','{"entry_time": "2026-10-07T11:35:00-04:00"}');
+INSERT INTO "positions" VALUES('ETHA',0.581446,5.79925951927185039e+01,'residual','2026-10-07',5.79925951927185039e+01,NULL,NULL,5.83050003051757812e+01,NULL,'2026-10-19T11:10:00-04:00','{"entry_time": "2026-10-07T11:35:00-04:00"}');
+INSERT INTO "positions" VALUES('IBIT',1.045602,4.71044202209472615e+01,'residual','2026-10-07',4.71044202209472615e+01,NULL,NULL,4.74352989196777343e+01,NULL,'2026-10-19T11:10:00-04:00','{"entry_time": "2026-10-07T11:35:00-04:00"}');
+INSERT INTO "positions" VALUES('SHY',0.18465,8.13969343353271455e+01,'residual','2026-10-19',8.13969343353271455e+01,NULL,NULL,8.13969343353271455e+01,NULL,'2026-10-19T11:10:00-04:00','{}');
 CREATE TABLE reports (
   report_key TEXT PRIMARY KEY, day_number INTEGER NOT NULL, report_date TEXT NOT NULL,
   as_of_session TEXT NOT NULL, generated_at TEXT NOT NULL, path_md TEXT NOT NULL, path_html TEXT NOT NULL,
@@ -375,6 +382,11 @@ INSERT INTO "runs" VALUES('20261018T215623Z-ctrend','2026-10-18T21:56:29Z','2026
 INSERT INTO "runs" VALUES('20261018T233830Z-ctrend','2026-10-18T23:38:36Z','2026-10-18T23:38:36Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261019T013909Z-ctrend','2026-10-19T01:39:15Z','2026-10-19T01:39:15Z','OK','github-actions','no action needed',NULL);
 INSERT INTO "runs" VALUES('20261019T064733Z-ctrend','2026-10-19T06:47:40Z','2026-10-19T06:47:40Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261019T145852Z-ctrend','2026-10-19T14:59:52Z','2026-10-19T14:59:53Z','OK','github-actions','FILL SELL ETHA 0.2678 @ 54.71 (TREND_TRIM); FILL BUY SHY 0.1847 @ 81.40 (TREND_BUY)',NULL);
+INSERT INTO "runs" VALUES('20261019T150352Z-ctrend','2026-10-19T15:04:00Z','2026-10-19T15:04:00Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261019T150852Z-ctrend','2026-10-19T15:08:59Z','2026-10-19T15:08:59Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261019T151352Z-ctrend','2026-10-19T15:13:58Z','2026-10-19T15:13:58Z','OK','github-actions','no action needed',NULL);
+INSERT INTO "runs" VALUES('20261019T151852Z-ctrend','2026-10-19T15:19:00Z','2026-10-19T15:19:01Z','OK','github-actions','no action needed',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -389,11 +401,11 @@ INSERT INTO "snapshots" VALUES('2026-10-14','2026-10-14T21:18:10Z','20261014T211
 INSERT INTO "snapshots" VALUES('2026-10-15','2026-10-15T20:33:51Z','20261015T203351Z-ctrend',9.72687515294633868e+01,1.49505082950840062e+00,9.57737006999549862e+01,9.94173638498293712e+01,100.0,100.201609896319,2.92695733121485224e-02,'TREND','{"peak": 100.201609896319, "pause_until": null, "halt_until": null, "drawdown": 0.029269573312148522}','{"marks": {"ETHA": 55.40999984741211, "IBIT": 46.59000015258789}, "flags": {}}','{"ETHA": {"qty": 0.849289, "avg_cost": 57.992595192718504, "sleeve": "residual", "stop": null, "entry_session": "2026-10-07", "max_hold_until": null}, "IBIT": {"qty": 1.045602, "avg_cost": 47.10442022094726, "sleeve": "residual", "stop": null, "entry_session": "2026-10-07", "max_hold_until": null}}');
 INSERT INTO "snapshots" VALUES('2026-10-16','2026-10-16T22:48:18Z','20261016T224818Z-ctrend',9.60443266894670415e+01,1.49505082950840062e+00,9.45492758599586409e+01,9.83172950137659143e+01,100.0,100.201609896319,4.14891857641169759e-02,'TREND','{"peak": 100.201609896319, "pause_until": null, "halt_until": null, "drawdown": 0.041489185764116976}','{"marks": {"ETHA": 54.5099983215332, "IBIT": 46.150001525878906}, "flags": {}}','{"ETHA": {"qty": 0.849289, "avg_cost": 57.992595192718504, "sleeve": "residual", "stop": null, "entry_session": "2026-10-07", "max_hold_until": null}, "IBIT": {"qty": 1.045602, "avg_cost": 47.10442022094726, "sleeve": "residual", "stop": null, "entry_session": "2026-10-07", "max_hold_until": null}}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
-INSERT INTO "state" VALUES('cash','1.4950508295084006','2026-10-16T22:50:15Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-19T06:47:40Z');
+INSERT INTO "state" VALUES('cash','1.118798789051061','2026-10-19T15:19:01Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-19T15:19:00Z');
 INSERT INTO "state" VALUES('benchmark','{"ticker": "SPY", "qty": 0.12881401246480959, "entry_price": 776.3130585449218, "entry_session": "2026-10-07", "div_cash": 0.0, "note": "SPY bought at the first session''s official open with the same cost model"}','2026-10-07T15:27:53Z');
 INSERT INTO "state" VALUES('open_done:2026-10-07','true','2026-10-07T15:27:53Z');
-INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-16T19:58:56Z", "marks": {"ETHA": [54.494998931884766, "2026-10-16T15:50:00-04:00"], "IBIT": [46.125, "2026-10-16T15:50:00-04:00"]}}','2026-10-16T19:59:01Z');
+INSERT INTO "state" VALUES('live_marks','{"as_of": "2026-10-19T15:18:52Z", "marks": {"SHY": [81.32009887695312, "2026-10-19T11:10:00-04:00"], "ETHA": [54.380001068115234, "2026-10-19T11:10:00-04:00"], "IBIT": [46.47999954223633, "2026-10-19T11:10:00-04:00"]}}','2026-10-19T15:19:01Z');
 INSERT INTO "state" VALUES('last_regime','"TREND"','2026-10-16T22:50:16Z');
 INSERT INTO "state" VALUES('risk','{"peak": 100.201609896319, "pause_until": null, "halt_until": null, "drawdown": 0.041489185764116976}','2026-10-16T22:50:15Z');
 INSERT INTO "state" VALUES('last_closed_session','"2026-10-16"','2026-10-16T22:50:15Z');
@@ -404,6 +416,7 @@ INSERT INTO "state" VALUES('open_done:2026-10-13','true','2026-10-13T17:49:43Z')
 INSERT INTO "state" VALUES('open_done:2026-10-14','true','2026-10-14T15:29:59Z');
 INSERT INTO "state" VALUES('open_done:2026-10-15','true','2026-10-15T15:21:17Z');
 INSERT INTO "state" VALUES('open_done:2026-10-16','true','2026-10-16T15:01:48Z');
+INSERT INTO "state" VALUES('open_done:2026-10-19','true','2026-10-19T14:59:53Z');
 CREATE TABLE strategy_changes (
   id INTEGER PRIMARY KEY AUTOINCREMENT, logged_at TEXT NOT NULL, from_version TEXT, to_version TEXT,
   from_sha256 TEXT, to_sha256 TEXT, effective_session TEXT, description TEXT NOT NULL, evidence TEXT
@@ -427,8 +440,8 @@ CREATE TRIGGER experiment_no_delete BEFORE DELETE ON experiment BEGIN SELECT RAI
 CREATE TRIGGER orders_economics_immutable BEFORE UPDATE OF order_key, created_at, ticker, side, order_type, session, notional, qty, sleeve ON orders BEGIN SELECT RAISE(ABORT, 'order economics are immutable'); END;
 CREATE TRIGGER orders_no_delete BEFORE DELETE ON orders BEGIN SELECT RAISE(ABORT, 'orders cannot be deleted'); END;
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('events',31);
+INSERT INTO "sqlite_sequence" VALUES('events',35);
 INSERT INTO "sqlite_sequence" VALUES('data_issues',2);
 INSERT INTO "sqlite_sequence" VALUES('decisions',13);
-INSERT INTO "sqlite_sequence" VALUES('fills',2);
+INSERT INTO "sqlite_sequence" VALUES('fills',4);
 COMMIT;
