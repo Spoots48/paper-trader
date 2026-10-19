@@ -1,9 +1,9 @@
 {
  "role": "advisory only: never gates, sizes or places orders",
  "schema": "jev-news-1",
- "at": "2026-10-19T16:56:33+00:00",
+ "at": "2026-10-19T19:01:34+00:00",
  "state": "idle",
- "candidates": 1,
+ "candidates": 0,
  "pending": 0,
  "budget": 25,
  "reviewed_today": 0
