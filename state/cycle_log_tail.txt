@@ -1,10 +1,12 @@
-2026-10-20 17:47:17,174 INFO [daytrade] no action needed
-2026-10-20 17:47:22,476 INFO [crypto2] no action needed
-2026-10-20 17:47:23,578 INFO [mm] no action needed
-2026-10-20 17:47:23,584 INFO [crypto] no action needed
-2026-10-20 17:47:23,858 INFO [primary] no action needed
-2026-10-20 17:47:24,340 INFO [research] no action needed
-2026-10-20 17:47:24,671 INFO [trend] no action needed
-2026-10-20 17:47:24,979 INFO [ctrend] no action needed
-2026-10-20 17:47:27,004 INFO [speed] 2026-10-20: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
-2026-10-20 17:47:27,813 INFO [meme] candidates screened out: liquidity x14, age x10, 1h x2, 24h x2
+2026-10-20 21:15:43,759 INFO [daytrade] SELL HAS @ 109.27 (CLOSE_EXIT); SELL MMM @ 171.21 (CLOSE_EXIT); SELL RTX @ 193.11 (CLOSE_EXIT); closed 2026-10-20: equity $99.43 (4 trades)
+2026-10-20 21:15:47,736 INFO [crypto2] no action needed
+2026-10-20 21:15:49,396 INFO [mm] no action needed
+2026-10-20 21:15:49,401 INFO [crypto] no action needed
+2026-10-20 21:15:52,278 INFO [primary] closed 2026-10-20; decided for 2026-10-21: 0 orders (MOO), regime ON
+2026-10-20 21:17:16,446 INFO [research] closed 2026-10-20; decided for 2026-10-21: 2 orders (MOO), regime ON
+2026-10-20 21:17:19,518 INFO [trend] closed 2026-10-20; decided for 2026-10-21: 0 orders (MOO), rebalance=False
+2026-10-20 21:17:22,489 INFO [ctrend] closed 2026-10-20; decided for 2026-10-21: 0 orders (MOO), rebalance=False
+2026-10-20 21:17:25,251 INFO [speed] closed 2026-10-20: equity $100.00 (0 trades); 2026-10-20: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-20 21:17:25,792 INFO [meme] sold Pokémon (TRAIL) -0.53; candidates screened out: age x13, liquidity x10, 1h x2, too x1
+2026-10-20 21:17:25,928 INFO reports generated: ['day28_2026-10-20']
+2026-10-20 21:17:25,937 INFO after-close review written: review_2026-10-20
