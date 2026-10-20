@@ -1,10 +1,50 @@
-2026-10-20 10:25:08,158 INFO [daytrade] no action needed
-2026-10-20 10:25:13,214 INFO [crypto2] no action needed
-2026-10-20 10:25:14,256 INFO [mm] no action needed
-2026-10-20 10:25:14,261 INFO [crypto] no action needed
-2026-10-20 10:25:14,266 INFO [primary] no action needed
-2026-10-20 10:25:14,270 INFO [research] no action needed
-2026-10-20 10:25:14,274 INFO [trend] no action needed
-2026-10-20 10:25:14,278 INFO [ctrend] no action needed
-2026-10-20 10:25:14,283 INFO [speed] no action needed
-2026-10-20 10:25:14,907 INFO [meme] candidates screened out: liquidity x12, age x8, too x1, 1h x1
+2026-10-20 15:23:39,088 INFO [daytrade] 2026-10-20: 6 candidates (HAS, GM, HAL, RTX, MMM, NOC); BUY HAS @ 106.93 (ORB_BREAKOUT); BUY GM @ 78.80 (ORB_BREAKOUT); BUY MMM @ 165.83 (ORB_BREAKOUT); BUY RTX @ 195.69 (ORB_BREAKOUT)
+2026-10-20 15:23:44,647 INFO [crypto2] no action needed
+2026-10-20 15:23:45,773 INFO [mm] no action needed
+2026-10-20 15:23:45,778 INFO [crypto] no action needed
+2026-10-20 15:23:46,240 INFO [primary] no action needed
+2026-10-20 15:23:46,937 INFO [research] no action needed
+2026-10-20 15:23:47,512 INFO [trend] no action needed
+2026-10-20 15:23:48,004 INFO [ctrend] no action needed
+2026-10-20 15:23:49,683 INFO [speed] 2026-10-20: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-20 15:23:50,371 INFO [meme] candidates screened out: age x10, liquidity x10, 24h x2
+2026-10-20 15:27:39,476 INFO [daytrade] no action needed
+2026-10-20 15:27:45,053 INFO [crypto2] no action needed
+2026-10-20 15:27:46,262 INFO [mm] no action needed
+2026-10-20 15:27:46,266 INFO [crypto] no action needed
+2026-10-20 15:27:46,519 INFO [primary] no action needed
+2026-10-20 15:27:46,861 INFO [research] no action needed
+2026-10-20 15:27:47,202 INFO [trend] no action needed
+2026-10-20 15:27:47,568 INFO [ctrend] no action needed
+2026-10-20 15:27:49,279 INFO [speed] 2026-10-20: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-20 15:27:49,949 INFO [meme] candidates screened out: age x11, liquidity x9, 24h x2
+2026-10-20 15:32:39,329 INFO [daytrade] no action needed
+2026-10-20 15:32:44,913 INFO [crypto2] no action needed
+2026-10-20 15:32:46,115 INFO [mm] no action needed
+2026-10-20 15:32:46,120 INFO [crypto] no action needed
+2026-10-20 15:32:46,280 INFO [primary] no action needed
+2026-10-20 15:32:46,566 INFO [research] no action needed
+2026-10-20 15:32:46,791 INFO [trend] no action needed
+2026-10-20 15:32:47,018 INFO [ctrend] no action needed
+2026-10-20 15:32:48,165 INFO [speed] 2026-10-20: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-20 15:32:48,925 INFO [meme] candidates screened out: liquidity x12, age x10, 24h x2
+2026-10-20 15:37:39,305 INFO [daytrade] no action needed
+2026-10-20 15:37:44,923 INFO [crypto2] no action needed
+2026-10-20 15:37:45,236 INFO [mm] no action needed
+2026-10-20 15:37:45,241 INFO [crypto] no action needed
+2026-10-20 15:37:45,471 INFO [primary] no action needed
+2026-10-20 15:37:45,766 INFO [research] no action needed
+2026-10-20 15:37:45,989 INFO [trend] no action needed
+2026-10-20 15:37:46,216 INFO [ctrend] no action needed
+2026-10-20 15:37:47,387 INFO [speed] 2026-10-20: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-20 15:37:48,082 INFO [meme] candidates screened out: age x11, liquidity x11, 24h x3
+2026-10-20 15:42:39,379 INFO [daytrade] no action needed
+2026-10-20 15:42:44,757 INFO [crypto2] no action needed
+2026-10-20 15:42:45,066 INFO [mm] no action needed
+2026-10-20 15:42:45,071 INFO [crypto] no action needed
+2026-10-20 15:42:45,248 INFO [primary] no action needed
+2026-10-20 15:42:45,493 INFO [research] no action needed
+2026-10-20 15:42:45,721 INFO [trend] no action needed
+2026-10-20 15:42:45,971 INFO [ctrend] no action needed
+2026-10-20 15:42:47,124 INFO [speed] 2026-10-20: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-20 15:42:47,821 INFO [meme] candidates screened out: age x11, liquidity x10, 24h x3, buys x1
