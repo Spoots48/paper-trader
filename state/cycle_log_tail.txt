@@ -1,10 +1,11 @@
-2026-10-20 01:51:06,380 INFO [daytrade] no action needed
-2026-10-20 01:51:11,616 INFO [crypto2] no action needed
-2026-10-20 01:51:12,440 INFO [mm] no action needed
-2026-10-20 01:51:12,446 INFO [crypto] no action needed
-2026-10-20 01:51:12,450 INFO [primary] no action needed
-2026-10-20 01:51:12,455 INFO [research] no action needed
-2026-10-20 01:51:12,460 INFO [trend] no action needed
-2026-10-20 01:51:12,464 INFO [ctrend] no action needed
-2026-10-20 01:51:12,469 INFO [speed] no action needed
-2026-10-20 01:51:13,277 INFO [meme] bought startupSI $5.00
+2026-10-20 05:15:31,624 INFO [daytrade] no action needed
+2026-10-20 05:15:36,026 INFO [crypto2] no action needed
+2026-10-20 05:15:37,803 INFO [mm] no action needed
+2026-10-20 05:15:37,810 INFO [crypto] no action needed
+2026-10-20 05:15:37,814 INFO [primary] no action needed
+2026-10-20 05:15:37,819 INFO [research] no action needed
+2026-10-20 05:15:37,823 INFO [trend] no action needed
+2026-10-20 05:15:37,828 INFO [ctrend] no action needed
+2026-10-20 05:15:37,833 INFO [speed] no action needed
+2026-10-20 05:15:38,520 INFO [meme] sold startupSI (STOP) -2.52; candidates screened out: age x10, liquidity x9, 1h x3, 5m x1
+2026-10-20 05:15:38,570 INFO daily reports generated: ['daily_2026-10-19']

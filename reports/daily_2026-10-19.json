@@ -1,0 +1,128 @@
+{
+ "kind": "daily",
+ "date": "2026-10-19",
+ "day": 27,
+ "weekday": "Monday",
+ "generated_at": "2026-10-20T05:15:31Z",
+ "summary": "All bots together went from $950.41 to $948.61 today (\u2212$1.80). Biggest gain: Research (+$0.43). Biggest loss: Memecoin trader (high risk) (\u2212$2.52). The S&P 500 (SPY) moved +0.42%.",
+ "rows": [
+  {
+   "id": "daytrade",
+   "name": "Day trading",
+   "status": "trading",
+   "value": 99.32727379604016,
+   "change": 0.0,
+   "since_start": -0.6727262039598401,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto2",
+   "name": "Crypto odds bot v2",
+   "status": "trading",
+   "value": 100.0,
+   "change": 0.0,
+   "since_start": 0.0,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "mm",
+   "name": "Market maker v2",
+   "status": "trading",
+   "value": 92.94952568400001,
+   "change": 0.0,
+   "since_start": -7.050474315999992,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "crypto",
+   "name": "Crypto odds bot v1 (retired)",
+   "status": "retired (only settles old bets)",
+   "value": 74.22458862,
+   "change": 0.0,
+   "since_start": -25.775411379999994,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "primary",
+   "name": "Primary",
+   "status": "trading",
+   "value": 99.13148631469504,
+   "change": 0.40925467529297066,
+   "since_start": -0.8685136853049613,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "research",
+   "name": "Research",
+   "status": "trading",
+   "value": 98.29270324992905,
+   "change": 0.4285558463188295,
+   "since_start": -1.7072967500709524,
+   "trades": 3,
+   "wins": 0,
+   "losses": 1
+  },
+  {
+   "id": "trend",
+   "name": "Diversified trend",
+   "status": "trading",
+   "value": 99.8490457111671,
+   "change": -0.082997260475139,
+   "since_start": -0.1509542888329065,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "ctrend",
+   "name": "Crypto trend (high risk)",
+   "status": "trading",
+   "value": 96.00610505540085,
+   "change": -0.038221634066189836,
+   "since_start": -3.9938949445991483,
+   "trades": 2,
+   "wins": 0,
+   "losses": 1
+  },
+  {
+   "id": "speed",
+   "name": "Speed trader (Jev, retired)",
+   "status": "retired (only settles old bets)",
+   "value": 100.0,
+   "change": 0.0,
+   "since_start": 0.0,
+   "trades": 0,
+   "wins": 0,
+   "losses": 0
+  },
+  {
+   "id": "meme",
+   "name": "Memecoin trader (high risk)",
+   "status": "trading",
+   "value": 88.83407214149776,
+   "change": -2.5150266980202076,
+   "since_start": -11.165927858502243,
+   "trades": 1,
+   "wins": 0,
+   "losses": 0
+  }
+ ],
+ "spy": {
+  "value": 99.11409847085156,
+  "change_pct": 0.004231877456600142
+ },
+ "missing": [],
+ "total_before": 950.4132356436797,
+ "total_end": 948.61480057273,
+ "late_by_hours": 0.3
+}
