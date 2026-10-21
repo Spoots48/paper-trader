@@ -1,10 +1,11 @@
-2026-10-21 17:55:16,760 INFO [daytrade] no action needed
-2026-10-21 17:55:23,037 INFO [crypto2] no action needed
-2026-10-21 17:55:23,476 INFO [mm] no action needed
-2026-10-21 17:55:23,484 INFO [crypto] no action needed
-2026-10-21 17:55:23,774 INFO [primary] no action needed
-2026-10-21 17:55:24,254 INFO [research] no action needed
-2026-10-21 17:55:24,566 INFO [trend] no action needed
-2026-10-21 17:55:24,914 INFO [ctrend] no action needed
-2026-10-21 17:55:26,670 INFO [speed] 2026-10-21: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
-2026-10-21 17:55:27,997 INFO [meme] sold GLITCH (TIME_EXIT) -0.72; candidates screened out: liquidity x14, age x10, 24h x3, 1h x2
+2026-10-21 21:16:20,531 INFO [daytrade] SELL ISRG @ 427.48 (CLOSE_EXIT); SELL PM @ 197.19 (CLOSE_EXIT); closed 2026-10-21: equity $99.03 (4 trades)
+2026-10-21 21:16:27,012 INFO [crypto2] no action needed
+2026-10-21 21:16:29,179 INFO [mm] no action needed
+2026-10-21 21:16:29,184 INFO [crypto] no action needed
+2026-10-21 21:16:32,282 INFO [primary] closed 2026-10-21; decided for 2026-10-22: 0 orders (MOO), regime ON
+2026-10-21 21:18:17,650 INFO [research] closed 2026-10-21; decided for 2026-10-22: 0 orders (MOO), regime ON
+2026-10-21 21:18:21,138 INFO [trend] closed 2026-10-21; decided for 2026-10-22: 0 orders (MOO), rebalance=False
+2026-10-21 21:18:24,365 INFO [ctrend] closed 2026-10-21; decided for 2026-10-22: 0 orders (MOO), rebalance=False
+2026-10-21 21:18:27,476 INFO [speed] closed 2026-10-21: equity $100.00 (0 trades); 2026-10-21: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-21 21:18:28,409 INFO [meme] candidates screened out: age x14, liquidity x9, 24h x3, 1h x2
+2026-10-21 21:18:28,419 INFO after-close review written: review_2026-10-21
