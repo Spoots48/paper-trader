@@ -1,10 +1,50 @@
-2026-10-21 10:34:41,314 INFO [daytrade] no action needed
-2026-10-21 10:34:46,386 INFO [crypto2] no action needed
-2026-10-21 10:34:47,112 INFO [mm] no action needed
-2026-10-21 10:34:47,121 INFO [crypto] no action needed
-2026-10-21 10:34:47,125 INFO [primary] no action needed
-2026-10-21 10:34:47,129 INFO [research] no action needed
-2026-10-21 10:34:47,134 INFO [trend] no action needed
-2026-10-21 10:34:47,138 INFO [ctrend] no action needed
-2026-10-21 10:34:47,143 INFO [speed] no action needed
-2026-10-21 10:34:47,557 INFO [meme] candidates screened out: age x9, liquidity x5, 1h x4, 24h x3
+2026-10-21 15:37:47,492 INFO [daytrade] 2026-10-21: 7 candidates (DHR, ABT, ISRG, NFLX, TMO, T, PM); BUY ABT @ 104.97 (ORB_BREAKOUT); BUY ISRG @ 421.93 (ORB_BREAKOUT); BUY T @ 22.40 (ORB_BREAKOUT); BUY PM @ 194.95 (ORB_BREAKOUT); SELL ABT @ 100.86 (STOP)
+2026-10-21 15:37:52,120 INFO [crypto2] no action needed
+2026-10-21 15:37:52,281 INFO [mm] no action needed
+2026-10-21 15:37:52,286 INFO [crypto] no action needed
+2026-10-21 15:37:52,618 INFO [primary] no action needed
+2026-10-21 15:37:53,043 INFO [research] FILL SELL SPY 0.0257 @ 770.61 (FUNDING); FILL BUY HAS 0.1792 @ 110.44 (EARNINGS_GAP)
+2026-10-21 15:37:53,445 INFO [trend] no action needed
+2026-10-21 15:37:53,821 INFO [ctrend] no action needed
+2026-10-21 15:37:54,830 INFO [speed] 2026-10-21: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-21 15:37:55,589 INFO [meme] candidates screened out: liquidity x13, age x9, 1h x2, buys x1
+2026-10-21 15:41:47,197 INFO [daytrade] no action needed
+2026-10-21 15:41:53,566 INFO [crypto2] no action needed
+2026-10-21 15:41:53,728 INFO [mm] no action needed
+2026-10-21 15:41:53,733 INFO [crypto] no action needed
+2026-10-21 15:41:53,857 INFO [primary] no action needed
+2026-10-21 15:41:54,152 INFO [research] no action needed
+2026-10-21 15:41:54,358 INFO [trend] no action needed
+2026-10-21 15:41:54,542 INFO [ctrend] no action needed
+2026-10-21 15:41:55,456 INFO [speed] 2026-10-21: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-21 15:41:56,241 INFO [meme] candidates screened out: liquidity x14, age x10, 1h x3, 24h x1
+2026-10-21 15:46:47,213 INFO [daytrade] SELL T @ 21.83 (STOP)
+2026-10-21 15:46:51,971 INFO [crypto2] no action needed
+2026-10-21 15:46:52,864 INFO [mm] no action needed
+2026-10-21 15:46:52,869 INFO [crypto] no action needed
+2026-10-21 15:46:52,984 INFO [primary] no action needed
+2026-10-21 15:46:53,222 INFO [research] no action needed
+2026-10-21 15:46:53,413 INFO [trend] no action needed
+2026-10-21 15:46:53,598 INFO [ctrend] no action needed
+2026-10-21 15:46:54,512 INFO [speed] 2026-10-21: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-21 15:46:55,402 INFO [meme] candidates screened out: liquidity x13, age x11, 1h x2, 5m x1
+2026-10-21 15:51:47,190 INFO [daytrade] no action needed
+2026-10-21 15:51:51,990 INFO [crypto2] no action needed
+2026-10-21 15:51:52,927 INFO [mm] no action needed
+2026-10-21 15:51:52,932 INFO [crypto] no action needed
+2026-10-21 15:51:53,454 INFO [primary] no action needed
+2026-10-21 15:51:53,705 INFO [research] no action needed
+2026-10-21 15:51:53,901 INFO [trend] no action needed
+2026-10-21 15:51:54,107 INFO [ctrend] no action needed
+2026-10-21 15:51:54,989 INFO [speed] 2026-10-21: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-21 15:51:55,729 INFO [meme] candidates screened out: liquidity x13, age x12, 24h x3, 1h x1
+2026-10-21 15:56:47,142 INFO [daytrade] no action needed
+2026-10-21 15:56:51,956 INFO [crypto2] no action needed
+2026-10-21 15:56:52,104 INFO [mm] no action needed
+2026-10-21 15:56:52,110 INFO [crypto] no action needed
+2026-10-21 15:56:52,298 INFO [primary] no action needed
+2026-10-21 15:56:52,571 INFO [research] no action needed
+2026-10-21 15:56:52,793 INFO [trend] no action needed
+2026-10-21 15:56:52,969 INFO [ctrend] no action needed
+2026-10-21 15:56:53,951 INFO [speed] 2026-10-21: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-21 15:56:55,023 INFO [meme] candidates screened out: age x13, liquidity x12, 24h x3, 1h x1
