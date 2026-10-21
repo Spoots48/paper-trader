@@ -1,10 +1,11 @@
-2026-10-21 01:36:51,100 INFO [daytrade] no action needed
-2026-10-21 01:36:56,517 INFO [crypto2] no action needed
-2026-10-21 01:36:57,860 INFO [mm] no action needed
-2026-10-21 01:36:58,053 INFO [crypto] no action needed
-2026-10-21 01:36:58,060 INFO [primary] no action needed
-2026-10-21 01:36:58,064 INFO [research] no action needed
-2026-10-21 01:36:58,069 INFO [trend] no action needed
-2026-10-21 01:36:58,073 INFO [ctrend] no action needed
-2026-10-21 01:36:58,077 INFO [speed] no action needed
-2026-10-21 01:36:58,832 INFO [meme] candidates screened out: age x14, liquidity x10, 1h x2
+2026-10-21 05:17:42,833 INFO [daytrade] no action needed
+2026-10-21 05:17:48,127 INFO [crypto2] no action needed
+2026-10-21 05:17:49,754 INFO [mm] no action needed
+2026-10-21 05:17:49,760 INFO [crypto] no action needed
+2026-10-21 05:17:49,765 INFO [primary] no action needed
+2026-10-21 05:17:49,770 INFO [research] no action needed
+2026-10-21 05:17:49,775 INFO [trend] no action needed
+2026-10-21 05:17:49,779 INFO [ctrend] no action needed
+2026-10-21 05:17:49,784 INFO [speed] no action needed
+2026-10-21 05:17:50,449 INFO [meme] candidates screened out: liquidity x14, age x10, 1h x3, 24h x1
+2026-10-21 05:17:50,502 INFO daily reports generated: ['daily_2026-10-20']
