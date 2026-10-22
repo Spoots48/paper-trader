@@ -1,11 +1,10 @@
-2026-10-22 05:20:32,054 INFO [daytrade] no action needed
-2026-10-22 05:20:37,731 INFO [crypto2] no action needed
-2026-10-22 05:20:39,515 INFO [mm] no action needed
-2026-10-22 05:20:39,522 INFO [crypto] no action needed
-2026-10-22 05:20:39,526 INFO [primary] no action needed
-2026-10-22 05:20:39,531 INFO [research] no action needed
-2026-10-22 05:20:39,535 INFO [trend] no action needed
-2026-10-22 05:20:39,540 INFO [ctrend] no action needed
-2026-10-22 05:20:39,544 INFO [speed] no action needed
-2026-10-22 05:20:40,356 INFO [meme] scanned 28 pools; nothing to do
-2026-10-22 05:20:40,392 INFO daily reports generated: ['daily_2026-10-21']
+2026-10-22 10:37:42,225 INFO [daytrade] no action needed
+2026-10-22 10:37:47,885 INFO [crypto2] no action needed
+2026-10-22 10:37:48,172 INFO [mm] no action needed
+2026-10-22 10:37:48,177 INFO [crypto] no action needed
+2026-10-22 10:37:48,182 INFO [primary] no action needed
+2026-10-22 10:37:48,186 INFO [research] no action needed
+2026-10-22 10:37:48,191 INFO [trend] no action needed
+2026-10-22 10:37:48,197 INFO [ctrend] no action needed
+2026-10-22 10:37:48,202 INFO [speed] no action needed
+2026-10-22 10:37:48,884 INFO [meme] scanned 28 pools; nothing to do
