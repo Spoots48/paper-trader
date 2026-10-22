@@ -1,10 +1,10 @@
-2026-10-22 00:12:01,435 INFO [daytrade] no action needed
-2026-10-22 00:12:06,389 INFO [crypto2] no action needed
-2026-10-22 00:12:07,246 INFO [mm] no action needed
-2026-10-22 00:12:07,251 INFO [crypto] no action needed
-2026-10-22 00:12:07,255 INFO [primary] no action needed
-2026-10-22 00:12:07,260 INFO [research] no action needed
-2026-10-22 00:12:07,264 INFO [trend] no action needed
-2026-10-22 00:12:07,268 INFO [ctrend] no action needed
-2026-10-22 00:12:07,273 INFO [speed] no action needed
-2026-10-22 00:12:07,802 INFO [meme] candidates screened out: age x11, liquidity x10, 1h x3, 24h x3
+2026-10-22 01:33:36,476 INFO [daytrade] no action needed
+2026-10-22 01:33:42,290 INFO [crypto2] no action needed
+2026-10-22 01:33:43,649 INFO [mm] no action needed
+2026-10-22 01:33:43,654 INFO [crypto] no action needed
+2026-10-22 01:33:43,660 INFO [primary] no action needed
+2026-10-22 01:33:43,667 INFO [research] no action needed
+2026-10-22 01:33:43,675 INFO [trend] no action needed
+2026-10-22 01:33:43,724 INFO [ctrend] no action needed
+2026-10-22 01:33:43,729 INFO [speed] no action needed
+2026-10-22 01:33:45,222 INFO [meme] sold MONEYBIZ (STOP) -3.73; candidates screened out: age x10, liquidity x8, 1h x5
