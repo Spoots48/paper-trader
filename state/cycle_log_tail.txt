@@ -1,10 +1,50 @@
-2026-10-22 10:37:42,225 INFO [daytrade] no action needed
-2026-10-22 10:37:47,885 INFO [crypto2] no action needed
-2026-10-22 10:37:48,172 INFO [mm] no action needed
-2026-10-22 10:37:48,177 INFO [crypto] no action needed
-2026-10-22 10:37:48,182 INFO [primary] no action needed
-2026-10-22 10:37:48,186 INFO [research] no action needed
-2026-10-22 10:37:48,191 INFO [trend] no action needed
-2026-10-22 10:37:48,197 INFO [ctrend] no action needed
-2026-10-22 10:37:48,202 INFO [speed] no action needed
-2026-10-22 10:37:48,884 INFO [meme] scanned 28 pools; nothing to do
+2026-10-22 15:39:40,241 INFO [daytrade] 2026-10-22: 10 candidates (ROL, IBM, PG, LMT, HON, LVS, CSX, DGX…); BUY LMT @ 598.06 (ORB_BREAKOUT); BUY LVS @ 36.31 (ORB_BREAKOUT); BUY CSX @ 51.46 (ORB_BREAKOUT); BUY DGX @ 238.99 (ORB_BREAKOUT)
+2026-10-22 15:39:45,655 INFO [crypto2] no action needed
+2026-10-22 15:39:45,954 INFO [mm] no action needed
+2026-10-22 15:39:45,960 INFO [crypto] no action needed
+2026-10-22 15:39:46,296 INFO [primary] no action needed
+2026-10-22 15:39:46,909 INFO [research] no action needed
+2026-10-22 15:39:47,263 INFO [trend] no action needed
+2026-10-22 15:39:47,624 INFO [ctrend] no action needed
+2026-10-22 15:39:49,037 INFO [speed] 2026-10-22: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-22 15:39:49,552 INFO [meme] scanned 30 pools; nothing to do
+2026-10-22 15:43:29,031 INFO [daytrade] no action needed
+2026-10-22 15:43:33,731 INFO [crypto2] no action needed
+2026-10-22 15:43:34,130 INFO [mm] no action needed
+2026-10-22 15:43:34,135 INFO [crypto] no action needed
+2026-10-22 15:43:34,342 INFO [primary] no action needed
+2026-10-22 15:43:34,720 INFO [research] no action needed
+2026-10-22 15:43:34,997 INFO [trend] no action needed
+2026-10-22 15:43:35,272 INFO [ctrend] no action needed
+2026-10-22 15:43:36,695 INFO [speed] 2026-10-22: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-22 15:44:10,277 INFO [meme] scanned 32 pools; nothing to do
+2026-10-22 15:48:27,137 INFO [daytrade] no action needed
+2026-10-22 15:48:32,539 INFO [crypto2] no action needed
+2026-10-22 15:48:33,327 INFO [mm] no action needed
+2026-10-22 15:48:33,332 INFO [crypto] no action needed
+2026-10-22 15:48:33,453 INFO [primary] no action needed
+2026-10-22 15:48:33,750 INFO [research] no action needed
+2026-10-22 15:48:33,947 INFO [trend] no action needed
+2026-10-22 15:48:34,140 INFO [ctrend] no action needed
+2026-10-22 15:48:35,098 INFO [speed] 2026-10-22: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-22 15:48:35,538 INFO [meme] scanned 31 pools; nothing to do
+2026-10-22 15:53:27,193 INFO [daytrade] no action needed
+2026-10-22 15:53:32,498 INFO [crypto2] no action needed
+2026-10-22 15:53:32,753 INFO [mm] no action needed
+2026-10-22 15:53:32,758 INFO [crypto] no action needed
+2026-10-22 15:53:33,306 INFO [primary] no action needed
+2026-10-22 15:53:33,600 INFO [research] no action needed
+2026-10-22 15:53:33,794 INFO [trend] no action needed
+2026-10-22 15:53:33,981 INFO [ctrend] no action needed
+2026-10-22 15:53:34,931 INFO [speed] 2026-10-22: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-22 15:53:35,432 INFO [meme] scanned 31 pools; nothing to do
+2026-10-22 15:58:27,359 INFO [daytrade] no action needed
+2026-10-22 15:58:31,208 INFO [crypto2] no action needed
+2026-10-22 15:58:31,407 INFO [mm] no action needed
+2026-10-22 15:58:31,412 INFO [crypto] no action needed
+2026-10-22 15:58:31,524 INFO [primary] no action needed
+2026-10-22 15:58:31,845 INFO [research] no action needed
+2026-10-22 15:58:32,041 INFO [trend] no action needed
+2026-10-22 15:58:32,288 INFO [ctrend] no action needed
+2026-10-22 15:58:34,113 INFO [speed] 2026-10-22: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-22 15:58:34,598 INFO [meme] scanned 29 pools; nothing to do
