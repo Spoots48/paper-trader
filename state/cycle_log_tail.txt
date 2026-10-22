@@ -1,10 +1,12 @@
-2026-10-22 17:52:09,549 INFO [daytrade] no action needed
-2026-10-22 17:52:15,770 INFO [crypto2] no action needed
-2026-10-22 17:52:16,553 INFO [mm] no action needed
-2026-10-22 17:52:16,559 INFO [crypto] no action needed
-2026-10-22 17:52:16,780 INFO [primary] no action needed
-2026-10-22 17:52:17,228 INFO [research] no action needed
-2026-10-22 17:52:17,525 INFO [trend] no action needed
-2026-10-22 17:52:17,975 INFO [ctrend] no action needed
-2026-10-22 17:52:19,622 INFO [speed] 2026-10-22: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
-2026-10-22 17:52:20,195 INFO [meme] scanned 31 pools; nothing to do
+2026-10-22 21:13:00,911 INFO [daytrade] SELL LMT @ 589.42 (CLOSE_EXIT); SELL LVS @ 36.47 (CLOSE_EXIT); SELL CSX @ 51.62 (CLOSE_EXIT); SELL DGX @ 243.23 (CLOSE_EXIT); closed 2026-10-22: equity $99.06 (4 trades)
+2026-10-22 21:13:05,047 INFO [crypto2] no action needed
+2026-10-22 21:13:05,878 INFO [mm] no action needed
+2026-10-22 21:13:05,884 INFO [crypto] no action needed
+2026-10-22 21:13:07,156 INFO [primary] closed 2026-10-22; experiment end date reached
+2026-10-22 21:13:08,737 INFO [research] closed 2026-10-22; experiment end date reached
+2026-10-22 21:13:10,129 INFO [trend] closed 2026-10-22; experiment end date reached
+2026-10-22 21:13:11,583 INFO [ctrend] closed 2026-10-22; experiment end date reached
+2026-10-22 21:13:14,670 INFO [speed] closed 2026-10-22: equity $100.00 (0 trades); 2026-10-22: 0 buys, 0 sells this run; 0 Jev calls today, 0 trades today
+2026-10-22 21:13:15,392 INFO [meme] scanned 29 pools; nothing to do
+2026-10-22 21:13:15,537 INFO reports generated: ['day30_2026-10-22']
+2026-10-22 21:13:15,555 INFO after-close review written: review_2026-10-22
