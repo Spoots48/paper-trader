@@ -4243,6 +4243,7 @@ INSERT INTO "runs" VALUES('20261026T164447Z-mm','2026-10-26T16:44:47Z','2026-10-
 INSERT INTO "runs" VALUES('20261026T164947Z-mm','2026-10-26T16:49:47Z','2026-10-26T16:49:47Z','OK','github-actions','experiment finished; nothing to do',NULL);
 INSERT INTO "runs" VALUES('20261026T165447Z-mm','2026-10-26T16:54:47Z','2026-10-26T16:54:47Z','OK','github-actions','experiment finished; nothing to do',NULL);
 INSERT INTO "runs" VALUES('20261026T165616Z-mm','2026-10-26T16:56:16Z','2026-10-26T16:56:16Z','OK','github-actions','experiment finished; nothing to do',NULL);
+INSERT INTO "runs" VALUES('20261026T190223Z-mm','2026-10-26T19:02:23Z','2026-10-26T19:02:23Z','OK','github-actions','experiment finished; nothing to do',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -4277,7 +4278,7 @@ INSERT INTO "snapshots" VALUES('2026-10-20','2026-10-21T05:17:49Z','20261021T051
 INSERT INTO "snapshots" VALUES('2026-10-21','2026-10-22T05:20:39Z','20261022T052032Z-mm',9.29495256840000081e+01,9.29495256840000081e+01,0.0,NULL,100.0,1.0272926188400001e+02,9.51991284726945163e-02,'0 open bets','{"peak": 102.72926188400001, "drawdown": 0.09519912847269452}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','92.94952568400001','2026-10-05T07:30:50Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-26T16:56:16Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-26T19:02:23Z');
 INSERT INTO "state" VALUES('mm_orders','[]','2026-10-22T21:13:05Z');
 INSERT INTO "state" VALUES('risk','{"peak": 102.72926188400001, "drawdown": 0.09519912847269452}','2026-10-22T21:13:05Z');
 INSERT INTO "state" VALUES('pm_day','{"date": "2026-10-22", "start_equity": 92.94952568400001, "peak": 92.94952568400001, "protected_floor": 92.45633569560002}','2026-10-22T21:13:05Z');
