@@ -402,6 +402,7 @@ INSERT INTO "runs" VALUES('20261025T171439Z-speed','2026-10-25T17:14:39Z','2026-
 INSERT INTO "runs" VALUES('20261025T195831Z-speed','2026-10-25T19:58:31Z','2026-10-25T19:58:31Z','OK','github-actions','experiment finished; nothing to do',NULL);
 INSERT INTO "runs" VALUES('20261025T224943Z-speed','2026-10-25T22:49:43Z','2026-10-25T22:49:43Z','OK','github-actions','experiment finished; nothing to do',NULL);
 INSERT INTO "runs" VALUES('20261025T233240Z-speed','2026-10-25T23:32:40Z','2026-10-25T23:32:40Z','OK','github-actions','experiment finished; nothing to do',NULL);
+INSERT INTO "runs" VALUES('20261026T014137Z-speed','2026-10-26T01:41:37Z','2026-10-26T01:41:37Z','OK','github-actions','experiment finished; nothing to do',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -418,7 +419,7 @@ INSERT INTO "snapshots" VALUES('2026-10-21','2026-10-21T21:16:17Z','20261021T211
 INSERT INTO "snapshots" VALUES('2026-10-22','2026-10-22T21:12:58Z','20261022T211258Z-speed',100.0,100.0,0.0,98.02840279881,100.0,100.0,0.0,'0 trades','{"peak": 100.0, "drawdown": 0.0}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','100.0','2026-10-22T21:13:13Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-25T23:32:40Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-26T01:41:37Z');
 INSERT INTO "state" VALUES('benchmark','{"ticker": "SPY", "qty": 0.12831614217938572, "entry_price": 779.3251753173828, "entry_session": "2026-10-12", "div_cash": 0.0, "note": "SPY bought at this book''s first official open"}','2026-10-12T16:06:17Z');
 INSERT INTO "state" VALUES('dt:2026-10-12','{"session": "2026-10-12", "cash_at_open": 100.0, "cash": 100.0, "buys_used": 0.0, "candidates": [], "pending": [], "positions": {}, "traded": [], "processed_through": "2026-10-12T15:59:00-04:00", "closed": true, "entry_signals": {}}','2026-10-12T21:36:16Z');
 INSERT INTO "state" VALUES('sp:2026-10-12','{"pending": [], "calls": 274, "trades": 0, "held": {}}','2026-10-12T21:36:16Z');
