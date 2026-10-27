@@ -578,6 +578,7 @@ INSERT INTO "runs" VALUES('20261027T165127Z-meme','2026-10-27T16:51:27Z','2026-1
 INSERT INTO "runs" VALUES('20261027T165627Z-meme','2026-10-27T16:56:27Z','2026-10-27T16:56:27Z','OK','github-actions','experiment finished; nothing to do',NULL);
 INSERT INTO "runs" VALUES('20261027T183350Z-meme','2026-10-27T18:33:50Z','2026-10-27T18:33:50Z','OK','github-actions','experiment finished; nothing to do',NULL);
 INSERT INTO "runs" VALUES('20261027T223907Z-meme','2026-10-27T22:39:07Z','2026-10-27T22:39:07Z','OK','github-actions','experiment finished; nothing to do',NULL);
+INSERT INTO "runs" VALUES('20261027T234440Z-meme','2026-10-27T23:44:40Z','2026-10-27T23:44:40Z','OK','github-actions','experiment finished; nothing to do',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -594,7 +595,7 @@ INSERT INTO "snapshots" VALUES('2026-10-20','2026-10-21T05:17:42Z','20261021T051
 INSERT INTO "snapshots" VALUES('2026-10-21','2026-10-22T05:20:32Z','20261022T052032Z-meme',8.3852601522852268e+01,8.3852601522852268e+01,0.0,NULL,100.0,1.00081159441370857e+02,1.6215397592416525e-01,'0 open memecoin positions','{"peak": 100.08115944137086, "drawdown": 0.16215397592416525}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','83.85260152285227','2026-10-22T01:33:44Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-27T22:39:07Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-10-27T23:44:40Z');
 INSERT INTO "state" VALUES('meme_positions','{}','2026-10-22T21:13:15Z');
 INSERT INTO "state" VALUES('risk','{"peak": 100.08115944137086, "drawdown": 0.16215397592416525}','2026-10-22T05:20:40Z');
 INSERT INTO "state" VALUES('meme_day','{"date": "2026-10-21", "entries": 1, "realized": -4.448118626282067}','2026-10-22T01:33:45Z');
