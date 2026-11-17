@@ -8108,6 +8108,11 @@ INSERT INTO "runs" VALUES('20261117T135536Z-crypto2','2026-11-17T13:55:36Z','202
 INSERT INTO "runs" VALUES('20261117T140036Z-crypto2','2026-11-17T14:00:36Z','2026-11-17T14:00:36Z','OK','github-actions','experiment finished; nothing to do',NULL);
 INSERT INTO "runs" VALUES('20261117T140536Z-crypto2','2026-11-17T14:05:36Z','2026-11-17T14:05:36Z','OK','github-actions','experiment finished; nothing to do',NULL);
 INSERT INTO "runs" VALUES('20261117T141036Z-crypto2','2026-11-17T14:10:36Z','2026-11-17T14:10:36Z','OK','github-actions','experiment finished; nothing to do',NULL);
+INSERT INTO "runs" VALUES('20261117T141202Z-crypto2','2026-11-17T14:12:02Z','2026-11-17T14:12:02Z','OK','github-actions','experiment finished; nothing to do',NULL);
+INSERT INTO "runs" VALUES('20261117T141702Z-crypto2','2026-11-17T14:17:02Z','2026-11-17T14:17:02Z','OK','github-actions','experiment finished; nothing to do',NULL);
+INSERT INTO "runs" VALUES('20261117T142202Z-crypto2','2026-11-17T14:22:02Z','2026-11-17T14:22:02Z','OK','github-actions','experiment finished; nothing to do',NULL);
+INSERT INTO "runs" VALUES('20261117T142702Z-crypto2','2026-11-17T14:27:02Z','2026-11-17T14:27:02Z','OK','github-actions','experiment finished; nothing to do',NULL);
+INSERT INTO "runs" VALUES('20261117T143202Z-crypto2','2026-11-17T14:32:02Z','2026-11-17T14:32:02Z','OK','github-actions','experiment finished; nothing to do',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -8142,7 +8147,7 @@ INSERT INTO "snapshots" VALUES('2026-10-20','2026-10-21T05:17:48Z','20261021T051
 INSERT INTO "snapshots" VALUES('2026-10-21','2026-10-22T05:20:37Z','20261022T052032Z-crypto2',100.0,100.0,0.0,NULL,100.0,100.0,0.0,'0 open bets','{"peak": 100.0, "drawdown": 0.0}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','100.0','2026-09-25T20:09:49Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-11-17T14:10:36Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-11-17T14:32:02Z');
 INSERT INTO "state" VALUES('risk','{"peak": 100.0, "drawdown": 0.0}','2026-10-22T21:13:00Z');
 INSERT INTO "state" VALUES('pm_day','{"date": "2026-10-22", "start_equity": 100.0, "peak": 100.0, "protected_floor": 97.0}','2026-10-22T21:13:00Z');
 INSERT INTO "state" VALUES('pm_positions','{}','2026-10-22T21:13:05Z');
