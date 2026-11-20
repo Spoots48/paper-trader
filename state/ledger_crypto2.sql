@@ -8166,6 +8166,7 @@ INSERT INTO "runs" VALUES('20261119T205812Z-crypto2','2026-11-19T20:58:12Z','202
 INSERT INTO "runs" VALUES('20261119T211116Z-crypto2','2026-11-19T21:11:16Z','2026-11-19T21:11:16Z','OK','github-actions','experiment finished; nothing to do',NULL);
 INSERT INTO "runs" VALUES('20261120T014615Z-crypto2','2026-11-20T01:46:15Z','2026-11-20T01:46:15Z','OK','github-actions','experiment finished; nothing to do',NULL);
 INSERT INTO "runs" VALUES('20261120T015315Z-crypto2','2026-11-20T01:53:15Z','2026-11-20T01:53:15Z','OK','github-actions','experiment finished; nothing to do',NULL);
+INSERT INTO "runs" VALUES('20261120T021833Z-crypto2','2026-11-20T02:18:33Z','2026-11-20T02:18:33Z','OK','github-actions','experiment finished; nothing to do',NULL);
 CREATE TABLE snapshots (
   session TEXT PRIMARY KEY, created_at TEXT NOT NULL, run_id TEXT, equity REAL NOT NULL,
   cash REAL NOT NULL, positions_value REAL NOT NULL, spy_bh_equity REAL, cash_bh_equity REAL,
@@ -8200,7 +8201,7 @@ INSERT INTO "snapshots" VALUES('2026-10-20','2026-10-21T05:17:48Z','20261021T051
 INSERT INTO "snapshots" VALUES('2026-10-21','2026-10-22T05:20:37Z','20261022T052032Z-crypto2',100.0,100.0,0.0,NULL,100.0,100.0,0.0,'0 open bets','{"peak": 100.0, "drawdown": 0.0}','{"marks": {}, "flags": {}}','{}');
 CREATE TABLE state (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL);
 INSERT INTO "state" VALUES('cash','100.0','2026-09-25T20:09:49Z');
-INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-11-20T01:53:15Z');
+INSERT INTO "state" VALUES('strategy_integrity_ok','true','2026-11-20T02:18:33Z');
 INSERT INTO "state" VALUES('risk','{"peak": 100.0, "drawdown": 0.0}','2026-10-22T21:13:00Z');
 INSERT INTO "state" VALUES('pm_day','{"date": "2026-10-22", "start_equity": 100.0, "peak": 100.0, "protected_floor": 97.0}','2026-10-22T21:13:00Z');
 INSERT INTO "state" VALUES('pm_positions','{}','2026-10-22T21:13:05Z');
